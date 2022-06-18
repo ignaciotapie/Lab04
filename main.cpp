@@ -391,7 +391,175 @@ int main()
             }
             case 7:
             {
-                
+                IReservas* interfazReservas = fabrica->getIReservas();
+                IHostales* interfazHostales = fabrica->getIHostales();
+                set<DTHostal> listaHostales = interfazHostales->getHostalesPlus();
+                set<DTHostal>::iterator auxiliarLista = listaHostales.begin();
+                int i = 1;
+                for(; auxiliarLista != listaHostales.end(); auxiliarLista++ )
+                {
+                    cout << i << ". " << auxiliarLista->getNombre() << " - " << auxiliarLista->getDireccion() << " - " << auxiliarLista->getPromCalif();
+                }
+                string nombreHostal;
+                cout << "Ingrese nombre del Hostal que desea reservar: \n";
+                cin.ignore();
+                getline(cin, nombreHostal);
+
+                bool existeHostal = interfazHostales->existeHostal(nombreHostal);
+
+                if (!existeHostal)
+                {
+                    cout << "El hostal que ha ingresado no existe." << endl;
+                    break;
+                }
+                cout << "Ingrese fecha para check-in: " << endl;
+                cout << "Hora (Formato H.HH/HH.HH): ";
+                float horaCheckIn;
+                cin >> horaCheckIn;
+                cout << endl;
+                cout << "Dia: ";
+                int diaCheckIn = CheckIntCin();
+                cout << endl;
+                cout << "Mes: ";
+                int mesCheckIn = CheckIntCin();
+                cout << endl;
+                cout << "Anio: ";
+                int anioCheckIn = CheckIntCin();
+                cout << endl;
+
+                cout << "Ingrese fecha para check-out: " << endl;
+                cout << "Hora (Formato H.HH/HH.HH): ";
+                float horaCheckOut;
+                cin >> horaCheckOut;
+                cout << endl;
+                cout << "Dia: ";
+                int diaCheckOut = CheckIntCin();
+                cout << endl;
+                cout << "Mes: ";
+                int mesCheckOut = CheckIntCin();
+                cout << endl;
+                cout << "Anio: ";
+                int anioCheckOut = CheckIntCin();
+                cout << endl;
+
+                bool esReservaGrupal = false;
+                cout << "Es Reserva Grupal?\n" << "(1) Si\n" << "(2) No\n";
+                bool incorrecto = true;
+                while (incorrecto)
+                {
+                    string fin;
+                    cin >> fin;
+                    if (fin == "1" || fin == "2")
+                    {
+                        incorrecto = false;
+                        if (fin == "1")
+                            esReservaGrupal = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, elija una opcion correcta" << endl;
+                    }
+                }
+                interfazHostales->seleccionarHostalParaReserva(nombreHostal, Fecha(horaCheckIn,diaCheckIn,mesCheckIn,anioCheckIn), Fecha(horaCheckOut, diaCheckOut, mesCheckOut, anioCheckOut), esReservaGrupal);
+                set<int> habitacionesLibres = interfazHostales->getHabitacionesLibres();
+                if (habitacionesLibres.empty())
+                {
+                    cout << "No hay habitaciones libres." << endl;
+                    break;
+                }
+                set<int>::iterator it = habitacionesLibres.begin();
+                for (; it != habitacionesLibres.end(); it++)
+                {
+                    cout << "Habitacion " << (*it) << endl;
+                }
+                cout << "Escriba el numero de la habitacion a elegir: ";
+                int numHabitacion;
+                bool habitacionValida = false;
+                while (!habitacionValida)
+                {
+                    numHabitacion = CheckIntCin();
+                    if (habitacionesLibres.find(numHabitacion) != habitacionesLibres.end())
+                    {
+                        habitacionValida = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, escriba una habitacion de la lista." << endl;
+                    }
+                }
+                interfazHostales->seleccionarHabitacion(numHabitacion);
+
+                IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
+                set<string> huespedesListados = interfazUsuarios->getHuespedes();
+                set<string>::iterator aux = huespedesListados.begin();
+                cout << "Lista de huespedes registrados: " << endl;
+                int i = 1;
+                for (; aux != huespedesListados.end(); aux++)
+                {
+                    cout << i << ". " << *aux << endl;
+                }
+                cout << "Ingrese el nombre del huesped a registrar: " ;
+                cin.ignore();
+                string nombreHuesped;
+                getline(cin, nombreHuesped);
+                interfazHostales->seleccionarHuesped(nombreHuesped);
+                set<string> nombreHuespedes;
+                nombreHuespedes.insert(nombreHuesped);
+                if (esReservaGrupal)
+                {
+                    bool quiereAgregar = true;
+                    while (quiereAgregar)
+                    {
+                        cout << "Ingrese el nombre de otro huesped a agregar a la reserva grupal: "; 
+                        cin.ignore();
+                        getline(cin, nombreHuesped);
+                        interfazHostales->seleccionarHuesped(nombreHuesped);
+                        nombreHuespedes.insert(nombreHuesped);
+                        cout << "Desea agregar mas huespedes?\n" << "(1) Si\n" << "(2) No\n";
+                        bool incorrecto = true;
+                        while (incorrecto)
+                        {
+                            string fin;
+                            cin >> fin;
+                            if (fin == "1" || fin == "2")
+                            {
+                                incorrecto = false;
+                                if (fin == "2")
+                                    quiereAgregar = false;
+                            }
+                            else
+                            {
+                                cout << "Por favor, elija una opcion correcta" << endl;
+                            }
+                        }
+                    }
+                }
+                cout << "Datos de la reserva:" << endl;
+                cout << "Hostal: " << nombreHostal << endl;
+                cout << "Es reserva grupal: " << (esReservaGrupal ? "Si" : "No") << endl;
+                cout << "Huespedes: " << endl;
+                for (set<string>::iterator huespedIt = nombreHuespedes.begin(); huespedIt != nombreHuespedes.end(); huespedIt++)
+                {
+                    cout << *huespedIt << endl;
+                }
+                cout << "Desea confirmar la reserva?\n" << "(1) Si\n" << "(2) No\n";
+                bool incorrecto = true;
+                string fin;
+                while (incorrecto)
+                {
+                    string fin;
+                    cin >> fin;
+                    if (fin == "1" || fin == "2")
+                    {
+                        incorrecto = false;
+                    }
+                    else
+                    {
+                        cout << "Por favor, elija una opcion correcta" << endl;
+                    }
+                }
+                if (fin == "2") break;
+                interfazHostales->confirmarReserva();
                 break;
             }
             case 9:

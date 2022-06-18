@@ -27,6 +27,7 @@ class IUsuarios{
 		virtual void cancelarAltaUsuario();
 		virtual void confirmarAltaUsuario();
 
+		virtual set<string> getHuespedes();
 
 		virtual set<string> getUsuarios();
 		virtual void seleccionarUsuario(string);

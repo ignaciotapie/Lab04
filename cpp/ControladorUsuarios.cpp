@@ -66,6 +66,10 @@ Empleado* ControladorUsuarios::getEmpleado(string nombreUsuario)
     return empleados.find(nombreUsuario)->second;
 }
 
+set<string> ControladorUsuarios::getHuespedes()
+{
+    
+}
 
 set<string> ControladorUsuarios::getUsuarios(){}
 
@@ -81,8 +85,8 @@ void ControladorUsuarios::seleccionarHostal(string nombreHostal){
 } 
 set<int> ControladorUsuarios::getReservasDelHuesped(string emailHuesped) {
 	this->emailHuesped = emailHuesped;
-	auto it = usuarios.find(emailHuesped); 
-	set <int> res = it->getCodigosReserva();
+	map<string,Huesped*>::iterator it = huespedes.find(emailHuesped); 
+	set<int> res = it->second->getCodigosReserva();
 	return res;
 }
 
@@ -91,8 +95,7 @@ void ControladorUsuarios::seleccionarReserva(int codigoReserva){
 } 
 
 void ControladorUsuarios::registrarEstadia(){
-	auto it = usuarios.find(this->emailHuesped);
-	Huesped* hues = &it->second;
+	Huesped* hues = huespedes.find(this->emailHuesped)->second;
     ControladorReservas* cr = ControladorReserva::getInstance();
 	cr->registrarEstadia(this->codigoReserva, hues); //mandar la funcion de controldorReservas
 }

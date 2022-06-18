@@ -17,7 +17,7 @@ void ControladorReservas::registrarEstadia(int codigoReserva, Huesped* hues){
 {
 	ControladorReloj* cr = ControladorReloj::getInstance();
 	Fecha fechaAct = cr->getFechaActual();
-	auto it = reservas.find(codigoReserva);
+	map<int, Reserva*>::iterator it = reservas.find(codigoReserva);
 	Reserva* res = it->second;
 	int promo = 0;
 	res->setCerradaReserva(fechaAct, promo, res, hues);
@@ -42,9 +42,10 @@ void ControladorReservas::finalizarEstadia(){
     ControladorUsuarios* cu = ControladorUsuarios::getInstanciaUsuarios();
 	ControladorReloj* cr = ControladorReloj::getInstanciaReloj();
 	Fecha fechaA = cr->getFechaActual();
-	auto it = usuarios.find(this->emailHuesped); 
+	map<string, Usuario*> it = usuarios.find(this->emailHuesped); 
 	Huesped* h = &it->second();
-	for (auto iter = h->estadias->begin(); iter != h->estadias->end(); iter++){
+    map<int,Estadia*>::iterator iter = h->estadias->begin();
+	for (; iter != h->estadias->end(); iter++){
 		if (!iter->estaFinalizada()){
 			iter->setCheckOut(fechaA);
 		}

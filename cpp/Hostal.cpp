@@ -3,7 +3,14 @@
 Hostal::Hostal(){
 }
 
-Hostal::Hostal(string nombreHostal, string direccion, int telefono, map<int, Habitacion*> habitaciones, set<Calificacion*> calificaciones, map<string, Empleado*> empleados) {
+Hostal::Hostal(string nombreHostal, string direccion, int telefono)
+{
+    this->nombreHostal = nombreHostal;
+    this->direccion = direccion;
+    this->telefono = telefono;
+}
+
+Hostal::Hostal(string nombreHostal, string direccion, int telefono, map<int, Habitacion*> habitaciones, set<Calificacion*> calificaciones, map<string, Empleado*> empleados){
 	this->nombreHostal = nombreHostal;
 	this->direccion = direccion;
 	this->telefono = telefono;
@@ -47,7 +54,8 @@ void Hostal::agregarCalificacion(Calificacion* c){
 int Hostal::getPromedioPuntaje(){
     int sum = 0;
 	int iteraciones = 0;
-	for( auto iter = this->calificaciones.begin(); iter != this->calificaciones.end(); iter++ ) {
+    set<Calificacion*>::iterator iter;
+	for(iter = this->calificaciones.begin(); iter != this->calificaciones.end(); iter++ ) {
 		sum = sum + (*iter)->getPuntaje();
 		iteraciones++;
 	}
@@ -56,10 +64,10 @@ int Hostal::getPromedioPuntaje(){
 
  
 set<DTCalificacion> Hostal::getDetalles(){
-	DTCalificacion nuevo;
 	set<DTCalificacion> res;
-	for (auto iter = this->calificaciones.begin(); iter != this->calificaciones.end(); iter++){
-		nuevo = DTCalificacion((*iter)->getPuntaje(), (*iter)->getComentario());
+    set<Calificacion*>::iterator iter;
+	for (iter = this->calificaciones.begin(); iter != this->calificaciones.end(); iter++){
+		DTCalificacion nuevo = DTCalificacion((*iter)->getPuntaje(), (*iter)->getComentario(), /*TEMPORAL*/"temporal", 0);
 		res.insert(nuevo);
 	}
 	return res;
@@ -69,8 +77,9 @@ void Hostal::nuevaHabitacion(int, int, int){
 
 }
 
-DTHostal Hostal::getDataHostal(){
-
+DTHostal Hostal::getDataHostal()
+{
+    return DTHostal(nombreHostal, direccion, telefono, getPromedioPuntaje());
 }
 
 set<DTEstadia> Hostal::getEstadiasFinalizadas(string emailHuesped){
@@ -121,5 +130,10 @@ void Hostal::asignarEmpleado(Empleado* empleado)
 }
 
 void Hostal::reservarHabitacion(Reserva*, int){
+
+}
+
+set<int> Hostal::getHabitacionesLibres(Fecha CheckIn, Fecha CheckOut)
+{
 
 }

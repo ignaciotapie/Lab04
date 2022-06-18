@@ -12,8 +12,11 @@ int Fecha::getDia(){
 int Fecha::getHora(){
 
 }
-Fecha::Fecha(int, int, int, int){
-
+Fecha::Fecha(float hora, int dia, int mes, int anio){
+    this->hora = hora;
+    this->dia = dia;
+    this->mes = mes;
+    this->anio = anio;
 }
 Fecha::~Fecha(){
 

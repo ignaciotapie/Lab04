@@ -17,15 +17,12 @@ class Notificacion{
     public:
         Notificacion(string, int, Calificacion*);
         ~Notificacion();
-
-        //Caso de uso: Consulta de Notificaciones
-        DTNotificacion getDTNotificacion();
-        void disminuirNumero();
-        int getEmpleadosLinkeados();
-
         string getAutor();
+        int getEmpleadosLinkeados();
         Calificacion* getCalificacion();
+        DTNotificacion getDTNotificacion();
         void aumentarNumero();
+        void disminuirNumero();
 };
 
 

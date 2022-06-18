@@ -35,12 +35,6 @@ class ControladorUsuarios : public IUsuarios{
 		void reingresarDatos();
 		void cancelarAltaUsuario();
 		void confirmarAltaUsuario();
-
-		//Caso de uso: Consulta de Usuario
-		//set<string> getUsuarios();
-		//void seleccionarUsuario(string);
-		DTUsuario listarDatos();
-		void finalizarConsultaUsuario();
 		
 		// Caso de Uso: Asignar Empleado a Hostal
 		Empleado* getEmpleado(string nombreUsuario);
@@ -48,19 +42,8 @@ class ControladorUsuarios : public IUsuarios{
 		set<string> getUsuarios();
 		void seleccionarUsuario(string);
 
-		//Caso de uso: Suscribirse a Notificacion
-		//Empleado* getEmpleado(string nombreUsuario);
-		void seleccionarEmpleado(string);
-		void suscribirEmpleado();
-		void finalizarSuscripcion();
-
-		//Caso de uso: Consulta de Notificaciones
-		set<DTNotificacion> listaNotificaciones();
-		void finalizarConsultaNotis();
-		
-		//Caso de uso: Eliminar Suscripcion
-		void eliminarEmpleado();
-		void finalizarEliminacion();
+		// Caso de Uso: Realizar Reserva
+		set<string> getHuespedes();
 
 		//Registrar Estadia
 		set<string> getHostales();
@@ -68,6 +51,14 @@ class ControladorUsuarios : public IUsuarios{
 		set<int> getReservasDelHuesped(string); 
 		void seleccionarReserva(int);
 		void registrarEstadia();
+		DTUsuario listarDatos();
+		void finalizarConsultaUsuario();
+		void suscribirEmpleado();
+		void finalizarSuscripcion();
+		void eliminarEmpleado();
+		set<DTNotificacion> listaNotificaciones();
+		void finalizarConsultaNotis();
+		void finalizarEliminacion();
 
 		map<string,Empleado*>  getEmpleados();
 		//CalificarEstadia
