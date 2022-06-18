@@ -402,6 +402,21 @@ int main()
                     loop = false;
                     break;
                 }
+            case 12:
+            {
+                
+                break;
+            }
+            case 13:
+            {
+                
+                break;
+            }
+            case 14:
+            {
+                
+                break;
+            }
             default:
                 {
                     cout << "Por favor ingrese un numero valido" << endl;
