@@ -10,10 +10,10 @@ string DTHostal::getNombre(){
     return nombre;
 }
 string DTHostal::getDireccion(){
-    return  direccion;
+    return direccion;
 }
 int DTHostal::getTelefono(){
-    return  telefono;
+    return telefono;
 }
 float DTHostal::getPromCalif(){
     return promCalif;

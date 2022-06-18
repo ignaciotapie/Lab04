@@ -14,6 +14,7 @@ class DTCalificacion{
         string emailHuesp;
         int codigoReserva;
     public:
+        DTCalificacion();
         DTCalificacion(int, string, Fecha, string, int);
         DTCalificacion(int, string, string, int);
         int getPuntaje();

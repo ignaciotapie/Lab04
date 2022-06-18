@@ -15,7 +15,7 @@ class IHostales{
 		virtual DTHostal getDTHostal();
 		virtual set<string> getHostales();
 		virtual void seleccionarHostal(string);
-		virtual void altaHabitacion(int, int, int);
+		virtual void altaHabitacion();
 		virtual void confirmar();
 		virtual set<string> getTop3Hostales();
 		virtual set<DTCalificacion> getDetallesHostal(string);
@@ -31,9 +31,11 @@ class IHostales{
 		virtual void confirmarReserva();
 		virtual set<int> getHabitacionesLibres();
 		virtual set<DTHostal> getHostalesPlus();
-		virtual void seleccionarHabitacion();
-		virtual void seleccionarHostalParaReserva(string, Fecha, bool);
-		virtual void seleccionarHuesped();
+		virtual void seleccionarHabitacion(int numeroHabitacion);
+		virtual void seleccionarHostalParaReserva(string nombreHostal, Fecha checkIn, Fecha checkOut, bool esReservaGrupal);
+		virtual void getHuespedes();
+		virtual void seleccionarHuesped(string nombreHuesped);
+		virtual bool existeHostal(string nombreHostal);
 		virtual ~IHostales ();
 };
 

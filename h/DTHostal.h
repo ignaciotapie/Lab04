@@ -13,11 +13,11 @@ private:
     int telefono;
     float promCalif;
 public:
-    DTHostal(string, string, int, float);
-    string getNombre();
-    string getDireccion();
-    int getTelefono();
-    float getPromCalif();
+    DTHostal(string nombre, string direccion, int telefono, float promCalif);
+    string getNombre() const;
+    string getDireccion() const;
+    int getTelefono() const;
+    float getPromCalif() const;
     ~DTHostal();
 };
 

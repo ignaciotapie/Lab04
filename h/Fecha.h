@@ -6,14 +6,14 @@ class Fecha{
         int anio;
         int mes;
         int dia;
-        int hora;
+        float hora;
     public:
         int getAnio();
         int getMes();
         int getDia();
         int getHora();
         Fecha();
-        Fecha(int, int, int, int);
+        Fecha(float hora, int dia, int mes, int anio);
         ~Fecha();
 };
 

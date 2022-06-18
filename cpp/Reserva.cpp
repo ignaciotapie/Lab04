@@ -1,4 +1,4 @@
-#include "h/Reserva.h"
+#include "../h/Reserva.h"
 
 Reserva::Reserva(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo){
 	this->codigoReserva = codRes;

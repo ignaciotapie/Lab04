@@ -4,6 +4,7 @@
 #include "IHostales.h"
 #include "Hostal.h"
 #include "Reserva.h"
+#include "Fecha.h"
 
 class ControladorHostales : public IHostales{
 	
@@ -18,6 +19,11 @@ class ControladorHostales : public IHostales{
 		string nombreEmpleadoAAsignar, nombreHostalAAsignar;
 		CargoEmpleado cargoEmpleadoAAsignar;
 
+		//Caso de Uso: Realizar Reserva
+		string nombreHostalAReservar;
+		Fecha checkInReserva, checkOutReserva;
+		bool esReservaGrupalReserva;
+	
 		map<string, Hostal*> hostales;
 
 	public: 
@@ -40,6 +46,12 @@ class ControladorHostales : public IHostales{
 		DTHostal getDTHostal();
 		void finalizarConsultaHostal();
 
+		//Caso de uso: Realizar Reserva
+		bool existeHostal(string nombreHostal);
+		set<DTHostal> getHostalesPlus();
+		void seleccionarHostalParaReserva(string nombreHostal, Fecha checkIn, Fecha checkOut, bool esReservaGrupal);
+		void seleccionarHabitacion(int habitacion);
+		void seleccionarHuesped(string nombreHuesped);
 
 		set<string> getTop3Hostales();
 		set<DTCalificacion> getDetallesHostal(string);
@@ -50,10 +62,7 @@ class ControladorHostales : public IHostales{
 		void cancelarReserva();
 		void confirmarReserva();
 		set<int> getHabitacionesLibres();
-		set<DTHostal> getHostalesPlus();
-		void seleccionarHabitacion();
-		void seleccionarHostalParaReserva(string, Fecha, bool);
-		void seleccionarHuesped();
+
 		//CalificarEstadia
 		Hostal* getHostal(string);
 };

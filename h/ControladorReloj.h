@@ -15,10 +15,8 @@ class ControladorReloj: public IReloj {
 		static ControladorReloj* getInstance();
 		//operaciones
 		
-		//Modificar Fecha
-		void modificarFecha(int, int, int, int);
-		
 		Fecha getFechaActual();
+		void modificarFecha(int, int, int, int);
 };
 
 #endif

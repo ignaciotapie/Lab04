@@ -34,6 +34,7 @@ class Usuario {
     public:
         string getEmail();
         string getNombre();
+        string getPassword();
         ~Usuario();
 };
 
@@ -41,17 +42,17 @@ class Huesped : public Usuario {
 
     private:
         bool esFinger;
-        map<int, Reserva*> r;
+        map<int,Reserva*> r;
         map<int,ReservaGrupal*> rg;
         map<int,Estadia*> e;
     public:
         Huesped(string nombre, string email, string password, bool esFinger);
         ~Huesped();
-
-        //Caso de uso: Consulta de Usuario
         DTUsuario getDTUsuario();
+        set<int> getCodigosReservas();
+        bool getEsFinger();
 
-        void getCodigosReservas();
+        
         void finalizarEstadia();
         void addReserva();
 
@@ -69,21 +70,17 @@ class Empleado : public Usuario, public Observer {
         Empleado(string nombre, string email, string password, CargoEmpleado cargo);
         ~Empleado();
         
+        // GETTERS
+        CargoEmpleado getCargoEmpleado();
 
         // SETTERS
         void setCargo(CargoEmpleado cargo) {this->cargo = cargo;}
         void setHostal(Hostal* hostal) {this->hostal = hostal;}
 
-        //Caso de uso: Consulta de Usuario
+
         DTUsuario getDTUsuario();
-        string getNombreEmpleado();
-
-        //Caso de uso: Consulta de Notificaciones
-        set<DTNotificacion> getNotificaciones();
-
-
-        
         void notificarCalificacion(Notificacion*);
+        set<DTNotificacion> getNotificaciones();
         void setRespuestaEmpleado(RespuestaEmpleado*);
         //ComentarCalificacion
         set<DTCalificacion> getCalificacionesSinResponder();

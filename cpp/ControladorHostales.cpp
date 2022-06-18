@@ -36,16 +36,18 @@ set<string> ControladorHostales::getEmpleadosFueraDeHostal(string nombreHostal)
     Hostal* hostalElegido = hostales.find(nombreHostal)->second;
     map<string, Empleado*> empleadosAEliminar = hostalElegido->getEmpleados();
 
-    
-    for (auto iter : empleadosAEliminar)
+    map<string, Empleado*>::iterator iter = empleadosAEliminar.begin();
+    for (;iter != empleadosAEliminar.end(); iter++)
     {
-        empleados.erase(iter.first);
+        empleados.erase(iter->first);
     }
     set<string> empleadosSinHostalSeleccionado;
 
-    for (auto aux : empleados)
+
+    map<string, Empleado*>::iterator aux = empleados.begin();
+    for (; aux != empleados.end(); aux++)
     {
-        empleadosSinHostalSeleccionado.insert(aux.first);
+        empleadosSinHostalSeleccionado.insert(aux->first);
     }
     nombreHostalAAsignar = nombreHostal;
 
@@ -75,6 +77,11 @@ void ControladorHostales::cancelarAsignacion()
 }
 
 
+//Caso de uso: Realizar Reserva
+bool ControladorHostales::existeHostal(string nombreHostal)
+{
+    return (hostales.find(nombreHostal) != hostales.end());
+}
 
 
 DTHostal ControladorHostales::getDTHostal(){
@@ -84,12 +91,11 @@ set<string> ControladorHostales::getHostales(){
     return set<string>(); //TEMPORAL.
 }
 void ControladorHostales::seleccionarHostal(string){
-    ;
-}
-void ControladorHostales::altaHabitacion(int, int, int){
-    ;
-}
 
+}
+void ControladorHostales::altaHabitacion(){
+
+}
 void ControladorHostales::confirmar(){
 
 }
@@ -103,7 +109,7 @@ set<string> ControladorHostales::getTop3Hostales(){
 	Hostal* h1 = NULL;
 	Hostal* h2 = NULL;
 	Hostal* h3 = NULL;
-	for (auto it =  hostales.begin(); it != hostales.end(); it++){
+	for (map<string,Hostal*>::iterator it =  hostales.begin(); it != hostales.end(); it++){
 		prom = it->second->getPromedioPuntaje();
 		if (prom > prom1){
 			prom3 = prom2;
@@ -129,7 +135,7 @@ set<string> ControladorHostales::getTop3Hostales(){
 
 }
 set<DTCalificacion> ControladorHostales::getDetallesHostal(string){
-    auto it = hostales.find(nombreHostal);
+    map<string,Hostal*>::iterator it = hostales.find(nombreHostal);
 	set<DTCalificacion> res = it->second->getDetalles();
 	return res;
 }
@@ -142,15 +148,33 @@ void ControladorHostales::cancelarReserva(){}
 void ControladorHostales::confirmarReserva(){}
 set<int> ControladorHostales::getHabitacionesLibres()
 {
-    return set<int>(); //TEMPORAL.
+    Hostal* hostal = hostales.find(nombreHostalAReservar)->second;
+    return hostal->getHabitacionesLibres(checkInReserva, checkOutReserva);
 }
 set<DTHostal> ControladorHostales::getHostalesPlus()
 {
-    return set<DTHostal>();
+    map<string, Hostal*>::iterator it = hostales.begin();
+    set<DTHostal> listaDTs;
+    for (; it != hostales.end(); it++)
+    {
+        listaDTs.insert(it->second->getDataHostal());
+    }
+    return listaDTs;
 }
-void ControladorHostales::seleccionarHabitacion(){}
-void ControladorHostales::seleccionarHostalParaReserva(string, Fecha, bool){}
-void ControladorHostales::seleccionarHuesped(){}
+void ControladorHostales::seleccionarHabitacion(int habitacion){}
+void ControladorHostales::seleccionarHostalParaReserva(string nombreHostal, Fecha checkIn, Fecha checkOut, bool esReservaGrupal)
+{
+    nombreHostalAReservar = nombreHostal;
+    checkInReserva = checkIn;
+    checkOutReserva = checkOut;
+    esReservaGrupalReserva = esReservaGrupal;
+}
+void ControladorHostales::seleccionarHuesped(string nombreHuesped)
+{
+    
+}
+
+
 Hostal* ControladorHostales::getHostal(string nombreHostal){
     return hostales.find(nombreHostal)->second;
 }

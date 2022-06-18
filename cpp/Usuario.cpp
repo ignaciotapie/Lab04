@@ -16,24 +16,16 @@ Huesped::Huesped(string nombre, string email, string password, bool esFinger)
     this->esFinger = esFinger;
 }
 
-string Usuario::getNombreUsuario(){ //getters
-	return this->nombre;
-}
-
-string Usuario::getEmailUsuario(){ 
-	return this->emil;
-}
-
-string Usuario::getPasswordUsuario(){ 
+string Usuario::getPassword(){ 
 	return this->password;
 }
 
 CargoEmpleado Empleado::getCargoEmpleado(){
-    this->cargoEmpleado
+    return this->cargo;
 }
 
 bool Huesped::getEsFinger(){
-    this->esFinger;
+    return this->esFinger;
 }
 
 void Empleado::notificarCalificacion(Notificacion*){
@@ -50,9 +42,10 @@ void Empleado::setRespuestaEmpleado(RespuestaEmpleado* res){
 
 set<int> Huesped::getCodigosReservas() {
 	set<int> res;
-	for (auto it = this->reservas->begin(); it != this->reservas->end(); it++){
-		if (it->getEstado == Abierta) {
-			res.insert(it->getCodigoReserva());
+    map<int, Reserva*>::iterator it = r.begin();
+	for (; it != r.end(); it++){
+		if (it->second->getEstado() == Abierta) {
+			res.insert(it->second->getCodigoReserva());
 		}
 	}
 	return res;

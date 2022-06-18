@@ -30,6 +30,7 @@ class Hostal{
     public:
         Hostal();
         Hostal(string nombre, string direccion, int telefono);
+        Hostal(string nombreHostal, string direccion, int telefono, map<int, Habitacion*> habitaciones, set<Calificacion*> calificaciones, map<string, Empleado*> empleados);
         ~Hostal();
 
         //Caso de uso: Alta de Habitacion
@@ -37,7 +38,9 @@ class Hostal{
         void nuevaHabitacion(int, int, int);
         DTHostal getDataHostal();
 
-
+        //Caso de uso: Realizar Reserva
+        set<int> getHabitacionesLibres(Fecha CheckIn, Fecha CheckOut);
+        
         string getNombreHostal();
         string getDireccion();
         int getTelefono();
