@@ -3,7 +3,7 @@
 Reserva::Reserva(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo){
 	this->codigoReserva = codRes;
 	this->checkIn = checkIn;
-	this->checkOu = checkOut;
+	this->checkOut = checkOut;
 	this->estado = estado;
 	this->costo = costo;
 }

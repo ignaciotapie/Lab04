@@ -73,7 +73,7 @@ void ControladorUsuarios::seleccionarUsuario(string){}
 
 //Registrar Estadia
 set<string> ControladorUsuarios::getHostales(){
-	set<string> res = ControladorHostales::getInstanciaHostales()->getHostales();
+	set<string> res = ControladorHostales::getInstance()->getHostales();
 	return res;
 }
 void ControladorUsuarios::seleccionarHostal(string nombreHostal){

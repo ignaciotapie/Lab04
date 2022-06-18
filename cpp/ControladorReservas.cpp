@@ -13,7 +13,7 @@ ControladorReservas* ControladorReservas::getInstance(){
 }
 
 // Registrar Estadia
-void ControladorReservas::registrarEstadia(int codigoReserva, Huesped* hues){
+void ControladorReservas::registrarEstadia(int codigoReserva, Huesped* hues)
 {
 	ControladorReloj* cr = ControladorReloj::getInstance();
 	Fecha fechaAct = cr->getFechaActual();
@@ -39,8 +39,8 @@ void ControladorReservas::seleccionarEstadia(int i, string s){
 }*/ //cual?
 
 void ControladorReservas::finalizarEstadia(){
-    ControladorUsuarios* cu = ControladorUsuarios::getInstanciaUsuarios();
-	ControladorReloj* cr = ControladorReloj::getInstanciaReloj();
+    ControladorUsuarios* cu = ControladorUsuarios::getInstance();
+	ControladorReloj* cr = ControladorReloj::getInstance();
 	Fecha fechaA = cr->getFechaActual();
 	auto it = usuarios.find(this->emailHuesped); 
 	Huesped* h = &it->second();
