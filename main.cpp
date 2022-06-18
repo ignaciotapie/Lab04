@@ -60,7 +60,10 @@ int main()
         endl <<
         "DEBUG:\n"
         "10. Cargar Datos de Prueba\n" << 
-        "11. Ajustar Fecha\n";
+        "11. Ajustar Fecha\n" <<
+        "12. Calificar Estadia\n" <<
+        "13. Comentar Calificacion\n" <<
+        "14. Consulta Estadia\n";
 
         int num = CheckIntCin();
         switch (num)
