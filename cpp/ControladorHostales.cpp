@@ -93,7 +93,7 @@ set<string> ControladorHostales::getHostales(){
 void ControladorHostales::seleccionarHostal(string){
 
 }
-void ControladorHostales::altaHabitacion(){
+void ControladorHostales::altaHabitacion(int numero, int precio, int capacidad){
 
 }
 void ControladorHostales::confirmar(){
