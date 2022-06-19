@@ -98,11 +98,14 @@ set<string> ControladorHostales::getHostales(){
 }
 
 //Caso de uso: Alta de Habitacion
-void ControladorHostales::seleccionarHostal(string){
-
+void ControladorHostales::seleccionarHostal(string nombre){
+    this->hostalSeleccionado = nombre;
 }
-void ControladorHostales::altaHabitacion(int numero, int precio, int capacidad){
 
+void ControladorHostales::altaHabitacion(int numero, int precio, int capacidad){
+    this->numeroHab = numero;
+    this->precioHab = precio;
+    this->capacidadHab = capacidad;
 }
 void ControladorHostales::confirmarAltaHabitacion(){
 
