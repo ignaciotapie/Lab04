@@ -95,3 +95,7 @@ DTUsuario Empleado::getDTUsuario(){
     DTEmpleado nuevo = DTEmpleado(this->getNombre(), this->getEmail(), this->getCargoEmpleado(), this->getNombreHostal());
     return nuevo;
 }
+
+string Empleado::getHostalDeEmpleado(){
+    return this->hostal->getNombreHostal();
+}
