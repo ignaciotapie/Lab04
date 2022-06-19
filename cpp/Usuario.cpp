@@ -74,11 +74,11 @@ void Huesped::addReserva(Reserva* r)
     ReservaIndividual* ri = dynamic_cast<ReservaIndividual*>(r);
     if (ri)
     {
-        this->r.insert({ri->getCodigoReserva(), ri});
+	this->r.insert(pair<int, ReservaIndividual*>(ri->getCodigoReserva(), ri));
     }
     else
     {
         ReservaGrupal* rg = dynamic_cast<ReservaGrupal*>(r);
-        this->rg.insert({rg->getCodigoReserva(), rg});
+        this->rg.insert(pair<int, ReservaGrupal*>(rg->getCodigoReserva(), rg));
     }
 }
