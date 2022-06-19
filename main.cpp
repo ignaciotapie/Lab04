@@ -7,6 +7,7 @@
 #include "h/Usuario.h"
 #include "h/Enum.h"
 #include "h/Fecha.h"
+#include "h/DTHostal.h"
 
 int CheckIntCin() // Usado en lugar de cin >> (int) para asegurarse que es un int correcto y no ocurra el Cin Infinite Loop
 {
@@ -266,13 +267,14 @@ int main()
                 getline(cin, nombreHostal);
 
                 //altaHabitacion
-                int precio, numero, capacidad;
+                int numero, precio, capacidad;
                 cout << "Ingrese numero" << endl;
                 numero = CheckIntCin();
                 cout << "Ingrese precio" << endl;
                 precio = CheckIntCin();
                 cout << "Ingrese capacidad" << endl;
                 capacidad = CheckIntCin();
+                interfazHostales->altaHabitacion(numero, precio, capacidad);
 
                 //Confirmar/Cancelar
                 cout << "Desea confirmar la creacion de la habitacion?\n" << "(1) Si\n" << "(2) No\n";
