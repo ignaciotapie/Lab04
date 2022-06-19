@@ -767,7 +767,7 @@ int main()
                         }
                     }
                     vector<DTCalificacion> calif = interfazHostales->getDetallesHostal(nomHost);
-					int i = 1;
+					i = 1;
                     for(vector<DTCalificacion>::iterator it = calif.begin(); it != calif.end(); ++it)
                     {
                         DTCalificacion DTCalif = *it;
