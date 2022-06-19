@@ -65,7 +65,6 @@ class Empleado : public Usuario, public Observer {
     
     private:
         CargoEmpleado cargo;
-
         set<RespuestaEmpleado*> re;
         Hostal *hostal;
 
