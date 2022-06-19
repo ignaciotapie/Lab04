@@ -697,7 +697,8 @@ int main()
                 IHostales* interfazHostales = fabrica->getIHostales();
                 set<string> top3Hostales = interfazHostales->getTop3Hostales();
                 int i = 1;
-                for(set<string>::iterator it = top3Hostales.begin(); it != top3Hostales.end(); ++it)
+                set<string>::iterator it;
+                for(it = top3Hostales.begin(); it != top3Hostales.end(); ++it)
                 {
                     cout << i << ". " << (*it) << endl;
                     ++i;
@@ -747,7 +748,7 @@ int main()
                         repetir = false;
                         switch (option)
                         {
-                            set<string>::iterator it = top3Hostales.begin();
+                            it = top3Hostales.begin();
                             case 1:
                                 nomHost = (*it);
                             break;
