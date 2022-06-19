@@ -766,10 +766,11 @@ int main()
                         }
                     }
                     vector<DTCalificacion> calif = interfazHostales->getDetallesHostal(nomHost);
-										int i = 1;
+					int i = 1;
                     for(vector<DTCalificacion>::iterator it = calif.begin(); it != calif.end(); ++it)
                     {
-                        cout << i << ".Puntaje: " << (*it)->getPuntaje()<< ".Comentario: " << (*it)->getComentario() << endl;
+                        DTCalificacion DTCalif = *it;
+                        cout << i << ".Puntaje: " << DTCalif.getPuntaje()<< ".Comentario: " << DTCalif.getComentario() << endl;
                         ++i;
                     }
                 break;
