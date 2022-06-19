@@ -69,7 +69,6 @@ int main()
         "19. Consulta Usuario\n" <<
         "20. Subscribirse a notificaciones \n";
 
-
         int num = CheckIntCin();
         switch (num)
         {
