@@ -782,7 +782,7 @@ int main()
                 int i = 1;
                 for(set<string>::iterator it = allHostales.begin(); it != allHostales.end(); ++it)
                 {
-                    cout << i << ". " << *it << endl;
+                    cout << i << ". " << (*it) << endl;
                     ++i;
                 }
                 string nombreHostal;
@@ -827,7 +827,7 @@ int main()
                 int i = 1;
                 for(set<int>::iterator it = ReservasNoCanceladasDelHuesped.begin(); it != ReservasNoCanceladasDelHuesped.end(); ++it)
                 {
-                    cout << i << ". " << *it << endl;
+                    cout << i << ". " << (*it) << endl;
                     ++i;
                 }
 
@@ -859,7 +859,7 @@ int main()
                 int i = 1;
                 for(set<string>::iterator it = allHostales.begin(); it != allHostales.end(); ++it)
                 {
-                    cout << i << ". " << *it << endl;
+                    cout << i << ". " << (*it) << endl;
                     ++i;
                 }
                 string nombreHostal;
