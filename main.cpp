@@ -748,19 +748,24 @@ int main()
                         repetir = false;
                         switch (option)
                         {
-                            it = top3Hostales.begin();
-                            case 1:
+                            
+                            case 1:{
+                                it = top3Hostales.begin();
                                 nomHost = (*it);
                             break;
+                            }
                             case 2:{
+                                it = top3Hostales.begin();
                                 it++;
                                 nomHost = (*it);
                             break;
-                            }case 3:{
+                            }
+                            case 3:{
                                 it = top3Hostales.end();
                                 nomHost = (*it);
                             break;                                
-                            }default:
+                            }
+                            default:
                                 repetir = true;
                                 cout << "Por favor, elija una opcion correcta" << endl;
                             break;
