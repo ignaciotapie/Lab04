@@ -738,8 +738,12 @@ int main()
                     cout << "Email Huesped: " << DTEst.getEmailHuesped() << endl;
                     cout << "Codigo Reserva: " << DTEst.getCodigoReserva() << endl;
                     cout << "CheckIn: " << DTEst.getCheckInReal().getDia() << "/" << DTEst.getCheckInReal().getMes() << "/" << DTEst.getCheckInReal().getAnio() << ":" << DTEst.getCheckInReal().getHora() << "hs." << endl;
-                    cout << "CheckOut: " << DTEst.getCheckOutReal().getDia() << "/" << DTEst.getCheckOutReal().getMes() << "/" << DTEst.getCheckOutReal().getAnio() << ":" << DTEst.getCheckOutReal().getHora() << "hs." << endl;
-                    cout << "Codigo Promo: " << DTEst.getPromo() << endl;
+                    if (DTEst.getCheckOutReal().getAnio() == 0)
+                        cout << "CheckOut: " << DTEst.getCheckOutReal().getDia() << "/" << DTEst.getCheckOutReal().getMes() << "/" << DTEst.getCheckOutReal().getAnio() << ":" << DTEst.getCheckOutReal().getHora() << "hs." << endl;
+                    else 
+                        cout << "CheckOut: Sin Finalizar" << endl;
+                    if (DTEst.getPromo() != 0)
+                        cout << "Codigo Promo: " << DTEst.getPromo() << endl;
                 }
                 cout << "Seleccione Estadia(Codigo Reserva y luego Email Huesped):" << endl;
                 int codigoRes;
@@ -752,8 +756,12 @@ int main()
                 cout << "Numero Habitacion: " << estadiaSeleccionada.getNumeroHabitacion() << endl;
                 cout << "Codigo Reserva: " << estadiaSeleccionada.getCodigoReserva() << endl;
                 cout << "CheckIn: " << estadiaSeleccionada.getCheckInReal().getDia() << "/" << estadiaSeleccionada.getCheckInReal().getMes() << "/" << estadiaSeleccionada.getCheckInReal().getAnio() << ":" << estadiaSeleccionada.getCheckInReal().getHora() << "hs." << endl;
-                cout << "CheckOut: " << estadiaSeleccionada.getCheckOutReal().getDia() << "/" << estadiaSeleccionada.getCheckOutReal().getMes() << "/" << estadiaSeleccionada.getCheckOutReal().getAnio() << ":" << estadiaSeleccionada.getCheckOutReal().getHora() << "hs." << endl;
-                cout << "Codigo Promo: " << estadiaSeleccionada.getPromo() << endl;
+                if (estadiaSeleccionada.getCheckOutReal().getAnio() == 0)
+                    cout << "CheckOut: " << estadiaSeleccionada.getCheckOutReal().getDia() << "/" << estadiaSeleccionada.getCheckOutReal().getMes() << "/" << estadiaSeleccionada.getCheckOutReal().getAnio() << ":" << estadiaSeleccionada.getCheckOutReal().getHora() << "hs." << endl;
+                else 
+                    cout << "CheckOut: Sin Finalizar" << endl;
+                if (estadiaSeleccionada.getPromo() != 0)
+                    cout << "Codigo Promo: " << estadiaSeleccionada.getPromo() << endl;
                 if (ireservas->existeCalificacion()){
                     cout << "Desea ver la Info de la Calificacion (1/0)(Si/No): " << endl;
                     bool verCal;

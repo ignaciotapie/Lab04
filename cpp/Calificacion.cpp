@@ -6,9 +6,10 @@
 #include "../h/RespuestaEmpleado.h"
 #include "../h/Notificacion.h"
 
-Calificacion::Calificacion(int i, string c, Estadia* e, Hostal* h, RespuestaEmpleado* emp){
+Calificacion::Calificacion(int i, string c, Fecha f, Estadia* e, Hostal* h, RespuestaEmpleado* emp){
     this->puntaje = i;
     this->comentario = c;
+    this->fecha = f;
     this->estadia = e;
     this->hostal = h;
     this->respuestaEmpleados = emp;
@@ -36,7 +37,7 @@ bool Calificacion::noEstaRespuesta(){
     return this->respuestaEmpleados == NULL;
 }
 DTCalificacion Calificacion::getDTCalificacion(){
-    DTCalificacion res(this->puntaje, this->comentario, this->estadia->getHuesped()->getEmail(), this->estadia->getReserva()->getCodigoReserva());
+    DTCalificacion res(this->puntaje, this->comentario, this->fecha, this->estadia->getHuesped()->getEmail(), this->estadia->getReserva()->getCodigoReserva());
     return res;
 }
 void Calificacion::setComentarioCalificacion(string mensaje, Empleado* empleado, Calificacion* calificacion){
