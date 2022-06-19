@@ -1030,6 +1030,7 @@ int main()
                 cout << "Direccion:" << h.getDireccion() << endl;
                 cout << "Telefono:" << h.getTelefono() << endl;
 
+                //finalizarConssultaHostal
                 interfazHostales->finalizarConsultaHostal();
 
                 break;
