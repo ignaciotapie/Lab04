@@ -93,6 +93,7 @@ void Huesped::addReserva(Reserva* r)
 
 DTUsuario Huesped::getDTUsuario(){
     DTHuesped nuevo = DTHuesped(this->getNombre(), this->getEmail(), this->getEsFinger());
+    return nuevo;
 }
 
 DTUsuario Empleado::getDTUsuario(){
