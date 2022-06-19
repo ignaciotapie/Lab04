@@ -135,3 +135,8 @@ int ControladorReservas::getCodigoReservaACrear()
     sigCodigoReserva++;
     return codigo;
 }
+
+bool ControladorReservas::existeCalificacion(){
+    Estadia* est = reservas.find(codigoReservaEstadia)->second->getEstadia(emailHuespedEstadia);
+    return est->getCalificacion() != NULL;
+}

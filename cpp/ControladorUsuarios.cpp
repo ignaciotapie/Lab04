@@ -126,10 +126,11 @@ void ControladorUsuarios::registrarEstadia(){
 }
 
 
-DTUsuario ControladorUsuarios::listarDatos()
-{
-    return DTUsuario();
+DTUsuario ControladorUsuarios::listarDatos(){
+    map<string,Usuario*>::iterator ite = this->usuarios.find(this->usuarioSeleccionado);
+    return (*ite).second.getDTUsuario();
 }
+
 void ControladorUsuarios::finalizarConsultaUsuario(){}
 void ControladorUsuarios::eliminarEmpleado(){}
 vector<DTNotificacion> ControladorUsuarios::listaNotificaciones()

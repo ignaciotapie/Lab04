@@ -31,6 +31,7 @@ class IReservas{
 		virtual void finConsultaEstadia() = 0;
 		virtual void seleccionarHostal(string) = 0;
 		virtual vector<DTEstadia> getEstadiasFinalizadas(string) = 0;
+		virtual bool existeCalificacion() = 0;
 };
 
 #endif
