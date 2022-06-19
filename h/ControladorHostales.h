@@ -20,6 +20,10 @@ class ControladorHostales : public IHostales{
 		string nombreHostal, direccionHostal;
 		int telefonoHostal;
 
+		//Caso de Uso: Alta de Habitacion
+		string hostalSeleccionado;
+		int numeroHab, precioHab, capacidadHab;
+
 		//Caso de Uso: Asignar Empleado a Hostal
 		string nombreEmpleadoAAsignar, nombreHostalAAsignar;
 		CargoEmpleado cargoEmpleadoAAsignar;
