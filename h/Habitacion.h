@@ -21,7 +21,7 @@ class Habitacion{
         map<int, Reserva*> reservas;
     public:
         Habitacion();
-        Habitacion(int, int, int, Hostal*, map<int, Reserva*>);
+        Habitacion(int, int, int, Hostal*);
         int getNumero();
         int getCapacidad();
         int getPrecio();
