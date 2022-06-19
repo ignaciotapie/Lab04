@@ -904,7 +904,7 @@ int main()
                     }
                 }
 
-                set<string> UsuariosRegistrados = interfazUsuarios->getUsuarios();
+                set<string> HuespedesRegistrados = interfazUsuarios->getHuespedes();
 
                 bool emailHuespedValido = false;
                 string emailHuesped;
@@ -914,7 +914,7 @@ int main()
                     cin.ignore();
                     getline(cin, emailHuesped);
 
-                    if (UsuariosRegistrados.find(emailHuesped) != UsuariosRegistrados.end())
+                    if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
                     {
                         emailHuespedValido = true;
                     }
@@ -980,7 +980,7 @@ int main()
                         cout << "Por favor, escriba un hostal que esta en la lista." << endl;
                     }
                 }
-                set<string> UsuariosRegistrados = interfazUsuarios->getUsuarios();
+                set<string> HuespedesRegistrados = interfazUsuarios->getHuespedes();
                 bool emailHuespedValido = false;
                 string emailHuesped;
                 cout << "Ingrese el email del huesped a finalizar su estadia:" << endl;
@@ -989,7 +989,7 @@ int main()
                     cin.ignore();
                     getline(cin, emailHuesped);
 
-                    if (UsuariosRegistrados.find(emailHuesped) != UsuariosRegistrados.end())
+                    if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
                     {
                         emailHuespedValido = true;
                     }
