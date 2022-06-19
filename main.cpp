@@ -250,8 +250,21 @@ int main()
                 break;
             }
 
-            case 3:
-            {
+            case 3:{
+
+                //getHostales
+                cout << "Seleccione un hostal" << endl;
+                IHostales* interfazHostales = fabrica->getIHostales();
+                set<string> h = interfazHostales->getHostales();
+                for (set<string>::iterator ite = h.begin(); ite!=h.end(); ite++){
+                    cout << (*ite) << endl;
+                }
+                
+
+
+
+
+
 
             }
 
