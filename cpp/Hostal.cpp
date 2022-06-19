@@ -75,7 +75,9 @@ vector<DTCalificacion> Hostal::getDetalles(){
 	return res;
 }
 
-void Hostal::nuevaHabitacion(int, int, int){
+void Hostal::nuevaHabitacion(int numero, int precio, int capacidad, Hostal* h){
+    Habitacion* nueva = new Habitacion(numero, precio, capacidad, h);
+    this->habitaciones.insert(pair<int,Habitacion*>(numero, nueva));
 
 }
 

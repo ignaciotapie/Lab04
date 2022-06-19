@@ -32,7 +32,7 @@ class Hostal{
 
         //Caso de uso: Alta de Habitacion
         //string getNombreHostal();
-        void nuevaHabitacion(int, int, int);
+        void nuevaHabitacion(int, int, int, Hostal*);
         DTHostal getDataHostal();
 
         //Caso de uso: Realizar Reserva

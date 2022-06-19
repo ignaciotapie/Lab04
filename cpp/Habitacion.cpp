@@ -9,11 +9,12 @@
 using namespace std;
 
      
-Habitacion::Habitacion(int numero, int precio, int capacidad, Hostal* phostal, map<int, Reserva*> preservas){
+Habitacion::Habitacion(int numero, int precio, int capacidad, Hostal* phostal){
     this->numero = numero;
     this->precio = precio;
     this->capacidad = capacidad;
     this->hostal = phostal;
+    map<int, Reserva*> preservas;
     this->reservas = preservas;
 }
 
