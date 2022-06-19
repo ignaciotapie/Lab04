@@ -48,7 +48,7 @@ class ControladorReservas : public IReservas
 		DTReserva getDTReserva();
 		void finConsultaEstadia();
 		set<string> getHostales();
-
+		bool existeCalificacion();
 
 		//Caso de uso: Realizar Reserva
 		void addReserva(Reserva* r);
