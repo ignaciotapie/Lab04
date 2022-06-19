@@ -259,7 +259,42 @@ int main()
                 for (set<string>::iterator ite = h.begin(); ite!=h.end(); ite++){
                     cout << (*ite) << endl;
                 }
-                
+               
+                //seleccionarHostal
+                string nombreHostal;
+                cin.ignore();
+                getline(cin, nombreHostal);
+
+                //altaHabitacion
+                int precio, numero, capacidad;
+                cout << "Ingrese numero" << endl;
+                numero = CheckIntCin();
+                cout << "Ingrese precio" << endl;
+                precio = CheckIntCin();
+                cout << "Ingrese capacidad" << endl;
+                capacidad = CheckIntCin();
+
+                //Confirmar/Cancelar
+                cout << "Desea confirmar la creacion de la habitacion?\n" << "(1) Si\n" << "(2) No\n";
+                bool incorrecto = true;
+                while (incorrecto)
+                {
+                    string fin;
+                    cin >> fin;
+                    if (fin == "1" || fin == "2")
+                    {
+                        incorrecto = false;
+                        if (fin == "1")
+                            interfazHostales->confirmarAltaHabitacion();
+                        else
+                            interfazHostales->cancelarAltaHabitacion();
+                    }
+                    else
+                    {
+                        cout << "Por favor, elija una opcion correcta" << endl;
+                    }
+                }
+                break;
 
 
 
