@@ -919,6 +919,46 @@ int main()
                 break;
             }
 
+            case 18:{
+                //getHostales
+                IHostales* interfazHostales = fabrica->getIHostales();
+
+                set<string> allHostales = interfazHostales->getHostales();
+                int i = 1;
+                for(set<string>::iterator it = allHostales.begin(); it != allHostales.end(); ++it)
+                {
+                    cout << i << ". " << *it << endl;
+                    ++i;
+                }
+                string nombreHostal;
+                bool nombreHostalValido = false;
+                cout << "Ingrese nombre del hostal\n";
+                while (!nombreHostalValido)
+                {
+                    cin.ignore();
+                    getline(cin, nombreHostal);
+
+                    if (allHostales.find(nombreHostal) != allHostales.end())
+                    {
+                        nombreHostalValido = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, escriba un hostal que esta en la lista." << endl;
+                    }
+                }
+
+                //getDTHostal
+                DTHostal h = interfazHostales->getDTHostal(nombreHostal);
+                cout << "Nombre:" << h.getNombre() << endl;
+                cout << "Direccion:" << h.getDireccion() << endl;
+                cout << "Telefono:" << h.getTelefono() << endl;
+
+                interfazHostales->finalizarConsultaHostal();
+
+                break;
+            }
+
             default:
                 {
                     cout << "Por favor ingrese un numero valido" << endl;
