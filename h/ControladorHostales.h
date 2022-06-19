@@ -3,8 +3,10 @@
 
 #include "IHostales.h"
 #include "Hostal.h"
-#include "Reserva.h"
 #include "Fecha.h"
+#include "DTHostal.h"
+#include "Reserva.h"
+
 #include <map>
 #include <set>
 #include <vector>
@@ -15,7 +17,8 @@ class ControladorHostales : public IHostales{
 	
 	private:
 		static ControladorHostales* instance;
-
+		map<string, Hostal*> hostales;
+		
 		//Caso de Uso: Alta de Hostal
 		string nombreHostal, direccionHostal;
 		int telefonoHostal;
@@ -35,7 +38,7 @@ class ControladorHostales : public IHostales{
 		int habitacionAReservar;
 		set<string> huespedesAElegir;
 	
-		map<string, Hostal*> hostales;
+
 
 	public: 
 		static ControladorHostales* getInstance();

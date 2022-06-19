@@ -5,11 +5,11 @@
 #include <map>
 #include <set>
 #include <vector>
-#include "DTReserva.h"
-#include "DTCalificacion.h"
-#include "DTHostal.h"
+
+#include "../h/DTHostal.h"
 
 class DTHostal;
+class DTCalificacion;
 
 using namespace std;
 

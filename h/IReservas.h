@@ -1,12 +1,10 @@
 #ifndef IRESERVAS_
 #define IRESERVAS_
 
-
 #include "Usuario.h"
 #include "DTCalificacion.h"
 #include "DTEstadia.h"
 #include "DTEstadiaPlus.h"
-#include "ControladorUsuarios.h"
 
 #include <string>
 #include <map>
@@ -14,7 +12,6 @@
 #include <vector>
 
 using namespace std;
-class Huesped;
 class DTReserva;
 
 class IReservas{
