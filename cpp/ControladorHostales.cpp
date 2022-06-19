@@ -161,7 +161,10 @@ set<DTHostal> ControladorHostales::getHostalesPlus()
     }
     return listaDTs;
 }
-void ControladorHostales::seleccionarHabitacion(int habitacion){}
+void ControladorHostales::seleccionarHabitacion(int habitacion)
+{
+    habitacionAReservar = habitacion;
+}
 void ControladorHostales::seleccionarHostalParaReserva(string nombreHostal, Fecha checkIn, Fecha checkOut, bool esReservaGrupal)
 {
     nombreHostalAReservar = nombreHostal;
@@ -171,7 +174,7 @@ void ControladorHostales::seleccionarHostalParaReserva(string nombreHostal, Fech
 }
 void ControladorHostales::seleccionarHuesped(string nombreHuesped)
 {
-    
+    huespedesAElegir.insert(nombreHuesped);
 }
 
 

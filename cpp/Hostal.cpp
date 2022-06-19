@@ -1,4 +1,4 @@
-#include "h/Hostal.h"
+#include "../h/Hostal.h"
 
 Hostal::Hostal(){
 }
@@ -135,5 +135,11 @@ void Hostal::reservarHabitacion(Reserva*, int){
 
 set<int> Hostal::getHabitacionesLibres(Fecha CheckIn, Fecha CheckOut)
 {
-
+    set<int> habitacionesLibres;
+    map<int,Habitacion*>::iterator it = habitaciones.begin();
+    for (; it != habitaciones.end(); it++)
+    {
+        if (!(it->second->isReservado(CheckIn, CheckOut))) habitacionesLibres.insert(it->second->getNumero());
+    }
+    return habitacionesLibres;
 }

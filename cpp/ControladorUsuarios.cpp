@@ -68,7 +68,13 @@ Empleado* ControladorUsuarios::getEmpleado(string nombreUsuario)
 
 set<string> ControladorUsuarios::getHuespedes()
 {
-    
+    set<string> listaHuespedes;
+    map<string, Huesped*>::iterator it = huespedes.begin();
+    for (; it != huespedes.end(); it++)
+    {
+        listaHuespedes.insert(it->first);
+    }
+    return listaHuespedes;
 }
 
 set<string> ControladorUsuarios::getUsuarios(){}

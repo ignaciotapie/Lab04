@@ -12,6 +12,9 @@ class Fecha{
         int getMes();
         int getDia();
         int getHora();
+        bool before(Fecha fecha);
+        static bool areOverlapping(Fecha primerCheckIn, Fecha primerCheckOut, Fecha segundoCheckIn, Fecha segundoCheckOut);
+        
         Fecha();
         Fecha(float hora, int dia, int mes, int anio);
         ~Fecha();

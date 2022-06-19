@@ -23,6 +23,8 @@ class ControladorHostales : public IHostales{
 		string nombreHostalAReservar;
 		Fecha checkInReserva, checkOutReserva;
 		bool esReservaGrupalReserva;
+		int habitacionAReservar;
+		set<string> huespedesAElegir;
 	
 		map<string, Hostal*> hostales;
 

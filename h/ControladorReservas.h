@@ -12,12 +12,16 @@ class ControladorReservas : public IReservas
 {
 	private:
 		static ControladorReservas* instance;
+		map<int, Reserva*> reservas;
+		int sigCodigoReserva = 0;
 
 		string hostalSeleccionado;
 		int codigoReservaEstadia;
 		string emailHuespedEstadia;
-		map<int, Reserva*> reservas;
+		
 		Empleado* empleadoGuardado;
+
+
     public:
 
 		static ControladorReservas* getInstance();

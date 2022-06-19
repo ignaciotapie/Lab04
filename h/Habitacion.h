@@ -29,7 +29,7 @@ class Habitacion{
         Hostal* getHostal();
         map<int, Reserva*> getReservas();
         void addReserva(Reserva*);
-        bool isReservado(Fecha);
+        bool isReservado(Fecha checkIn, Fecha checkOut);
         //CalificarEstadia
         set<DTEstadia> getEstadiasFinalizadas(string);
         //ConsultaEstadia

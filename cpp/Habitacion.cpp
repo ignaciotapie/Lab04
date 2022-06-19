@@ -1,4 +1,4 @@
-#include <Habitacion.h>
+#include "../h/Habitacion.h"
 #include <iterator>
 
 using namespace std;
@@ -62,6 +62,13 @@ set<DTEstadia> Habitacion::getDTEstadias(){
 void Habitacion::addReserva(Reserva*){
     ;
 }
-bool Habitacion::isReservado(Fecha){
-    ;
+bool Habitacion::isReservado(Fecha checkIn, Fecha checkOut){
+    map<int, Reserva*>::iterator it = reservas.begin();
+    for(; it != reservas.end(); it++)
+    {   
+        Reserva* reserva = it->second;
+        if (Fecha::areOverlapping(checkIn, checkOut, reserva->getCheckIn(), reserva->getCheckOut())) return true;
+    }
+    return false;
+
 }
