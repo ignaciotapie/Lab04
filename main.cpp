@@ -64,7 +64,8 @@ int main()
         "15. Consulta top 3 de Hostales\n" <<
         "16. Registrar Estadia\n" <<
         "17. Finalizar Estadia\n" <<
-        "18. Consulta Hostal";
+        "18. Consulta Hostal" <<
+        "19. Consulta Usuario";
 
 
         int num = CheckIntCin();
