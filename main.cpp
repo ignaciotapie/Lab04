@@ -1076,6 +1076,9 @@ int main()
                     }
                 }
 
+                //seleccionarUsuario
+                interfazUsuarios->seleccionarUsuario(nombreUsuario);
+
                 //listarDatos
                 DTUsuario u = interfazUsuarios->listarDatos();
                 
