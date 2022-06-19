@@ -90,7 +90,7 @@ bool ControladorHostales::existeHostal(string nombreHostal)
 }
 
 
-DTHostal ControladorHostales::getDTHostal(){
+DTHostal ControladorHostales::getDTHostal(string){
     return DTHostal("nombre","nombre",1,1); //TEMPORAL.
 }
 set<string> ControladorHostales::getHostales(){
