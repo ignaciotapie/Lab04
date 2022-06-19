@@ -259,19 +259,33 @@ int main()
             }
 
             case 3:{
-
                 //getHostales
-                cout << "Seleccione un hostal" << endl;
                 IHostales* interfazHostales = fabrica->getIHostales();
-                set<string> h = interfazHostales->getHostales();
-                for (set<string>::iterator ite = h.begin(); ite!=h.end(); ite++){
-                    cout << (*ite) << endl;
+
+                set<string> allHostales = interfazHostales->getHostales();
+                int i = 1;
+                for(set<string>::iterator it = allHostales.begin(); it != allHostales.end(); ++it)
+                {
+                    cout << i << ". " << *it << endl;
+                    ++i;
                 }
-               
-                //seleccionarHostal
                 string nombreHostal;
-                cin.ignore();
-                getline(cin, nombreHostal);
+                bool nombreHostalValido = false;
+                cout << "Ingrese nombre del hostal\n";
+                while (!nombreHostalValido)
+                {
+                    cin.ignore();
+                    getline(cin, nombreHostal);
+
+                    if (allHostales.find(nombreHostal) != allHostales.end())
+                    {
+                        nombreHostalValido = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, escriba un hostal que esta en la lista." << endl;
+                    }
+                }
 
                 //altaHabitacion
                 int numero, precio, capacidad;
@@ -304,10 +318,6 @@ int main()
                     }
                 }
                 break;
-
-
-
-
 
 
             }
