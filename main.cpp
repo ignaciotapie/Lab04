@@ -552,6 +552,8 @@ int main()
                         cout << "Por favor, escriba una habitacion de la lista." << endl;
                     }
                 }
+
+                //seleccionarHabitacion
                 interfazHostales->seleccionarHabitacion(numHabitacion);
 
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
@@ -740,12 +742,8 @@ int main()
                     cout << "Email Huesped: " << DTEst.getEmailHuesped() << endl;
                     cout << "Codigo Reserva: " << DTEst.getCodigoReserva() << endl;
                     cout << "CheckIn: " << DTEst.getCheckInReal().getDia() << "/" << DTEst.getCheckInReal().getMes() << "/" << DTEst.getCheckInReal().getAnio() << ":" << DTEst.getCheckInReal().getHora() << "hs." << endl;
-                    if (DTEst.getCheckOutReal().getAnio() == 0)
-                        cout << "CheckOut: " << DTEst.getCheckOutReal().getDia() << "/" << DTEst.getCheckOutReal().getMes() << "/" << DTEst.getCheckOutReal().getAnio() << ":" << DTEst.getCheckOutReal().getHora() << "hs." << endl;
-                    else 
-                        cout << "CheckOut: Sin Finalizar" << endl;
-                    if (DTEst.getPromo() != 0)
-                        cout << "Codigo Promo: " << DTEst.getPromo() << endl;
+                    cout << "CheckOut: " << DTEst.getCheckOutReal().getDia() << "/" << DTEst.getCheckOutReal().getMes() << "/" << DTEst.getCheckOutReal().getAnio() << ":" << DTEst.getCheckOutReal().getHora() << "hs." << endl;
+                    cout << "Codigo Promo: " << DTEst.getPromo() << endl;
                 }
                 cout << "Seleccione Estadia(Codigo Reserva y luego Email Huesped):" << endl;
                 int codigoRes;
@@ -758,12 +756,8 @@ int main()
                 cout << "Numero Habitacion: " << estadiaSeleccionada.getNumeroHabitacion() << endl;
                 cout << "Codigo Reserva: " << estadiaSeleccionada.getCodigoReserva() << endl;
                 cout << "CheckIn: " << estadiaSeleccionada.getCheckInReal().getDia() << "/" << estadiaSeleccionada.getCheckInReal().getMes() << "/" << estadiaSeleccionada.getCheckInReal().getAnio() << ":" << estadiaSeleccionada.getCheckInReal().getHora() << "hs." << endl;
-                if (estadiaSeleccionada.getCheckOutReal().getAnio() == 0)
-                    cout << "CheckOut: " << estadiaSeleccionada.getCheckOutReal().getDia() << "/" << estadiaSeleccionada.getCheckOutReal().getMes() << "/" << estadiaSeleccionada.getCheckOutReal().getAnio() << ":" << estadiaSeleccionada.getCheckOutReal().getHora() << "hs." << endl;
-                else 
-                    cout << "CheckOut: Sin Finalizar" << endl;
-                if (estadiaSeleccionada.getPromo() != 0)
-                    cout << "Codigo Promo: " << estadiaSeleccionada.getPromo() << endl;
+                cout << "CheckOut: " << estadiaSeleccionada.getCheckOutReal().getDia() << "/" << estadiaSeleccionada.getCheckOutReal().getMes() << "/" << estadiaSeleccionada.getCheckOutReal().getAnio() << ":" << estadiaSeleccionada.getCheckOutReal().getHora() << "hs." << endl;
+                cout << "Codigo Promo: " << estadiaSeleccionada.getPromo() << endl;
                 if (ireservas->existeCalificacion()){
                     cout << "Desea ver la Info de la Calificacion (1/0)(Si/No): " << endl;
                     bool verCal;
@@ -1028,14 +1022,17 @@ int main()
                     {
                         nombreHostalValido = true;
                     }
-                    else
+                    else 
                     {
                         cout << "Por favor, escriba un hostal que esta en la lista." << endl;
                     }
                 }
 
+                //seleccionarHostal
+                interfazHostales->seleccionarHostal(nombreHostal);
+
                 //getDTHostal
-                DTHostal h = interfazHostales->getDTHostal(nombreHostal);
+                DTHostal h = interfazHostales->getDTHostal();
                 cout << "Nombre:" << h.getNombre() << endl;
                 cout << "Direccion:" << h.getDireccion() << endl;
                 cout << "Telefono:" << h.getTelefono() << endl;
@@ -1073,6 +1070,9 @@ int main()
                         cout << "Por favor, escriba un usuario que este en la lista." << endl;
                     }
                 }
+
+                //listarDatos
+                DTUsuario u = interfazUsuarios->listarDatos();
                 
 
                 break;
