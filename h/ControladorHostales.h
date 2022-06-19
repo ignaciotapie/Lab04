@@ -53,7 +53,7 @@ class ControladorHostales : public IHostales{
 		void cancelarAltaHabitacion();
 
 		//Caso de uso: Consulta de Hostal
-		DTHostal getDTHostal(string);
+		DTHostal getDTHostal();
 		void finalizarConsultaHostal();
 
 		//Caso de uso: Realizar Reserva
