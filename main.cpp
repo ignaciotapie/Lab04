@@ -164,6 +164,7 @@ int main()
                     if (interfazUsuario->esUsuarioRepetido())
                     {
                         cout << "El usuario que ha ingresado ya existe en el sistema, desea ingresar otro usuario?" << endl << "(1) Si" << endl << "(2) No" << endl;
+                        incorrecto = true;
                         while (incorrecto)
                         {
                             string fin;
@@ -613,6 +614,27 @@ int main()
                     loop = false;
                     break;
                 }
+            case 11:
+            {
+                IReloj* interfazReloj = ControladorReloj::getInstance();
+                cout << "Ingrese la nueva fecha: " << endl;
+                cout << "Hora (Formato H.HH/HH.HH): ";
+                float hora;
+                cin >> hora;
+                cout << endl;
+                cout << "Dia: ";
+                int dia = CheckIntCin();
+                cout << endl;
+                cout << "Mes: ";
+                int mes = CheckIntCin();
+                cout << endl;
+                cout << "Anio: ";
+                int anio = CheckIntCin();
+                cout << endl;
+
+                interfazReloj->modificarFecha(hora,dia,mes,anio);
+                break;
+            }
             case 12:
             {
                 IHostales* ihostales = fabrica->getIHostales();
