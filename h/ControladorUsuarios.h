@@ -69,8 +69,6 @@ class ControladorUsuarios : public IUsuarios
 		set<int> getReservasDelHuesped(string); 
 		void seleccionarReserva(int);
 		void registrarEstadia();
-		DTUsuario listarDatos();
-		void finalizarConsultaUsuario();
 		void suscribirEmpleado();
 		void finalizarSuscripcion();
 		void eliminarEmpleado();
@@ -79,6 +77,11 @@ class ControladorUsuarios : public IUsuarios
 		void finalizarEliminacion();
 
 		map<string,Empleado*>  getEmpleados();
+
+		//Consulta de Usuario
+		DTUsuario listarDatos();
+		void finalizarConsultaUsuario();
+
 		//CalificarEstadia
 		void notificarObservadores(Notificacion*);
 		//ComentarCalificacion
