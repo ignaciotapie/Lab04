@@ -770,6 +770,8 @@ int main()
                         cout << "Puntaje: " << cal.getPuntaje() << endl;
                         cout << "Comentario: " << cal.getComentario() << endl;
                         cout << "Fecha: " << cal.getFecha().getDia() << "/" << cal.getFecha().getMes() << "/" << cal.getFecha().getAnio() << ":" << cal.getFecha().getHora() << "hs" << endl;
+                        if (ireservas->existeRespuestaEmpleado())
+                            cout << "Respuesta Empleado: " << ireservas->getRespuestaEmpleado() << endl;
                     }
                 }else{
                     cout << "No hay Calificacion." << endl;

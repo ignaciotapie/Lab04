@@ -10,6 +10,7 @@
 #include "../h/DTEstadiaPlus.h"
 #include "../h/DTCalificacion.h"
 #include "../h/DTEstadia.h"
+#include "../h/RespuestaEmpleado.h"
 
 using namespace std;
 
@@ -139,4 +140,19 @@ int ControladorReservas::getCodigoReservaACrear()
 bool ControladorReservas::existeCalificacion(){
     Estadia* est = reservas.find(codigoReservaEstadia)->second->getEstadia(emailHuespedEstadia);
     return est->getCalificacion() != NULL;
+}
+
+bool ControladorReservas::existeRespuestaEmpleado(){
+    Estadia* est = reservas.find(codigoReservaEstadia)->second->getEstadia(emailHuespedEstadia);
+    if (est->getCalificacion() != NULL){
+        if (est->getCalificacion()->getRespuestaempleados() != NULL){
+            return 1;
+        }
+    }
+    return 0;
+}
+
+string ControladorReservas::getRespuestaEmpleado(){
+    Estadia* est = reservas.find(codigoReservaEstadia)->second->getEstadia(emailHuespedEstadia);
+    return est->getCalificacion()->getRespuestaempleados()->getMensaje();
 }

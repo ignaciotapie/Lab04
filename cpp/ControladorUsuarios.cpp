@@ -128,7 +128,7 @@ void ControladorUsuarios::registrarEstadia(){
 
 DTUsuario ControladorUsuarios::listarDatos(){
     map<string,Usuario*>::iterator ite = this->usuarios.find(this->usuarioSeleccionado);
-    return (*ite).second.getDTUsuario();
+    return (*ite).second->getDTUsuario();
 }
 
 void ControladorUsuarios::finalizarConsultaUsuario(){}

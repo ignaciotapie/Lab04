@@ -32,6 +32,8 @@ class IReservas{
 		virtual void seleccionarHostal(string) = 0;
 		virtual vector<DTEstadia> getEstadiasFinalizadas(string) = 0;
 		virtual bool existeCalificacion() = 0;
+		virtual bool existeRespuestaEmpleado() = 0;
+		virtual string getRespuestaEmpleado() = 0;
 };
 
 #endif
