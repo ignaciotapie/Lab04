@@ -6,4 +6,3 @@
 main
 .vscode/c_cpp_properties.json
 o/ControladorReloj.o
-.gitignore
