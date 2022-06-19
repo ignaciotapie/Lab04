@@ -2,6 +2,7 @@
 #include "../h/Hostal.h"
 #include "../h/Reserva.h"
 #include "../h/DTCalificacion.h"
+#include "../h/DTUsuario.h"
 
 Empleado::Empleado(string nombre, string email, string password, CargoEmpleado cargo)
 {
@@ -84,4 +85,13 @@ void Huesped::addReserva(Reserva* r)
         ReservaGrupal* rg = dynamic_cast<ReservaGrupal*>(r);
         this->rg.insert(pair<int, ReservaGrupal*>(rg->getCodigoReserva(), rg));
     }
+}
+
+DTUsuario Huesped::getDTUsuario(){
+    DTHuesped nuevo = DTHuesped(this->getNombre(), this->getEmail(), this->getEsFinger());
+}
+
+DTUsuario Empleado::getDTUsuario(){
+    DTEmpleado nuevo = DTEmpleado(this->getNombre(), this->getEmail(), this->getCargoEmpleado(), this->getNombreHostal());
+    return nuevo;
 }
