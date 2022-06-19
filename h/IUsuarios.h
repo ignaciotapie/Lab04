@@ -44,7 +44,7 @@ class IUsuarios{
 		virtual vector<DTCalificacion> getCalificacionesSinResponder(string) = 0;
 
 		//Caso de uso: Subscribirse a notis
-		virtual set<string> getListaEmpleados() = 0;
+		virtual map<string,string> getListaEmpleados() = 0;
 		virtual void seleccionarEmpleado(string nombreEmpleado) = 0;
 };
 

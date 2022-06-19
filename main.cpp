@@ -2,6 +2,7 @@
 #include <string>
 #include <limits>
 #include <algorithm>
+#include <vector>
 
 #include "h/Fabrica.h"
 #include "h/Reserva.h"
@@ -13,6 +14,7 @@
 #include "h/DTEstadiaPlus.h"
 #include "h/DTReserva.h"
 #include "h/DTUsuario.h"
+#include "h/DTNotificacion.h"
 
 int CheckIntCin() // Usado en lugar de cin >> (int) para asegurarse que es un int correcto y no ocurra el Cin Infinite Loop
 {
@@ -1085,18 +1087,18 @@ int main()
             case 20:
             {
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
-                set<string> lista = interfazUsuarios->getListaEmpleados();
+                map<string, string> lista = interfazUsuarios->getListaEmpleados();
                 if (lista.size() == 0)
                 {
                     cout << "No hay empleados registrados." << endl;
                     break;
                 }
-                set<string>::iterator it = lista.begin();
+                map<string,string>::iterator it = lista.begin();
                 cout << "Lista de Empleados" << endl;
                 int i = 1;
                 for (; it != lista.end(); it++)
                 {
-                    cout << i << ". " << *it << endl;
+                    cout << i << ". " << it->first << endl;
                     i++;
                 }
                 cout << "Escriba el nombre del empleado a suscribir: ";
@@ -1116,8 +1118,8 @@ int main()
                         cout << "Empleado no existe, por favor elija un empleado de la lista: ";
                     }
                 }
-
-                interfazUsuarios->seleccionarEmpleado(nombreEmpleado);
+                string emailEmpleado = lista.find(nombreEmpleado)->second;
+                interfazUsuarios->seleccionarEmpleado(emailEmpleado);
 
                 cout << "Desea confirmar la suscripcion?" << endl << "(1) Si" << endl << "(2) No" << endl;
                 bool incorrecto = true;
@@ -1129,7 +1131,14 @@ int main()
                     {
                         incorrecto = false;
                         if (fin == "1")
+                        {
                             interfazUsuarios->suscribirEmpleado();
+                            cout << "Suscripcion exitosa" << endl;
+                        }
+                        else
+                        {
+                            cout << "Se ha cancelado la suscripcion" << endl;
+                        }
                     }
                     else
                     {
@@ -1139,10 +1148,118 @@ int main()
             }
             case 21:
             {
-                
+                IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
+                map<string, string> lista = interfazUsuarios->getListaEmpleados();
+                if (lista.size() == 0)
+                {
+                    cout << "No hay empleados registrados." << endl;
+                    break;
+                }
+                map<string,string>::iterator it = lista.begin();
+                cout << "Lista de Empleados" << endl;
+                int i = 1;
+                for (; it != lista.end(); it++)
+                {
+                    cout << i << ". " << it->first << endl;
+                    i++;
+                }
+                cout << "Escriba el nombre del empleado a consultar: ";
+                string nombreEmpleado;
+
+                bool nombreExiste = false;
+                while (!nombreExiste)
+                {
+                    cin.ignore();
+                    getline(cin, nombreEmpleado);
+                    if (lista.find(nombreEmpleado) != lista.end())
+                    {
+                        nombreExiste = true;
+                    }
+                    else 
+                    {
+                        cout << "Empleado no existe, por favor elija un empleado de la lista: ";
+                    }
+                }
+                string emailEmpleado = lista.find(nombreEmpleado)->second;
+                interfazUsuarios->seleccionarEmpleado(emailEmpleado);
+                vector<DTNotificacion> notis = interfazUsuarios->listaNotificaciones();
+                vector<DTNotificacion>::iterator iter = notis.begin();
+                if (notis.size() == 0)
+                {
+                    cout << "No hay notificaciones para ese empleado" << endl;
+                    break;
+                }
+                for (; iter != notis.end(); it++)
+                {
+                    cout << "Autor: " << iter->getAutor() << endl;
+                    cout << "Puntaje: " << iter->getPuntaje() << endl;
+                    cout << "Comentario: " << iter->getComentario() << endl;
+                    cout << endl;
+                }
+
             }
+            case 22:
+            {
+                IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
+                map<string, string> lista = interfazUsuarios->getListaEmpleados();
+                if (lista.size() == 0)
+                {
+                    cout << "No hay empleados registrados." << endl;
+                    break;
+                }
+                map<string,string>::iterator it = lista.begin();
+                cout << "Lista de Empleados" << endl;
+                int i = 1;
+                for (; it != lista.end(); it++)
+                {
+                    cout << i << ". " << it->first << endl;
+                    i++;
+                }
+                cout << "Escriba el nombre del empleado a desuscribir: ";
+                string nombreEmpleado;
 
+                bool nombreExiste = false;
+                while (!nombreExiste)
+                {
+                    cin.ignore();
+                    getline(cin, nombreEmpleado);
+                    if (lista.find(nombreEmpleado) != lista.end())
+                    {
+                        nombreExiste = true;
+                    }
+                    else 
+                    {
+                        cout << "Empleado no existe, por favor elija un empleado de la lista: ";
+                    }
+                }
+                string emailEmpleado = lista.find(nombreEmpleado)->second;
+                interfazUsuarios->seleccionarEmpleado(emailEmpleado);
 
+                cout << "Desea confirmar la desuscripcion?" << endl << "(1) Si" << endl << "(2) No" << endl;
+                bool incorrecto = true;
+                while (incorrecto)
+                {
+                    string fin;
+                    cin >> fin;
+                    if (fin == "1" || fin == "2")
+                    {
+                        incorrecto = false;
+                        if (fin == "1")
+                        {
+                            interfazUsuarios->eliminarEmpleado();
+                            cout << "Operacion exitosa" << endl;
+                        }
+                        else
+                        {
+                            cout << "Se ha cancelado la desuscripcion" << endl;
+                        }
+                    }
+                    else
+                    {
+                        cout << "Por favor, elija una opcion correcta" << endl;
+                    }
+                }
+            }
             default:
                 {
                     cout << "Por favor ingrese un numero valido" << endl;

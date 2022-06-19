@@ -132,10 +132,23 @@ DTUsuario ControladorUsuarios::listarDatos(){
 }
 
 void ControladorUsuarios::finalizarConsultaUsuario(){}
-void ControladorUsuarios::eliminarEmpleado(){}
+void ControladorUsuarios::eliminarEmpleado()
+{
+    bool noEncontrado = true;
+    set<Empleado*>::iterator observer = observers.begin();
+    while ((observer != observers.end()) && ((*observer)->getEmail() != emailEmpleadoASuscribir))
+    {
+        observer++;
+    }
+    if (observer != observers.end())
+            observers.erase(observer);
+}
+
 vector<DTNotificacion> ControladorUsuarios::listaNotificaciones()
 {
-    return vector<DTNotificacion>();
+    vector<DTNotificacion> notisReturn;
+    Empleado* e = empleados.find(emailEmpleadoASuscribir)->second;
+    return e->getNotificaciones();
 }
 void ControladorUsuarios::finalizarConsultaNotis(){}
 void ControladorUsuarios::finalizarEliminacion(){}
@@ -162,24 +175,24 @@ void ControladorUsuarios::notificarObservadores(Notificacion* n)
     }
 }
 
-set<string> ControladorUsuarios::getListaEmpleados()
+map<string, string> ControladorUsuarios::getListaEmpleados()
 {
-    set<string> listaEmpleados;
+    map<string, string> listaEmpleados;
     map<string, Empleado*>::iterator it = empleados.begin();
     for (; it != empleados.end(); it++)
     {
-        listaEmpleados.insert(it->second->getNombre());
+        listaEmpleados.insert({it->first, it->second->getNombre()});
     }
     return listaEmpleados;
 }
 
-void ControladorUsuarios::seleccionarEmpleado(string nombre)
+void ControladorUsuarios::seleccionarEmpleado(string email)
 {
-    nombreEmpleadoASuscribir = nombre;
+    emailEmpleadoASuscribir = email;
 }
 void ControladorUsuarios::suscribirEmpleado()
 {
-    observers.insert(empleados.find(nombreEmpleadoASuscribir)->second);
+    observers.insert(empleados.find(emailEmpleadoASuscribir)->second);
 }
 void ControladorUsuarios::finalizarSuscripcion()
 {

@@ -37,7 +37,7 @@ class ControladorUsuarios : public IUsuarios
 		int codigoReserva;
 
 		//Caso de uso: Subscribirse a notis
-		string nombreEmpleadoASuscribir;
+		string emailEmpleadoASuscribir;
 
 	public: 
 
@@ -88,7 +88,7 @@ class ControladorUsuarios : public IUsuarios
 		vector<DTCalificacion> getCalificacionesSinResponder(string);
 
 		// Caso de Uso: Subscribirse a Notis
-		set<string> getListaEmpleados();
+		map<string, string> getListaEmpleados();
 		void seleccionarEmpleado(string empleado);
 		
 	    
