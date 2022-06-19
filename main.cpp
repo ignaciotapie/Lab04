@@ -699,7 +699,7 @@ int main()
                 int i = 1;
                 for(set<string>::iterator it = top3Hostales.begin(); it != top3Hostales.end(); ++it)
                 {
-                    cout << i << ". " << *it << endl;
+                    cout << i << ". " << (*it) << endl;
                     ++i;
                 }
                 string nombreHostal;
@@ -749,15 +749,15 @@ int main()
                         {
                             set<string>::iterator it = top3Hostales.begin();
                             case 1:
-                                nomHost =  *it;
+                                nomHost = (*it);
                             break;
                             case 2:{
                                 it++;
-                                nomHost = *it;
+                                nomHost = (*it);
                             break;
                             }case 3:{
                                 it = top3Hostales.end();
-                                nomHost= *it;
+                                nomHost = (*it);
                             break;                                
                             }default:
                                 repetir = true;
@@ -769,7 +769,7 @@ int main()
 										int i = 1;
                     for(vector<DTCalificacion>::iterator it = calif.begin(); it != calif.end(); ++it)
                     {
-                        cout << i << ".Puntaje: " << (it)->getPuntaje()<< ".Comentario: " << (it)->getComentario() << endl;
+                        cout << i << ".Puntaje: " << (*it)->getPuntaje()<< ".Comentario: " << (*it)->getComentario() << endl;
                         ++i;
                     }
                 break;
