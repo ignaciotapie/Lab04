@@ -108,8 +108,9 @@ void ControladorHostales::altaHabitacion(int numero, int precio, int capacidad){
     this->capacidadHab = capacidad;
 }
 void ControladorHostales::confirmarAltaHabitacion(){
-
+   ;
 }
+
 
 void ControladorHostales::cancelarAltaHabitacion(){
     ;
