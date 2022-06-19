@@ -15,7 +15,7 @@ class IHostales{
 		virtual DTHostal getDTHostal();
 		virtual set<string> getHostales();
 		virtual void seleccionarHostal(string);
-		virtual void altaHabitacion();
+		virtual void altaHabitacion(int, int, int);
 		virtual void confirmar();
 		virtual set<string> getTop3Hostales();
 		virtual set<DTCalificacion> getDetallesHostal(string);
