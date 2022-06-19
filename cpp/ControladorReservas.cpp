@@ -115,5 +115,5 @@ void ControladorReservas::finConsultaEstadia(){
 
 void ControladorReservas::addReserva(Reserva* r)
 {
-    reservas.insert({r->getCodigoReserva(), r});
+	reservas.insert(pair<int, Reserva*>(r->getCodigoReserva(), r));
 }
