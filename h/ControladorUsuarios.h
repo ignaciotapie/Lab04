@@ -29,6 +29,9 @@ class ControladorUsuarios : public IUsuarios
 		//Registrar Estadia
 		string nombreHostal;
 
+		//Consulta de Usuario
+		string usuarioSeleccionado;
+
 		//Arreglos Nacho
 		string emailHuesped;
 		int codigoReserva;
