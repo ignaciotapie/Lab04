@@ -40,6 +40,7 @@ class Usuario {
         string getEmail();
         string getNombre();
         string getPassword();
+        virtual DTUsuario getDTUsuario();
 };
 
 class Huesped : public Usuario {
