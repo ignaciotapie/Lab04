@@ -67,7 +67,9 @@ int main()
         "17. Finalizar Estadia\n" <<
         "18. Consulta Hostal\n" <<
         "19. Consulta Usuario\n" <<
-        "20. Subscribirse a notificaciones \n";
+        "20. Subscribirse a notificaciones \n" <<
+        "21. Consultar notificaciones\n" <<
+        "22. Eliminar suscripcion\n";
 
         int num = CheckIntCin();
         switch (num)
@@ -1132,8 +1134,12 @@ int main()
                         cout << "Por favor, elija una opcion correcta" << endl;
                     }
                 }
-
             }
+            case 21:
+            {
+                
+            }
+
 
             default:
                 {
