@@ -1,4 +1,4 @@
-#include "h/Estadia.h"
+#include "../h/Estadia.h"
 
 Estadia::Estadia(Fecha in, Fecha out, int pro, Reserva* res, Huesped* hue, Calificacion* cal){
     this->checkInReal = in;

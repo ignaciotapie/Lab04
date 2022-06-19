@@ -1,4 +1,4 @@
-#include <DTEstadiaPlus.h>
+#include "../h/DTEstadiaPlus.h>
 
 DTEstadiaPlus::DTEstadiaPlus(string nomHos, string nomHues, int numHab, int codRes, Fecha in, Fecha out, int prom){
     nombreHostal = nomHos;

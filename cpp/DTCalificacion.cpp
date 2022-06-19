@@ -1,4 +1,4 @@
-#include "h/DTCalificacion.h"
+#include "../h/DTCalificacion.h"
 
 DTCalificacion::DTCalificacion(int pun, string com, Fecha fech, string em, int cod){
     puntaje = pun;

@@ -1,4 +1,4 @@
-#include <DTHabitacion.h>
+#include "../h/DTHabitacion.h"
 
 DTHabitacion::DTHabitacion(int num, int pre, int cap, map<string, DTCalificacion>* cals){
     numero = num;

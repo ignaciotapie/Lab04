@@ -1,4 +1,4 @@
-#include <RespuestaEmpleado.h>
+#include "../h/RespuestaEmpleado.h"
 
 RespuestaEmpleado::RespuestaEmpleado(string, Empleado*, Calificacion*){
 

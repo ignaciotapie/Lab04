@@ -1,4 +1,4 @@
-#include <DTNotificacion.h>
+#include "../h/DTNotificacion.h"
 
 DTNotificacion::DTNotificacion(string aut, int pun, string com){
     autor = aut;

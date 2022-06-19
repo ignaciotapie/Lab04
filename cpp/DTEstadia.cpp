@@ -1,4 +1,4 @@
-#include <DTEstadia.h>
+#include "../h/DTEstadia.h"
 
 DTEstadia::DTEstadia(string em, int cod, Fecha in, Fecha out, int pro){
     emailHuesped = em;

@@ -1,4 +1,4 @@
-#include <Notificacion.h>
+#include "../h/Notificacion.h"
 
 Notificacion::Notificacion(string s, int i, Calificacion* c){
     this->autor = s;

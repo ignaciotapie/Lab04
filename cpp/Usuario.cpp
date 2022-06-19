@@ -1,4 +1,4 @@
-#include "h/Usuario.h"
+#include "../h/Usuario.h"
 
 Empleado::Empleado(string nombre, string email, string password, CargoEmpleado cargo)
 {
