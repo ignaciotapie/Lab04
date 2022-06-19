@@ -33,6 +33,9 @@ class ControladorUsuarios : public IUsuarios
 		string emailHuesped;
 		int codigoReserva;
 
+		//Caso de uso: Subscribirse a notis
+		string nombreEmpleadoASuscribir;
+
 	public: 
 
 		static ControladorUsuarios* getInstance();
@@ -77,6 +80,11 @@ class ControladorUsuarios : public IUsuarios
 		void notificarObservadores(Notificacion*);
 		//ComentarCalificacion
 		vector<DTCalificacion> getCalificacionesSinResponder(string);
+
+		// Caso de Uso: Subscribirse a Notis
+		set<string> getListaEmpleados();
+		void seleccionarEmpleado(string empleado);
+		
 	    
 };
 

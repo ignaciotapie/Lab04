@@ -61,7 +61,8 @@ int main()
         "14. Consulta Estadia\n" <<
         "15. Consulta top 3 de Hostales\n" <<
         "16. Registrar Estadia\n" <<
-        "17. Finalizar Estadia\n";
+        "17. Finalizar Estadia\n" <<
+        "18. Subscribirse a notificaciones \n";
 
 
         int num = CheckIntCin();
@@ -870,7 +871,7 @@ int main()
                 }
                 string nombreHostal;
                 bool nombreHostalValido = false;
-                cout << "Ingrese nombre del hostal\n";
+                cout << "Ingrese nombre del hostal" << endl;
                 while (!nombreHostalValido)
                 {
                     cin.ignore();
@@ -907,6 +908,62 @@ int main()
                 interfazReservas->finalizarEstadia();
                 cout << "Se ha finalizado la estadia." << endl;
                 break;
+            }
+            case 18:
+            {
+                IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
+                set<string> lista = interfazUsuarios->getListaEmpleados();
+                if (lista.size() == 0)
+                {
+                    cout << "No hay empleados registrados." << endl;
+                    break;
+                }
+                set<string>::iterator it = lista.begin();
+                cout << "Lista de Empleados" << endl;
+                int i = 1;
+                for (; it != lista.end(); it++)
+                {
+                    cout << i << ". " << *it << endl;
+                    i++;
+                }
+                cout << "Escriba el nombre del empleado a suscribir: ";
+                string nombreEmpleado;
+
+                bool nombreExiste = false;
+                while (!nombreExiste)
+                {
+                    cin.ignore();
+                    getline(cin, nombreEmpleado);
+                    if (lista.find(nombreEmpleado) != lista.end())
+                    {
+                        nombreExiste = true;
+                    }
+                    else 
+                    {
+                        cout << "Empleado no existe, por favor elija un empleado de la lista: ";
+                    }
+                }
+
+                interfazUsuarios->seleccionarEmpleado(nombreEmpleado);
+
+                cout << "Desea confirmar la suscripcion?" << endl << "(1) Si" << endl << "(2) No" << endl;
+                bool incorrecto = true;
+                while (incorrecto)
+                {
+                    string fin;
+                    cin >> fin;
+                    if (fin == "1" || fin == "2")
+                    {
+                        incorrecto = false;
+                        if (fin == "1")
+                            interfazUsuarios->suscribirEmpleado();
+                    }
+                    else
+                    {
+                        cout << "Por favor, elija una opcion correcta" << endl;
+                    }
+                }
+
             }
 
             default:

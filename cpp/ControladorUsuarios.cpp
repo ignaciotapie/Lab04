@@ -66,9 +66,9 @@ void ControladorUsuarios::confirmarAltaUsuario()
 	usuarios.insert(pair<string,Usuario*>(emailUsuario, user));
 }
 
-Empleado* ControladorUsuarios::getEmpleado(string nombreUsuario)
+Empleado* ControladorUsuarios::getEmpleado(string emailUsuario)
 {
-    return empleados.find(nombreUsuario)->second;
+    return empleados.find(emailUsuario)->second;
 }
 
 set<string> ControladorUsuarios::getHuespedes()
@@ -77,14 +77,14 @@ set<string> ControladorUsuarios::getHuespedes()
     map<string, Huesped*>::iterator it = huespedes.begin();
     for (; it != huespedes.end(); it++)
     {
-        listaHuespedes.insert(it->first);
+        listaHuespedes.insert(it->second->getNombre());
     }
     return listaHuespedes;
 }
 
-Huesped* ControladorUsuarios::getHuesped(string nombreUsuario)
+Huesped* ControladorUsuarios::getHuesped(string emailUsuario)
 {
-    return huespedes.find(nombreUsuario)->second;
+    return huespedes.find(emailUsuario)->second;
 }
 
 set<string> ControladorUsuarios::getUsuarios()
@@ -93,7 +93,7 @@ set<string> ControladorUsuarios::getUsuarios()
     set<string> nombres;
     for (; it != usuarios.end(); it++)
     {
-        nombres.insert(it->first);
+        nombres.insert(it->second->getNombre());
     }
     return nombres;
 }
@@ -131,8 +131,6 @@ DTUsuario ControladorUsuarios::listarDatos()
     return DTUsuario();
 }
 void ControladorUsuarios::finalizarConsultaUsuario(){}
-void ControladorUsuarios::suscribirEmpleado(){}
-void ControladorUsuarios::finalizarSuscripcion(){}
 void ControladorUsuarios::eliminarEmpleado(){}
 vector<DTNotificacion> ControladorUsuarios::listaNotificaciones()
 {
@@ -154,6 +152,35 @@ map<string,Empleado*> ControladorUsuarios::getEmpleados()
 }
 
 
-void ControladorUsuarios::notificarObservadores(Notificacion* n){
-    
+void ControladorUsuarios::notificarObservadores(Notificacion* n)
+{
+    set<Empleado*>::iterator it = observers.begin();
+    for (; it != observers.end(); it++)
+    {
+        (*it)->notificarCalificacion(n);
+    }
+}
+
+set<string> ControladorUsuarios::getListaEmpleados()
+{
+    set<string> listaEmpleados;
+    map<string, Empleado*>::iterator it = empleados.begin();
+    for (; it != empleados.end(); it++)
+    {
+        listaEmpleados.insert(it->second->getNombre());
+    }
+    return listaEmpleados;
+}
+
+void ControladorUsuarios::seleccionarEmpleado(string nombre)
+{
+    nombreEmpleadoASuscribir = nombre;
+}
+void ControladorUsuarios::suscribirEmpleado()
+{
+    observers.insert(empleados.find(nombreEmpleadoASuscribir)->second);
+}
+void ControladorUsuarios::finalizarSuscripcion()
+{
+
 }
