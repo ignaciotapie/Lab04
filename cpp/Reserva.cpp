@@ -114,5 +114,5 @@ void Reserva::setHuespedes(set<string> huespedes)
 
 void ReservaGrupal::agregarHuespedExtra(Huesped* h)
 {
-    this->huespedesExtra.insert({h->getNombre(), h});
+    this->huespedesExtra.insert(pair<string,Huesped*>(h->getNombre(), h));
 }
