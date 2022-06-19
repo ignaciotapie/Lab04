@@ -40,6 +40,7 @@ class Usuario {
         string getEmail();
         string getNombre();
         string getPassword();
+        virtual DTUsuario getDTUsuario();
 };
 
 class Huesped : public Usuario {
@@ -64,7 +65,6 @@ class Empleado : public Usuario, public Observer {
     
     private:
         CargoEmpleado cargo;
-
         set<RespuestaEmpleado*> re;
         Hostal *hostal;
 
@@ -83,6 +83,10 @@ class Empleado : public Usuario, public Observer {
         void notificarCalificacion(Notificacion*);
         vector<DTNotificacion> getNotificaciones();
         void setRespuestaEmpleado(RespuestaEmpleado*);
+
+        //Consulta de Usuario
+        string getHostalDeEmpleado();
+
         //ComentarCalificacion
         vector<DTCalificacion> getCalificacionesSinResponder();
 };

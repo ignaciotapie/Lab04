@@ -42,6 +42,10 @@ class IUsuarios{
 		virtual void finalizarConsultaNotis() = 0;
 		virtual void finalizarEliminacion() = 0;
 		virtual vector<DTCalificacion> getCalificacionesSinResponder(string) = 0;
+
+		//Caso de uso: Subscribirse a notis
+		virtual set<string> getListaEmpleados() = 0;
+		virtual void seleccionarEmpleado(string nombreEmpleado) = 0;
 };
 
 #endif

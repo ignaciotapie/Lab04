@@ -5,4 +5,4 @@
 *.o
 main
 .vscode/c_cpp_properties.json
-o/ControladorReloj.o
+o/*.o
