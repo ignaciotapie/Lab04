@@ -55,7 +55,6 @@ class Reserva{
 
 class ReservaGrupal : public Reserva{
     private:
-        int cantHuesp;
         map<string, Huesped*> huespedesExtra;
     public:
         ReservaGrupal(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo);

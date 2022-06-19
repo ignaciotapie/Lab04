@@ -2,7 +2,7 @@
 CC = g++
 
 # Flags del compilador
-CFLAGS = -g -Wall -Werror
+CFLAGS = -g -Wall -Werror -std=c++11
 
 # Ejecutable
 PRINCIPAL = main
