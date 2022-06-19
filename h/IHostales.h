@@ -20,6 +20,7 @@ class IHostales{
 		virtual void seleccionarHostal(string);
 		virtual void altaHabitacion(int, int, int);
 		virtual void confirmarAltaHabitacion();
+		virtual void cancelarAltaHabitacion();
 		virtual set<string> getTop3Hostales();
 		virtual vector<DTCalificacion> getDetallesHostal(string);
 		virtual void finalizarConsultaHostal();

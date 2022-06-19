@@ -47,6 +47,7 @@ class ControladorHostales : public IHostales{
 		void seleccionarHostal(string);
 		void altaHabitacion(int, int, int);
 		void confirmarAltaHabitacion();
+		void cancelarAltaHabitacion();
 
 		//Caso de uso: Consulta de Hostal
 		DTHostal getDTHostal();

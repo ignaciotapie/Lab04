@@ -96,15 +96,22 @@ set<string> ControladorHostales::getHostales(){
     }
     return aRetornar;
 }
+
+//Caso de uso: Alta de Habitacion
 void ControladorHostales::seleccionarHostal(string){
 
 }
 void ControladorHostales::altaHabitacion(int numero, int precio, int capacidad){
 
 }
-void ControladorHostales::confirmarHabitacion(){
+void ControladorHostales::confirmarAltaHabitacion(){
 
 }
+
+void ControladorHostales::cancelarAltaHabitacion(){
+    ;
+}
+
 //Consulta Top 3 Hostales
 set<string> ControladorHostales::getTop3Hostales(){
     set<string> res;
