@@ -1037,6 +1037,38 @@ int main()
 
                 break;
             }
+            case 19:{
+                //getUsuarios
+                IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
+
+                set<string> allUsers = interfazUsuarios->getUsuarios();
+                int i = 1;
+                for(set<string>::iterator it = allUsers.begin(); it != allUsers.end(); ++it)
+                {
+                    cout << i << ". " << *it << endl;
+                    ++i;
+                }
+                string nombreUsuario;
+                bool nombreUsuarioValido = false;
+                cout << "Ingrese nombre del usuario\n";
+                while (!nombreUsuarioValido)
+                {
+                    cin.ignore();
+                    getline(cin, nombreUsuario);
+
+                    if (allUsers.find(nombreUsuario) != allUsers.end())
+                    {
+                        nombreUsuarioValido = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, escriba un usuario que este en la lista." << endl;
+                    }
+                }
+                
+
+                break;
+            }
 
             default:
                 {
