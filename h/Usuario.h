@@ -83,6 +83,10 @@ class Empleado : public Usuario, public Observer {
         void notificarCalificacion(Notificacion*);
         vector<DTNotificacion> getNotificaciones();
         void setRespuestaEmpleado(RespuestaEmpleado*);
+
+        //Consulta de Usuario
+        string getHostalDeEmpleado();
+
         //ComentarCalificacion
         vector<DTCalificacion> getCalificacionesSinResponder();
 };
