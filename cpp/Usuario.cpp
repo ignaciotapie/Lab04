@@ -33,6 +33,10 @@ CargoEmpleado Empleado::getCargoEmpleado(){
     return this->cargo;
 }
 
+string Empleado::getHostalDeEmpleado(){
+    return this->hostal->getNombreHostal();
+}
+
 bool Huesped::getEsFinger(){
     return this->esFinger;
 }
@@ -92,10 +96,7 @@ DTUsuario Huesped::getDTUsuario(){
 }
 
 DTUsuario Empleado::getDTUsuario(){
-    DTEmpleado nuevo = DTEmpleado(this->getNombre(), this->getEmail(), this->getCargoEmpleado(), this->getNombreHostal());
+    DTEmpleado nuevo = DTEmpleado(this->getNombre(), this->getEmail(), this->getCargoEmpleado(), this->getHostalDeEmpleado());
     return nuevo;
 }
 
-string Empleado::getHostalDeEmpleado(){
-    return this->hostal->getNombreHostal();
-}
