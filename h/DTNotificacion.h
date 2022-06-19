@@ -15,7 +15,6 @@ class DTNotificacion{
         string getAutor();
         int getPuntaje();
         string getComentario();
-        ~DTNotificacion();
 };
 
 #endif

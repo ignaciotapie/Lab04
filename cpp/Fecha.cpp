@@ -18,9 +18,6 @@ Fecha::Fecha(float hora, int dia, int mes, int anio){
     this->mes = mes;
     this->anio = anio;
 }
-Fecha::~Fecha(){
-
-}
 
 bool Fecha::before(Fecha fechaAComparar)
 {
@@ -28,6 +25,8 @@ bool Fecha::before(Fecha fechaAComparar)
     else if (mes < fechaAComparar.mes) return true;
     else if (dia < fechaAComparar.dia) return true;
     else if (hora <= fechaAComparar.hora) return true;
+    
+    return false;
 }
 
 bool Fecha::areOverlapping(Fecha primerCheckIn, Fecha primerCheckOut, Fecha segundoCheckIn, Fecha segundoCheckOut)

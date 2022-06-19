@@ -1,4 +1,5 @@
 #include "../h/Hostal.h"
+#include "../h/DTHostal.h"
 
 Hostal::Hostal(){
 }
@@ -19,19 +20,15 @@ Hostal::Hostal(string nombreHostal, string direccion, int telefono, map<int, Hab
 	this->empleados = empleados;
 }
 
-Hostal::~Hostal(){
-
-}
-
-string Hostal::getNombreHostal(){
+const string Hostal::getNombreHostal() const{
     return this->nombreHostal;
 }
 
-string Hostal::getDireccion(){
+const string Hostal::getDireccion() const{
     return this->direccion;
 }
 
-int Hostal::getTelefono(){
+const int Hostal::getTelefono() const {
     return this->telefono;
 }
 
@@ -51,7 +48,7 @@ void Hostal::agregarCalificacion(Calificacion* c){
     this->calificaciones.insert(c);
 }
 
-int Hostal::getPromedioPuntaje(){
+const int Hostal::getPromedioPuntaje() const{
     int sum = 0;
 	int iteraciones = 0;
     set<Calificacion*>::iterator iter;
@@ -63,12 +60,12 @@ int Hostal::getPromedioPuntaje(){
 }
 
  
-set<DTCalificacion> Hostal::getDetalles(){
-	set<DTCalificacion> res;
+vector<DTCalificacion> Hostal::getDetalles(){
+	vector<DTCalificacion> res;
     set<Calificacion*>::iterator iter;
 	for (iter = this->calificaciones.begin(); iter != this->calificaciones.end(); iter++){
 		DTCalificacion nuevo = DTCalificacion((*iter)->getPuntaje(), (*iter)->getComentario(), /*TEMPORAL*/"temporal", 0);
-		res.insert(nuevo);
+		res.emplace_back(nuevo);
 	}
 	return res;
 }
@@ -79,49 +76,50 @@ void Hostal::nuevaHabitacion(int, int, int){
 
 DTHostal Hostal::getDataHostal()
 {
-    return DTHostal(nombreHostal, direccion, telefono, getPromedioPuntaje());
+    int promedio = getPromedioPuntaje();
+    return DTHostal(nombreHostal, direccion, telefono, promedio);
 }
 
-set<DTEstadia> Hostal::getEstadiasFinalizadas(string emailHuesped){
+vector<DTEstadia> Hostal::getEstadiasFinalizadas(string emailHuesped){
     map<int, Habitacion*> hs = this->getHabitaciones();
     map<int, Habitacion*>::iterator itr;
-    set<DTEstadia> res;
+    vector<DTEstadia> res;
     for (itr = hs.begin(); itr != hs.end(); ++itr) {
-        set<DTEstadia> aux = itr->second->getEstadiasFinalizadas(emailHuesped);
+        vector<DTEstadia> aux = itr->second->getEstadiasFinalizadas(emailHuesped);
         // agregar aux a res
-        set<DTEstadia>::iterator itr2;
+        vector<DTEstadia>::iterator itr2;
         for (itr2 = aux.begin(); itr2 != aux.end(); ++itr){
-            res.insert(*itr2);
+            res.emplace_back(*itr2);
         }
-        aux.~set();
     }
     return res;
 }
 
-set<DTCalificacion> Hostal::getCalificacionesSinResponder(){
+vector<DTCalificacion> Hostal::getCalificacionesSinResponder(){
     set<Calificacion*> cals = this->calificaciones;
     set<Calificacion*>::iterator itr;
-    set<DTCalificacion> res;
+    vector<DTCalificacion> res;
     for (itr = cals.begin(); itr != cals.end(); itr++) {
         Calificacion* aux = *itr;
         if (aux->noEstaRespuesta()){
-            res.insert(aux->getDTCalificacion());
+            res.emplace_back(aux->getDTCalificacion());
         }
     }
     return res;
 }
 
-set<DTEstadia> Hostal::getDTEstadias(){
+vector<DTEstadia> Hostal::getDTEstadias(){
     map<int, Habitacion*>::iterator itr;
-    set<DTEstadia> res;
+    vector<DTEstadia> res;
     map<int, Habitacion*> aux = this->getHabitaciones();
     for (itr = aux.begin(); itr != aux.end(); itr++) {
-        set<DTEstadia> aux2 = itr->second->getDTEstadias();
-        set<DTEstadia>::iterator itr2;
+        vector<DTEstadia> aux2 = itr->second->getDTEstadias();
+        vector<DTEstadia>::iterator itr2;
         for (itr2 = aux2.begin(); itr2 != aux2.end(); itr2++){
-            res.insert(*itr2);
+            res.emplace_back(*itr2);
         }
     }
+    return res;
 }
 
 void Hostal::asignarEmpleado(Empleado* empleado)
@@ -129,7 +127,11 @@ void Hostal::asignarEmpleado(Empleado* empleado)
     empleados.insert({empleado->getNombre(), empleado});
 }
 
-void Hostal::reservarHabitacion(Reserva*, int){
+void Hostal::reservarHabitacion(Reserva* reserva, int habitacion)
+{
+    Habitacion* habitacionAReservar = habitaciones.find(habitacion)->second;
+
+    habitacionAReservar->addReserva(reserva);
 
 }
 

@@ -7,9 +7,7 @@ Calificacion::Calificacion(int i, string c, Estadia* e, Hostal* h, RespuestaEmpl
     this->hostal = h;
     this->respuestaEmpleados = emp;
 }
-Calificacion::~Calificacion(){
 
-}
 int Calificacion::getPuntaje(){
     return this->puntaje;
 }

@@ -6,15 +6,24 @@ DTHostal::DTHostal(string nom, string dir, int tel, float prom){
     telefono = tel;
     promCalif = prom;
 }
-string DTHostal::getNombre() const{
+
+DTHostal::DTHostal(const Hostal& hostal)
+{
+    this->nombre = hostal.getNombreHostal();
+    this->direccion = hostal.getDireccion();
+    this->telefono = hostal.getTelefono();
+    this->promCalif = hostal.getPromedioPuntaje();
+}
+
+const string DTHostal::getNombre() const{
     return nombre;
 }
-string DTHostal::getDireccion() const{
+const string DTHostal::getDireccion() const{
     return direccion;
 }
-int DTHostal::getTelefono() const{
+const int DTHostal::getTelefono() const{
     return telefono;
 }
-float DTHostal::getPromCalif() const{
+const float DTHostal::getPromCalif() const{
     return promCalif;
 }

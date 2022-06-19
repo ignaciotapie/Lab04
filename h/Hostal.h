@@ -4,11 +4,10 @@
 #include <string>
 #include <map>
 #include <set>
+#include <vector>
 
 #include "Habitacion.h"
-#include "Usuario.h"
 #include "Calificacion.h"
-#include "DTHostal.h"
 
 using namespace std;
 
@@ -18,6 +17,7 @@ class Empleado;
 class DTCalificacion;
 class Reserva;
 class DTEstadia;
+class DTHostal;
 
 class Hostal{
     private:
@@ -31,7 +31,6 @@ class Hostal{
         Hostal();
         Hostal(string nombre, string direccion, int telefono);
         Hostal(string nombreHostal, string direccion, int telefono, map<int, Habitacion*> habitaciones, set<Calificacion*> calificaciones, map<string, Empleado*> empleados);
-        ~Hostal();
 
         //Caso de uso: Alta de Habitacion
         //string getNombreHostal();
@@ -41,23 +40,23 @@ class Hostal{
         //Caso de uso: Realizar Reserva
         set<int> getHabitacionesLibres(Fecha CheckIn, Fecha CheckOut);
         
-        string getNombreHostal();
-        string getDireccion();
-        int getTelefono();
+        const string getNombreHostal() const;
+        const string getDireccion() const;
+        const int getTelefono() const;
         map<int, Habitacion*> getHabitaciones();
         set<Calificacion*> getCalificaciones();
         map<string, Empleado*> getEmpleados();
         void agregarCalificacion(Calificacion*);
-        int getPromedioPuntaje();
-        set<DTCalificacion> getDetalles();
+        const int getPromedioPuntaje() const;
+        vector<DTCalificacion> getDetalles();
         void asignarEmpleado(Empleado*);
         void reservarHabitacion(Reserva*, int);
         //CalificarEstadia
-        set<DTEstadia> getEstadiasFinalizadas(string);
+        vector<DTEstadia> getEstadiasFinalizadas(string);
         //ComentarCalificacion
-        set<DTCalificacion> getCalificacionesSinResponder();\
+        vector<DTCalificacion> getCalificacionesSinResponder();\
         //ConsultaEstadia
-        set<DTEstadia> getDTEstadias();
+        vector<DTEstadia> getDTEstadias();
 };
 
 

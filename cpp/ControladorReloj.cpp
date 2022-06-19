@@ -10,3 +10,8 @@ ControladorReloj* ControladorReloj::getInstance()
     }
     return instance;
 }
+
+void ControladorReloj::modificarFecha(float hora, int dia, int mes, int anio)
+{
+    this->fechaActual = Fecha(hora, dia, mes, anio);
+}

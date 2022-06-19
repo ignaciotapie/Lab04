@@ -3,17 +3,10 @@
 #include <limits>
 #include <algorithm>
 
-#include "h/ControladorUsuarios.h"
 #include "h/Fabrica.h"
-// #include "h/Habitacion.h"
-// #include "h/Huesped.h"
-// #include "h/reserva.h"
-// #include "h/Sistema.h"
-// #include "h/EstadoReserva.h"
-// #include "h/DTReserva.h"
-// #include "h/DTHabitacion.h"
-// #include "h/DTFecha.h"
-// #include "h/DTHuesped.h"
+#include "h/Usuario.h"
+#include "h/Enum.h"
+#include "h/Fecha.h"
 
 int CheckIntCin() // Usado en lugar de cin >> (int) para asegurarse que es un int correcto y no ocurra el Cin Infinite Loop
 {
@@ -41,7 +34,6 @@ using namespace std;
 
 int main()
 {
-    int num;
     bool loop = true;
     Fabrica* fabrica = new Fabrica();
     while (loop)
@@ -157,7 +149,7 @@ int main()
                             }
                         }
                     }
-                    interfazUsuario = ControladorUsuarios::getInstance();
+                    interfazUsuario = fabrica->getIUsuarios();
                     interfazUsuario->setUserInfo(nombre, email, password);
                     interfazUsuario->esEmpleado(esEmpleado);
 
@@ -294,7 +286,7 @@ int main()
 
 
                 set<string> EmpleadosFueraHostal = interfazHostales->getEmpleadosFueraDeHostal(nombreHostal);
-                int i = 1;
+                i = 1;
                 for(set<string>::iterator it = EmpleadosFueraHostal.begin(); it != EmpleadosFueraHostal.end(); ++it)
                 {
                     cout << i << ". " << *it << endl;
@@ -373,7 +365,7 @@ int main()
                         }
                     }
                     cout << "Desea confirmar agregar mas empleado al mismo hostal?\n" << "(1) Si\n" << "(2) No\n";
-                    bool incorrecto = true;
+                    incorrecto = true;
                     while (incorrecto)
                     {
                         string fin;
@@ -394,10 +386,9 @@ int main()
             }
             case 7:
             {
-                IReservas* interfazReservas = fabrica->getIReservas();
                 IHostales* interfazHostales = fabrica->getIHostales();
-                set<DTHostal> listaHostales = interfazHostales->getHostalesPlus();
-                set<DTHostal>::iterator auxiliarLista = listaHostales.begin();
+                vector<DTHostal> listaHostales = interfazHostales->getHostalesPlus();
+                vector<DTHostal>::iterator auxiliarLista = listaHostales.begin();
                 int i = 1;
                 for(; auxiliarLista != listaHostales.end(); auxiliarLista++ )
                 {
@@ -496,7 +487,7 @@ int main()
                 set<string> huespedesListados = interfazUsuarios->getHuespedes();
                 set<string>::iterator aux = huespedesListados.begin();
                 cout << "Lista de huespedes registrados: " << endl;
-                int i = 1;
+                i = 1;
                 for (; aux != huespedesListados.end(); aux++)
                 {
                     cout << i << ". " << *aux << endl;
@@ -546,7 +537,7 @@ int main()
                     cout << *huespedIt << endl;
                 }
                 cout << "Desea confirmar la reserva?\n" << "(1) Si\n" << "(2) No\n";
-                bool incorrecto = true;
+                incorrecto = true;
                 string fin;
                 while (incorrecto)
                 {
@@ -587,8 +578,8 @@ int main()
                 string emailEmpleado;
                 cout << "Ingresar Email Empleado:" << endl;
                 cin >> emailEmpleado;
-                set<DTEstadia> estadiasFinalizadas = ireservas->getEstadiasFinalizadas(emailEmpleado);
-                set<DTEstadia>::iterator itrEstadias;
+                vector<DTEstadia> estadiasFinalizadas = ireservas->getEstadiasFinalizadas(emailEmpleado);
+                vector<DTEstadia>::iterator itrEstadias;
                 for (itrEstadias = estadiasFinalizadas.begin(); itrEstadias != estadiasFinalizadas.end(); itrEstadias++){
                     DTEstadia DTEst = *itrEstadias;
                     cout << "Email Huesped: " << DTEst.getEmailHuesped() << endl;

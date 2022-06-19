@@ -3,7 +3,8 @@
 
 #include <string>
 #include "Fecha.h"
-#include "Reserva.h"
+#include "Enum.h"
+#include <set>
 
 using namespace std;
 
@@ -17,8 +18,7 @@ private:
     int costo;
     int numeroHabitacion;
 public:
-    DTReserva(/* args */);
-    ~DTReserva();
+    DTReserva(int codigo, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo, int numeroHabitacion);
 };
 
 class DTReservaGrupal : public DTReserva
@@ -27,7 +27,6 @@ private:
     set<string> nombreHuesped;
 public:
     DTReservaGrupal(int, Fecha, Fecha, EstadoReserva, int, int, set<string>);
-    ~DTReservaGrupal();
 };
 
 class DTReservaIndividual : public DTReserva
@@ -36,7 +35,6 @@ private:
     /* data */
 public:
     DTReservaIndividual(int, Fecha, Fecha, EstadoReserva, int, int);
-    ~DTReservaIndividual();
 };
 
 #endif

@@ -3,8 +3,17 @@
 
 #include "IUsuarios.h"
 #include "ControladorReservas.h"
+#include "Notificacion.h"
+#include "DTUsuario.h"
+#include "Usuario.h"
 
-class ControladorUsuarios : public IUsuarios{
+class Huesped;
+class Empleado;
+class Usuario;
+class Notificacion;
+
+class ControladorUsuarios : public IUsuarios
+{
 	private:
 		static ControladorUsuarios* instance;
 
@@ -21,6 +30,10 @@ class ControladorUsuarios : public IUsuarios{
 		
 		//Registrar Estadia
 		string nombreHostal;
+
+		//Arreglos Nacho
+		string emailHuesped;
+		int codigoReserva;
 
 	public: 
 
@@ -44,6 +57,7 @@ class ControladorUsuarios : public IUsuarios{
 
 		// Caso de Uso: Realizar Reserva
 		set<string> getHuespedes();
+		Huesped* getHuesped(string nombreUsuario);
 
 		//Registrar Estadia
 		set<string> getHostales();
@@ -56,7 +70,7 @@ class ControladorUsuarios : public IUsuarios{
 		void suscribirEmpleado();
 		void finalizarSuscripcion();
 		void eliminarEmpleado();
-		set<DTNotificacion> listaNotificaciones();
+		vector<DTNotificacion> listaNotificaciones();
 		void finalizarConsultaNotis();
 		void finalizarEliminacion();
 
@@ -64,7 +78,7 @@ class ControladorUsuarios : public IUsuarios{
 		//CalificarEstadia
 		void notificarObservadores(Notificacion*);
 		//ComentarCalificacion
-		set<DTCalificacion> getCalificacionesSinResponder(string);
+		vector<DTCalificacion> getCalificacionesSinResponder(string);
 	    
 };
 

@@ -31,9 +31,9 @@ class Habitacion{
         void addReserva(Reserva*);
         bool isReservado(Fecha checkIn, Fecha checkOut);
         //CalificarEstadia
-        set<DTEstadia> getEstadiasFinalizadas(string);
+        vector<DTEstadia> getEstadiasFinalizadas(string);
         //ConsultaEstadia
-        set<DTEstadia> getDTEstadias();
+        vector<DTEstadia> getDTEstadias();
 };
 
 #endif

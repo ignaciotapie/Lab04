@@ -1,12 +1,17 @@
 #ifndef CONTROLADORRESERVAS_
 #define CONTROLADORRESERVAS_
 
-#include "../h/IReservas.h"
-#include "../h/ControladorHostales.h"
-#include "../h/ControladorReloj.h"
+#include "IReservas.h"
+#include "ControladorHostales.h"
+#include "ControladorReloj.h"
 
 #include <set>
 #include <map>
+#include <vector>
+
+class Reserva;
+class Empleado;
+class DTReserva;
 
 class ControladorReservas : public IReservas
 {
@@ -32,18 +37,23 @@ class ControladorReservas : public IReservas
 		void setCalificacion(string, int);
 		// CalificarEstadia 
 		void seleccionarHostal(string);
-		set<DTEstadia> getEstadiasFinalizadas(string);
+		vector<DTEstadia> getEstadiasFinalizadas(string);
 		void seleccionarEstadia(int, string);
 		//ComentarCalificacion
-		set<DTCalificacion> getCalificacionesSinResponder(string);
+		vector<DTCalificacion> getCalificacionesSinResponder(string);
 		void selectCalificacion(string, int);
 		void setComentarioCalificacion(string);
 		//ConsultaEstadia
-		set<DTEstadia> getEstadias();
+		vector<DTEstadia> getEstadias();
 		DTEstadiaPlus getEstadiaPlus();
 		DTCalificacion getDTCalificacion();
 		DTReserva getDTReserva();
 		void finConsultaEstadia();
+		set<string> getHostales();
+
+
+		//Caso de uso: Realizar Reserva
+		void addReserva(Reserva* r);
 };
 
 #endif

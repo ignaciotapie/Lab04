@@ -1,21 +1,24 @@
 #ifndef RESERVA_
 #define RESERVA_
 
-#include "Fecha.h"
-#include <map>
-#include "Estadia.h"
-#include "Usuario.h"
-#include "Habitacion.h"
+
 #include "Enum.h"
+#include "DTEstadia.h"
+#include "DTReserva.h"
+
+#include <map>
+#include <vector>
+#include <set>
 
 using namespace std;
 
 class Estadia;
 class Huesped;
-class DTReserva;
+class Habitacion;
+class Fecha;
 
 class Reserva{
-    private:
+    protected:
         int codigoReserva;
         Fecha checkIn;
         Fecha checkOut;
@@ -25,23 +28,29 @@ class Reserva{
         map<string, Estadia*> estadias;
         Huesped* huesped;
     public:
-        Reserva(/* args */);
-        ~Reserva();
-        int getCodigoReserva();
-        Fecha getCheckIn();
-        Fecha getCheckOut();
-        EstadoReserva getEstado();
-        int getCosto();
-        Habitacion* getHabitacion();
-        map<string, Estadia*> getEstadias();
-        Huesped* getHuesped();
+        Reserva(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo);
+        virtual int getCodigoReserva();
+        virtual Fecha getCheckIn();
+        virtual Fecha getCheckOut();
+        virtual EstadoReserva getEstado();
+        virtual int getCosto();
+        virtual Habitacion* getHabitacion();
+        virtual map<string, Estadia*> getEstadias();
+        virtual Huesped* getHuesped();
         void setCerradaReserva(Fecha, int, Reserva*, Huesped*);
         DTReserva getDTReserva();
         //CalificarEstadia
-        set<DTEstadia> getEstadiasFinalizadas(string);
+        vector<DTEstadia> getEstadiasFinalizadas(string);
         Estadia* getEstadia(string);
         //ConsultaEstadia
-        set<DTEstadia> getDTEstadias();
+        vector<DTEstadia> getDTEstadias();
+
+
+        //SETTERS
+        void setCheckIn(Fecha checkIn);
+        void setCheckOut(Fecha checkOut);
+        void setHuespedes(set<string> huespedes);
+
 };
 
 class ReservaGrupal : public Reserva{
@@ -50,16 +59,15 @@ class ReservaGrupal : public Reserva{
         map<string, Huesped*> huespedesExtra;
     public:
         ReservaGrupal(/* args */);
-        ~ReservaGrupal();
         void setCerradaReserva();
         int getCodigo();
+        void agregarHuespedExtra(Huesped* huesped);
 };
 
 class ReservaIndividual : public Reserva{
     private:
     public:
         ReservaIndividual(/* args */);
-        ~ReservaIndividual();
         void setCerradaReserva();
         int getCodigo();
 };

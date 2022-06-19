@@ -1,24 +1,26 @@
 #ifndef DTHOSTAL_
 #define DTHOSTAL_
 
+#include "Hostal.h"
 #include <string>
+
 
 using namespace std;
 
 class DTHostal
 {
-private:
-    string nombre;
-    string direccion;
-    int telefono;
-    float promCalif;
-public:
-    DTHostal(string nombre, string direccion, int telefono, float promCalif);
-    string getNombre() const;
-    string getDireccion() const;
-    int getTelefono() const;
-    float getPromCalif() const;
-    ~DTHostal();
+    private:
+        string nombre;
+        string direccion;
+        int telefono;
+        float promCalif;
+    public:
+        DTHostal(string nombre, string direccion, int telefono, float promCalif);
+        DTHostal(const Hostal& hostal);
+        const string getNombre() const;
+        const string getDireccion() const;
+        const int getTelefono() const;
+        const float getPromCalif() const;
 };
 
 #endif

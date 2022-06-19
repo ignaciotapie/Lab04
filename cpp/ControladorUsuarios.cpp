@@ -77,7 +77,21 @@ set<string> ControladorUsuarios::getHuespedes()
     return listaHuespedes;
 }
 
-set<string> ControladorUsuarios::getUsuarios(){}
+Huesped* ControladorUsuarios::getHuesped(string nombreUsuario)
+{
+    return huespedes.find(nombreUsuario)->second;
+}
+
+set<string> ControladorUsuarios::getUsuarios()
+{
+    map<string,Usuario*>::iterator it = usuarios.begin();
+    set<string> nombres;
+    for (; it != usuarios.end(); it++)
+    {
+        nombres.insert(it->first);
+    }
+    return nombres;
+}
 
 void ControladorUsuarios::seleccionarUsuario(string){}
 
@@ -92,7 +106,7 @@ void ControladorUsuarios::seleccionarHostal(string nombreHostal){
 set<int> ControladorUsuarios::getReservasDelHuesped(string emailHuesped) {
 	this->emailHuesped = emailHuesped;
 	map<string,Huesped*>::iterator it = huespedes.find(emailHuesped); 
-	set<int> res = it->second->getCodigosReserva();
+	set<int> res = it->second->getCodigosReservas();
 	return res;
 }
 
@@ -102,23 +116,29 @@ void ControladorUsuarios::seleccionarReserva(int codigoReserva){
 
 void ControladorUsuarios::registrarEstadia(){
 	Huesped* hues = huespedes.find(this->emailHuesped)->second;
-    ControladorReservas* cr = ControladorReserva::getInstance();
+    ControladorReservas* cr = ControladorReservas::getInstance();
 	cr->registrarEstadia(this->codigoReserva, hues); //mandar la funcion de controldorReservas
 }
 
 
-DTUsuario ControladorUsuarios::listarDatos(){}
+DTUsuario ControladorUsuarios::listarDatos()
+{
+    return DTUsuario();
+}
 void ControladorUsuarios::finalizarConsultaUsuario(){}
 void ControladorUsuarios::suscribirEmpleado(){}
 void ControladorUsuarios::finalizarSuscripcion(){}
 void ControladorUsuarios::eliminarEmpleado(){}
-set<DTNotificacion> ControladorUsuarios::listaNotificaciones(){}
+vector<DTNotificacion> ControladorUsuarios::listaNotificaciones()
+{
+    return vector<DTNotificacion>();
+}
 void ControladorUsuarios::finalizarConsultaNotis(){}
 void ControladorUsuarios::finalizarEliminacion(){}
 
-set<DTCalificacion> ControladorUsuarios::getCalificacionesSinResponder(string emailEmpleado){
+vector<DTCalificacion> ControladorUsuarios::getCalificacionesSinResponder(string emailEmpleado){
     Empleado e = *empleados.find(emailEmpleado)->second;
-    set<DTCalificacion> res = e.getCalificacionesSinResponder();
+    vector<DTCalificacion> res = e.getCalificacionesSinResponder();
     return res;
 }
 

@@ -8,6 +8,8 @@
 using namespace std;
 
 class Calificacion;
+class Empleado;
+
 
 class RespuestaEmpleado
 {
@@ -17,7 +19,6 @@ private:
     Calificacion* calificacion;
 public:
     RespuestaEmpleado(string, Empleado*, Calificacion*);
-    ~RespuestaEmpleado();
     string getMensaje();
     Empleado* getEmpleado();
     Calificacion* getCalificacion();

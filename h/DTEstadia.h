@@ -21,7 +21,6 @@ public:
     Fecha getCheckInReal();
     Fecha getCheckOutReal();
     int getPromo();
-    ~DTEstadia();
 };
 
 #endif

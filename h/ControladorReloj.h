@@ -2,6 +2,7 @@
 #define Controlador_Reloj
 
 #include "IReloj.h"
+#include "Fecha.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ class ControladorReloj: public IReloj {
 		//operaciones
 		
 		Fecha getFechaActual();
-		void modificarFecha(int, int, int, int);
+		void modificarFecha(float hora, int dia, int mes, int anio);
 };
 
 #endif

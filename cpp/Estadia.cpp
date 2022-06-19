@@ -9,10 +9,6 @@ Estadia::Estadia(Fecha in, Fecha out, int pro, Reserva* res, Huesped* hue, Calif
     this->calificacion = cal;
 }
 
-Estadia::~Estadia(){
-
-}
-
 Reserva* Estadia::getReserva(){
     return this->reserva;
 }
@@ -60,10 +56,10 @@ void Estadia::setCalificacion(string comentario, int puntaje, Hostal* h){
     h->agregarCalificacion(&c);
 }
 
-DTEstadia Estadia::getDTEstadia(){
+/*DTEstadia Estadia::getDTEstadia(){
     DTEstadia res(this->getHuesped()->getEmail(), this->getReserva()->getCodigoReserva(), this->checkInReal, this->checkOutReal, this->getPromo());
     return res;
-}
+}*/
 
 DTEstadiaPlus Estadia::getDTEstadiaPlus(){
     DTEstadiaPlus res(this->getReserva()->getHabitacion()->getHostal()->getNombreHostal(), this->getHuesped()->getNombre(), this->getReserva()->getHabitacion()->getNumero(), this->getReserva()->getCodigoReserva(), this->getCheckIn(), this->getCheckOut(), this->getPromo());

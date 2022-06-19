@@ -16,6 +16,11 @@ Huesped::Huesped(string nombre, string email, string password, bool esFinger)
     this->esFinger = esFinger;
 }
 
+string Usuario::getNombre()
+{
+    return this->nombre;
+}
+
 string Usuario::getPassword(){ 
 	return this->password;
 }
@@ -28,11 +33,16 @@ bool Huesped::getEsFinger(){
     return this->esFinger;
 }
 
-void Empleado::notificarCalificacion(Notificacion*){
-    
+string Usuario::getEmail()
+{
+    return email;
 }
 
-set<DTCalificacion> Empleado::getCalificacionesSinResponder(){
+void Empleado::notificarCalificacion(Notificacion* noti){
+    n.insert(noti);
+}
+
+vector<DTCalificacion> Empleado::getCalificacionesSinResponder(){
     return this->hostal->getCalificacionesSinResponder();
 }
 
@@ -42,11 +52,33 @@ void Empleado::setRespuestaEmpleado(RespuestaEmpleado* res){
 
 set<int> Huesped::getCodigosReservas() {
 	set<int> res;
-    map<int, Reserva*>::iterator it = r.begin();
+    map<int, ReservaIndividual*>::iterator it = r.begin();
 	for (; it != r.end(); it++){
 		if (it->second->getEstado() == Abierta) {
 			res.insert(it->second->getCodigoReserva());
 		}
 	}
+
+    map<int, ReservaGrupal*>::iterator iter = rg.begin();
+    for (; iter != rg.end(); iter++)
+    {
+        if (iter->second->getEstado() == Abierta) {
+			res.insert(it->second->getCodigoReserva());
+		}
+    }
 	return res;
+}
+
+void Huesped::addReserva(Reserva* r)
+{
+    ReservaIndividual* ri = dynamic_cast<ReservaIndividual*>(r);
+    if (ri)
+    {
+        this->r.insert({ri->getCodigoReserva(), ri});
+    }
+    else
+    {
+        ReservaGrupal* rg = dynamic_cast<ReservaGrupal*>(r);
+        this->rg.insert({rg->getCodigoReserva(), rg});
+    }
 }

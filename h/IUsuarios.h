@@ -2,14 +2,16 @@
 #define IUSUARIOS_
 
 
-#include "Usuario.h"
-#include "DTUsuario.h"
+
 #include "DTNotificacion.h"
 #include "DTCalificacion.h"
+#include "Usuario.h"
+#include "DTUsuario.h"
 
 #include <string>
 #include <map>
 #include <set>
+#include <vector>
 
 
 using namespace std;
@@ -39,11 +41,10 @@ class IUsuarios{
 		virtual void suscribirEmpleado();
 		virtual void finalizarSuscripcion();
 		virtual void eliminarEmpleado();
-		virtual set<DTNotificacion> listaNotificaciones();
+		virtual vector<DTNotificacion> listaNotificaciones();
 		virtual void finalizarConsultaNotis();
 		virtual void finalizarEliminacion();
-		virtual set<DTCalificacion> getCalificacionesSinResponder(string);
-		virtual ~IUsuarios(){};
+		virtual vector<DTCalificacion> getCalificacionesSinResponder(string);
 };
 
 #endif

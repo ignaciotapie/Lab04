@@ -3,26 +3,32 @@
 
 #include <string>
 #include <map>
-#include "Reserva.h"
-#include "Estadia.h"
-#include "RespuestaEmpleado.h"
-#include "Notificacion.h"
+#include <vector>
+#include <set>
+
 #include "Hostal.h"
 #include "DTUsuario.h"
 #include "DTNotificacion.h"
 #include "DTCalificacion.h"
-#include "Calificacion.h"
 #include "Enum.h"
+#include "Reserva.h"
 
+
+class Reserva;
 class ReservaGrupal;
+class ReservaIndividual;
+class RespuestaEmpleado;
+class Estadia;
+class Calificacion;
+class Notificacion;
+class Hostal;
 
 class Observer { 
-private:
-    ;
-public:
-    ~Observer();
-    //CalificarEstadia
-    virtual void notificarCalificacion(Notificacion*);
+    protected:
+        set<Notificacion*> n;
+    public:
+        //CalificarEstadia
+        virtual void notificarCalificacion(Notificacion*) = 0;
 };
 
 
@@ -35,40 +41,36 @@ class Usuario {
         string getEmail();
         string getNombre();
         string getPassword();
-        ~Usuario();
 };
 
 class Huesped : public Usuario {
 
     private:
         bool esFinger;
-        map<int,Reserva*> r;
+        map<int,ReservaIndividual*> r;
         map<int,ReservaGrupal*> rg;
         map<int,Estadia*> e;
     public:
         Huesped(string nombre, string email, string password, bool esFinger);
-        ~Huesped();
         DTUsuario getDTUsuario();
         set<int> getCodigosReservas();
         bool getEsFinger();
 
         
         void finalizarEstadia();
-        void addReserva();
-
+        void addReserva(Reserva* reserva);
 };
 
 class Empleado : public Usuario, public Observer {
     
     private:
         CargoEmpleado cargo;
-        set<Notificacion*> n;
+
         set<RespuestaEmpleado*> re;
         Hostal *hostal;
 
     public:
         Empleado(string nombre, string email, string password, CargoEmpleado cargo);
-        ~Empleado();
         
         // GETTERS
         CargoEmpleado getCargoEmpleado();
@@ -80,10 +82,10 @@ class Empleado : public Usuario, public Observer {
 
         DTUsuario getDTUsuario();
         void notificarCalificacion(Notificacion*);
-        set<DTNotificacion> getNotificaciones();
+        vector<DTNotificacion> getNotificaciones();
         void setRespuestaEmpleado(RespuestaEmpleado*);
         //ComentarCalificacion
-        set<DTCalificacion> getCalificacionesSinResponder();
+        vector<DTCalificacion> getCalificacionesSinResponder();
 };
 
 #endif

@@ -4,9 +4,12 @@
 #include <string>
 #include <map>
 #include <set>
+#include <vector>
 #include "DTReserva.h"
 #include "DTCalificacion.h"
 #include "DTHostal.h"
+
+class DTHostal;
 
 using namespace std;
 
@@ -18,7 +21,7 @@ class IHostales{
 		virtual void altaHabitacion(int, int, int);
 		virtual void confirmar();
 		virtual set<string> getTop3Hostales();
-		virtual set<DTCalificacion> getDetallesHostal(string);
+		virtual vector<DTCalificacion> getDetallesHostal(string);
 		virtual void finalizarConsultaHostal();
 		virtual void setHostalInfo(string, string, int);
 		virtual void cancelarAltaHostal();
@@ -30,13 +33,12 @@ class IHostales{
 		virtual void cancelarReserva();
 		virtual void confirmarReserva();
 		virtual set<int> getHabitacionesLibres();
-		virtual set<DTHostal> getHostalesPlus();
+		virtual vector<DTHostal> getHostalesPlus();
 		virtual void seleccionarHabitacion(int numeroHabitacion);
 		virtual void seleccionarHostalParaReserva(string nombreHostal, Fecha checkIn, Fecha checkOut, bool esReservaGrupal);
 		virtual void getHuespedes();
 		virtual void seleccionarHuesped(string nombreHuesped);
 		virtual bool existeHostal(string nombreHostal);
-		virtual ~IHostales ();
 };
 
 #endif

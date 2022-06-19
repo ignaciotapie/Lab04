@@ -5,6 +5,11 @@
 #include "Hostal.h"
 #include "Reserva.h"
 #include "Fecha.h"
+#include <map>
+#include <set>
+#include <vector>
+
+class Hostal;
 
 class ControladorHostales : public IHostales{
 	
@@ -50,13 +55,13 @@ class ControladorHostales : public IHostales{
 
 		//Caso de uso: Realizar Reserva
 		bool existeHostal(string nombreHostal);
-		set<DTHostal> getHostalesPlus();
+		vector<DTHostal> getHostalesPlus();
 		void seleccionarHostalParaReserva(string nombreHostal, Fecha checkIn, Fecha checkOut, bool esReservaGrupal);
 		void seleccionarHabitacion(int habitacion);
 		void seleccionarHuesped(string nombreHuesped);
 
 		set<string> getTop3Hostales();
-		set<DTCalificacion> getDetallesHostal(string);
+		vector<DTCalificacion> getDetallesHostal(string);
 		void asignarEmpleado(string nombreEmpleado, CargoEmpleado cargo);
 		void cancelarAsignacion();
 		void confirmarAsignacion();

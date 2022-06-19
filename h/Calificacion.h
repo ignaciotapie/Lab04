@@ -1,17 +1,23 @@
 #ifndef CALIFICACION_
 #define CALIFICACION_
 
-#include <string>
 #include "Estadia.h"
 #include "Hostal.h"
 #include "Notificacion.h"
 #include "RespuestaEmpleado.h"
+#include "DTCalificacion.h"
+#include "Usuario.h"
+
+#include <string>
 #include <map>
 
 using namespace std;
 
 class Estadia;
 class RespuestaEmpleado;
+class Hostal;
+class Empleado;
+class Notificacion;
 
 class Calificacion{
     private:
@@ -22,7 +28,6 @@ class Calificacion{
         RespuestaEmpleado* respuestaEmpleados;
     public:
         Calificacion(int, string, Estadia*, Hostal*, RespuestaEmpleado*);
-        ~Calificacion();
         int getPuntaje();
         string getComentario();
         Estadia* getEstadia();

@@ -1,13 +1,16 @@
 #ifndef NOTIFICACION_
 #define NOTIFICACION_
 
-#include <string>
 #include "Usuario.h"
+#include "DTNotificacion.h"
 #include "Calificacion.h"
 #include <map>
-#include "DTNotificacion.h"
+#include <string>
+
 
 using namespace std;
+
+class Calificacion;
 
 class Notificacion{
     private:
@@ -16,7 +19,6 @@ class Notificacion{
         Calificacion* calificacion;
     public:
         Notificacion(string, int, Calificacion*);
-        ~Notificacion();
         string getAutor();
         int getEmpleadosLinkeados();
         Calificacion* getCalificacion();

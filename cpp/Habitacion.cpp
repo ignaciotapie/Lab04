@@ -1,5 +1,6 @@
 #include "../h/Habitacion.h"
 #include <iterator>
+#include <vector>
 
 using namespace std;
 
@@ -32,35 +33,35 @@ map<int, Reserva*> Habitacion::getReservas(){
     return this->reservas;
 }
 
-set<DTEstadia> Habitacion::getEstadiasFinalizadas(string emailHuesped){
-    map<int, Reserva*> rs = this->getReservas();
+vector<DTEstadia> Habitacion::getEstadiasFinalizadas(string emailHuesped){
+    map<int, Reserva*> rs = reservas;
     map<int, Reserva*>::iterator itr;
-    set<DTEstadia> res;
+    vector<DTEstadia> res;
     for (itr = rs.begin(); itr != rs.end(); ++itr) {
-        set<DTEstadia> aux = itr->second->getEstadiasFinalizadas(emailHuesped);
+        vector<DTEstadia> aux = itr->second->getEstadiasFinalizadas(emailHuesped);
         // agregar aux a res
-        set<DTEstadia>::iterator itr2;
+        vector<DTEstadia>::iterator itr2;
         for (itr2 = aux.begin(); itr2 != aux.end(); ++itr){
-            res.insert(*itr2);
+            res.emplace_back(*itr2);
         }
-        aux.~set();
     }
     return res;
 }
-set<DTEstadia> Habitacion::getDTEstadias(){
+vector<DTEstadia> Habitacion::getDTEstadias(){
     map<int, Reserva*>::iterator itr;
-    set<DTEstadia> res;
+    vector<DTEstadia> res;
     map<int, Reserva*> aux = this->getReservas();
     for (itr = aux.begin(); itr != aux.end(); itr++) {
-        set<DTEstadia> aux2 = itr->second->getDTEstadias();
-        set<DTEstadia>::iterator itr2;
+        vector<DTEstadia> aux2 = itr->second->getDTEstadias();
+        vector<DTEstadia>::iterator itr2;
         for (itr2 = aux2.begin(); itr2 != aux2.end(); itr2++){
-            res.insert(*itr2);
+            res.emplace_back(*itr2);
         }
     }
+    return res;
 }
-void Habitacion::addReserva(Reserva*){
-    ;
+void Habitacion::addReserva(Reserva* reserva){
+    reservas.insert({reserva->getCodigoReserva(), reserva});
 }
 bool Habitacion::isReservado(Fecha checkIn, Fecha checkOut){
     map<int, Reserva*>::iterator it = reservas.begin();

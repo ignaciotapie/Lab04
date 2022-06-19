@@ -25,7 +25,7 @@ void ControladorReservas::registrarEstadia(int codigoReserva, Huesped* hues)
 
 set<string> ControladorReservas::getHostales(){
     ControladorHostales* ch = ControladorHostales::getInstance();
-    set<string> res = ch->getHostales(); //Por que no vas directo a controlador hostales para pedir los hostales? -Nacho
+    set<string> res = ch->getHostales(); //Por que no vas directo a controlador hostales para pedir los hostales? 
 	return res;
 }
 
@@ -39,17 +39,18 @@ void ControladorReservas::seleccionarEstadia(int i, string s){
 }*/ //cual?
 
 void ControladorReservas::finalizarEstadia(){
-    ControladorUsuarios* cu = ControladorUsuarios::getInstance();
+    /*ControladorUsuarios* cu = ControladorUsuarios::getInstance();
 	ControladorReloj* cr = ControladorReloj::getInstance();
 	Fecha fechaA = cr->getFechaActual();
-	map<string, Usuario*> it = usuarios.find(this->emailHuesped); 
-	Huesped* h = &it->second();
-    map<int,Estadia*>::iterator iter = h->estadias->begin();
+	Huesped* h = cu->getHuesped(this->emailHuespedEstadia); 
+
+    
+    map<int,Estadia*>::iterator iter = h->estadias.begin(); //no podes entrar a los private de otro controlador, tenes que hacer una funcion aparte.
 	for (; iter != h->estadias->end(); iter++){
-		if (!iter->estaFinalizada()){
-			iter->setCheckOut(fechaA);
+		if (!iter->second->estaFinalizada()){
+			iter->second->setCheckOut(fechaA);
 		}
-	}
+	}*/
 }
 void ControladorReservas::setCalificacion(string comentario, int calificacion){
     map<int, Reserva*>::iterator itr = reservas.find(codigoReservaEstadia);
@@ -63,9 +64,9 @@ void ControladorReservas::setCalificacion(string comentario, int calificacion){
     ControladorUsuarios* cu = ControladorUsuarios::getInstance();
     cu->notificarObservadores(n);
 }
-set<DTCalificacion> ControladorReservas::getCalificacionesSinResponder(string emailEmpleado){
+vector<DTCalificacion> ControladorReservas::getCalificacionesSinResponder(string emailEmpleado){
     ControladorUsuarios* cu = ControladorUsuarios::getInstance();
-    set<DTCalificacion> res = cu->getCalificacionesSinResponder(emailEmpleado);
+    vector<DTCalificacion> res = cu->getCalificacionesSinResponder(emailEmpleado);
     empleadoGuardado = cu->getEmpleado(emailEmpleado);
     return res;
 }
@@ -79,10 +80,10 @@ void ControladorReservas::selectCalificacion(string email, int codigo){
     codigoReservaEstadia = codigo;
     emailHuespedEstadia = email;
 }
-set<DTEstadia> ControladorReservas::getEstadias(){
+vector<DTEstadia> ControladorReservas::getEstadias(){
     ControladorHostales* ch = ControladorHostales::getInstance();
     Hostal* h = ch->getHostal(hostalSeleccionado);
-    set<DTEstadia> res = h->getDTEstadias();
+    return h->getDTEstadias();
 }
 DTEstadiaPlus ControladorReservas::getEstadiaPlus(){
     Estadia* est = reservas.find(codigoReservaEstadia)->second->getEstadia(emailHuespedEstadia);
@@ -102,12 +103,17 @@ DTCalificacion ControladorReservas::getDTCalificacion(){
 void ControladorReservas::seleccionarHostal(string h){
     hostalSeleccionado = h;
 }
-set<DTEstadia> ControladorReservas::getEstadiasFinalizadas(string emailHuesped){
+vector<DTEstadia> ControladorReservas::getEstadiasFinalizadas(string emailHuesped){
     ControladorHostales* ch = ControladorHostales::getInstance();
     Hostal* h = ch->getHostal(hostalSeleccionado);
-    set<DTEstadia> res = h->getEstadiasFinalizadas(emailHuesped);
+    vector<DTEstadia> res = h->getEstadiasFinalizadas(emailHuesped);
     return res;
 }
 void ControladorReservas::finConsultaEstadia(){
 
+}
+
+void ControladorReservas::addReserva(Reserva* r)
+{
+    reservas.insert({r->getCodigoReserva(), r});
 }

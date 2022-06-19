@@ -2,9 +2,10 @@
 #define DTESTADIAPLUS_
 
 #include <string>
-#include "Fecha.h"
+#include "../h/Fecha.h"
 
 using namespace std;
+
 
 class DTEstadiaPlus
 {
@@ -25,7 +26,6 @@ public:
     Fecha getCheckInReal();
     Fecha getCheckOutReal();
     int getPromo();
-    ~DTEstadiaPlus();
 };
 
 #endif

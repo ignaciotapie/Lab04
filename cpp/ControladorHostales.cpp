@@ -88,7 +88,13 @@ DTHostal ControladorHostales::getDTHostal(){
     return DTHostal("nombre","nombre",1,1); //TEMPORAL.
 }
 set<string> ControladorHostales::getHostales(){
-    return set<string>(); //TEMPORAL.
+    set<string> aRetornar;
+    map<string, Hostal*>::iterator it = hostales.begin();
+    for (; it != hostales.end(); it++)
+    {
+        aRetornar.insert(it->first);
+    }
+    return aRetornar;
 }
 void ControladorHostales::seleccionarHostal(string){
 
@@ -134,9 +140,9 @@ set<string> ControladorHostales::getTop3Hostales(){
 	return res;
 
 }
-set<DTCalificacion> ControladorHostales::getDetallesHostal(string){
+vector<DTCalificacion> ControladorHostales::getDetallesHostal(string){
     map<string,Hostal*>::iterator it = hostales.find(nombreHostal);
-	set<DTCalificacion> res = it->second->getDetalles();
+	vector<DTCalificacion> res = it->second->getDetalles();
 	return res;
 }
 
@@ -145,19 +151,38 @@ void ControladorHostales::finalizarConsultaHostal(){}
 
 
 void ControladorHostales::cancelarReserva(){}
-void ControladorHostales::confirmarReserva(){}
+void ControladorHostales::confirmarReserva()
+{
+    Reserva* r;
+    if (esReservaGrupalReserva)
+    {
+        r = new ReservaGrupal();
+    }
+    else
+    {
+        r = new ReservaIndividual();
+    }
+    r->setCheckIn(checkInReserva);
+    r->setCheckOut(checkOutReserva);
+    r->setHuespedes(huespedesAElegir);
+    Hostal* hostalAReservar = hostales.find(nombreHostalAReservar)->second;
+    hostalAReservar->reservarHabitacion(r,habitacionAReservar);
+    ControladorReservas* cr = ControladorReservas::getInstance();
+    cr->addReserva(r);
+}
 set<int> ControladorHostales::getHabitacionesLibres()
 {
     Hostal* hostal = hostales.find(nombreHostalAReservar)->second;
     return hostal->getHabitacionesLibres(checkInReserva, checkOutReserva);
 }
-set<DTHostal> ControladorHostales::getHostalesPlus()
+vector<DTHostal> ControladorHostales::getHostalesPlus()
 {
     map<string, Hostal*>::iterator it = hostales.begin();
-    set<DTHostal> listaDTs;
+    vector<DTHostal> listaDTs;
     for (; it != hostales.end(); it++)
     {
-        listaDTs.insert(it->second->getDataHostal());
+        const Hostal& hostal = *(it->second);
+        listaDTs.emplace_back(DTHostal(hostal));
     }
     return listaDTs;
 }

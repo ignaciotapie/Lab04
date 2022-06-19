@@ -1,11 +1,11 @@
 #include "../h/RespuestaEmpleado.h"
 
-RespuestaEmpleado::RespuestaEmpleado(string, Empleado*, Calificacion*){
-
+RespuestaEmpleado::RespuestaEmpleado(string mensaje, Empleado* emp, Calificacion* cali){
+    this->mensaje = mensaje;
+    this->empleado = emp;
+    this->calificacion = cali;
 }
-RespuestaEmpleado::~RespuestaEmpleado(){
 
-}
 string RespuestaEmpleado::getMensaje(){
     return this->mensaje;
 }

@@ -5,9 +5,7 @@ Notificacion::Notificacion(string s, int i, Calificacion* c){
     this->empleadosLinkeados = i;
     this->calificacion = c;
 }
-Notificacion::~Notificacion(){
 
-}
 string Notificacion::getAutor(){
     return this->autor;
 }
@@ -18,11 +16,11 @@ Calificacion* Notificacion::getCalificacion(){
     return this->calificacion;
 }
 DTNotificacion Notificacion::getDTNotificacion(){
-
+    return DTNotificacion(this->autor, this->calificacion->getPuntaje(), this->calificacion->getComentario());
 }
 void Notificacion::aumentarNumero(){
-
+    this->empleadosLinkeados++;
 }
 void Notificacion::disminuirNumero(){
-    
+    this->empleadosLinkeados--;
 }

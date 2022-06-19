@@ -13,7 +13,7 @@ CPPDIR = cpp
 ODIR = o
 
 # Clases
-CLASES = CargoEmpleado Calificacion ControladorHostales ControladorReloj ControladorReservas ControladorUsuarios DTCalificacion DTEstadia DTEstadiaPlus DTHabitacion DTHostal DTNotificacion DTReserva DTUsuario Estadia Fabrica Fecha Habitacion Hostal IHostales IReloj IReservas IUsuarios Notificacion Reserva RespuestaEmpleado Usuario
+CLASES = CargoEmpleado Calificacion ControladorHostales ControladorReloj ControladorReservas ControladorUsuarios DTCalificacion DTEstadia DTEstadiaPlus DTHabitacion DTHostal DTNotificacion DTReserva DTUsuario Estadia Fabrica Fecha Habitacion Hostal IHostales IReloj IReservas IUsuarios Notificacion Reserva RespuestaEmpleado Usuario Enum
 
 # Archivos
 HS = $(CLASES:%=$(HDIR)/%.h) Enum.h
@@ -34,7 +34,7 @@ all: make
 $(PRINCIPAL).o:$(PRINCIPAL).cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
-make: main.cpp Calificacion.o ControladorHostales.o ControladorReloj.o ControladorReservas.o ControladorUsuarios.o DTCalificacion.o DTEstadia.o DTEstadiaPlus.o DToabitacion.o DTHostal.o DTNotificacion.o DTReserva.o DTUsuario.o Estadia.o Fabrica.o Fecha.o Habitacion.o Hostal.o IHostales.o IReloj.o IReservas.o IUsuarios.o Notificacion.o Reserva.o RespuestaEmpleado.o Usuario.o
+make: main.cpp Calificacion.o ControladorHostales.o ControladorReloj.o ControladorReservas.o ControladorUsuarios.o DTCalificacion.o DTEstadia.o DTEstadiaPlus.o DTHabitacion.o DTHostal.o DTNotificacion.o DTReserva.o DTUsuario.o Estadia.o Fecha.o Habitacion.o Hostal.o Notificacion.o Reserva.o RespuestaEmpleado.o Usuario.o
 	$(CC) $(CFLAGS) -o main main.cpp o/*.o
 
 zip: $(LAB4) Makefile

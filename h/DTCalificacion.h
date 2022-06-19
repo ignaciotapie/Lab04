@@ -14,15 +14,19 @@ class DTCalificacion{
         string emailHuesp;
         int codigoReserva;
     public:
-        DTCalificacion();
         DTCalificacion(int, string, Fecha, string, int);
         DTCalificacion(int, string, string, int);
+        DTCalificacion(int, string);
         int getPuntaje();
         string getComentario();
         Fecha getFecha();
         string getEmailHuesp();
         int getCodigoReserva();
-        ~DTCalificacion();
+        void setPuntaje(int);
+        void setComentario(string);
+        void setFecha(Fecha);
+        void setEmailHuesp(string);
+        void setCodigoReserva(int);
 };
 
 #endif

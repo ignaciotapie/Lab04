@@ -11,8 +11,7 @@ using namespace std;
 class IReloj {
 	public:
 		virtual Fecha getFechaActual() = 0;
-		virtual void modificarFecha(int, int, int, int);
-		virtual ~IReloj(){};
+		virtual void modificarFecha(float, int, int, int);
 };
 
 #endif

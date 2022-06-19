@@ -20,7 +20,6 @@ class DTHabitacion{
         int getPrecio();
         int getCapacidad();
         map<string, DTCalificacion>* getCalificaciones();
-        ~DTHabitacion();
 };
 
 #endif
