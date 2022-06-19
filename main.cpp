@@ -779,7 +779,6 @@ int main()
             case 16:{
                 IHostales* interfazHostales = fabrica->getIHostales();
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
-                IReservas* interfazReservas = fabrica->getIReservas();
                 set<string> allHostales = interfazHostales->getHostales();
                 int i = 1;
                 for(set<string>::iterator it = allHostales.begin(); it != allHostales.end(); ++it)
@@ -826,7 +825,7 @@ int main()
                 }
 
                 set<int> ReservasNoCanceladasDelHuesped = interfazUsuarios->getReservasDelHuesped(emailHuesped);
-                int i = 1;
+                i = 1;
                 for(set<int>::iterator it = ReservasNoCanceladasDelHuesped.begin(); it != ReservasNoCanceladasDelHuesped.end(); ++it)
                 {
                     cout << i << ". " << (*it) << endl;
