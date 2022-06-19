@@ -2,8 +2,6 @@
 #define CONTROLADORRESERVAS_
 
 #include "IReservas.h"
-#include "ControladorHostales.h"
-#include "ControladorReloj.h"
 
 #include <set>
 #include <map>
@@ -54,6 +52,7 @@ class ControladorReservas : public IReservas
 
 		//Caso de uso: Realizar Reserva
 		void addReserva(Reserva* r);
+		int getCodigoReservaACrear();
 };
 
 #endif

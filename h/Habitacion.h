@@ -1,17 +1,16 @@
 #ifndef HABITACION_
 #define HABITACION_
 
-#include "Reserva.h"
-#include "Hostal.h"
-#include "Estadia.h"
-#include "DTEstadia.h"
 #include <map>
 #include <set>
+#include <vector>
 
 using namespace std;
 
 class Hostal;
 class Reserva;
+class Fecha;
+class DTEstadia;
 
 class Habitacion{
     private:

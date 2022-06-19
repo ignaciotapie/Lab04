@@ -4,9 +4,11 @@
 #include <string>
 #include <map>
 
-#include "DTCalificacion.h"
+
 
 using namespace std;
+
+class DTCalificacion;
 
 class DTHabitacion{
     private:
@@ -16,10 +18,10 @@ class DTHabitacion{
         map<string, DTCalificacion> *calificaciones;
     public:
         DTHabitacion(int, int, int, map<string, DTCalificacion> *);
-        int getNumero();
-        int getPrecio();
-        int getCapacidad();
-        map<string, DTCalificacion>* getCalificaciones();
+        const int getNumero() const;
+        const int getPrecio() const;
+        const int getCapacidad() const;
+        const map<string, DTCalificacion>* getCalificaciones() const;
 };
 
 #endif

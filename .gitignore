@@ -3,3 +3,5 @@
 .vscode/targets.log
 .vscode/dryrun.log
 o/*
+main
+.vscode/c_cpp_properties.json

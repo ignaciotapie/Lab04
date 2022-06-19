@@ -2,8 +2,6 @@
 #define RESPUESTAEMPLEADO_
 
 #include <string>
-#include "Calificacion.h"
-#include "Usuario.h"
 
 using namespace std;
 

@@ -1,4 +1,9 @@
 #include "../h/ControladorUsuarios.h"
+#include "../h/ControladorHostales.h"
+#include "../h/Usuario.h"
+#include "../h/ControladorReservas.h"
+#include "../h/DTUsuario.h"
+#include "../h/DTNotificacion.h"
 
 ControladorUsuarios* ControladorUsuarios::instance = NULL;
 

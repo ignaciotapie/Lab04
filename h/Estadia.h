@@ -2,16 +2,19 @@
 #define ESTADIA_
 
 #include "Fecha.h"
-#include "Calificacion.h"
-#include "DTCalificacion.h"
-#include "DTEstadia.h"
-#include "DTEstadiaPlus.h"
+#include <string>
 
 class DTReserva;
 class Huesped;
 class Reserva;
 class Calificacion;
 class Hostal;
+class Fecha;
+class DTCalificacion;
+class DTEstadia;
+class DTEstadiaPlus;
+
+using namespace std;
 
 class Estadia
 {

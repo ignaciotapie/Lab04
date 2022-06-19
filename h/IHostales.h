@@ -6,7 +6,9 @@
 #include <set>
 #include <vector>
 
-#include "../h/DTHostal.h"
+#include "Enum.h"
+#include "Fecha.h"
+#include "DTCalificacion.h"
 
 class DTHostal;
 class DTCalificacion;
@@ -15,31 +17,30 @@ using namespace std;
 
 class IHostales{
 	public:
-		virtual DTHostal getDTHostal();
-		virtual set<string> getHostales();
-		virtual void seleccionarHostal(string);
-		virtual void altaHabitacion(int, int, int);
-		virtual void confirmarAltaHabitacion();
-		virtual void cancelarAltaHabitacion();
-		virtual set<string> getTop3Hostales();
-		virtual vector<DTCalificacion> getDetallesHostal(string);
-		virtual void finalizarConsultaHostal();
-		virtual void setHostalInfo(string, string, int);
-		virtual void cancelarAltaHostal();
-		virtual void confirmarAltaHostal();
-		virtual void asignarEmpleado(string, CargoEmpleado);
-		virtual void cancelarAsignacion();
-		virtual void confirmarAsignacion();
-		virtual set<string> getEmpleadosFueraDeHostal(string);
-		virtual void cancelarReserva();
-		virtual void confirmarReserva();
-		virtual set<int> getHabitacionesLibres();
-		virtual vector<DTHostal> getHostalesPlus();
-		virtual void seleccionarHabitacion(int numeroHabitacion);
-		virtual void seleccionarHostalParaReserva(string nombreHostal, Fecha checkIn, Fecha checkOut, bool esReservaGrupal);
-		virtual void getHuespedes();
-		virtual void seleccionarHuesped(string nombreHuesped);
-		virtual bool existeHostal(string nombreHostal);
+		virtual DTHostal getDTHostal() = 0;
+		virtual set<string> getHostales() = 0;
+		virtual void seleccionarHostal(string) = 0;
+		virtual void altaHabitacion(int, int, int) = 0;
+		virtual void confirmarAltaHabitacion() = 0;
+		virtual void cancelarAltaHabitacion() = 0;
+		virtual set<string> getTop3Hostales() = 0;
+		virtual vector<DTCalificacion> getDetallesHostal(string) = 0;
+		virtual void finalizarConsultaHostal() = 0;
+		virtual void setHostalInfo(string, string, int) = 0;
+		virtual void cancelarAltaHostal() = 0;
+		virtual void confirmarAltaHostal() = 0;
+		virtual void asignarEmpleado(string, CargoEmpleado) = 0;
+		virtual void cancelarAsignacion() = 0;
+		virtual void confirmarAsignacion() = 0;
+		virtual set<string> getEmpleadosFueraDeHostal(string) = 0;
+		virtual void cancelarReserva() = 0;
+		virtual void confirmarReserva() = 0;
+		virtual set<int> getHabitacionesLibres() = 0;
+		virtual vector<DTHostal> getHostalesPlus() = 0;
+		virtual void seleccionarHabitacion(int numeroHabitacion) = 0;
+		virtual void seleccionarHostalParaReserva(string nombreHostal, Fecha checkIn, Fecha checkOut, bool esReservaGrupal) = 0;
+		virtual void seleccionarHuesped(string nombreHuesped) = 0;
+		virtual bool existeHostal(string nombreHostal) = 0;
 };
 
 #endif

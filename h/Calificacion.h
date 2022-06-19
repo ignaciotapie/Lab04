@@ -1,13 +1,6 @@
 #ifndef CALIFICACION_
 #define CALIFICACION_
 
-#include "Estadia.h"
-#include "Hostal.h"
-#include "Notificacion.h"
-#include "RespuestaEmpleado.h"
-#include "DTCalificacion.h"
-#include "Usuario.h"
-
 #include <string>
 #include <map>
 
@@ -18,6 +11,7 @@ class RespuestaEmpleado;
 class Hostal;
 class Empleado;
 class Notificacion;
+class DTCalificacion;
 
 class Calificacion{
     private:

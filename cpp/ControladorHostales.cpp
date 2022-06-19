@@ -1,5 +1,11 @@
 #include "../h/ControladorHostales.h"
 #include "../h/ControladorUsuarios.h"
+#include "../h/Hostal.h"
+#include "../h/Usuario.h"
+#include "../h/DTHostal.h"
+#include "../h/Reserva.h"
+#include "../h/ControladorReservas.h"
+#include "../h/Fecha.h"
 
 ControladorHostales* ControladorHostales::instance = NULL;
 
@@ -165,20 +171,21 @@ void ControladorHostales::cancelarReserva(){}
 void ControladorHostales::confirmarReserva()
 {
     Reserva* r;
+    ControladorReservas* cr = ControladorReservas::getInstance();
+    
     if (esReservaGrupalReserva)
     {
-        r = new ReservaGrupal();
+
+        r = new ReservaGrupal(cr->getCodigoReservaACrear(), checkInReserva, checkOutReserva, EstadoReserva::Abierta, 0);
     }
     else
     {
-        r = new ReservaIndividual();
+        r = new ReservaIndividual(cr->getCodigoReservaACrear(), checkInReserva, checkOutReserva, EstadoReserva::Abierta, 0);
     }
-    r->setCheckIn(checkInReserva);
-    r->setCheckOut(checkOutReserva);
     r->setHuespedes(huespedesAElegir);
     Hostal* hostalAReservar = hostales.find(nombreHostalAReservar)->second;
     hostalAReservar->reservarHabitacion(r,habitacionAReservar);
-    ControladorReservas* cr = ControladorReservas::getInstance();
+    r->calcularCosto();
     cr->addReserva(r);
 }
 set<int> ControladorHostales::getHabitacionesLibres()

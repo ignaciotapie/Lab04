@@ -1,4 +1,15 @@
 #include "../h/ControladorReservas.h"
+#include "../h/ControladorUsuarios.h"
+#include "../h/ControladorReloj.h"
+#include "../h/ControladorHostales.h"
+#include "../h/Reserva.h"
+#include "../h/Estadia.h"
+#include "../h/Calificacion.h"
+#include "../h/DTReserva.h"
+#include "../h/Hostal.h"
+#include "../h/DTEstadiaPlus.h"
+#include "../h/DTCalificacion.h"
+#include "../h/DTEstadia.h"
 
 using namespace std;
 
@@ -116,4 +127,11 @@ void ControladorReservas::finConsultaEstadia(){
 void ControladorReservas::addReserva(Reserva* r)
 {
 	reservas.insert(pair<int, Reserva*>(r->getCodigoReserva(), r));
+}
+
+int ControladorReservas::getCodigoReservaACrear()
+{
+    int codigo = sigCodigoReserva;
+    sigCodigoReserva++;
+    return codigo;
 }

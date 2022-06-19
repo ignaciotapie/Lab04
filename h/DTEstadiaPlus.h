@@ -19,13 +19,13 @@ private:
     int promo;
 public:
     DTEstadiaPlus(string, string, int, int, Fecha, Fecha, int);
-    string getNombreHostal();
-    string getNombreHuesped();
-    int getNumeroHabitacion();
-    int getCodigoReserva();
-    Fecha getCheckInReal();
-    Fecha getCheckOutReal();
-    int getPromo();
+    const string getNombreHostal() const;
+    const string getNombreHuesped() const;
+    const int getNumeroHabitacion() const;
+    const int getCodigoReserva() const;
+    const Fecha getCheckInReal() const;
+    const Fecha getCheckOutReal() const;
+    const int getPromo() const;
 };
 
 #endif

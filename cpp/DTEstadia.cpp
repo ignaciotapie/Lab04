@@ -7,18 +7,18 @@ DTEstadia::DTEstadia(string em, int cod, Fecha in, Fecha out, int pro){
     checkOutReal = out;
     promo = pro;
 }
-string DTEstadia::getEmailHuesped(){
+const string DTEstadia::getEmailHuesped() const{
     return emailHuesped;
 }
-int DTEstadia::getCodigoReserva(){
+const int DTEstadia::getCodigoReserva() const{
     return codigoReserva;
 }
-Fecha DTEstadia::getCheckInReal(){
+const Fecha DTEstadia::getCheckInReal() const{
     return checkInReal;
 }
-Fecha DTEstadia::getCheckOutReal(){
+const Fecha DTEstadia::getCheckOutReal() const{
     return checkOutReal;
 }
-int DTEstadia::getPromo(){
+const int DTEstadia::getPromo() const{
     return promo;
 }

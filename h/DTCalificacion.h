@@ -17,16 +17,11 @@ class DTCalificacion{
         DTCalificacion(int, string, Fecha, string, int);
         DTCalificacion(int, string, string, int);
         DTCalificacion(int, string);
-        int getPuntaje();
-        string getComentario();
-        Fecha getFecha();
-        string getEmailHuesp();
-        int getCodigoReserva();
-        void setPuntaje(int);
-        void setComentario(string);
-        void setFecha(Fecha);
-        void setEmailHuesp(string);
-        void setCodigoReserva(int);
+        const int getPuntaje() const;
+        const string getComentario() const;
+        const Fecha getFecha() const;
+        const string getEmailHuesp() const;
+        const int getCodigoReserva() const;
 };
 
 #endif

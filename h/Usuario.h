@@ -5,14 +5,7 @@
 #include <map>
 #include <vector>
 #include <set>
-
-#include "Hostal.h"
-#include "DTUsuario.h"
-#include "DTNotificacion.h"
-#include "DTCalificacion.h"
 #include "Enum.h"
-#include "Reserva.h"
-
 
 class Reserva;
 class ReservaGrupal;
@@ -22,6 +15,12 @@ class Estadia;
 class Calificacion;
 class Notificacion;
 class Hostal;
+class DTUsuario;
+class DTNotificacion;
+class DTCalificacion;
+
+
+using namespace std;
 
 class Observer { 
     protected:

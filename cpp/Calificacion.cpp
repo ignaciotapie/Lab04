@@ -1,4 +1,10 @@
 #include "../h/Calificacion.h"
+#include "../h/DTCalificacion.h"
+#include "../h/Estadia.h"
+#include "../h/Usuario.h"
+#include "../h/Reserva.h"
+#include "../h/RespuestaEmpleado.h"
+#include "../h/Notificacion.h"
 
 Calificacion::Calificacion(int i, string c, Estadia* e, Hostal* h, RespuestaEmpleado* emp){
     this->puntaje = i;

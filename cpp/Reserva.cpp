@@ -1,14 +1,30 @@
 #include "../h/Reserva.h"
 #include "../h/ControladorUsuarios.h"
 #include "../h/Fecha.h"
+#include "../h/Estadia.h"
+#include "../h/DTReserva.h"
+#include "../h/DTEstadia.h"
+#include "../h/Usuario.h"
+#include "../h/Habitacion.h"
 
-Reserva::Reserva(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo){
-	this->codigoReserva = codRes;
-	this->checkIn = checkIn;
-	this->checkOut = checkOut;
-	this->estado = estado;
-	this->costo = costo;
+ReservaIndividual::ReservaIndividual(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo)
+{
+    this->codigoReserva = codRes;
+    this->checkIn = checkIn;
+    this->checkOut = checkOut;
+    this->estado = estado;
+    this->costo = costo;
 }
+
+ReservaGrupal::ReservaGrupal(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo)
+{
+    this->codigoReserva = codRes;
+    this->checkIn = checkIn;
+    this->checkOut = checkOut;
+    this->estado = estado;
+    this->costo = costo;
+}
+
 
 int Reserva::getCodigoReserva(){
     return this->codigoReserva;
@@ -116,3 +132,31 @@ void ReservaGrupal::agregarHuespedExtra(Huesped* h)
 {
     this->huespedesExtra.insert(pair<string,Huesped*>(h->getNombre(), h));
 }
+
+void ReservaGrupal::calcularCosto() 
+{
+    int diferenciaAnio = checkOut.getAnio() - checkIn.getAnio();
+    int diferenciaMes = checkOut.getMes() - checkIn.getMes();
+    int diferenciaDia = checkOut.getDia() - checkIn.getDia();
+    
+    int cantidadFingers = 0;
+    if (huesped->getEsFinger()) ++cantidadFingers;
+    map<string, Huesped*>::iterator it = huespedesExtra.begin();
+    for (; it != huespedesExtra.end(); ++it)
+    {
+        if (it->second->getEsFinger()) ++cantidadFingers;
+    } 
+    costo = ((diferenciaAnio * 365) + (diferenciaMes * 31) + (diferenciaDia)) * habitacion->getPrecio() * ((cantidadFingers >=2) ? 0.70 : 1);
+}
+
+
+void ReservaIndividual::calcularCosto()
+{
+    int diferenciaAnio = checkOut.getAnio() - checkIn.getAnio();
+    int diferenciaMes = checkOut.getMes() - checkIn.getMes();
+    int diferenciaDia = checkOut.getDia() - checkIn.getDia();
+
+    costo = ((diferenciaAnio * 365) + (diferenciaMes * 31) + (diferenciaDia)) * habitacion->getPrecio();
+    
+}
+

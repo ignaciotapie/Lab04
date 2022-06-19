@@ -1,4 +1,8 @@
 #include "../h/Habitacion.h"
+#include "../h/Reserva.h"
+#include "../h/Fecha.h"
+#include "../h/DTEstadia.h"
+
 #include <iterator>
 #include <vector>
 

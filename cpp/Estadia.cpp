@@ -1,4 +1,13 @@
 #include "../h/Estadia.h"
+#include "../h/Usuario.h"
+#include "../h/Reserva.h"
+#include "../h/DTEstadia.h"
+#include "../h/DTEstadiaPlus.h"
+#include "../h/Hostal.h"
+#include "../h/Habitacion.h"
+#include "../h/DTCalificacion.h"
+#include "../h/Calificacion.h"
+#include "../h/DTReserva.h"
 
 Estadia::Estadia(Fecha in, Fecha out, int pro, Reserva* res, Huesped* hue, Calificacion* cal){
     this->checkInReal = in;

@@ -2,15 +2,13 @@
 #define CONTROLADORUSUARIOS_
 
 #include "IUsuarios.h"
-#include "ControladorReservas.h"
-#include "Notificacion.h"
-#include "DTUsuario.h"
-#include "Usuario.h"
 
 class Huesped;
 class Empleado;
 class Usuario;
 class Notificacion;
+class DTUsuario;
+class DTNotificacion;
 
 class ControladorUsuarios : public IUsuarios
 {

@@ -1,11 +1,10 @@
 #ifndef DTHOSTAL_
 #define DTHOSTAL_
 
-#include "Hostal.h"
 #include <string>
 
-
 using namespace std;
+class Hostal;
 
 class DTHostal
 {

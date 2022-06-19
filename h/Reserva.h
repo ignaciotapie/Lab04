@@ -1,10 +1,8 @@
 #ifndef RESERVA_
 #define RESERVA_
 
-
 #include "Enum.h"
-#include "DTEstadia.h"
-#include "DTReserva.h"
+#include "Fecha.h"
 
 #include <map>
 #include <vector>
@@ -15,7 +13,8 @@ using namespace std;
 class Estadia;
 class Huesped;
 class Habitacion;
-class Fecha;
+class DTEstadia;
+class DTReserva;
 
 class Reserva{
     protected:
@@ -28,12 +27,11 @@ class Reserva{
         map<string, Estadia*> estadias;
         Huesped* huesped;
     public:
-        Reserva(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo);
         int getCodigoReserva();
         Fecha getCheckIn();
         Fecha getCheckOut();
         EstadoReserva getEstado();
-        virtual int getCosto();
+        int getCosto();
         Habitacion* getHabitacion();
         map<string, Estadia*> getEstadias();
         Huesped* getHuesped();
@@ -44,6 +42,9 @@ class Reserva{
         Estadia* getEstadia(string);
         //ConsultaEstadia
         vector<DTEstadia> getDTEstadias();
+        void setCerradaReserva();
+        
+        virtual void calcularCosto() = 0;
 
         //SETTERS
         void setCheckIn(Fecha checkIn);
@@ -57,19 +58,17 @@ class ReservaGrupal : public Reserva{
         int cantHuesp;
         map<string, Huesped*> huespedesExtra;
     public:
-        ReservaGrupal();
-        void setCerradaReserva();
-        int getCodigo();
+        ReservaGrupal(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo);
         void agregarHuespedExtra(Huesped* huesped);
+        void calcularCosto();
 };
 
 class ReservaIndividual : public Reserva{
     private:
 
     public:
-        ReservaIndividual();
-        void setCerradaReserva();
-        int getCodigo();
+        ReservaIndividual(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo);
+        void calcularCosto();
 };
 
 #endif

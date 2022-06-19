@@ -9,24 +9,24 @@ DTEstadiaPlus::DTEstadiaPlus(string nomHos, string nomHues, int numHab, int codR
     checkOutReal = out;
     promo = prom;
 }
-string DTEstadiaPlus::getNombreHostal(){
+const string DTEstadiaPlus::getNombreHostal() const{
     return nombreHostal;
 }
-string DTEstadiaPlus::getNombreHuesped(){
+const string DTEstadiaPlus::getNombreHuesped() const{
     return nombreHuesped;
 }
-int DTEstadiaPlus::getNumeroHabitacion(){
+const int DTEstadiaPlus::getNumeroHabitacion() const{
     return numeroHabitacion;
 }
-int DTEstadiaPlus::getCodigoReserva(){
+const int DTEstadiaPlus::getCodigoReserva() const{
     return codigoReserva;
 }
-Fecha DTEstadiaPlus::getCheckInReal(){
+const Fecha DTEstadiaPlus::getCheckInReal() const{
     return checkInReal;
 }
-Fecha DTEstadiaPlus::getCheckOutReal(){
+const Fecha DTEstadiaPlus::getCheckOutReal() const{
     return checkOutReal;
 }
-int DTEstadiaPlus::getPromo(){
+const int DTEstadiaPlus::getPromo() const{
     return promo;
 }

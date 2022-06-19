@@ -4,10 +4,12 @@
 #include <algorithm>
 
 #include "h/Fabrica.h"
+#include "h/Reserva.h"
 #include "h/Usuario.h"
 #include "h/Enum.h"
 #include "h/Fecha.h"
 #include "h/DTHostal.h"
+#include "h/DTEstadia.h"
 
 int CheckIntCin() // Usado en lugar de cin >> (int) para asegurarse que es un int correcto y no ocurra el Cin Infinite Loop
 {

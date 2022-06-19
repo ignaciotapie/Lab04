@@ -5,12 +5,12 @@ DTNotificacion::DTNotificacion(string aut, int pun, string com){
     puntaje = pun;
     comentario = com;
 }
-string DTNotificacion::getAutor(){
+const string DTNotificacion::getAutor() const{
     return autor;
 }
-int DTNotificacion::getPuntaje(){
+const int DTNotificacion::getPuntaje() const {
     return puntaje;
 }
-string DTNotificacion::getComentario(){
+const string DTNotificacion::getComentario() const {
     return comentario;
 }

@@ -1,5 +1,10 @@
 #include "../h/Hostal.h"
 #include "../h/DTHostal.h"
+#include "../h/Calificacion.h"
+#include "../h/Habitacion.h"
+#include "../h/Usuario.h"
+#include "../h/DTCalificacion.h"
+#include "../h/DTEstadia.h"
 
 Hostal::Hostal(){
 }

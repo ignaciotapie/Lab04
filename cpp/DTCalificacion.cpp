@@ -20,37 +20,18 @@ DTCalificacion::DTCalificacion(int punt, string com){
     this->comentario = com;
 }
 
-int DTCalificacion::getPuntaje(){
+const int DTCalificacion::getPuntaje() const {
     return puntaje;
 }
-string DTCalificacion::getComentario(){
+const string DTCalificacion::getComentario() const{
     return comentario;
 }
-Fecha DTCalificacion::getFecha(){
+const Fecha DTCalificacion::getFecha() const{
     return fecha;
 }
-string DTCalificacion::getEmailHuesp(){
+const string DTCalificacion::getEmailHuesp() const{ 
     return emailHuesp;
 }
-int DTCalificacion::getCodigoReserva(){
+const int DTCalificacion::getCodigoReserva() const{
     return codigoReserva;
-}
-void DTCalificacion::setPuntaje(int punt){
-    this->puntaje = punt;
-}
-
-void DTCalificacion::setComentario(string com){
-    this->comentario = com;
-}
-
-void DTCalificacion::setFecha(Fecha fecha){
-    this->fecha = fecha;
-}
-
-void DTCalificacion::setEmailHuesp(string email){
-    this->emailHuesp = email;
-}
-
-void DTCalificacion::setCodigoReserva(int cod){
-    this->codigoReserva = cod;
 }

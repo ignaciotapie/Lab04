@@ -1,9 +1,6 @@
 #ifndef NOTIFICACION_
 #define NOTIFICACION_
 
-#include "Usuario.h"
-#include "DTNotificacion.h"
-#include "Calificacion.h"
 #include <map>
 #include <string>
 
@@ -11,6 +8,7 @@
 using namespace std;
 
 class Calificacion;
+class DTNotificacion;
 
 class Notificacion{
     private:

@@ -10,10 +10,10 @@ class Fecha{
     public:
         Fecha();
         Fecha(float hora, int dia, int mes, int anio);
-        int getAnio();
-        int getMes();
-        int getDia();
-        int getHora();
+        const int getAnio() const;
+        const int getMes() const;
+        const int getDia() const;
+        const int getHora() const;
         bool before(Fecha fecha);
         static bool areOverlapping(Fecha primerCheckIn, Fecha primerCheckOut, Fecha segundoCheckIn, Fecha segundoCheckOut);
 

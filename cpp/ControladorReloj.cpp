@@ -15,3 +15,7 @@ void ControladorReloj::modificarFecha(float hora, int dia, int mes, int anio)
 {
     this->fechaActual = Fecha(hora, dia, mes, anio);
 }
+
+Fecha ControladorReloj::getFechaActual(){
+    return fechaActual;
+}

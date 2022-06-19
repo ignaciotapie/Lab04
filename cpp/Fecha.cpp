@@ -1,15 +1,15 @@
 #include "../h/Fecha.h"
 
-int Fecha::getAnio(){
+const int Fecha::getAnio() const{
     return anio;
 }
-int Fecha::getMes(){
+const int Fecha::getMes() const{
     return mes;
 }
-int Fecha::getDia(){
+const int Fecha::getDia() const{
     return dia;
 }
-int Fecha::getHora(){
+const int Fecha::getHora() const{
     return hora;
 }
 Fecha::Fecha()

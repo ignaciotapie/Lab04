@@ -6,15 +6,15 @@ DTHabitacion::DTHabitacion(int num, int pre, int cap, map<string, DTCalificacion
     capacidad = cap;
     calificaciones = cals;
 }
-int DTHabitacion::getNumero(){
+ const int DTHabitacion::getNumero() const {
     return numero;
 }
-int DTHabitacion::getPrecio(){
+ const int DTHabitacion::getPrecio() const {
     return precio;
 }
-int DTHabitacion::getCapacidad(){
+ const int DTHabitacion::getCapacidad() const {
     return capacidad;
 }
-map<string, DTCalificacion>* DTHabitacion::getCalificaciones(){
+ const map<string, DTCalificacion>* DTHabitacion::getCalificaciones() const {
     return calificaciones;
 }

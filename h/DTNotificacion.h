@@ -12,9 +12,9 @@ class DTNotificacion{
         string comentario;
     public:
         DTNotificacion(string, int, string);
-        string getAutor();
-        int getPuntaje();
-        string getComentario();
+        const string getAutor() const;
+        const int getPuntaje() const;
+        const string getComentario() const;
 };
 
 #endif

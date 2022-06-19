@@ -2,10 +2,6 @@
 #define CONTROLADORHOSTALES_
 
 #include "IHostales.h"
-#include "Hostal.h"
-#include "Fecha.h"
-#include "DTHostal.h"
-#include "Reserva.h"
 
 #include <map>
 #include <set>

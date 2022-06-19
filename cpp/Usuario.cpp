@@ -1,4 +1,7 @@
 #include "../h/Usuario.h"
+#include "../h/Hostal.h"
+#include "../h/Reserva.h"
+#include "../h/DTCalificacion.h"
 
 Empleado::Empleado(string nombre, string email, string password, CargoEmpleado cargo)
 {
