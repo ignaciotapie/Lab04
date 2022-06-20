@@ -1054,38 +1054,45 @@ int main()
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
 
                 set<string> allUsers = interfazUsuarios->getUsuarios();
+
+                if (allUsers.empty()){
+                    cout << "No hay usuarios registrados" << endl;
+                    break;
+                }
+                else{
                 int i = 1;
                 for(set<string>::iterator it = allUsers.begin(); it != allUsers.end(); ++it)
-                {
-                    cout << i << ". " << *it << endl;
-                    ++i;
-                }
-                string nombreUsuario;
-                bool nombreUsuarioValido = false;
-                cout << "Ingrese nombre del usuario\n";
-                while (!nombreUsuarioValido)
-                {
-                    cin.ignore();
-                    getline(cin, nombreUsuario);
-
-                    if (allUsers.find(nombreUsuario) != allUsers.end())
                     {
-                        nombreUsuarioValido = true;
+                        cout << i << ". " << *it << endl;
+                        ++i;
                     }
-                    else
+                    string nombreUsuario;
+                    bool nombreUsuarioValido = false;
+                    cout << "Ingrese nombre del usuario\n";
+                    while (!nombreUsuarioValido)
                     {
-                        cout << "Por favor, escriba un usuario que este en la lista." << endl;
+                        cin.ignore();
+                        getline(cin, nombreUsuario);
+
+                        if (allUsers.find(nombreUsuario) != allUsers.end())
+                        {
+                            nombreUsuarioValido = true;
+                     }
+                        else
+                        {
+                            cout << "Por favor, escriba un usuario que este en la lista." << endl;
+                        }
                     }
-                }
 
-                //seleccionarUsuario
-                interfazUsuarios->seleccionarUsuario(nombreUsuario);
+                    //seleccionarUsuario
+                    interfazUsuarios->seleccionarUsuario(nombreUsuario);
 
-                //listarDatos
-                DTUsuario u = interfazUsuarios->listarDatos();
+                    //listarDatos
+                    DTUsuario u = interfazUsuarios->listarDatos();
+                    }
                 
 
-                break;
+                    break;
             }
             case 20:
             {
