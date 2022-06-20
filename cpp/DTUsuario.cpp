@@ -30,3 +30,13 @@ return this->cargo;
 const string DTEmpleado::getNombreHostal() const{
     return this->nombreHostal;
 }
+
+const string DTHuesped::getNombre() const{
+    return this->nombre;
+}
+const string DTHuesped::getEmail() const{
+    return this->email;
+}
+const bool DTHuesped::getEsFinger() const{
+    return this->esFinger;
+}
