@@ -2,6 +2,10 @@
 #include "../h/Reserva.h"
 #include "../h/Fecha.h"
 #include "../h/DTEstadia.h"
+#include "../h/DTHabitacion.h"
+#include "../h/Estadia.h"
+#include "../h/DTCalificacion.h"
+#include "../h/Calificacion.h"
 
 #include <iterator>
 #include <vector>
@@ -79,4 +83,24 @@ bool Habitacion::isReservado(Fecha checkIn, Fecha checkOut){
     }
     return false;
 
+}
+
+vector<DTCalificacion> Habitacion::getDTCalificaciones(){
+    vector<DTCalificacion> nuevo;
+
+    for (map<int, Reserva*>::iterator ite = this->reservas.begin(); ite != this->reservas.end(); ite++){
+        set<Estadia*> est = ite->second->getEstadias();
+        for (set<Estadia*>::iterator ite2 = est.begin(); ite2 != est.end(); ite2++){
+            nuevo.emplace_back((*ite2)->getDTCalificacion());
+        }
+    }
+    return nuevo;
+    
+}
+
+DTHabitacion Habitacion::getDTHabitacion(){
+
+    vector<DTCalificacion> calis = this->getDTCalificaciones();
+    DTHabitacion nuevo = DTHabitacion(this->numero, this->precio, this->capacidad, calis);
+    return nuevo;
 }
