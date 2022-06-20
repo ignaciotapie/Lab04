@@ -26,7 +26,7 @@ public:
     int getCosto();
     int getNumeroHabitacion();
     DTReserva(int codigo, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo, int numeroHabitacion);
-    virtual void imprimir();
+    virtual void imprimir() = 0;
 };
 
 class DTReservaGrupal : public DTReserva
