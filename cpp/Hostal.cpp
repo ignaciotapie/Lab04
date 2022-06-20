@@ -6,13 +6,7 @@
 #include "../h/DTCalificacion.h"
 #include "../h/DTEstadia.h"
 #include "../h/DTHabitacion.h"
-<<<<<<< HEAD
-=======
 #include "../h/DTReserva.h"
->>>>>>> parent of 1a07fd2 (Revert "consulta y baja reserva")
-#include "../h/DTReserva.h"
-=======
->>>>>>> parent of df5afd9 (si)
 
 Hostal::Hostal(){
 }
