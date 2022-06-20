@@ -341,6 +341,10 @@ int main()
                 IHostales* interfazHostales = fabrica->getIHostales();
 
                 set<string> allHostales = interfazHostales->getHostales();
+                if (allHostales.empty()){
+                    cout << "No hay hostales registrados" << endl;
+                    break;
+                }
                 int i = 1;
                 for(set<string>::iterator it = allHostales.begin(); it != allHostales.end(); ++it)
                 {
