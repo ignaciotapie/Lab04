@@ -5,7 +5,11 @@
 #include "../h/Usuario.h"
 #include "../h/DTCalificacion.h"
 #include "../h/DTEstadia.h"
+
 #include "../h/DTReserva.h"
+
+#include "../h/DTHabitacion.h"
+
 
 Hostal::Hostal(){
 }

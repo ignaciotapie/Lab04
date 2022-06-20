@@ -15,6 +15,7 @@
 #include "h/DTReserva.h"
 #include "h/DTUsuario.h"
 #include "h/DTNotificacion.h"
+#include "h/DTHabitacion.h"
 
 int CheckIntCin() // Usado en lugar de cin >> (int) para asegurarse que es un int correcto y no ocurra el Cin Infinite Loop
 {
