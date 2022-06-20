@@ -716,7 +716,8 @@ int main()
                     if (allHuespedes.empty()){
                     cout << "No huespedes registrados" << endl;
                     break;
-                    int i = 1;
+                    }
+                    i = 1;
                     for(set<string>::iterator it = allHuespedes.begin(); it != allHuespedes.end(); ++it)
                     {
                         cout << i << ". " << *it << endl;
@@ -746,7 +747,7 @@ int main()
                     interfazReserva->getEstadiasFinalizadas();
                     
 
-                }
+                
                 
                 
                 break;
