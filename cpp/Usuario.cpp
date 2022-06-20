@@ -79,6 +79,10 @@ set<int> Huesped::getCodigosReservas() {
 	return res;
 }
 
+set<Estadia*> Huesped::getEstadiasHuesped(){
+    this->e;
+}
+
 void Huesped::addReserva(Reserva* r)
 {
     ReservaIndividual* ri = dynamic_cast<ReservaIndividual*>(r);
