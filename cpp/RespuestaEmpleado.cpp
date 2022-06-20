@@ -1,4 +1,5 @@
 #include "../h/RespuestaEmpleado.h"
+#include "../h/Usuario.h"
 
 RespuestaEmpleado::RespuestaEmpleado(string mensaje, Empleado* emp, Calificacion* cali){
     this->mensaje = mensaje;
@@ -14,4 +15,8 @@ Empleado* RespuestaEmpleado::getEmpleado(){
 }
 Calificacion* RespuestaEmpleado::getCalificacion(){
     return this->calificacion;
+}
+
+void RespuestaEmpleado::eliminarRespuesta(){
+	empleado->eliminarRespuesta(this);
 }

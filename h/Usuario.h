@@ -55,6 +55,9 @@ class Huesped : public Usuario {
         DTHuesped getDTHuesped();
         set<int> getCodigosReservas();
         bool getEsFinger();
+        //baja reserva
+        void eliminarReservaDeHuesped(int);
+        void eliminarEstadia(Estadia*);
 
         
         void finalizarEstadia();
@@ -90,6 +93,8 @@ class Empleado : public Usuario, public Observer {
 
         //ComentarCalificacion
         vector<DTCalificacion> getCalificacionesSinResponder();
+        //baja reserva
+        void eliminarRespuesta(RespuestaEmpleado*);
 };
 
 #endif

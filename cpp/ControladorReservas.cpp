@@ -252,3 +252,31 @@ void ControladorReservas::cargaDatos()
 
 
 }
+
+//consulta reserva
+vector<DTReserva> ControladorReservas::listarReservasDeHostal(string nombreHostal){
+    ControladorHostales* ch = ControladorHostales::getInstance();
+    Hostal* h = ch->getHostal(nombreHostal);
+    vector<DTReserva> res = h->listarReservasDeHostal();
+    return res;
+}
+//baja reserva
+set<int> ControladorReservas::listarCodigoReservasDeHostal(string nombreHostal){
+    ControladorHostales* ch = ControladorHostales::getInstance();
+    Hostal* h = ch->getHostal(nombreHostal);
+    set<int> res = h->listarCodigoReservasDeHostal();
+    return res;
+}
+
+void ControladorReservas::confirmarBajaReserva(){
+    //acordarse de eliminar la instancia de reserva
+    map<int, Reserva*>::iterator it;
+    //hacer una variable codigoreserva especifica para esto?
+    it = reservas.find(codigoReservaEstadia);
+    it->second->eliminarReservaDeHabitacion(codigoReservaEstadia);
+    reservas.erase(it);
+}
+
+void ControladorReservas::seleccionarReserva(int codigo){
+    codigoReservaEstadia = codigo;
+}

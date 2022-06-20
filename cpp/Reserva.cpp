@@ -186,3 +186,28 @@ void ReservaIndividual::calcularCosto()
     
 }
 
+DTReserva ReservaIndividual::getDTReserva(){
+    return DTReservaIndividual(this->codigoReserva, this->checkIn, this->checkOut, this->estado, this->costo, habitacion->getNumero());
+}
+
+DTReserva ReservaGrupal::getDTReserva(){
+    set<string> nombreHuesped;
+    map<string, Huesped*> huespedes = this->huespedesExtra;
+    map<string, Huesped*>::iterator itr;
+    for (itr = huespedes.begin(); itr != huespedes.end(); ++itr) {
+        nombreHuesped.insert(itr->first);
+    }
+    return DTReservaGrupal(this->codigoReserva, this->checkIn, this->checkOut, this->estado, this->costo, habitacion->getNumero(), nombreHuesped);
+}
+
+//baja reserva
+void Reserva::eliminarReservaDeHabitacion(int codigoReservaEstadia){
+    habitacion->eliminarReservaDeHabitacion(codigoReservaEstadia);
+    huesped->eliminarReservaDeHuesped(codigoReservaEstadia);
+    set<Estadia*>::iterator it = estadias.begin();
+    for (; it != estadias.end(); ++it){
+        //eliminar instancia de estadia
+        (*it)->eliminarEstadia();
+    }
+}
+

@@ -12,6 +12,7 @@ class Hostal;
 class Reserva;
 class Fecha;
 class DTEstadia;
+class DTReserva;
 
 class Habitacion{
     private:
@@ -34,6 +35,11 @@ class Habitacion{
         vector<DTEstadia> getEstadiasFinalizadas(string);
         //ConsultaEstadia
         vector<DTEstadia> getDTEstadias();
+        //consultar reserva
+        vector<DTReserva> getDataReservaDeHabitacion();
+        //baja reserva
+        set<int> listarCodigoReservasDeHabitacion();
+        void eliminarReservaDeHabitacion(int);
 };
 
 #endif

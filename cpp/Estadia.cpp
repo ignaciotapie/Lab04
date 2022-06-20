@@ -88,3 +88,8 @@ DTReserva Estadia::getDTReserva(){
 void Estadia::setPunteroCalificacion(Calificacion* c){
     calificacion = c;
 }
+
+void Estadia::eliminarEstadia(){
+    huesped->eliminarEstadia(this);
+    calificacion->eliminarCalificacion();
+}

@@ -127,3 +127,21 @@ vector<DTNotificacion> Empleado::getNotificaciones()
     return notisADevolver;
 }
 
+//baja reserva
+void Huesped::eliminarReservaDeHuesped(int codigoReservaEstadia){
+    map<int, ReservaIndividual*>::iterator it;
+    it = r.find(codigoReservaEstadia);
+    r.erase(it);
+}
+
+void Huesped::eliminarEstadia(Estadia* estadiaEliminar){
+    set<Estadia*>::iterator it;
+    it = e.find(estadiaEliminar);
+    e.erase(it);
+}
+
+void Empleado::eliminarRespuesta(RespuestaEmpleado* RespuestaEliminar){
+    set<RespuestaEmpleado*>::iterator it;
+    it = re.find(RespuestaEliminar);
+    re.erase(it);
+}

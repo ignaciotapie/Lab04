@@ -56,6 +56,13 @@ class ControladorReservas : public IReservas
 		void addReserva(Reserva* r);
 		int getCodigoReservaACrear();
 
+		//consultar reservas
+		vector<DTReserva> listarReservasDeHostal(string nombreHostal);
+		//baja reserva
+		set<int> listarCodigoReservasDeHostal(string nombreHostal);
+		void confirmarBajaReserva();
+		void seleccionarReserva(int);
+
 		void cargaDatos();		
 };
 
