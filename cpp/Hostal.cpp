@@ -9,14 +9,14 @@
 Hostal::Hostal(){
 }
 
-Hostal::Hostal(string nombreHostal, string direccion, int telefono)
+Hostal::Hostal(string nombreHostal, string direccion, string telefono)
 {
     this->nombreHostal = nombreHostal;
     this->direccion = direccion;
     this->telefono = telefono;
 }
 
-Hostal::Hostal(string nombreHostal, string direccion, int telefono, map<int, Habitacion*> habitaciones, set<Calificacion*> calificaciones, map<string, Empleado*> empleados){
+Hostal::Hostal(string nombreHostal, string direccion, string telefono, map<int, Habitacion*> habitaciones, set<Calificacion*> calificaciones, map<string, Empleado*> empleados){
 	this->nombreHostal = nombreHostal;
 	this->direccion = direccion;
 	this->telefono = telefono;

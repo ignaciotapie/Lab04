@@ -21,14 +21,14 @@ class Hostal{
     private:
         string nombreHostal;
         string direccion;
-        int telefono;
+        string telefono;
         map<int, Habitacion*> habitaciones;
         set<Calificacion*> calificaciones;
         map<string, Empleado*> empleados;
     public:
         Hostal();
-        Hostal(string nombre, string direccion, int telefono);
-        Hostal(string nombreHostal, string direccion, int telefono, map<int, Habitacion*> habitaciones, set<Calificacion*> calificaciones, map<string, Empleado*> empleados);
+        Hostal(string nombre, string direccion, string telefono);
+        Hostal(string nombreHostal, string direccion, string telefono, map<int, Habitacion*> habitaciones, set<Calificacion*> calificaciones, map<string, Empleado*> empleados);
 
         //Caso de uso: Alta de Habitacion
         //string getNombreHostal();
