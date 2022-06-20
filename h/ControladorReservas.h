@@ -49,9 +49,6 @@ class ControladorReservas : public IReservas
 		void finConsultaEstadia();
 		set<string> getHostales();
 
-		bool existeCalificacion();
-		bool existeRespuestaEmpleado();
-		string getRespuestaEmpleado();
 
 		//Caso de uso: Realizar Reserva
 		void addReserva(Reserva* r);
@@ -63,7 +60,6 @@ class ControladorReservas : public IReservas
 		set<int> listarCodigoReservasDeHostal(string nombreHostal);
 		void confirmarBajaReserva();
 		void seleccionarReserva(int);
-		void cargaDatos();		
 };
 
 #endif

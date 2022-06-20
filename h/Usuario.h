@@ -16,8 +16,6 @@ class Calificacion;
 class Notificacion;
 class Hostal;
 class DTUsuario;
-class DTHuesped;
-class DTEmpleado;
 class DTNotificacion;
 class DTCalificacion;
 
@@ -54,7 +52,6 @@ class Huesped : public Usuario {
     public:
         Huesped(string nombre, string email, string password, bool esFinger);
         DTUsuario getDTUsuario();
-        DTHuesped getDTHuesped();
         set<int> getCodigosReservas();
         bool getEsFinger();
         //baja reserva
@@ -64,7 +61,6 @@ class Huesped : public Usuario {
         
         void finalizarEstadia();
         void addReserva(Reserva* reserva);
-        void agregarEstadia(Estadia* e);
 };
 
 class Empleado : public Usuario, public Observer {
@@ -87,14 +83,9 @@ class Empleado : public Usuario, public Observer {
 
 
         DTUsuario getDTUsuario();
-        DTEmpleado getDTEmpleado();
         void notificarCalificacion(Notificacion*);
         vector<DTNotificacion> getNotificaciones();
         void setRespuestaEmpleado(RespuestaEmpleado*);
-
-        //Consulta de Usuario
-        string getHostalDeEmpleado();
-
         //ComentarCalificacion
         vector<DTCalificacion> getCalificacionesSinResponder();
         //baja reserva

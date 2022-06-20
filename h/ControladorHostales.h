@@ -16,7 +16,8 @@ class ControladorHostales : public IHostales{
 		map<string, Hostal*> hostales;
 		
 		//Caso de Uso: Alta de Hostal
-		string nombreHostal, direccionHostal, telefonoHostal;
+		string nombreHostal, direccionHostal;
+		int telefonoHostal;
 
 		//Caso de Uso: Alta de Habitacion
 		string hostalSeleccionado;
@@ -40,7 +41,7 @@ class ControladorHostales : public IHostales{
 
 
 		//Caso de uso: Alta de Hostal
-		void setHostalInfo(string nombre, string direccion, string telefono);
+		void setHostalInfo(string nombre, string direccion, int telefono);
 		void confirmarAltaHostal();
 		void cancelarAltaHostal();
 
@@ -50,7 +51,6 @@ class ControladorHostales : public IHostales{
 		void altaHabitacion(int, int, int);
 		void confirmarAltaHabitacion();
 		void cancelarAltaHabitacion();
-		bool checkearHab(int);
 
 		//Caso de uso: Consulta de Hostal
 		DTHostal getDTHostal();
@@ -75,7 +75,6 @@ class ControladorHostales : public IHostales{
 
 		//CalificarEstadia
 		Hostal* getHostal(string);
-		void cargaDatos();		
 };
 
 #endif

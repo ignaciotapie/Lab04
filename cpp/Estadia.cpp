@@ -8,7 +8,6 @@
 #include "../h/DTCalificacion.h"
 #include "../h/Calificacion.h"
 #include "../h/DTReserva.h"
-#include "../h/ControladorReloj.h"
 
 Estadia::Estadia(Fecha in, Fecha out, int pro, Reserva* res, Huesped* hue, Calificacion* cal){
     this->checkInReal = in;
@@ -61,8 +60,7 @@ DTEstadia Estadia::getDTEstadia(){
 }
 
 void Estadia::setCalificacion(string comentario, int puntaje, Hostal* h){
-    ControladorReloj* cr = ControladorReloj::getInstance();
-    Calificacion c(puntaje, comentario, cr->getFechaActual(), this, h, NULL);
+    Calificacion c(puntaje, comentario, this, h, NULL);
     this->calificacion = &c;
     h->agregarCalificacion(&c);
 }

@@ -11,12 +11,10 @@ using namespace std;
 
      
 Habitacion::Habitacion(int numero, int precio, int capacidad, Hostal* phostal, map<int, Reserva*> preservas){
-Habitacion::Habitacion(int numero, int precio, int capacidad, Hostal* phostal){
     this->numero = numero;
     this->precio = precio;
     this->capacidad = capacidad;
     this->hostal = phostal;
-    map<int, Reserva*> preservas;
     this->reservas = preservas;
 }
 
@@ -68,9 +66,7 @@ vector<DTEstadia> Habitacion::getDTEstadias(){
     return res;
 }
 void Habitacion::addReserva(Reserva* reserva){
-
-    reserva->calcularCosto();
-    reservas.insert(pair<int,Reserva*>(reserva->getCodigoReserva(), reserva));
+     reservas.insert(pair<int,Reserva*>(reserva->getCodigoReserva(), reserva));
 }
 bool Habitacion::isReservado(Fecha checkIn, Fecha checkOut){
     map<int, Reserva*>::iterator it = reservas.begin();

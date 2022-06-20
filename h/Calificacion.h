@@ -3,7 +3,6 @@
 
 #include <string>
 #include <map>
-#include "Fecha.h"
 
 using namespace std;
 
@@ -18,13 +17,11 @@ class Calificacion{
     private:
         int puntaje;
         string comentario;
-        Fecha fecha;
         Estadia* estadia;
         Hostal* hostal;
         RespuestaEmpleado* respuestaEmpleados;
     public:
         Calificacion(int, string, Estadia*, Hostal*, RespuestaEmpleado*);
-        Calificacion(int, string, Fecha, Estadia*, Hostal*, RespuestaEmpleado*);
         int getPuntaje();
         string getComentario();
         Estadia* getEstadia();
