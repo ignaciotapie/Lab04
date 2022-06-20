@@ -1298,6 +1298,7 @@ int main()
                     loop = false;
                     break;
             }
+
             case 20:
             {
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
@@ -1309,6 +1310,8 @@ int main()
                 interfazHostales->cargaDatos();
                 interfazReloj->cargaDatos();
                 interfazReservas->cargaDatos();
+                
+                break;
             }
 
             case 21:
