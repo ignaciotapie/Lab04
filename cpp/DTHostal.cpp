@@ -28,3 +28,7 @@ const string DTHostal::getTelefono() const{
 const float DTHostal::getPromCalif() const{
     return promCalif;
 }
+
+const vector<DTHabitacion> DTHostal::getDTHabs() const{
+    return this->habs;
+}

@@ -5,6 +5,7 @@
 
 using namespace std;
 class Hostal;
+class DTHabitacion;
 
 class DTHostal
 {
@@ -13,6 +14,7 @@ class DTHostal
         string direccion;
         string telefono;
         float promCalif;
+        vector<DTHabitacion> habs;
     public:
         DTHostal(string nombre, string direccion, string telefono, float promCalif);
         DTHostal(const Hostal& hostal);
@@ -20,6 +22,7 @@ class DTHostal
         const string getDireccion() const;
         const string getTelefono() const;
         const float getPromCalif() const;
+        const vector<DTHabitacion> getDTHabs() const;
 };
 
 #endif
