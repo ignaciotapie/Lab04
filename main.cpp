@@ -809,31 +809,35 @@ int main()
                 }
             
                 set<int> ReservasNoCanceladasDelHuesped = interfazUsuarios->getReservasDelHuesped(emailHuesped);
-                i = 1;
-                for(set<int>::iterator it = ReservasNoCanceladasDelHuesped.begin(); it != ReservasNoCanceladasDelHuesped.end(); ++it)
-                {
-                    cout << i << ". " << *it << endl;
-                    ++i;
+                if (ReservasNoCanceladasDelHuesped.empty()){
+                    cout << "No hay reservas activas para este Huesped" << endl;
+                    break;
                 }
-                bool codResValido = false;
-                int codRes;
-                cout << "Ingrese el codigo de la reserva para registrar la estadia\n";
-                while (!codResValido)
-                {
-                    codRes = CheckIntCin();
-
-                    if (ReservasNoCanceladasDelHuesped.find(codRes) != ReservasNoCanceladasDelHuesped.end())
+                else{
+                    i = 1;
+                    for(set<int>::iterator it = ReservasNoCanceladasDelHuesped.begin(); it != ReservasNoCanceladasDelHuesped.end(); ++it)
                     {
-                        codResValido = true;
+                        cout << i << ". " << *it << endl;
+                        ++i;
                     }
-                    else
+                    bool codResValido = false;
+                    int codRes;
+                    cout << "Ingrese el codigo de la reserva para registrar la estadia\n";
+                    while (!codResValido)
                     {
-                        cout << "Por favor, escriba un codigo de reserva que este en la lista." << endl;
-                    }
-                }
-                interfazUsuarios->registrarEstadia();
-                }
+                        codRes = CheckIntCin();
 
+                        if (ReservasNoCanceladasDelHuesped.find(codRes) != ReservasNoCanceladasDelHuesped.end())
+                        {
+                            codResValido = true;
+                        }
+                        else
+                        {
+                            cout << "Por favor, escriba un codigo de reserva que este en la lista." << endl;
+                        }
+                    }
+                    interfazUsuarios->registrarEstadia();
+                }
                 break;
             }
             case 8:
