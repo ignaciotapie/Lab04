@@ -2,6 +2,9 @@
 #include "../h/Hostal.h"
 #include "../h/Reserva.h"
 #include "../h/DTCalificacion.h"
+#include "../h/DTUsuario.h"
+#include "../h/DTNotificacion.h"
+#include "../h/Notificacion.h"
 
 Empleado::Empleado(string nombre, string email, string password, CargoEmpleado cargo)
 {
@@ -30,6 +33,10 @@ string Usuario::getPassword(){
 
 CargoEmpleado Empleado::getCargoEmpleado(){
     return this->cargo;
+}
+
+string Empleado::getHostalDeEmpleado(){
+    return this->hostal->getNombreHostal();
 }
 
 bool Huesped::getEsFinger(){
@@ -91,12 +98,42 @@ void Huesped::eliminarReservaDeHuesped(int codigoReservaEstadia){
     map<int, ReservaIndividual*>::iterator it;
     it = r.find(codigoReservaEstadia);
     r.erase(it);
+void Huesped::agregarEstadia(Estadia* e){
+    this->e.insert(e);
+}
+
+
+DTHuesped Huesped::getDTHuesped(){
+    DTHuesped nuevo = DTHuesped(this->getNombre(), this->getEmail(), this->getEsFinger());
+    return nuevo;
 }
 
 void Huesped::eliminarEstadia(Estadia* estadiaEliminar){
     set<Estadia*>::iterator it;
     it = e.find(estadiaEliminar);
     e.erase(it);
+DTEmpleado Empleado::getDTEmpleado(){
+    DTEmpleado nuevo = DTEmpleado(this->getNombre(), this->getEmail(), this->getCargoEmpleado(), this->getHostalDeEmpleado());
+    return nuevo;
+}
+
+vector<DTNotificacion> Empleado::getNotificaciones()
+{   
+    vector<DTNotificacion> notisADevolver;
+    set<Notificacion*>::iterator iter = this->n.begin();
+    for(; iter != n.end(); iter = n.begin())
+    {
+        notisADevolver.emplace_back((*iter)->getDTNotificacion());
+        (*iter)->disminuirNumero();
+        Notificacion* puntero = *iter;
+        n.erase(iter);
+
+        if (puntero->getEmpleadosLinkeados() == 0)
+        {
+            puntero->~Notificacion();
+        }
+    }
+    return notisADevolver;
 }
 
 void Empleado::eliminarRespuesta(RespuestaEmpleado* RespuestaEliminar){

@@ -29,9 +29,15 @@ class ControladorUsuarios : public IUsuarios
 		//Registrar Estadia
 		string nombreHostal;
 
+		//Consulta de Usuario
+		string usuarioSeleccionado;
+
 		//Arreglos Nacho
 		string emailHuesped;
 		int codigoReserva;
+
+		//Caso de uso: Subscribirse a notis
+		string emailEmpleadoASuscribir;
 
 	public: 
 
@@ -48,14 +54,14 @@ class ControladorUsuarios : public IUsuarios
 		void confirmarAltaUsuario();
 		
 		// Caso de Uso: Asignar Empleado a Hostal
-		Empleado* getEmpleado(string nombreUsuario);
+		Empleado* getEmpleado(string emailEmpleado);
 
 		set<string> getUsuarios();
 		void seleccionarUsuario(string);
 
 		// Caso de Uso: Realizar Reserva
 		set<string> getHuespedes();
-		Huesped* getHuesped(string nombreUsuario);
+		Huesped* getHuesped(string emailHuesped);
 
 		//Registrar Estadia
 		set<string> getHostales();
@@ -63,8 +69,6 @@ class ControladorUsuarios : public IUsuarios
 		set<int> getReservasDelHuesped(string); 
 		void seleccionarReserva(int);
 		void registrarEstadia();
-		DTUsuario listarDatos();
-		void finalizarConsultaUsuario();
 		void suscribirEmpleado();
 		void finalizarSuscripcion();
 		void eliminarEmpleado();
@@ -73,10 +77,23 @@ class ControladorUsuarios : public IUsuarios
 		void finalizarEliminacion();
 
 		map<string,Empleado*>  getEmpleados();
+
+		//Consulta de Usuario
+		DTEmpleado getDTEmpleado();
+		DTHuesped getDTHuesped();
+		void finalizarConsultaUsuario();
+		bool esEmp();
+
 		//CalificarEstadia
 		void notificarObservadores(Notificacion*);
 		//ComentarCalificacion
 		vector<DTCalificacion> getCalificacionesSinResponder(string);
+
+		// Caso de Uso: Subscribirse a Notis
+		map<string, string> getListaEmpleados();
+		void seleccionarEmpleado(string empleado);
+		void cargaDatos();		
+		
 	    
 };
 

@@ -16,37 +16,38 @@ class DTCalificacion;
 class Reserva;
 class DTEstadia;
 class DTHostal;
-class DTReserva;
 
 class Hostal{
     private:
         string nombreHostal;
         string direccion;
-        int telefono;
+        string telefono;
         map<int, Habitacion*> habitaciones;
         set<Calificacion*> calificaciones;
         map<string, Empleado*> empleados;
     public:
         Hostal();
-        Hostal(string nombre, string direccion, int telefono);
-        Hostal(string nombreHostal, string direccion, int telefono, map<int, Habitacion*> habitaciones, set<Calificacion*> calificaciones, map<string, Empleado*> empleados);
+        Hostal(string nombre, string direccion, string telefono);
+        Hostal(string nombreHostal, string direccion, string telefono, map<int, Habitacion*> habitaciones, set<Calificacion*> calificaciones, map<string, Empleado*> empleados);
 
         //Caso de uso: Alta de Habitacion
         //string getNombreHostal();
         void nuevaHabitacion(int, int, int);
+        void nuevaHabitacion(int numero, int precio, int capacidad, Hostal* h);
         DTHostal getDataHostal();
+        bool checkHab(int);
 
         //Caso de uso: Realizar Reserva
         set<int> getHabitacionesLibres(Fecha CheckIn, Fecha CheckOut);
         
         const string getNombreHostal() const;
         const string getDireccion() const;
-        const int getTelefono() const;
+        const string getTelefono() const;
         map<int, Habitacion*> getHabitaciones();
         set<Calificacion*> getCalificaciones();
         map<string, Empleado*> getEmpleados();
         void agregarCalificacion(Calificacion*);
-        const int getPromedioPuntaje() const;
+        const float getPromedioPuntaje() const;
         vector<DTCalificacion> getDetalles();
         void asignarEmpleado(Empleado*);
         void reservarHabitacion(Reserva*, int);
@@ -62,6 +63,9 @@ class Hostal{
         vector<DTEstadia> getDTEstadias();
         //baja reserva
         void eliminarCalificacion(Calificacion*);
+
+        //Cargar datos
+        Habitacion* getHabitacion(int num);
 };
 
 
