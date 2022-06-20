@@ -134,7 +134,6 @@ DTUsuario ControladorUsuarios::listarDatos(){
 void ControladorUsuarios::finalizarConsultaUsuario(){}
 void ControladorUsuarios::eliminarEmpleado()
 {
-    bool noEncontrado = true;
     set<Empleado*>::iterator observer = observers.begin();
     while ((observer != observers.end()) && ((*observer)->getEmail() != emailEmpleadoASuscribir))
     {

@@ -782,7 +782,7 @@ int main()
                 bool verRes;
                 cin >> verRes;
                 if (verRes){
-                    DTReserva res = ireservas->getDTReserva();
+                    //DTReserva res = ireservas->getDTReserva();
                     cout << "Info Reserva: " << endl;
                     // Info Res
                 }
