@@ -16,6 +16,12 @@ class Huesped;
 
 class IReservas{
 	public:
+			//CALIFICAR ESTADIA
+			virtual vector<DTEstadia> getEstadiasFinalizadas() = 0;
+
+
+
+
 		virtual void registrarEstadia(int, Huesped*) = 0;
 		virtual set<string> getHostales() = 0;
 		virtual void seleccionarEstadia(int, string) = 0;
@@ -30,7 +36,6 @@ class IReservas{
 		virtual DTCalificacion getDTCalificacion() = 0;
 		virtual void finConsultaEstadia() = 0;
 		virtual void seleccionarHostal(string) = 0;
-		virtual vector<DTEstadia> getEstadiasFinalizadas(string) = 0;
 		virtual bool existeCalificacion() = 0;
 		virtual bool existeRespuestaEmpleado() = 0;
 		virtual string getRespuestaEmpleado() = 0;

@@ -75,6 +75,7 @@ class ControladorHostales : public IHostales{
 		//CalificarEstadia
 		Hostal* getHostal(string);
 		void cargaDatos();		
+		string getHostalSeleccionado();
 };
 
 #endif

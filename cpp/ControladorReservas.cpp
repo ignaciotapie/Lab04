@@ -115,12 +115,30 @@ DTCalificacion ControladorReservas::getDTCalificacion(){
 void ControladorReservas::seleccionarHostal(string h){
     hostalSeleccionado = h;
 }
-vector<DTEstadia> ControladorReservas::getEstadiasFinalizadas(string emailHuesped){
+
+
+//CALIFICAR ESTADIA
+
+
+vector<DTEstadia> ControladorReservas::getEstadiasFinalizadas(){
+    
     ControladorHostales* ch = ControladorHostales::getInstance();
-    Hostal* h = ch->getHostal(hostalSeleccionado);
-    vector<DTEstadia> res = h->getEstadiasFinalizadas(emailHuesped);
-    return res;
+
+    Hostal* h = ch->getHostal(ch->getHostalSeleccionado());
+
+    for (map<int,Habitacion*>::iterator ite = h->getHabitaciones().begin(); ite != h->getHabitaciones().end(); ite++){
+        ;
+    }
+    
 }
+
+
+
+
+
+
+
+
 void ControladorReservas::finConsultaEstadia(){
 
 }

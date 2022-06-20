@@ -234,3 +234,7 @@ void ControladorHostales::cargaDatos()
     hostales.insert({finger->getNombreHostal(), finger});
     
 }
+
+string ControladorHostales::getHostalSeleccionado(){
+    return this->hostalSeleccionado;
+}
