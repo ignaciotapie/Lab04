@@ -951,9 +951,7 @@ int main()
                             cout << "Por favor, escriba un usuario que este en la lista." << endl;
                         }
                     }
-
             
-
                 set<int> ReservasNoCanceladasDelHuesped = interfazUsuarios->getReservasDelHuesped(emailHuesped);
                 i = 1;
                 for(set<int>::iterator it = ReservasNoCanceladasDelHuesped.begin(); it != ReservasNoCanceladasDelHuesped.end(); ++it)
@@ -979,6 +977,7 @@ int main()
                     }
                 }
                 interfazUsuarios->registrarEstadia();
+                }
 
                 break;
             }
