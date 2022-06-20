@@ -127,10 +127,10 @@ void ControladorHostales::cancelarAltaHabitacion(){
 //Consulta Top 3 Hostales
 set<string> ControladorHostales::getTop3Hostales(){
     set<string> res;
-	int prom = 0;
-	int prom1 = 0;
-	int prom2 = 0;
-	int prom3 = 0;
+	float prom = 0;
+	float prom1 = 0;
+	float prom2 = 0;
+	float prom3 = 0;
 	Hostal* h1 = NULL;
 	Hostal* h2 = NULL;
 	Hostal* h3 = NULL;

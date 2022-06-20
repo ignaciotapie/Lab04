@@ -45,7 +45,7 @@ class Hostal{
         set<Calificacion*> getCalificaciones();
         map<string, Empleado*> getEmpleados();
         void agregarCalificacion(Calificacion*);
-        const int getPromedioPuntaje() const;
+        const float getPromedioPuntaje() const;
         vector<DTCalificacion> getDetalles();
         void asignarEmpleado(Empleado*);
         void reservarHabitacion(Reserva*, int);

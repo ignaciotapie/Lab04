@@ -53,9 +53,9 @@ void Hostal::agregarCalificacion(Calificacion* c){
     this->calificaciones.insert(c);
 }
 
-const int Hostal::getPromedioPuntaje() const{
-    int sum = 0;
-	int iteraciones = 0;
+const float Hostal::getPromedioPuntaje() const{
+    float sum = 0;
+	float iteraciones = 0;
     set<Calificacion*>::iterator iter;
 	for(iter = this->calificaciones.begin(); iter != this->calificaciones.end(); iter++ ) {
 		sum = sum + (*iter)->getPuntaje();
