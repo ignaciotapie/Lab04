@@ -40,7 +40,7 @@ class Hostal{
         
         const string getNombreHostal() const;
         const string getDireccion() const;
-        const int getTelefono() const;
+        const string getTelefono() const;
         map<int, Habitacion*> getHabitaciones();
         set<Calificacion*> getCalificaciones();
         map<string, Empleado*> getEmpleados();
