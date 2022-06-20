@@ -1096,6 +1096,7 @@ int main()
                         cout << "Email: " << e.getEmail() << endl;
                         cout << "Nombre: " << e.getNombre() << endl;
                         cout << "Cargo: " << e.getCargo() << endl;
+                        cout << "Hostal: " << e.getNombreHostal() << endl;
                     }
                     else{
                         DTHuesped h = interfazUsuarios->getDTHuesped();
