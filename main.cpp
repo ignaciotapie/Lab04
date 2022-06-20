@@ -448,7 +448,7 @@ int main()
                             cout << "Por favor, elija una opcion correcta" << endl;
                         }
                     }
-                    cout << "Desea confirmar agregar mas empleado al mismo hostal?\n" << "(1) Si\n" << "(2) No\n";
+                    cout << "Desea agregar mas empleados al mismo hostal?\n" << "(1) Si\n" << "(2) No\n";
                     incorrecto = true;
                     while (incorrecto)
                     {
