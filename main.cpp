@@ -374,23 +374,20 @@ int main()
                         cout << "Por favor, escriba un hostal que esta en la lista." << endl;
                     }
                 }
-
-
-                set<string> EmpleadosFueraHostal = interfazHostales->getEmpleadosFueraDeHostal(nombreHostal);
-                if (EmpleadosFueraHostal.empty()){
-                    cout << "No hay empleados registrados" << endl;
-                    break;
-                }
-                i = 1;
-                for(set<string>::iterator it = EmpleadosFueraHostal.begin(); it != EmpleadosFueraHostal.end(); ++it)
-                {
-                    cout << i << ". " << *it << endl;
-                    ++i;
-                }
                 bool masEmpleados = true;
                 while (masEmpleados)
                 {
-
+                    set<string> EmpleadosFueraHostal = interfazHostales->getEmpleadosFueraDeHostal(nombreHostal);
+                    if (EmpleadosFueraHostal.empty()){
+                        cout << "No hay empleados libres para asignar" << endl;
+                        break;
+                    }
+                    i = 1;
+                    for(set<string>::iterator it = EmpleadosFueraHostal.begin(); it != EmpleadosFueraHostal.end(); ++it)
+                    {
+                        cout << i << ". " << *it << endl;
+                        ++i;
+                    }
                     bool mailEmpleadoValido = false;
                     string mailEmpleado;
                     cout << "Ingrese mail del empleado a asignar:" << endl;
