@@ -6,3 +6,6 @@
 main
 .vscode/c_cpp_properties.json
 o/*.o
+h/ControladorUsuarios
+main.dSYM/Contents/Info.plist
+o/Calificacion.o
