@@ -21,6 +21,10 @@ class DTHuesped : public DTUsuario
         bool esFinger;
     public:
         DTHuesped(string nombre, string email, bool esFinger);
+        const string getNombre() const;
+        const string getEmail() const;
+        const bool getEsFinger() const;
+
 };
 
 class DTEmpleado : public DTUsuario
@@ -30,6 +34,11 @@ class DTEmpleado : public DTUsuario
         string nombreHostal;
     public:
         DTEmpleado(string nombre, string email, CargoEmpleado cargo, string nombreHostal);
+        const string getNombre() const;
+        const string getEmail() const;
+        const CargoEmpleado getCargo() const;
+        const string getNombreHostal() const;
+
 };
 
 #endif
