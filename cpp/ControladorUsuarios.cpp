@@ -141,7 +141,6 @@ void ControladorUsuarios::eliminarEmpleado()
 
 vector<DTNotificacion> ControladorUsuarios::listaNotificaciones()
 {
-    vector<DTNotificacion> notisReturn;
     Empleado* e = empleados.find(emailEmpleadoASuscribir)->second;
     return e->getNotificaciones();
 }

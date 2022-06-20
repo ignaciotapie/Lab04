@@ -166,43 +166,47 @@ void ControladorReservas::cargaDatos()
     Hostal* finger = ch->getHostal("La posada del finger");
     Habitacion* habFinger = finger->getHabitacion(1);
     Reserva* r = new ReservaIndividual(1, Fecha(14.00, 1, 5, 2022), Fecha(10.00, 10, 5, 2022), EstadoReserva::Abierta, habFinger);
-    finger->reservarHabitacion(r, 1);
-    this->addReserva(r);
     set<string> huespedes;
     huespedes.insert("sofia@mail.com");
     r->setHuespedes(huespedes);
+    finger->reservarHabitacion(r, 1);
+    this->addReserva(r);
+
 
     //R2
     Hostal* pony = ch->getHostal("El Pony Pisador");
     Habitacion* habPony = pony->getHabitacion(1);
     Reserva* re = new ReservaGrupal(2, Fecha(20.00,4,1,2001), Fecha(2.00, 5,1,2001), EstadoReserva::Abierta, habPony);
-    pony->reservarHabitacion(re, 1);
-    this->addReserva(re);
     set<string> huespedesPony;
     huespedesPony.insert("frodo@mail.com");
     huespedesPony.insert("sam@mail.com");
     huespedesPony.insert("merry@mail.com");
     huespedesPony.insert("pippin@mail.com");
     re->setHuespedes(huespedesPony);
+    pony->reservarHabitacion(re, 1);
+    this->addReserva(re);
+
 
     //R3
     Habitacion* habFingerDos = finger->getHabitacion(3);
     Reserva* res = new ReservaIndividual(3, Fecha(14.00, 7,6,2022), Fecha(11.00,30,6,2022), EstadoReserva::Abierta, habFingerDos);
-    finger->reservarHabitacion(res, 3);
-    this->addReserva(res);
     set<string> huespedesFingerDos;
     huespedesFingerDos.insert("sofia@mail.com");
-    res->setHuespedes(huespedesFingerDos);
+    res->setHuespedes(huespedesFingerDos);    
+    finger->reservarHabitacion(res, 3);
+    this->addReserva(res);
+
 
     //R4
     Hostal* caverna = ch->getHostal("Caverna Lujosa");
     Habitacion* habCaverna = caverna->getHabitacion(1);
     Reserva* rese = new ReservaIndividual(4, Fecha(14.00, 10, 6, 2022), Fecha(11.00, 30, 6, 2022), EstadoReserva::Abierta, habCaverna);
-    caverna->reservarHabitacion(rese, 1);
-    this->addReserva(rese);
     set<string> huespedesCaverna;
     huespedesCaverna.insert("seba@mail.com");
     rese->setHuespedes(huespedesCaverna);
+    caverna->reservarHabitacion(rese, 1);
+    this->addReserva(rese);
+
 
 
     

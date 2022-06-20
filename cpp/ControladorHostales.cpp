@@ -243,7 +243,7 @@ void ControladorHostales::cargaDatos()
     hostales.insert({altos->getNombreHostal(), altos});
 
     Hostal* caverna = new Hostal("Caverna Lujosa", "Amaya 2515", "233233235");
-    hostales.insert({altos->getNombreHostal(), altos});
+    hostales.insert({caverna->getNombreHostal(), caverna});
 
     finger->nuevaHabitacion(1, 40, 2, finger);
     finger->nuevaHabitacion(2, 10, 7, finger);

@@ -135,7 +135,7 @@ vector<DTEstadia> Hostal::getDTEstadias(){
 
 void Hostal::asignarEmpleado(Empleado* empleado)
 {
-	empleados.insert(pair<string, Empleado*>(empleado->getNombre(), empleado));
+	empleados.insert(pair<string, Empleado*>(empleado->getEmail(), empleado));
 }
 
 void Hostal::reservarHabitacion(Reserva* reserva, int habitacion)

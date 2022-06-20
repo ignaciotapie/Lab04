@@ -381,57 +381,56 @@ int main()
                     cout << i << ". " << *it << endl;
                     ++i;
                 }
-
-
-                bool mailEmpleadoValido = false;
-                string mailEmpleado;
-                cout << "Ingrese mail del empleado a asignar:" << endl;
-                while (!mailEmpleadoValido)
-                {
-                    getline(cin, mailEmpleado);
-
-                    if (EmpleadosFueraHostal.find(mailEmpleado) != EmpleadosFueraHostal.end())
-                    {
-                        mailEmpleadoValido = true;
-                    }
-                    else
-                    {
-                        cout << "Por favor, escriba un empleado que este en la lista." << endl;
-                    }
-                }
-
-                CargoEmpleado cargo;
-                cout << "Elija el cargo del empleado\n" << "(1) Administracion\n" << "(2) Limpieza\n" << "(3) Recepcion\n" << "(4) Infraestructura\n";
-                bool repetir = true;
-                while (repetir)
-                {
-                    int option = CheckIntCin();
-                    repetir = false;
-                    switch (option)
-                    {
-                        case 1:
-                            cargo = CargoEmpleado::Administracion;
-                        break;
-                        case 2:
-                            cargo = CargoEmpleado::Limpieza;
-                        break;
-                        case 3:
-                            cargo = CargoEmpleado::Recepcion;
-                        break;
-                        case 4:
-                            cargo = CargoEmpleado::Infraestructura;
-                        break;
-                        default:
-                        {
-                            repetir = true;
-                            cout << "Por favor, elija una opcion correcta" << endl;
-                            break;
-                        }
-                    }
-                }
                 bool masEmpleados = true;
                 while (masEmpleados)
                 {
+
+                    bool mailEmpleadoValido = false;
+                    string mailEmpleado;
+                    cout << "Ingrese mail del empleado a asignar:" << endl;
+                    while (!mailEmpleadoValido)
+                    {
+                        cin >> mailEmpleado;
+
+                        if (EmpleadosFueraHostal.find(mailEmpleado) != EmpleadosFueraHostal.end())
+                        {
+                            mailEmpleadoValido = true;
+                        }
+                        else
+                        {
+                            cout << "Por favor, escriba un empleado que este en la lista." << endl;
+                        }
+                    }
+
+                    CargoEmpleado cargo;
+                    cout << "Elija el cargo del empleado\n" << "(1) Administracion\n" << "(2) Limpieza\n" << "(3) Recepcion\n" << "(4) Infraestructura\n";
+                    bool repetir = true;
+                    while (repetir)
+                    {
+                        int option = CheckIntCin();
+                        repetir = false;
+                        switch (option)
+                        {
+                            case 1:
+                                cargo = CargoEmpleado::Administracion;
+                            break;
+                            case 2:
+                                cargo = CargoEmpleado::Limpieza;
+                            break;
+                            case 3:
+                                cargo = CargoEmpleado::Recepcion;
+                            break;
+                            case 4:
+                                cargo = CargoEmpleado::Infraestructura;
+                            break;
+                            default:
+                            {
+                                repetir = true;
+                                cout << "Por favor, elija una opcion correcta" << endl;
+                                break;
+                            }
+                        }
+                    }
                     interfazHostales->asignarEmpleado(mailEmpleado, cargo);
                     cout << "Desea confirmar la asignacion del empleado?\n" << "(1) Si\n" << "(2) No\n";
                     bool incorrecto = true;
@@ -1197,23 +1196,23 @@ int main()
                     cout << i << ". " << it->first << endl;
                     i++;
                 }
-                cout << "Escriba el nombre del empleado a consultar: ";
-                string nombreEmpleado;
+                cout << "Escriba el email del empleado a consultar: ";
+                string emailEmpleado;
 
-                bool nombreExiste = false;
-                while (!nombreExiste)
+                bool emailExiste = false;
+                while (!emailExiste)
                 {
-                    getline(cin, nombreEmpleado);
-                    if (lista.find(nombreEmpleado) != lista.end())
+                    cin.ignore();
+                    getline(cin, emailEmpleado);
+                    if (lista.find(emailEmpleado) != lista.end())
                     {
-                        nombreExiste = true;
+                        emailExiste = true;
                     }
                     else 
                     {
                         cout << "Empleado no existe, por favor elija un empleado de la lista: ";
                     }
                 }
-                string emailEmpleado = lista.find(nombreEmpleado)->second;
                 interfazUsuarios->seleccionarEmpleado(emailEmpleado);
                 vector<DTNotificacion> notis = interfazUsuarios->listaNotificaciones();
                 vector<DTNotificacion>::iterator iter = notis.begin();
