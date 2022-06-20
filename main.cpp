@@ -785,7 +785,12 @@ int main()
                 if (verRes){
                     DTReserva res = ireservas->getDTReserva();
                     cout << "Info Reserva: " << endl;
-                    res.imprimir();
+                    cout << "Codigo Reserva " << res.getCodigo() << endl
+                    << "CheckIn: " << res.getCheckIn().getDia() << "/" << res.getCheckIn().getMes() << "/" << res.getCheckIn().getAnio() << ":" << res.getCheckIn().getHora() << "hs." << endl
+                    << "CheckOut: " << res.getCheckOut().getDia() << "/" << res.getCheckOut().getMes() << "/" << res.getCheckOut().getAnio() << ":" << res.getCheckOut().getHora() << "hs." << endl
+                    << "Estado Reserva " << res.getEstado() << endl
+                    << "Costo: " << res.getCosto() << endl
+                    << "Numero Habitacion: " << endl;
                 }
                 break;
             }

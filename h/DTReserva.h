@@ -26,7 +26,7 @@ public:
     int getCosto();
     int getNumeroHabitacion();
     DTReserva(int codigo, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo, int numeroHabitacion);
-    virtual void imprimir() = 0;
+    // virtual void imprimir() = 0;
 };
 
 class DTReservaGrupal : public DTReserva
@@ -35,7 +35,7 @@ private:
     set<string> nombreHuesped;
 public:
     DTReservaGrupal(int, Fecha, Fecha, EstadoReserva, int, int, set<string>);
-    void imprimir();
+    // void imprimir();
 };
 
 class DTReservaIndividual : public DTReserva
@@ -44,7 +44,7 @@ private:
     /* data */
 public:
     DTReservaIndividual(int, Fecha, Fecha, EstadoReserva, int, int);
-    void imprimir();
+    // void imprimir();
 };
 
 #endif
