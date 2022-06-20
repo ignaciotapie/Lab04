@@ -379,16 +379,16 @@ int main()
                 }
 
 
-                bool nombreEmpleadoValido = false;
-                string nombreEmpleado;
-                cout << "Ingrese nombre del empleado a asignar:" << endl;
-                while (!nombreEmpleadoValido)
+                bool mailEmpleadoValido = false;
+                string mailEmpleado;
+                cout << "Ingrese mail del empleado a asignar:" << endl;
+                while (!mailEmpleadoValido)
                 {
-                    getline(cin, nombreEmpleado);
+                    getline(cin, mailEmpleado);
 
-                    if (EmpleadosFueraHostal.find(nombreEmpleado) != EmpleadosFueraHostal.end())
+                    if (EmpleadosFueraHostal.find(mailEmpleado) != EmpleadosFueraHostal.end())
                     {
-                        nombreEmpleadoValido = true;
+                        mailEmpleadoValido = true;
                     }
                     else
                     {
@@ -428,7 +428,7 @@ int main()
                 bool masEmpleados = true;
                 while (masEmpleados)
                 {
-                    interfazHostales->asignarEmpleado(nombreEmpleado, cargo);
+                    interfazHostales->asignarEmpleado(mailEmpleado, cargo);
                     cout << "Desea confirmar la asignacion del empleado?\n" << "(1) Si\n" << "(2) No\n";
                     bool incorrecto = true;
                     while (incorrecto)
