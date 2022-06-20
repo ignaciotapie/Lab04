@@ -33,10 +33,14 @@ class ControladorReservas : public IReservas
 		set<string> getAllHostales();
 	    void finalizarEstadia();
 		void setCalificacion(string, int);
+
+
 		// CalificarEstadia 
 		void seleccionarHostal(string);
-		vector<DTEstadia> getEstadiasFinalizadas(string);
+		vector<DTEstadia> getEstadiasFinalizadas();
 		void seleccionarEstadia(int, string);
+
+		
 		//ComentarCalificacion
 		vector<DTCalificacion> getCalificacionesSinResponder(string);
 		void selectCalificacion(string, int);

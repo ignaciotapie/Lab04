@@ -742,6 +742,10 @@ int main()
 
                     interfazUsuarios->seleccionarHuesped(emailHuesped);
 
+                    IReservas* interfazReserva = fabrica->getIReservas();
+                    interfazReserva->getEstadiasFinalizadas();
+                    
+
                 }
                 
                 
