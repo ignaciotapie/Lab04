@@ -91,7 +91,7 @@ bool ControladorHostales::existeHostal(string nombreHostal)
 
 
 DTHostal ControladorHostales::getDTHostal(){
-    map<string, Hostal*>::iterator h = this->hostales.find(this->nombreHostal);
+    map<string, Hostal*>::iterator h = this->hostales.find(this->hostalSeleccionado);
     return h->second->getDataHostal();
 }
 set<string> ControladorHostales::getHostales(){
