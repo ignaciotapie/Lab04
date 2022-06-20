@@ -24,7 +24,7 @@ class Reserva{
         EstadoReserva estado;
         int costo;
         Habitacion* habitacion;
-        map<string, Estadia*> estadias;
+        set<Estadia*> estadias;
         Huesped* huesped;
     public:
         int getCodigoReserva();
@@ -33,7 +33,7 @@ class Reserva{
         EstadoReserva getEstado();
         int getCosto();
         Habitacion* getHabitacion();
-        map<string, Estadia*> getEstadias();
+        set<Estadia*> getEstadias();
         Huesped* getHuesped();
         void setCerradaReserva(Fecha, int, Reserva*, Huesped*);
         DTReserva getDTReserva();

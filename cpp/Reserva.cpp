@@ -50,7 +50,7 @@ Habitacion* Reserva::getHabitacion(){
     return this->habitacion;
 }
 
-map<string, Estadia*> Reserva::getEstadias(){
+set<Estadia*> Reserva::getEstadias(){
     return this->estadias;
 }
 
@@ -59,40 +59,36 @@ Huesped* Reserva::getHuesped(){
 }
 
 void Reserva::setCerradaReserva(Fecha fechaAct, int promo, Reserva* res, Huesped* hues){  
-	/*
     Estadia nueva = Estadia(fechaAct, Fecha(), promo, res, hues, NULL); //links de estadia a reserva y huesped
-	this->estado = Cerrada;
-	this->estadias.insert(nueva); //link de reserva a estadia
-	hues->e.insert(nueva); //link de huesped a estadia
-
-    // no podes entrar a las cosas privadas de otras clases...
-
-    */
+	Estadia* e = &nueva; 
+    this->estado = Cerrada;
+	this->estadias.insert(e); //link de reserva a estadia
+	hues->agregarEstadia(e); //link de huesped a estadia
 }
 
 vector<DTEstadia> Reserva::getEstadiasFinalizadas(string emailHuesped){
-    map<string, Estadia*> es = this->getEstadias();
-    map<string, Estadia*>::iterator itr;
+    set<Estadia*> es = this->getEstadias();
+    set<Estadia*>::iterator itr;
     vector<DTEstadia> res;
     for (itr = es.begin(); itr != es.end(); ++itr) {
         //si esta finalizada
-        if (itr->second->esHues(emailHuesped) && itr->second->estaFinalizada()){
-            DTEstadia aux = itr->second->getDTEstadia();
+        if ((*itr)->esHues(emailHuesped) && (*itr)->estaFinalizada()){
+            DTEstadia aux = (*itr)->getDTEstadia();
             res.emplace_back(aux);
         }
     }
     return res;
 }
 Estadia* Reserva::getEstadia(string emailHuesped){
-    Estadia* est = this->estadias.find(emailHuesped)->second;
+    Estadia* est = this->estadias.find(emailHuesped);
     return est;
 }
 vector<DTEstadia> Reserva::getDTEstadias(){
-    map<string, Estadia*>::iterator itr;
+    set<Estadia*>::iterator itr;
     vector<DTEstadia> res;
-    map<string, Estadia*> aux = this->getEstadias();
+    set<Estadia*> aux = this->getEstadias();
     for (itr = aux.begin(); itr != aux.end(); itr++) {
-        res.emplace_back(itr->second->getDTEstadia());
+        res.emplace_back((*itr)->getDTEstadia());
     }
     return res;
 }

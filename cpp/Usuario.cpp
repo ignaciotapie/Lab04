@@ -93,6 +93,11 @@ void Huesped::addReserva(Reserva* r)
     }
 }
 
+void Huesped::agregarEstadia(Estadia* e){
+    this->e.insert(e);
+}
+
+
 DTHuesped Huesped::getDTHuesped(){
     DTHuesped nuevo = DTHuesped(this->getNombre(), this->getEmail(), this->getEsFinger());
     return nuevo;
