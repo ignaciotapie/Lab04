@@ -54,23 +54,23 @@ int main()
         "4. Asignar Empleado a Hostal\n" <<
         "5. Registrar Reserva\n" << 
         "6. Consulta top 3 de Hostales\n" << 
-        "7. Registrar Estadia\n" << //
-        "10. Finalizar Estadia\n" <<
-        "11. Calificar Estadia\n" << 
-        "13. Comentar Calificacion\n" <<
-        "19. Consulta de Usuario\n" <<
-        "18. Consulta de Hostal\n" <<
-        "18. Consulta de Reserva\n" << //no esta aun
-        "14. Consulta de Estadia\n" <<
-        "18. Baja de Reserva\n" << //no esta aun
-        "20. Subscribirse a notificaciones \n" <<
-        "21. Consultar notificaciones\n" <<
-        "22. Eliminar suscripcion\n"<<
-        "9. Salir\n" <<
+        "7. Registrar Estadia\n" << 
+        "8. Finalizar Estadia\n" << 
+        "9. Calificar Estadia\n" << 
+        "10. Comentar Calificacion\n" << 
+        "11. Consulta de Usuario\n" << 
+        "12. Consulta de Hostal\n" << 
+        "13. Consulta de Reserva\n" << //no esta aun
+        "14. Consulta de Estadia\n" << 
+        "15. Baja de Reserva\n" << //no esta aun
+        "16. Subscribirse a notificaciones \n" <<
+        "17. Consultar notificaciones\n" << 
+        "18. Eliminar suscripcion\n"<< 
+        "19. Salir\n" << 
         endl <<
         "DEBUG:\n"
-        "10. Cargar Datos de Prueba\n" << 
-        "11. Ajustar Fecha\n";
+        "20. Cargar Datos de Prueba\n" << 
+        "21. Ajustar Fecha\n";
         
 
         int num = CheckIntCin();
@@ -820,33 +820,58 @@ int main()
 
                 break;
             }
-            case 9:
-                {
-                    loop = false;
-                    break;
-                }
-            case 11:
+            case 8:
             {
-                IReloj* interfazReloj = ControladorReloj::getInstance();
-                cout << "Ingrese la nueva fecha: " << endl;
-                cout << "Hora (Formato H.HH/HH.HH): ";
-                float hora;
-                cin >> hora;
-                cout << endl;
-                cout << "Dia: ";
-                int dia = CheckIntCin();
-                cout << endl;
-                cout << "Mes: ";
-                int mes = CheckIntCin();
-                cout << endl;
-                cout << "Anio: ";
-                int anio = CheckIntCin();
-                cout << endl;
+                IHostales* interfazHostales = fabrica->getIHostales();
+                IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
+                IReservas* interfazReservas = fabrica->getIReservas();
+                set<string> allHostales = interfazHostales->getHostales();
+                int i = 1;
+                for(set<string>::iterator it = allHostales.begin(); it != allHostales.end(); ++it)
+                {
+                    cout << i << ". " << (*it) << endl;
+                    ++i;
+                }
+                string nombreHostal;
+                bool nombreHostalValido = false;
+                cout << "Ingrese nombre del hostal" << endl;
+                while (!nombreHostalValido)
+                {
+                    cin.ignore();
+                    getline(cin, nombreHostal);
 
-                interfazReloj->modificarFecha(hora,dia,mes,anio);
+                    if (allHostales.find(nombreHostal) != allHostales.end())
+                    {
+                        nombreHostalValido = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, escriba un hostal que esta en la lista." << endl;
+                    }
+                }
+                set<string> HuespedesRegistrados = interfazUsuarios->getHuespedes();
+                bool emailHuespedValido = false;
+                string emailHuesped;
+                cout << "Ingrese el email del huesped a finalizar su estadia:" << endl;
+                while (!emailHuespedValido)
+                {
+                    getline(cin, emailHuesped);
+
+                    if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
+                    {
+                        emailHuespedValido = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, escriba un email de un huesped." << endl;
+                    }
+                }
+                
+                interfazReservas->finalizarEstadia();
+                cout << "Se ha finalizado la estadia." << endl;
                 break;
             }
-            case 11:
+            case 9:
             {
                 IHostales* ihostales = fabrica->getIHostales();
                 set<string> nombresHostales = ihostales->getHostales();
@@ -888,7 +913,7 @@ int main()
                 ireservas->setCalificacion(comentario, cal);
                 break;
             }
-            case 13:
+            case 10:
             {
                 IReservas* ireservas = fabrica->getIReservas();
                 cout << "Ingrese Email Empleado:" << endl;
@@ -910,6 +935,114 @@ int main()
                 cin >> codigoReserva;
                 cin >> emailHuesped;
                 ireservas->setCalificacion(emailHuesped, codigoReserva);
+                break;
+            }
+            case 11:{
+                //getUsuarios
+                IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
+
+                set<string> allUsers = interfazUsuarios->getUsuarios();
+
+                if (allUsers.empty()){
+                    cout << "No hay usuarios registrados" << endl;
+                    break;
+                }
+                else{
+                int i = 1;
+                for(set<string>::iterator it = allUsers.begin(); it != allUsers.end(); ++it)
+                    {
+                        cout << i << ". " << *it << endl;
+                        ++i;
+                    }
+                    string mailUsuario;
+                    bool mailUsuarioValido = false;
+                    cout << "Ingrese mail del usuario\n";
+                    while (!mailUsuarioValido)
+                    {
+                        cin.ignore();
+                        getline(cin, mailUsuario);
+
+                        if (allUsers.find(mailUsuario) != allUsers.end())
+                        {
+                            mailUsuarioValido = true;
+                     }
+                        else
+                        {
+                            cout << "Por favor, escriba un usuario que este en la lista." << endl;
+                        }
+                    }
+
+                    //seleccionarUsuario
+                    interfazUsuarios->seleccionarUsuario(mailUsuario);
+
+                    //listarDatos
+                    if (interfazUsuarios->esEmp()){
+                        DTEmpleado e = interfazUsuarios->getDTEmpleado();
+                        cout << "Email: " << e.getEmail() << endl;
+                        cout << "Nombre: " << e.getNombre() << endl;
+                        cout << "Cargo: " << e.getCargo() << endl;
+                        cout << "Hostal: " << e.getNombreHostal() << endl;
+                    }
+                    else{
+                        DTHuesped h = interfazUsuarios->getDTHuesped();
+                        cout << "Email: " << h.getEmail() << endl;
+                        cout << "Nombre: " << h.getNombre() << endl;
+                        if (h.getEsFinger()){
+                            cout << "Es finger: Si" << endl;
+                        }
+                        else{
+                            cout << "Es finger: No" << endl;
+                        }
+                    }
+                }
+                break;
+            }
+            case 12:
+            {
+                //getHostales
+                IHostales* interfazHostales = fabrica->getIHostales();
+
+                set<string> allHostales = interfazHostales->getHostales();
+                int i = 1;
+                for(set<string>::iterator it = allHostales.begin(); it != allHostales.end(); ++it)
+                {
+                    cout << i << ". " << *it << endl;
+                    ++i;
+                }
+                string nombreHostal;
+                bool nombreHostalValido = false;
+                cout << "Ingrese nombre del hostal\n";
+                while (!nombreHostalValido)
+                {
+                    cin.ignore();
+                    getline(cin, nombreHostal);
+
+                    if (allHostales.find(nombreHostal) != allHostales.end())
+                    {
+                        nombreHostalValido = true;
+                    }
+                    else 
+                    {
+                        cout << "Por favor, escriba un hostal que esta en la lista." << endl;
+                    }
+                }
+
+                //seleccionarHostal
+                interfazHostales->seleccionarHostal(nombreHostal);
+
+                //getDTHostal
+                DTHostal h = interfazHostales->getDTHostal();
+                cout << "Nombre:" << h.getNombre() << endl;
+                cout << "Direccion:" << h.getDireccion() << endl;
+                cout << "Telefono:" << h.getTelefono() << endl;
+
+                //finalizarConsultaHostal
+                interfazHostales->finalizarConsultaHostal();
+
+                break;
+            }
+            case 13:{
+
                 break;
             }
             case 14:
@@ -979,164 +1112,12 @@ int main()
                 }
                 break;
             }
-
-            
-            
-            case 10:{
-                IHostales* interfazHostales = fabrica->getIHostales();
-                IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
-                IReservas* interfazReservas = fabrica->getIReservas();
-                set<string> allHostales = interfazHostales->getHostales();
-                int i = 1;
-                for(set<string>::iterator it = allHostales.begin(); it != allHostales.end(); ++it)
-                {
-                    cout << i << ". " << (*it) << endl;
-                    ++i;
-                }
-                string nombreHostal;
-                bool nombreHostalValido = false;
-                cout << "Ingrese nombre del hostal" << endl;
-                while (!nombreHostalValido)
-                {
-                    cin.ignore();
-                    getline(cin, nombreHostal);
-
-                    if (allHostales.find(nombreHostal) != allHostales.end())
-                    {
-                        nombreHostalValido = true;
-                    }
-                    else
-                    {
-                        cout << "Por favor, escriba un hostal que esta en la lista." << endl;
-                    }
-                }
-                set<string> HuespedesRegistrados = interfazUsuarios->getHuespedes();
-                bool emailHuespedValido = false;
-                string emailHuesped;
-                cout << "Ingrese el email del huesped a finalizar su estadia:" << endl;
-                while (!emailHuespedValido)
-                {
-                    getline(cin, emailHuesped);
-
-                    if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
-                    {
-                        emailHuespedValido = true;
-                    }
-                    else
-                    {
-                        cout << "Por favor, escriba un email de un huesped." << endl;
-                    }
-                }
-                
-                interfazReservas->finalizarEstadia();
-                cout << "Se ha finalizado la estadia." << endl;
-                break;
-            }
-
-            case 18:{
-                //getHostales
-                IHostales* interfazHostales = fabrica->getIHostales();
-
-                set<string> allHostales = interfazHostales->getHostales();
-                int i = 1;
-                for(set<string>::iterator it = allHostales.begin(); it != allHostales.end(); ++it)
-                {
-                    cout << i << ". " << *it << endl;
-                    ++i;
-                }
-                string nombreHostal;
-                bool nombreHostalValido = false;
-                cout << "Ingrese nombre del hostal\n";
-                while (!nombreHostalValido)
-                {
-                    cin.ignore();
-                    getline(cin, nombreHostal);
-
-                    if (allHostales.find(nombreHostal) != allHostales.end())
-                    {
-                        nombreHostalValido = true;
-                    }
-                    else 
-                    {
-                        cout << "Por favor, escriba un hostal que esta en la lista." << endl;
-                    }
-                }
-
-                //seleccionarHostal
-                interfazHostales->seleccionarHostal(nombreHostal);
-
-                //getDTHostal
-                DTHostal h = interfazHostales->getDTHostal();
-                cout << "Nombre:" << h.getNombre() << endl;
-                cout << "Direccion:" << h.getDireccion() << endl;
-                cout << "Telefono:" << h.getTelefono() << endl;
-
-                //finalizarConsultaHostal
-                interfazHostales->finalizarConsultaHostal();
+            case 15:
+            {
 
                 break;
             }
-            case 19:{
-                //getUsuarios
-                IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
-
-                set<string> allUsers = interfazUsuarios->getUsuarios();
-
-                if (allUsers.empty()){
-                    cout << "No hay usuarios registrados" << endl;
-                    break;
-                }
-                else{
-                int i = 1;
-                for(set<string>::iterator it = allUsers.begin(); it != allUsers.end(); ++it)
-                    {
-                        cout << i << ". " << *it << endl;
-                        ++i;
-                    }
-                    string mailUsuario;
-                    bool mailUsuarioValido = false;
-                    cout << "Ingrese mail del usuario\n";
-                    while (!mailUsuarioValido)
-                    {
-                        cin.ignore();
-                        getline(cin, mailUsuario);
-
-                        if (allUsers.find(mailUsuario) != allUsers.end())
-                        {
-                            mailUsuarioValido = true;
-                     }
-                        else
-                        {
-                            cout << "Por favor, escriba un usuario que este en la lista." << endl;
-                        }
-                    }
-
-                    //seleccionarUsuario
-                    interfazUsuarios->seleccionarUsuario(mailUsuario);
-
-                    //listarDatos
-                    if (interfazUsuarios->esEmp()){
-                        DTEmpleado e = interfazUsuarios->getDTEmpleado();
-                        cout << "Email: " << e.getEmail() << endl;
-                        cout << "Nombre: " << e.getNombre() << endl;
-                        cout << "Cargo: " << e.getCargo() << endl;
-                        cout << "Hostal: " << e.getNombreHostal() << endl;
-                    }
-                    else{
-                        DTHuesped h = interfazUsuarios->getDTHuesped();
-                        cout << "Email: " << h.getEmail() << endl;
-                        cout << "Nombre: " << h.getNombre() << endl;
-                        if (h.getEsFinger()){
-                            cout << "Es finger: Si" << endl;
-                        }
-                        else{
-                            cout << "Es finger: No" << endl;
-                        }
-                    }
-                }
-                break;
-            }
-            case 20:
+            case 16:
             {
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
                 map<string, string> lista = interfazUsuarios->getListaEmpleados();
@@ -1199,7 +1180,7 @@ int main()
                 }
             break;
             }
-            case 21:
+            case 17:
             {
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
                 map<string, string> lista = interfazUsuarios->getListaEmpleados();
@@ -1248,9 +1229,9 @@ int main()
                     cout << "Comentario: " << iter->getComentario() << endl;
                     cout << endl;
                 }
-
+            break;
             }
-            case 22:
+            case 18:
             {
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
                 map<string, string> lista = interfazUsuarios->getListaEmpleados();
@@ -1310,8 +1291,14 @@ int main()
                         cout << "Por favor, elija una opcion correcta" << endl;
                     }
                 }
+                break;
             }
-            case 10:
+            case 19:
+                {
+                    loop = false;
+                    break;
+            }
+            case 20:
             {
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
                 IHostales* interfazHostales = fabrica->getIHostales();
@@ -1323,6 +1310,29 @@ int main()
                 interfazReloj->cargaDatos();
                 interfazReservas->cargaDatos();
             }
+
+            case 21:
+            {
+                IReloj* interfazReloj = ControladorReloj::getInstance();
+                cout << "Ingrese la nueva fecha: " << endl;
+                cout << "Hora (Formato H.HH/HH.HH): ";
+                float hora;
+                cin >> hora;
+                cout << endl;
+                cout << "Dia: ";
+                int dia = CheckIntCin();
+                cout << endl;
+                cout << "Mes: ";
+                int mes = CheckIntCin();
+                cout << endl;
+                cout << "Anio: ";
+                int anio = CheckIntCin();
+                cout << endl;
+
+                interfazReloj->modificarFecha(hora,dia,mes,anio);
+                break;
+            }
+            
             default:
             {
                 cout << "Por favor ingrese un numero valido" << endl;
