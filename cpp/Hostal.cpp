@@ -6,6 +6,7 @@
 #include "../h/DTCalificacion.h"
 #include "../h/DTEstadia.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 #include "../h/DTReserva.h"
@@ -13,6 +14,8 @@
 
 #include "../h/DTHabitacion.h"
 
+=======
+>>>>>>> parent of c729fdd (consulta y baja reserva)
 
 Hostal::Hostal(){
 }
