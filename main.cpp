@@ -1129,6 +1129,7 @@ int main()
                 cin >> codigoRes;
                 cin.ignore();
                 getline(cin, emailHues);
+                ireservas->seleccionarEstadia(codigoRes, emailHues);
                 DTEstadiaPlus estadiaSeleccionada = ireservas->getEstadiaPlus();
                 cout << "Nombre Hostal: " << estadiaSeleccionada.getNombreHostal() << endl;
                 cout << "Nombre Huesped: " << estadiaSeleccionada.getNombreHuesped() << endl;
@@ -1163,7 +1164,7 @@ int main()
                     << "CheckOut: " << res.getCheckOut().getDia() << "/" << res.getCheckOut().getMes() << "/" << res.getCheckOut().getAnio() << ":" << res.getCheckOut().getHora() << "hs." << endl
                     << "Estado Reserva " << res.getEstado() << endl
                     << "Costo: " << res.getCosto() << endl
-                    << "Numero Habitacion: " << endl;
+                    << "Numero Habitacion: " << res.getNumeroHabitacion() << endl;
                 }
                 break;
             }

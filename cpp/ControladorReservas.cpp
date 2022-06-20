@@ -145,12 +145,13 @@ bool ControladorReservas::existeCalificacion(){
 
 bool ControladorReservas::existeRespuestaEmpleado(){
     Estadia* est = reservas.find(codigoReservaEstadia)->second->getEstadia(emailHuespedEstadia);
+    bool existe = false;
     if (est->getCalificacion() != NULL){
         if (est->getCalificacion()->getRespuestaempleados() != NULL){
-            return 1;
+            existe = true;
         }
     }
-    return 0;
+    return existe;
 }
 
 string ControladorReservas::getRespuestaEmpleado(){
