@@ -1175,6 +1175,7 @@ int main()
                         cout << "Por favor, elija una opcion correcta" << endl;
                     }
                 }
+            break;
             }
             case 21:
             {
