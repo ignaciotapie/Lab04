@@ -26,7 +26,7 @@ class IHostales{
 		virtual set<string> getTop3Hostales() = 0;
 		virtual vector<DTCalificacion> getDetallesHostal(string) = 0;
 		virtual void finalizarConsultaHostal() = 0;
-		virtual void setHostalInfo(string, string, string) = 0;
+		virtual void setHostalInfo(string, string, int) = 0;
 		virtual void cancelarAltaHostal() = 0;
 		virtual void confirmarAltaHostal() = 0;
 		virtual void asignarEmpleado(string, CargoEmpleado) = 0;
@@ -41,9 +41,6 @@ class IHostales{
 		virtual void seleccionarHostalParaReserva(string nombreHostal, Fecha checkIn, Fecha checkOut, bool esReservaGrupal) = 0;
 		virtual void seleccionarHuesped(string nombreHuesped) = 0;
 		virtual bool existeHostal(string nombreHostal) = 0;
-		virtual bool checkearHab(int) = 0;
-
-		virtual void cargaDatos() = 0;
 };
 
 #endif

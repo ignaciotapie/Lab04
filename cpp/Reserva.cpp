@@ -7,15 +7,6 @@
 #include "../h/Usuario.h"
 #include "../h/Habitacion.h"
 
-ReservaIndividual::ReservaIndividual(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, Habitacion* h)
-{
-    this->codigoReserva = codRes;
-    this->checkIn = checkIn;
-    this->checkOut = checkOut;
-    this->estado = estado;
-    this->habitacion = h;
-}
-
 ReservaIndividual::ReservaIndividual(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo)
 {
     this->codigoReserva = codRes;
@@ -33,16 +24,6 @@ ReservaGrupal::ReservaGrupal(int codRes, Fecha checkIn, Fecha checkOut, EstadoRe
     this->estado = estado;
     this->costo = costo;
 }
-
-ReservaGrupal::ReservaGrupal(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, Habitacion* h)
-{
-    this->codigoReserva = codRes;
-    this->checkIn = checkIn;
-    this->checkOut = checkOut;
-    this->estado = estado;
-    this->habitacion = h;
-}
-
 
 
 int Reserva::getCodigoReserva(){
@@ -78,11 +59,15 @@ Huesped* Reserva::getHuesped(){
 }
 
 void Reserva::setCerradaReserva(Fecha fechaAct, int promo, Reserva* res, Huesped* hues){  
+	/*
     Estadia nueva = Estadia(fechaAct, Fecha(), promo, res, hues, NULL); //links de estadia a reserva y huesped
-	Estadia* e = &nueva; 
-    this->estado = Cerrada;
-	this->estadias.insert(e); //link de reserva a estadia
-	hues->agregarEstadia(e); //link de huesped a estadia
+	this->estado = Cerrada;
+	this->estadias.insert(nueva); //link de reserva a estadia
+	hues->e.insert(nueva); //link de huesped a estadia
+
+    // no podes entrar a las cosas privadas de otras clases...
+
+    */
 }
 
 vector<DTEstadia> Reserva::getEstadiasFinalizadas(string emailHuesped){
@@ -117,9 +102,6 @@ vector<DTEstadia> Reserva::getDTEstadias(){
         res.emplace_back((*itr)->getDTEstadia());
     }
     return res;
-}
-DTReserva Reserva::getDTReserva(){
-    return DTReserva(this->codigoReserva, this->checkIn, this->checkOut, this->estado, this->costo, habitacion->getNumero());
 }
 
 void Reserva::setCheckIn(Fecha checkIn)
@@ -182,3 +164,27 @@ void ReservaIndividual::calcularCosto()
     
 }
 
+DTReserva ReservaIndividual::getDTReserva(){
+    return DTReservaIndividual(this->codigoReserva, this->checkIn, this->checkOut, this->estado, this->costo, habitacion->getNumero());
+}
+
+DTReserva ReservaGrupal::getDTReserva(){
+    set<string> nombreHuesped;
+    map<string, Huesped*> huespedes = this->huespedesExtra;
+    map<string, Huesped*>::iterator itr;
+    for (itr = huespedes.begin(); itr != huespedes.end(); ++itr) {
+        nombreHuesped.insert(itr->first);
+    }
+    return DTReservaGrupal(this->codigoReserva, this->checkIn, this->checkOut, this->estado, this->costo, habitacion->getNumero(), nombreHuesped);
+}
+
+//baja reserva
+void Reserva::eliminarReservaDeHabitacion(int codigoReservaEstadia){
+    habitacion->eliminarReservaDeHabitacion(codigoReservaEstadia);
+    huesped->eliminarReservaDeHuesped(codigoReservaEstadia);
+    set<Estadia*>::iterator it = estadias.begin();
+    for (; it != estadias.end(); ++it){
+        //eliminar instancia de estadia
+        (*it)->eliminarEstadia();
+    }
+}
