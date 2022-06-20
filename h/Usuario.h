@@ -49,7 +49,7 @@ class Huesped : public Usuario {
         bool esFinger;
         map<int,ReservaIndividual*> r;
         map<int,ReservaGrupal*> rg;
-        map<int,Estadia*> e;
+        set<Estadia*> e;
     public:
         Huesped(string nombre, string email, string password, bool esFinger);
         DTHuesped getDTHuesped();
@@ -59,6 +59,7 @@ class Huesped : public Usuario {
         
         void finalizarEstadia();
         void addReserva(Reserva* reserva);
+        void agregarEstadia(Estadia* e);
 };
 
 class Empleado : public Usuario, public Observer {
