@@ -10,6 +10,7 @@
 =======
 #include "../h/DTReserva.h"
 >>>>>>> parent of 1a07fd2 (Revert "consulta y baja reserva")
+#include "../h/DTReserva.h"
 
 Hostal::Hostal(){
 }
