@@ -666,22 +666,21 @@ int main()
                 if (hostales.empty()){
                     cout << "No hay Hostales ingresados en el sistema\n";
                 }else{
-                set<string> top3Hostales = interfazHostales->getTop3Hostales();
-                int i = 1;
-                set<string>::iterator it;
-                for(it = top3Hostales.begin(); it != top3Hostales.end(); ++it)
-                {
-                    cout << i << ". " << (*it) << endl;
-                    ++i;
-                }
-                string nombreHostal;
-                bool nombreHostalValido = false;
-                cout << "Ingrese nombre del hostal\n";
-                while (!nombreHostalValido)
-                {
-                    getline(cin, nombreHostal);
-
-                    if (top3Hostales.find(nombreHostal) != top3Hostales.end())
+                    set<string> top3Hostales = interfazHostales->getTop3Hostales();
+                    int i = 1;
+                    set<string>::iterator it;
+                    for(it = top3Hostales.begin(); it != top3Hostales.end(); ++it)
+                    {
+                        cout << i << ". " << (*it) << endl;
+                        ++i;
+                    }
+                    string nombreHostal;
+                    bool nombreHostalValido = false;
+                    cout << "Ingrese nombre del hostal\n";
+                    while (!nombreHostalValido)
+                    {
+                        getline(cin, nombreHostal);
+                        if (top3Hostales.find(nombreHostal) != top3Hostales.end())
                     {
                         nombreHostalValido = true;
                     }
@@ -689,27 +688,27 @@ int main()
                     {
                         cout << "Por favor, escriba un hostal que esta en la lista." << endl;
                     }
-                }
+                    }
 
-                cout << "Desea ver detalles de algun hostal?\n" << "(1) Si\n" << "(2) No\n";
-                bool incorrecto = true;
-                string fin;
-                while (incorrecto)
-                {
+                    cout << "Desea ver detalles de algun hostal?\n" << "(1) Si\n" << "(2) No\n";
+                    bool incorrecto = true;
                     string fin;
-                    cin >> fin;
-                    if (fin == "1" || fin == "2")
+                    while (incorrecto)
                     {
-                        incorrecto = false;
+                        string fin;
+                        cin >> fin;
+                        if (fin == "1" || fin == "2")
+                        {
+                            incorrecto = false;
+                        }
+                        else
+                        {
+                            cout << "Por favor, elija una opcion correcta" << endl;
+                        }
                     }
-                    else
-                    {
-                        cout << "Por favor, elija una opcion correcta" << endl;
-                    }
-                }
-                if (fin == "2") break;
+                    if (fin == "2") break;
 
-                cout << "De cual?\n" << "(1) Primero\n" << "(2) Segundo\n"<< "(3) Tercero\n";
+                    cout << "De cual?\n" << "(1) Primero\n" << "(2) Segundo\n"<< "(3) Tercero\n";
                     bool repetir = true;
                     string nomHost;
                     while (repetir)
