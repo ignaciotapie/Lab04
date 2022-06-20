@@ -77,7 +77,7 @@ set<string> ControladorUsuarios::getHuespedes()
     map<string, Huesped*>::iterator it = huespedes.begin();
     for (; it != huespedes.end(); it++)
     {
-        listaHuespedes.insert(it->second->getNombre());
+        listaHuespedes.insert(it->second->getEmail());
     }
     return listaHuespedes;
 }
