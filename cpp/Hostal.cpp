@@ -156,3 +156,8 @@ set<int> Hostal::getHabitacionesLibres(Fecha CheckIn, Fecha CheckOut)
     }
     return habitacionesLibres;
 }
+
+Habitacion* Hostal::getHabitacion(int num)
+{
+    return habitaciones.find(num)->second;
+}

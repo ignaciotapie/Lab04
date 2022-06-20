@@ -59,6 +59,7 @@ class ReservaGrupal : public Reserva{
         map<string, Huesped*> huespedesExtra;
     public:
         ReservaGrupal(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo);
+        ReservaGrupal(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, Habitacion* h);
         void agregarHuespedExtra(Huesped* huesped);
         void calcularCosto();
 };
@@ -68,6 +69,7 @@ class ReservaIndividual : public Reserva{
 
     public:
         ReservaIndividual(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo);
+        ReservaIndividual(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, Habitacion* h);
         void calcularCosto();
 };
 

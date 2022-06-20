@@ -56,7 +56,7 @@ class ControladorReservas : public IReservas
 		void addReserva(Reserva* r);
 		int getCodigoReservaACrear();
 
-		void cargaDatos(){};		
+		void cargaDatos();		
 };
 
 #endif

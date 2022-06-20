@@ -7,6 +7,15 @@
 #include "../h/Usuario.h"
 #include "../h/Habitacion.h"
 
+ReservaIndividual::ReservaIndividual(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, Habitacion* h)
+{
+    this->codigoReserva = codRes;
+    this->checkIn = checkIn;
+    this->checkOut = checkOut;
+    this->estado = estado;
+    this->habitacion = h;
+}
+
 ReservaIndividual::ReservaIndividual(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo)
 {
     this->codigoReserva = codRes;
@@ -24,6 +33,16 @@ ReservaGrupal::ReservaGrupal(int codRes, Fecha checkIn, Fecha checkOut, EstadoRe
     this->estado = estado;
     this->costo = costo;
 }
+
+ReservaGrupal::ReservaGrupal(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, Habitacion* h)
+{
+    this->codigoReserva = codRes;
+    this->checkIn = checkIn;
+    this->checkOut = checkOut;
+    this->estado = estado;
+    this->habitacion = h;
+}
+
 
 
 int Reserva::getCodigoReserva(){

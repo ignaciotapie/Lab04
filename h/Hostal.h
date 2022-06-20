@@ -32,7 +32,7 @@ class Hostal{
 
         //Caso de uso: Alta de Habitacion
         //string getNombreHostal();
-        void nuevaHabitacion(int, int, int, Hostal*);
+        void nuevaHabitacion(int numero, int precio, int capacidad, Hostal* h);
         DTHostal getDataHostal();
 
         //Caso de uso: Realizar Reserva
@@ -55,6 +55,9 @@ class Hostal{
         vector<DTCalificacion> getCalificacionesSinResponder();\
         //ConsultaEstadia
         vector<DTEstadia> getDTEstadias();
+
+        //Cargar datos
+        Habitacion* getHabitacion(int num);
 };
 
 

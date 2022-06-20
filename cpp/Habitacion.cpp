@@ -66,7 +66,9 @@ vector<DTEstadia> Habitacion::getDTEstadias(){
     return res;
 }
 void Habitacion::addReserva(Reserva* reserva){
-     reservas.insert(pair<int,Reserva*>(reserva->getCodigoReserva(), reserva));
+
+    reserva->calcularCosto();
+    reservas.insert(pair<int,Reserva*>(reserva->getCodigoReserva(), reserva));
 }
 bool Habitacion::isReservado(Fecha checkIn, Fecha checkOut){
     map<int, Reserva*>::iterator it = reservas.begin();

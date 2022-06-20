@@ -232,5 +232,33 @@ void ControladorHostales::cargaDatos()
     //Hostales
     Hostal* finger = new Hostal("La posada del finger", "Av de la playa 123, Maldonado", "09911111");
     hostales.insert({finger->getNombreHostal(), finger});
-    
+
+    Hostal* mochileros = new Hostal("Mochileros", "Rambla Costanera 333, Rocha", "42579512");
+    hostales.insert({mochileros->getNombreHostal(), mochileros});
+
+    Hostal* pony = new Hostal("El Pony Pisador", "Bree (preguntar por Gandalf)", "000");
+    hostales.insert({pony->getNombreHostal(), pony});
+
+    Hostal* altos = new Hostal("Altos de Fing", "Av. del Toro 1424", "099892992");
+    hostales.insert({altos->getNombreHostal(), altos});
+
+    Hostal* caverna = new Hostal("Caverna Lujosa", "Amaya 2515", "233233235");
+    hostales.insert({altos->getNombreHostal(), altos});
+
+    finger->nuevaHabitacion(1, 40, 2, finger);
+    finger->nuevaHabitacion(2, 10, 7, finger);
+    finger->nuevaHabitacion(3, 30, 3, finger);
+    finger->nuevaHabitacion(4, 5, 12, finger);
+    caverna->nuevaHabitacion(1, 3, 2, caverna);
+    pony->nuevaHabitacion(1, 9, 5, pony);
+
+    ControladorUsuarios* cu = ControladorUsuarios::getInstance();
+    finger->asignarEmpleado(cu->getEmpleado("emilia@mail.com"));
+    mochileros->asignarEmpleado(cu->getEmpleado("leo@mail.com"));
+    mochileros->asignarEmpleado(cu->getEmpleado("alina@mail.com"));
+    pony->asignarEmpleado(cu->getEmpleado("barli@mail.com"));
+
+
+
+
 }

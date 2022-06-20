@@ -54,14 +54,14 @@ class ControladorUsuarios : public IUsuarios
 		void confirmarAltaUsuario();
 		
 		// Caso de Uso: Asignar Empleado a Hostal
-		Empleado* getEmpleado(string nombreUsuario);
+		Empleado* getEmpleado(string emailEmpleado);
 
 		set<string> getUsuarios();
 		void seleccionarUsuario(string);
 
 		// Caso de Uso: Realizar Reserva
 		set<string> getHuespedes();
-		Huesped* getHuesped(string nombreUsuario);
+		Huesped* getHuesped(string emailHuesped);
 
 		//Registrar Estadia
 		set<string> getHostales();
