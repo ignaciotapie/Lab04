@@ -1066,17 +1066,17 @@ int main()
                         cout << i << ". " << *it << endl;
                         ++i;
                     }
-                    string nombreUsuario;
-                    bool nombreUsuarioValido = false;
-                    cout << "Ingrese nombre del usuario\n";
-                    while (!nombreUsuarioValido)
+                    string mailUsuario;
+                    bool mailUsuarioValido = false;
+                    cout << "Ingrese mail del usuario\n";
+                    while (!mailUsuarioValido)
                     {
                         cin.ignore();
-                        getline(cin, nombreUsuario);
+                        getline(cin, mailUsuario);
 
-                        if (allUsers.find(nombreUsuario) != allUsers.end())
+                        if (allUsers.find(mailUsuario) != allUsers.end())
                         {
-                            nombreUsuarioValido = true;
+                            mailUsuarioValido = true;
                      }
                         else
                         {
@@ -1085,7 +1085,7 @@ int main()
                     }
 
                     //seleccionarUsuario
-                    interfazUsuarios->seleccionarUsuario(nombreUsuario);
+                    interfazUsuarios->seleccionarUsuario(mailUsuario);
 
                     //listarDatos
                     DTUsuario u = interfazUsuarios->listarDatos();
