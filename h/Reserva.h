@@ -51,6 +51,7 @@ class Reserva{
         void setCheckIn(Fecha checkIn);
         void setCheckOut(Fecha checkOut);
         void setHuespedes(set<string> huespedes);
+        void setEstadia(Estadia* est);
 
 };
 

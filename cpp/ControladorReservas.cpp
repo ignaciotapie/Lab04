@@ -11,6 +11,7 @@
 #include "../h/DTCalificacion.h"
 #include "../h/DTEstadia.h"
 #include "../h/RespuestaEmpleado.h"
+#include "../h/Usuario.h"
 
 using namespace std;
 
@@ -160,6 +161,7 @@ string ControladorReservas::getRespuestaEmpleado(){
 void ControladorReservas::cargaDatos()
 {
     ControladorHostales* ch = ControladorHostales::getInstance();
+    ControladorUsuarios* cu = ControladorUsuarios::getInstance();
 
 
     //R1
@@ -168,9 +170,17 @@ void ControladorReservas::cargaDatos()
     Reserva* r = new ReservaIndividual(1, Fecha(14.00, 1, 5, 2022), Fecha(10.00, 10, 5, 2022), EstadoReserva::Abierta, habFinger);
     set<string> huespedes;
     huespedes.insert("sofia@mail.com");
+    Huesped* huesSofia = cu->getHuesped("sofia@mail.com");
     r->setHuespedes(huespedes);
     finger->reservarHabitacion(r, 1);
     this->addReserva(r);
+    //crear Estadia
+    Estadia* estSofia = new Estadia(Fecha(18.00, 1, 5, 2022), Fecha(9.00, 10, 5, 2022), 0, r, huesSofia, NULL);
+    r->setEstadia(estSofia);
+    huesSofia->agregarEstadia(estSofia);
+    //crear Calificacion Estadia
+    Calificacion* calSofia = new Calificacion(3, "Un poco caro para lo que ofrecen. El famoso gimnasio era una caminadora (que hacía tremendo ruido) y 2 pesas, la piscina parecía el lago del Parque Rodó y el desayuno eran 2 tostadas con mermelada. Internet se pasaba cayendo. No vuelvo.", Fecha(18.00, 11, 5, 2022), estSofia, finger, NULL);
+    estSofia->setPunteroCalificacion(calSofia);
 
 
     //R2
@@ -179,12 +189,35 @@ void ControladorReservas::cargaDatos()
     Reserva* re = new ReservaGrupal(2, Fecha(20.00,4,1,2001), Fecha(2.00, 5,1,2001), EstadoReserva::Abierta, habPony);
     set<string> huespedesPony;
     huespedesPony.insert("frodo@mail.com");
+    Huesped* huesFrodo = cu->getHuesped("frodo@mail.com");
     huespedesPony.insert("sam@mail.com");
+    Huesped* huesSam = cu->getHuesped("sam@mail.com");
     huespedesPony.insert("merry@mail.com");
+    Huesped* huesMerry = cu->getHuesped("merry@mail.com");
     huespedesPony.insert("pippin@mail.com");
+    Huesped* huesPippin = cu->getHuesped("pippin@mail.com");
     re->setHuespedes(huespedesPony);
     pony->reservarHabitacion(re, 1);
     this->addReserva(re);
+    //crear Estadias
+    Estadia* estFrodo = new Estadia(Fecha(21.00, 4, 1, 2001), Fecha(2.00, 5, 1, 2001), 0, re, huesFrodo, NULL);
+    re->setEstadia(estFrodo);
+    huesFrodo->agregarEstadia(estFrodo);
+    Estadia* estSam = new Estadia(Fecha(21.00, 4, 1, 2001), Fecha(), 0, re, huesSam, NULL);
+    re->setEstadia(estSam);
+    huesSam->agregarEstadia(estSam);
+    Estadia* estMerry = new Estadia(Fecha(21.00, 4, 1, 2001), Fecha(), 0, re, huesMerry, NULL);
+    re->setEstadia(estMerry);
+    huesMerry->agregarEstadia(estMerry);
+    Estadia* estPippin = new Estadia(Fecha(21.00, 4, 1, 2001), Fecha(), 0, re, huesPippin, NULL);
+    re->setEstadia(estPippin);
+    huesPippin->agregarEstadia(estPippin);
+    //crear Calificacion Estadia
+    Calificacion* calFrodo = new Calificacion(2, "Se pone peligroso de noche, no recomiendo. Además no hay caja fuerte para guardar anillos.", Fecha(3.00, 5, 1, 2001), estFrodo, pony, NULL);
+    estFrodo->setPunteroCalificacion(calFrodo);
+    //crear Comentario a Calificacion
+    Empleado* empl = cu->getEmpleado("barli@mail.com");
+    calFrodo->setComentarioCalificacion("Desapareció y se fue sin pagar.", empl, calFrodo);
 
 
     //R3
@@ -203,10 +236,16 @@ void ControladorReservas::cargaDatos()
     Reserva* rese = new ReservaIndividual(4, Fecha(14.00, 10, 6, 2022), Fecha(11.00, 30, 6, 2022), EstadoReserva::Abierta, habCaverna);
     set<string> huespedesCaverna;
     huespedesCaverna.insert("seba@mail.com");
+    Huesped* huesSeba = cu->getHuesped("seba@mail.com");
     rese->setHuespedes(huespedesCaverna);
     caverna->reservarHabitacion(rese, 1);
     this->addReserva(rese);
-
+    //crear Estadia
+    Estadia* estSeba = new Estadia(Fecha(6.00, 7, 6, 2022), Fecha(22.00, 15, 6, 2022), 0, rese, huesSeba, NULL);
+    rese->setEstadia(estSeba);
+    huesSeba->agregarEstadia(estSeba);
+    //crear Estadias
+    Calificacion* calSeba = new Calificacion(1, "Había pulgas en la habitación. Que lugar más mamarracho!!", Fecha(23.00, 15, 6, 2022), estSeba, caverna, NULL);
 
 
     

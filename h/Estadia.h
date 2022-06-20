@@ -33,6 +33,7 @@ class Estadia
         Fecha getCheckIn();
         int getPromo();
         void setCheckOut(Fecha);
+        void setPunteroCalificacion(Calificacion*);
         DTReserva getDTReserva();
         //calificarEstadia
         bool estaFinalizada();

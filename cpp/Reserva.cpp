@@ -150,6 +150,10 @@ void Reserva::setHuespedes(set<string> huespedes)
     }
 }
 
+void Reserva::setEstadia(Estadia* est){
+    estadias.emplace(est);
+}
+
 void ReservaGrupal::agregarHuespedExtra(Huesped* h)
 {
     this->huespedesExtra.insert(pair<string,Huesped*>(h->getNombre(), h));

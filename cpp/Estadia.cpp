@@ -84,3 +84,7 @@ DTCalificacion Estadia::getDTCalificacion(){
 DTReserva Estadia::getDTReserva(){
     return this->getReserva()->getDTReserva();
 }
+
+void Estadia::setPunteroCalificacion(Calificacion* c){
+    calificacion = c;
+}
