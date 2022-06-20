@@ -2,6 +2,7 @@
 #include <string>
 #include <limits>
 #include <algorithm>
+#include <vector>
 
 #include "h/Fabrica.h"
 #include "h/Reserva.h"
@@ -13,6 +14,7 @@
 #include "h/DTEstadiaPlus.h"
 #include "h/DTReserva.h"
 #include "h/DTUsuario.h"
+#include "h/DTNotificacion.h"
 
 int CheckIntCin() // Usado en lugar de cin >> (int) para asegurarse que es un int correcto y no ocurra el Cin Infinite Loop
 {
@@ -83,16 +85,14 @@ int main()
                 {
                     string email, nombre, password;
                     bool esEmpleado, esFinger;
-                    cout << "Ingrese nombre\n";
+                    cout << "Ingrese nombre" << endl;;
                     cin.ignore();
                     getline(cin, nombre);
-                    cout << "Ingrese email\n";
-                    cin.ignore();
+                    cout << "Ingrese email" << endl;
                     getline(cin, email);
-                    cout << "Ingrese password\n";
-                    cin.ignore();
+                    cout << "Ingrese password" << endl;
                     getline(cin, password);
-                    cout << "Es empleado?\n" << "(1) Si\n" << "(2) No\n";
+                    cout << "Es empleado?\n" << "(1) Si" << endl << "(2) No" << endl;
                     bool incorrecto = true;
                     while (incorrecto)
                     {
@@ -236,7 +236,6 @@ int main()
                 cin.ignore();
                 getline(cin, nombre);
                 cout << "Ingrese direccion del Hostal: \n";
-                cin.ignore();
                 getline(cin, email);
                 cout << "Ingrese telefono del Hostal: \n";
                 telefono = CheckIntCin();
@@ -281,7 +280,6 @@ int main()
                 cout << "Ingrese nombre del hostal\n";
                 while (!nombreHostalValido)
                 {
-                    cin.ignore();
                     getline(cin, nombreHostal);
 
                     if (allHostales.find(nombreHostal) != allHostales.end())
@@ -373,7 +371,6 @@ int main()
                 cout << "Ingrese nombre del empleado a asignar:" << endl;
                 while (!nombreEmpleadoValido)
                 {
-                    cin.ignore();
                     getline(cin, nombreEmpleado);
 
                     if (EmpleadosFueraHostal.find(nombreEmpleado) != EmpleadosFueraHostal.end())
@@ -569,7 +566,6 @@ int main()
                     cout << i << ". " << *aux << endl;
                 }
                 cout << "Ingrese el nombre del huesped a registrar: " ;
-                cin.ignore();
                 string nombreHuesped;
                 getline(cin, nombreHuesped);
                 interfazHostales->seleccionarHuesped(nombreHuesped);
@@ -780,7 +776,7 @@ int main()
                 bool verRes;
                 cin >> verRes;
                 if (verRes){
-                    DTReserva res = ireservas->getDTReserva();
+                    //DTReserva res = ireservas->getDTReserva();
                     cout << "Info Reserva: " << endl;
                     res.imprimir();
                 }
@@ -803,7 +799,6 @@ int main()
                 cout << "Ingrese nombre del hostal\n";
                 while (!nombreHostalValido)
                 {
-                    cin.ignore();
                     getline(cin, nombreHostal);
 
                     if (top3Hostales.find(nombreHostal) != top3Hostales.end())
@@ -904,17 +899,16 @@ int main()
                     }
                 }
 
-                set<string> UsuariosRegistrados = interfazUsuarios->getUsuarios();
+                set<string> HuespedesRegistrados = interfazUsuarios->getHuespedes();
 
                 bool emailHuespedValido = false;
                 string emailHuesped;
                 cout << "Ingrese el email del huesped a registrar su estadia:" << endl;
                 while (!emailHuespedValido)
                 {
-                    cin.ignore();
                     getline(cin, emailHuesped);
 
-                    if (UsuariosRegistrados.find(emailHuesped) != UsuariosRegistrados.end())
+                    if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
                     {
                         emailHuespedValido = true;
                     }
@@ -980,16 +974,15 @@ int main()
                         cout << "Por favor, escriba un hostal que esta en la lista." << endl;
                     }
                 }
-                set<string> UsuariosRegistrados = interfazUsuarios->getUsuarios();
+                set<string> HuespedesRegistrados = interfazUsuarios->getHuespedes();
                 bool emailHuespedValido = false;
                 string emailHuesped;
                 cout << "Ingrese el email del huesped a finalizar su estadia:" << endl;
                 while (!emailHuespedValido)
                 {
-                    cin.ignore();
                     getline(cin, emailHuesped);
 
-                    if (UsuariosRegistrados.find(emailHuesped) != UsuariosRegistrados.end())
+                    if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
                     {
                         emailHuespedValido = true;
                     }
@@ -1052,54 +1045,75 @@ int main()
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
 
                 set<string> allUsers = interfazUsuarios->getUsuarios();
+
+                if (allUsers.empty()){
+                    cout << "No hay usuarios registrados" << endl;
+                    break;
+                }
+                else{
                 int i = 1;
                 for(set<string>::iterator it = allUsers.begin(); it != allUsers.end(); ++it)
-                {
-                    cout << i << ". " << *it << endl;
-                    ++i;
-                }
-                string nombreUsuario;
-                bool nombreUsuarioValido = false;
-                cout << "Ingrese nombre del usuario\n";
-                while (!nombreUsuarioValido)
-                {
-                    cin.ignore();
-                    getline(cin, nombreUsuario);
-
-                    if (allUsers.find(nombreUsuario) != allUsers.end())
                     {
-                        nombreUsuarioValido = true;
+                        cout << i << ". " << *it << endl;
+                        ++i;
                     }
-                    else
+                    string mailUsuario;
+                    bool mailUsuarioValido = false;
+                    cout << "Ingrese mail del usuario\n";
+                    while (!mailUsuarioValido)
                     {
-                        cout << "Por favor, escriba un usuario que este en la lista." << endl;
+                        cin.ignore();
+                        getline(cin, mailUsuario);
+
+                        if (allUsers.find(mailUsuario) != allUsers.end())
+                        {
+                            mailUsuarioValido = true;
+                     }
+                        else
+                        {
+                            cout << "Por favor, escriba un usuario que este en la lista." << endl;
+                        }
+                    }
+
+                    //seleccionarUsuario
+                    interfazUsuarios->seleccionarUsuario(mailUsuario);
+
+                    //listarDatos
+                    if (interfazUsuarios->esEmp()){
+                        DTEmpleado e = interfazUsuarios->getDTEmpleado();
+                        cout << "Email: " << e.getEmail() << endl;
+                        cout << "Nombre: " << e.getNombre() << endl;
+                        cout << "Cargo: " << e.getCargo() << endl;
+                    }
+                    else{
+                        DTHuesped h = interfazUsuarios->getDTHuesped();
+                        cout << "Email: " << h.getEmail() << endl;
+                        cout << "Nombre: " << h.getNombre() << endl;
+                        if (h.getEsFinger()){
+                            cout << "Es finger: Si" << endl;
+                        }
+                        else{
+                            cout << "Es finger: No" << endl;
+                        }
                     }
                 }
-
-                //seleccionarUsuario
-                interfazUsuarios->seleccionarUsuario(nombreUsuario);
-
-                //listarDatos
-                DTUsuario u = interfazUsuarios->listarDatos();
-                
-
                 break;
             }
             case 20:
             {
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
-                set<string> lista = interfazUsuarios->getListaEmpleados();
+                map<string, string> lista = interfazUsuarios->getListaEmpleados();
                 if (lista.size() == 0)
                 {
                     cout << "No hay empleados registrados." << endl;
                     break;
                 }
-                set<string>::iterator it = lista.begin();
+                map<string,string>::iterator it = lista.begin();
                 cout << "Lista de Empleados" << endl;
                 int i = 1;
                 for (; it != lista.end(); it++)
                 {
-                    cout << i << ". " << *it << endl;
+                    cout << i << ". " << it->first << endl;
                     i++;
                 }
                 cout << "Escriba el nombre del empleado a suscribir: ";
@@ -1119,8 +1133,8 @@ int main()
                         cout << "Empleado no existe, por favor elija un empleado de la lista: ";
                     }
                 }
-
-                interfazUsuarios->seleccionarEmpleado(nombreEmpleado);
+                string emailEmpleado = lista.find(nombreEmpleado)->second;
+                interfazUsuarios->seleccionarEmpleado(emailEmpleado);
 
                 cout << "Desea confirmar la suscripcion?" << endl << "(1) Si" << endl << "(2) No" << endl;
                 bool incorrecto = true;
@@ -1132,7 +1146,14 @@ int main()
                     {
                         incorrecto = false;
                         if (fin == "1")
+                        {
                             interfazUsuarios->suscribirEmpleado();
+                            cout << "Suscripcion exitosa" << endl;
+                        }
+                        else
+                        {
+                            cout << "Se ha cancelado la suscripcion" << endl;
+                        }
                     }
                     else
                     {
@@ -1142,10 +1163,116 @@ int main()
             }
             case 21:
             {
-                
+                IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
+                map<string, string> lista = interfazUsuarios->getListaEmpleados();
+                if (lista.size() == 0)
+                {
+                    cout << "No hay empleados registrados." << endl;
+                    break;
+                }
+                map<string,string>::iterator it = lista.begin();
+                cout << "Lista de Empleados" << endl;
+                int i = 1;
+                for (; it != lista.end(); it++)
+                {
+                    cout << i << ". " << it->first << endl;
+                    i++;
+                }
+                cout << "Escriba el nombre del empleado a consultar: ";
+                string nombreEmpleado;
+
+                bool nombreExiste = false;
+                while (!nombreExiste)
+                {
+                    getline(cin, nombreEmpleado);
+                    if (lista.find(nombreEmpleado) != lista.end())
+                    {
+                        nombreExiste = true;
+                    }
+                    else 
+                    {
+                        cout << "Empleado no existe, por favor elija un empleado de la lista: ";
+                    }
+                }
+                string emailEmpleado = lista.find(nombreEmpleado)->second;
+                interfazUsuarios->seleccionarEmpleado(emailEmpleado);
+                vector<DTNotificacion> notis = interfazUsuarios->listaNotificaciones();
+                vector<DTNotificacion>::iterator iter = notis.begin();
+                if (notis.size() == 0)
+                {
+                    cout << "No hay notificaciones para ese empleado" << endl;
+                    break;
+                }
+                for (; iter != notis.end(); it++)
+                {
+                    cout << "Autor: " << iter->getAutor() << endl;
+                    cout << "Puntaje: " << iter->getPuntaje() << endl;
+                    cout << "Comentario: " << iter->getComentario() << endl;
+                    cout << endl;
+                }
+
             }
+            case 22:
+            {
+                IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
+                map<string, string> lista = interfazUsuarios->getListaEmpleados();
+                if (lista.size() == 0)
+                {
+                    cout << "No hay empleados registrados." << endl;
+                    break;
+                }
+                map<string,string>::iterator it = lista.begin();
+                cout << "Lista de Empleados" << endl;
+                int i = 1;
+                for (; it != lista.end(); it++)
+                {
+                    cout << i << ". " << it->first << endl;
+                    i++;
+                }
+                cout << "Escriba el nombre del empleado a desuscribir: ";
+                string nombreEmpleado;
 
+                bool nombreExiste = false;
+                while (!nombreExiste)
+                {
+                    getline(cin, nombreEmpleado);
+                    if (lista.find(nombreEmpleado) != lista.end())
+                    {
+                        nombreExiste = true;
+                    }
+                    else 
+                    {
+                        cout << "Empleado no existe, por favor elija un empleado de la lista: ";
+                    }
+                }
+                string emailEmpleado = lista.find(nombreEmpleado)->second;
+                interfazUsuarios->seleccionarEmpleado(emailEmpleado);
 
+                cout << "Desea confirmar la desuscripcion?" << endl << "(1) Si" << endl << "(2) No" << endl;
+                bool incorrecto = true;
+                while (incorrecto)
+                {
+                    string fin;
+                    cin >> fin;
+                    if (fin == "1" || fin == "2")
+                    {
+                        incorrecto = false;
+                        if (fin == "1")
+                        {
+                            interfazUsuarios->eliminarEmpleado();
+                            cout << "Operacion exitosa" << endl;
+                        }
+                        else
+                        {
+                            cout << "Se ha cancelado la desuscripcion" << endl;
+                        }
+                    }
+                    else
+                    {
+                        cout << "Por favor, elija una opcion correcta" << endl;
+                    }
+                }
+            }
             default:
                 {
                     cout << "Por favor ingrese un numero valido" << endl;

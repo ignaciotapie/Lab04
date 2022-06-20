@@ -15,7 +15,8 @@ class Estadia;
 class Calificacion;
 class Notificacion;
 class Hostal;
-class DTUsuario;
+class DTHuesped;
+class DTEmpleado;
 class DTNotificacion;
 class DTCalificacion;
 
@@ -40,7 +41,6 @@ class Usuario {
         string getEmail();
         string getNombre();
         string getPassword();
-        virtual DTUsuario getDTUsuario();
 };
 
 class Huesped : public Usuario {
@@ -49,16 +49,17 @@ class Huesped : public Usuario {
         bool esFinger;
         map<int,ReservaIndividual*> r;
         map<int,ReservaGrupal*> rg;
-        map<int,Estadia*> e;
+        set<Estadia*> e;
     public:
         Huesped(string nombre, string email, string password, bool esFinger);
-        DTUsuario getDTUsuario();
+        DTHuesped getDTHuesped();
         set<int> getCodigosReservas();
         bool getEsFinger();
 
         
         void finalizarEstadia();
         void addReserva(Reserva* reserva);
+        void agregarEstadia(Estadia* e);
 };
 
 class Empleado : public Usuario, public Observer {
@@ -79,7 +80,7 @@ class Empleado : public Usuario, public Observer {
         void setHostal(Hostal* hostal) {this->hostal = hostal;}
 
 
-        DTUsuario getDTUsuario();
+        DTEmpleado getDTEmpleado();
         void notificarCalificacion(Notificacion*);
         vector<DTNotificacion> getNotificaciones();
         void setRespuestaEmpleado(RespuestaEmpleado*);

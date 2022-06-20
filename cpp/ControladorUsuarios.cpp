@@ -90,12 +90,12 @@ Huesped* ControladorUsuarios::getHuesped(string emailUsuario)
 set<string> ControladorUsuarios::getUsuarios()
 {
     map<string,Usuario*>::iterator it = usuarios.begin();
-    set<string> nombres;
+    set<string> mails;
     for (; it != usuarios.end(); it++)
     {
-        nombres.insert(it->second->getNombre());
+        mails.insert(it->second->getEmail());
     }
-    return nombres;
+    return mails;
 }
 
 void ControladorUsuarios::seleccionarUsuario(string){}
@@ -125,17 +125,23 @@ void ControladorUsuarios::registrarEstadia(){
 	cr->registrarEstadia(this->codigoReserva, hues); //mandar la funcion de controldorReservas
 }
 
-
-DTUsuario ControladorUsuarios::listarDatos(){
-    map<string,Usuario*>::iterator ite = this->usuarios.find(this->usuarioSeleccionado);
-    return (*ite).second->getDTUsuario();
+void ControladorUsuarios::finalizarConsultaUsuario(){}
+void ControladorUsuarios::eliminarEmpleado()
+{
+    set<Empleado*>::iterator observer = observers.begin();
+    while ((observer != observers.end()) && ((*observer)->getEmail() != emailEmpleadoASuscribir))
+    {
+        observer++;
+    }
+    if (observer != observers.end())
+            observers.erase(observer);
 }
 
-void ControladorUsuarios::finalizarConsultaUsuario(){}
-void ControladorUsuarios::eliminarEmpleado(){}
 vector<DTNotificacion> ControladorUsuarios::listaNotificaciones()
 {
-    return vector<DTNotificacion>();
+    vector<DTNotificacion> notisReturn;
+    Empleado* e = empleados.find(emailEmpleadoASuscribir)->second;
+    return e->getNotificaciones();
 }
 void ControladorUsuarios::finalizarConsultaNotis(){}
 void ControladorUsuarios::finalizarEliminacion(){}
@@ -162,26 +168,40 @@ void ControladorUsuarios::notificarObservadores(Notificacion* n)
     }
 }
 
-set<string> ControladorUsuarios::getListaEmpleados()
+map<string, string> ControladorUsuarios::getListaEmpleados()
 {
-    set<string> listaEmpleados;
+    map<string, string> listaEmpleados;
     map<string, Empleado*>::iterator it = empleados.begin();
     for (; it != empleados.end(); it++)
     {
-        listaEmpleados.insert(it->second->getNombre());
+        listaEmpleados.insert({it->first, it->second->getNombre()});
     }
     return listaEmpleados;
 }
 
-void ControladorUsuarios::seleccionarEmpleado(string nombre)
+void ControladorUsuarios::seleccionarEmpleado(string email)
 {
-    nombreEmpleadoASuscribir = nombre;
+    emailEmpleadoASuscribir = email;
 }
 void ControladorUsuarios::suscribirEmpleado()
 {
-    observers.insert(empleados.find(nombreEmpleadoASuscribir)->second);
+    observers.insert(empleados.find(emailEmpleadoASuscribir)->second);
 }
 void ControladorUsuarios::finalizarSuscripcion()
 {
 
+}
+
+bool ControladorUsuarios::esEmp(){
+    return (this->empleados.find(this->usuarioSeleccionado) != this->empleados.end());
+}
+
+DTEmpleado ControladorUsuarios::getDTEmpleado(){
+    map<string,Empleado*>::iterator ite = this->empleados.find(this->usuarioSeleccionado);
+    return (*ite).second->getDTEmpleado();
+}
+
+DTHuesped ControladorUsuarios::getDTHuesped(){
+    map<string,Huesped*>::iterator ite = this->huespedes.find(this->usuarioSeleccionado);
+    return (*ite).second->getDTHuesped();
 }
