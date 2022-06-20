@@ -80,8 +80,15 @@ vector<DTEstadia> Reserva::getEstadiasFinalizadas(string emailHuesped){
     return res;
 }
 Estadia* Reserva::getEstadia(string emailHuesped){
-    Estadia* est = this->estadias.find(emailHuesped);
-    return est;
+    set<Estadia*> es = this->getEstadias();
+    set<Estadia*>::iterator itr;
+    Estadia* res;
+    for (itr = es.begin(); itr != es.end(); ++itr) {
+        if ((*itr)->esHues(emailHuesped)){
+            res = *itr;
+        }
+    }
+    return res;
 }
 vector<DTEstadia> Reserva::getDTEstadias(){
     set<Estadia*>::iterator itr;
