@@ -1036,9 +1036,11 @@ int main()
 
                 //getDTHostal
                 DTHostal h = interfazHostales->getDTHostal();
-                cout << "Nombre:" << h.getNombre() << endl;
-                cout << "Direccion:" << h.getDireccion() << endl;
-                cout << "Telefono:" << h.getTelefono() << endl;
+                cout << "Nombre: " << h.getNombre() << endl;
+                cout << "Direccion :" << h.getDireccion() << endl;
+                cout << "Telefono :" << h.getTelefono() << endl;
+                cout << "Promedio de calificaciones: " << h.getPromCalif() << endl;
+
 
                 //finalizarConsultaHostal
                 interfazHostales->finalizarConsultaHostal();
