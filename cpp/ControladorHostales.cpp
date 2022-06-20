@@ -128,36 +128,44 @@ void ControladorHostales::cancelarAltaHabitacion(){
 //Consulta Top 3 Hostales
 set<string> ControladorHostales::getTop3Hostales(){
     set<string> res;
-	float prom = 0;
-	float prom1 = 0;
-	float prom2 = 0;
-	float prom3 = 0;
-	Hostal* h1 = NULL;
-	Hostal* h2 = NULL;
-	Hostal* h3 = NULL;
-	for (map<string,Hostal*>::iterator it =  hostales.begin(); it != hostales.end(); it++){
-		prom = it->second->getPromedioPuntaje();
-		if (prom > prom1){
-			prom3 = prom2;
-			prom2 = prom1;
-			prom1 = prom;
-			h3 = h2;
-			h2 = h1;
-			h1 = it->second;
-		}else if (prom > prom2){
-			prom3 = prom2;
-			prom2 = prom;
-			h3 = h2;
-			h2 = it->second;
-		}else if (prom > prom3){
-			prom3 = prom;
-			h3 = it->second;
-		}
-	}	
-	res.insert(h1->getNombreHostal());
-	res.insert(h2->getNombreHostal());
-	res.insert(h3->getNombreHostal());
-	return res;
+    if (!hostales.empty()){
+	    float prom = 0;
+	    float prom1 = 0;
+	    float prom2 = 0;
+	    float prom3 = 0;
+	    Hostal* h1 = NULL; 
+	    Hostal* h2 = NULL;
+	    Hostal* h3 = NULL;
+    	for (map<string,Hostal*>::iterator it =  hostales.begin(); it != hostales.end(); it++){
+	    	prom = it->second->getPromedioPuntaje();
+		    if (prom > prom1){
+			    prom3 = prom2;
+			    prom2 = prom1;
+    			prom1 = prom;
+	    		h3 = h2;
+		    	h2 = h1;
+			    h1 = it->second;
+		    }else if (prom > prom2){
+		    	prom3 = prom2;
+		    	prom2 = prom;
+		    	h3 = h2;
+		    	h2 = it->second;
+		    }else if (prom > prom3){
+			    prom3 = prom;
+			    h3 = it->second;
+	    	}
+	    }
+        if (h1!=NULL){	
+	        res.insert(h1->getNombreHostal());
+        }
+        if (h2!=NULL){
+	        res.insert(h2->getNombreHostal());
+        }
+        if (h3!=NULL){
+            res.insert(h3->getNombreHostal());
+        }
+    } 
+    return res;
 
 }
 vector<DTCalificacion> ControladorHostales::getDetallesHostal(string){
