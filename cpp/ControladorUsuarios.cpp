@@ -197,3 +197,7 @@ void ControladorUsuarios::finalizarSuscripcion()
 {
 
 }
+
+bool ControladorUsuarios::esEmp(){
+    return (this->empleados.find(this->usuarioSeleccionado) != this->empleados.end());
+}
