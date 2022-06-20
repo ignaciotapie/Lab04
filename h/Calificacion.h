@@ -35,6 +35,8 @@ class Calificacion{
         bool noEstaRespuesta();
         DTCalificacion getDTCalificacion();
         void setComentarioCalificacion(string, Empleado*, Calificacion*);
+        //baja reserva
+        void eliminarCalificacion();
 };
 
 #endif
