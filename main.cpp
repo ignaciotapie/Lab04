@@ -320,8 +320,13 @@ int main()
                         if (fin == "1" || fin == "2")
                         {
                             incorrecto = false;
-                            if (fin == "1")
+                            if (fin == "1"){
+                                if (interfazHostales->checkearHab(numero)){
+                                    cout << "Ya existe una habitacion registrada con ese numero" << endl;
+                                    break;
+                                }
                                 interfazHostales->confirmarAltaHabitacion();
+                            }
                             else
                                 interfazHostales->cancelarAltaHabitacion();
                         }
