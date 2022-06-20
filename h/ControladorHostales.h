@@ -40,7 +40,7 @@ class ControladorHostales : public IHostales{
 
 
 		//Caso de uso: Alta de Hostal
-		void setHostalInfo(string nombre, string direccion, int telefono);
+		void setHostalInfo(string nombre, string direccion, string telefono);
 		void confirmarAltaHostal();
 		void cancelarAltaHostal();
 

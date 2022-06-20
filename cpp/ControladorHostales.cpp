@@ -230,7 +230,7 @@ Hostal* ControladorHostales::getHostal(string nombreHostal){
 void ControladorHostales::cargaDatos()
 {
     //Hostales
-    Hostal* finger = new Hostal("La posada del finger", "Av de la playa 123, Maldonado", 9911111);
+    Hostal* finger = new Hostal("La posada del finger", "Av de la playa 123, Maldonado", "09911111");
     hostales.insert({finger->getNombreHostal(), finger});
     
 }
