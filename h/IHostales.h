@@ -41,6 +41,7 @@ class IHostales{
 		virtual void seleccionarHostalParaReserva(string nombreHostal, Fecha checkIn, Fecha checkOut, bool esReservaGrupal) = 0;
 		virtual void seleccionarHuesped(string nombreHuesped) = 0;
 		virtual bool existeHostal(string nombreHostal) = 0;
+		virtual bool checkearHab(int) = 0;
 
 		virtual void cargaDatos() = 0;
 };

@@ -34,6 +34,7 @@ class Hostal{
         //string getNombreHostal();
         void nuevaHabitacion(int numero, int precio, int capacidad, Hostal* h);
         DTHostal getDataHostal();
+        bool checkHab(int);
 
         //Caso de uso: Realizar Reserva
         set<int> getHabitacionesLibres(Fecha CheckIn, Fecha CheckOut);

@@ -161,3 +161,7 @@ Habitacion* Hostal::getHabitacion(int num)
 {
     return habitaciones.find(num)->second;
 }
+
+bool Hostal::checkHab(int h){
+    return this->habitaciones.find(h) != this->habitaciones.end();
+}

@@ -263,6 +263,6 @@ void ControladorHostales::cargaDatos()
 
 }
 
-map<string,Hostal*> ControladorHostales::hostalesCont(){
-    return this->hostales;
+bool ControladorHostales::checkearHab(int h){
+    this->hostales;
 }
