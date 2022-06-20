@@ -747,7 +747,7 @@ int main()
                         ++i;
                     }
                 }
-6                break;
+                break;
             }
             case 7:
             {
