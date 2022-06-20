@@ -98,7 +98,9 @@ set<string> ControladorUsuarios::getUsuarios()
     return mails;
 }
 
-void ControladorUsuarios::seleccionarUsuario(string){}
+void ControladorUsuarios::seleccionarUsuario(string u){
+    this->usuarioSeleccionado = u;
+}
 
 //Registrar Estadia
 set<string> ControladorUsuarios::getHostales(){

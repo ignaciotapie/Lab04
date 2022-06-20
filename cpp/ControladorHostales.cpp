@@ -116,7 +116,6 @@ void ControladorHostales::altaHabitacion(int numero, int precio, int capacidad){
 }
 void ControladorHostales::confirmarAltaHabitacion(){
    map<string,Hostal*>::iterator ite = this->hostales.find(this->hostalSeleccionado);
-   map<int, Reserva*> res;
     (*ite).second->nuevaHabitacion(this->numeroHab, this->precioHab, this->capacidadHab, (*ite).second);
 }
 

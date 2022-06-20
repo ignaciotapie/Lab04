@@ -299,6 +299,8 @@ int main()
                         }
                     }
 
+                    interfazHostales->seleccionarHostal(nombreHostal);
+
                     //altaHabitacion
                     int numero, precio, capacidad;
                     cout << "Ingrese numero" << endl;
