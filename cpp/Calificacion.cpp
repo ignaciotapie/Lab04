@@ -5,11 +5,11 @@
 #include "../h/Reserva.h"
 #include "../h/RespuestaEmpleado.h"
 #include "../h/Notificacion.h"
+#include "../h/Hostal.h"
 
-Calificacion::Calificacion(int i, string c, Fecha f, Estadia* e, Hostal* h, RespuestaEmpleado* emp){
+Calificacion::Calificacion(int i, string c, Estadia* e, Hostal* h, RespuestaEmpleado* emp){
     this->puntaje = i;
     this->comentario = c;
-    this->fecha = f;
     this->estadia = e;
     this->hostal = h;
     this->respuestaEmpleados = emp;
@@ -37,11 +37,19 @@ bool Calificacion::noEstaRespuesta(){
     return this->respuestaEmpleados == NULL;
 }
 DTCalificacion Calificacion::getDTCalificacion(){
-    DTCalificacion res(this->puntaje, this->comentario, this->fecha, this->estadia->getHuesped()->getEmail(), this->estadia->getReserva()->getCodigoReserva());
+    DTCalificacion res(this->puntaje, this->comentario, this->estadia->getHuesped()->getEmail(), this->estadia->getReserva()->getCodigoReserva());
     return res;
 }
 void Calificacion::setComentarioCalificacion(string mensaje, Empleado* empleado, Calificacion* calificacion){
     RespuestaEmpleado res(mensaje, empleado, calificacion);
     empleado->setRespuestaEmpleado(&res);
     this->respuestaEmpleados = &res;
+}
+
+void Calificacion::eliminarCalificacion(){
+    hostal->eliminarCalificacion(this);
+    respuestaEmpleados->eliminarRespuesta();
+    respuestaEmpleados->~RespuestaEmpleado();
+//Que tan bien anda el destructor si no lo defini en la clase? (usa el por defecto supongo)
+//ELIMINAR NOTIFICACIOOOON
 }

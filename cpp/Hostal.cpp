@@ -5,19 +5,23 @@
 #include "../h/Usuario.h"
 #include "../h/DTCalificacion.h"
 #include "../h/DTEstadia.h"
+<<<<<<< HEAD
 #include "../h/DTHabitacion.h"
+=======
+#include "../h/DTReserva.h"
+>>>>>>> parent of 1a07fd2 (Revert "consulta y baja reserva")
 
 Hostal::Hostal(){
 }
 
-Hostal::Hostal(string nombreHostal, string direccion, string telefono)
+Hostal::Hostal(string nombreHostal, string direccion, int telefono)
 {
     this->nombreHostal = nombreHostal;
     this->direccion = direccion;
     this->telefono = telefono;
 }
 
-Hostal::Hostal(string nombreHostal, string direccion, string telefono, map<int, Habitacion*> habitaciones, set<Calificacion*> calificaciones, map<string, Empleado*> empleados){
+Hostal::Hostal(string nombreHostal, string direccion, int telefono, map<int, Habitacion*> habitaciones, set<Calificacion*> calificaciones, map<string, Empleado*> empleados){
 	this->nombreHostal = nombreHostal;
 	this->direccion = direccion;
 	this->telefono = telefono;
@@ -34,7 +38,7 @@ const string Hostal::getDireccion() const{
     return this->direccion;
 }
 
-const string Hostal::getTelefono() const {
+const int Hostal::getTelefono() const {
     return this->telefono;
 }
 
@@ -54,19 +58,15 @@ void Hostal::agregarCalificacion(Calificacion* c){
     this->calificaciones.insert(c);
 }
 
-const float Hostal::getPromedioPuntaje() const{
-    float sum = 0;
-	float iteraciones = 0;
+const int Hostal::getPromedioPuntaje() const{
+    int sum = 0;
+	int iteraciones = 0;
     set<Calificacion*>::iterator iter;
 	for(iter = this->calificaciones.begin(); iter != this->calificaciones.end(); iter++ ) {
 		sum = sum + (*iter)->getPuntaje();
 		iteraciones++;
 	}
-	if (iteraciones == 0){
-        return 0;
-    }else{
-	    return sum/iteraciones;
-    }
+	return sum/iteraciones;
 }
 
  
@@ -80,9 +80,7 @@ vector<DTCalificacion> Hostal::getDetalles(){
 	return res;
 }
 
-void Hostal::nuevaHabitacion(int numero, int precio, int capacidad, Hostal* h){
-    Habitacion* nueva = new Habitacion(numero, precio, capacidad, h);
-    this->habitaciones.insert(pair<int,Habitacion*>(numero, nueva));
+void Hostal::nuevaHabitacion(int, int, int){
 
 }
 
@@ -136,7 +134,7 @@ vector<DTEstadia> Hostal::getDTEstadias(){
 
 void Hostal::asignarEmpleado(Empleado* empleado)
 {
-	empleados.insert(pair<string, Empleado*>(empleado->getEmail(), empleado));
+	empleados.insert(pair<string, Empleado*>(empleado->getNombre(), empleado));
 }
 
 void Hostal::reservarHabitacion(Reserva* reserva, int habitacion)
@@ -158,11 +156,40 @@ set<int> Hostal::getHabitacionesLibres(Fecha CheckIn, Fecha CheckOut)
     return habitacionesLibres;
 }
 
-Habitacion* Hostal::getHabitacion(int num)
-{
-    return habitaciones.find(num)->second;
+//consultar reserva
+vector<DTReserva> Hostal::listarReservasDeHostal(){
+    map<int, Habitacion*> hs = this->getHabitaciones();
+    map<int, Habitacion*>::iterator itr;
+    vector<DTReserva> res;
+    for (itr = hs.begin(); itr != hs.end(); ++itr) {
+        vector<DTReserva> aux = itr->second->getDataReservaDeHabitacion();
+        vector<DTReserva>::iterator itr2;
+        for (itr2 = aux.begin(); itr2 != aux.end(); ++itr){
+            res.emplace_back(*itr2);
+        }
+        aux.~vector();
+    }
+    return res;
 }
 
-bool Hostal::checkHab(int h){
-    return this->habitaciones.find(h) != this->habitaciones.end();
+//baja reserva
+set<int> Hostal::listarCodigoReservasDeHostal(){
+    map<int, Habitacion*> hs = this->getHabitaciones();
+    map<int, Habitacion*>::iterator itr;
+    set<int> res;
+    for (itr = hs.begin(); itr != hs.end(); ++itr) {
+        set<int> aux = itr->second->listarCodigoReservasDeHabitacion();
+        set<int>::iterator itr2;
+        for (itr2 = aux.begin(); itr2 != aux.end(); ++itr){
+            res.insert(*itr2);
+        }
+        aux.~set();
+    }
+    return res;
+}
+
+void Hostal::eliminarCalificacion(Calificacion* calificacionEliminar){
+    set<Calificacion*>::iterator it;
+    it = calificaciones.find(calificacionEliminar);
+    calificaciones.erase(it);
 }

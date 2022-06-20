@@ -48,15 +48,18 @@ class ControladorReservas : public IReservas
 		DTReserva getDTReserva();
 		void finConsultaEstadia();
 		set<string> getHostales();
-		bool existeCalificacion();
-		bool existeRespuestaEmpleado();
-		string getRespuestaEmpleado();
+
 
 		//Caso de uso: Realizar Reserva
 		void addReserva(Reserva* r);
 		int getCodigoReservaACrear();
 
-		void cargaDatos();		
+		//consultar reservas
+		vector<DTReserva> listarReservasDeHostal(string nombreHostal);
+		//baja reserva
+		set<int> listarCodigoReservasDeHostal(string nombreHostal);
+		void confirmarBajaReserva();
+		void seleccionarReserva(int);
 };
 
 #endif

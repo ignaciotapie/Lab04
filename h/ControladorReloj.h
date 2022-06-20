@@ -18,7 +18,6 @@ class ControladorReloj: public IReloj {
 		
 		Fecha getFechaActual();
 		void modificarFecha(float hora, int dia, int mes, int anio);
-		void cargaDatos();		
 };
 
 #endif

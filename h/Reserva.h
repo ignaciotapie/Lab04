@@ -37,7 +37,8 @@ class Reserva{
         set<Estadia*> getEstadias();
         Huesped* getHuesped();
         void setCerradaReserva(Fecha, int, Reserva*, Huesped*);
-        DTReserva getDTReserva();
+        virtual DTReserva getDTReserva()=0;
+        void eliminarReservaDeHabitacion(int);
         //CalificarEstadia
         vector<DTEstadia> getEstadiasFinalizadas(string);
         Estadia* getEstadia(string);
@@ -56,12 +57,13 @@ class Reserva{
 
 class ReservaGrupal : public Reserva{
     private:
+        int cantHuesp;
         map<string, Huesped*> huespedesExtra;
     public:
         ReservaGrupal(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo);
-        ReservaGrupal(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, Habitacion* h);
         void agregarHuespedExtra(Huesped* huesped);
         void calcularCosto();
+        DTReserva getDTReserva();
 };
 
 class ReservaIndividual : public Reserva{
@@ -69,8 +71,8 @@ class ReservaIndividual : public Reserva{
 
     public:
         ReservaIndividual(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo);
-        ReservaIndividual(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, Habitacion* h);
         void calcularCosto();
+        DTReserva getDTReserva();
 };
 
 #endif

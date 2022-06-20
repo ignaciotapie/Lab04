@@ -12,6 +12,7 @@ class Hostal;
 class Reserva;
 class Fecha;
 class DTEstadia;
+class DTReserva;
 
 class Habitacion{
     private:
@@ -22,7 +23,7 @@ class Habitacion{
         map<int, Reserva*> reservas;
     public:
         Habitacion();
-        Habitacion(int, int, int, Hostal*);
+        Habitacion(int, int, int, Hostal*, map<int, Reserva*>);
         int getNumero();
         int getCapacidad();
         int getPrecio();
@@ -30,6 +31,11 @@ class Habitacion{
         map<int, Reserva*> getReservas();
         void addReserva(Reserva*);
         bool isReservado(Fecha checkIn, Fecha checkOut);
+        //consultar reserva
+        vector<DTReserva> getDataReservaDeHabitacion();
+        //baja reserva
+        set<int> listarCodigoReservasDeHabitacion();
+        void eliminarReservaDeHabitacion(int);
         //CalificarEstadia
         vector<DTEstadia> getEstadiasFinalizadas(string);
         //ConsultaEstadia
