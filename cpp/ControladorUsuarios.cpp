@@ -90,12 +90,12 @@ Huesped* ControladorUsuarios::getHuesped(string emailUsuario)
 set<string> ControladorUsuarios::getUsuarios()
 {
     map<string,Usuario*>::iterator it = usuarios.begin();
-    set<string> nombres;
+    set<string> mails;
     for (; it != usuarios.end(); it++)
     {
-        nombres.insert(it->second->getNombre());
+        mails.insert(it->second->getEmail());
     }
-    return nombres;
+    return mails;
 }
 
 void ControladorUsuarios::seleccionarUsuario(string){}
