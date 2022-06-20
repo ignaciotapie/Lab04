@@ -16,6 +16,7 @@ class DTCalificacion;
 class Reserva;
 class DTEstadia;
 class DTHostal;
+class DTReserva;
 
 class Hostal{
     private:

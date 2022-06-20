@@ -12,6 +12,7 @@ class Hostal;
 class Reserva;
 class Fecha;
 class DTEstadia;
+class DTReserva;
 
 class Habitacion{
     private:

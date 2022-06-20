@@ -1,4 +1,5 @@
 #include "../h/RespuestaEmpleado.h"
+#include "../h/Usuario.h"
 
 RespuestaEmpleado::RespuestaEmpleado(string mensaje, Empleado* emp, Calificacion* cali){
     this->mensaje = mensaje;

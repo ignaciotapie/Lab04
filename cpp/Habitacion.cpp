@@ -2,6 +2,7 @@
 #include "../h/Reserva.h"
 #include "../h/Fecha.h"
 #include "../h/DTEstadia.h"
+#include "../h/DTReserva.h"
 
 #include <iterator>
 #include <vector>
