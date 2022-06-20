@@ -1045,37 +1045,58 @@ int main()
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
 
                 set<string> allUsers = interfazUsuarios->getUsuarios();
+
+                if (allUsers.empty()){
+                    cout << "No hay usuarios registrados" << endl;
+                    break;
+                }
+                else{
                 int i = 1;
                 for(set<string>::iterator it = allUsers.begin(); it != allUsers.end(); ++it)
-                {
-                    cout << i << ". " << *it << endl;
-                    ++i;
-                }
-                string nombreUsuario;
-                bool nombreUsuarioValido = false;
-                cout << "Ingrese nombre del usuario\n";
-                while (!nombreUsuarioValido)
-                {
-                    cin.ignore();
-                    getline(cin, nombreUsuario);
-
-                    if (allUsers.find(nombreUsuario) != allUsers.end())
                     {
-                        nombreUsuarioValido = true;
+                        cout << i << ". " << *it << endl;
+                        ++i;
                     }
-                    else
+                    string mailUsuario;
+                    bool mailUsuarioValido = false;
+                    cout << "Ingrese mail del usuario\n";
+                    while (!mailUsuarioValido)
                     {
-                        cout << "Por favor, escriba un usuario que este en la lista." << endl;
+                        cin.ignore();
+                        getline(cin, mailUsuario);
+
+                        if (allUsers.find(mailUsuario) != allUsers.end())
+                        {
+                            mailUsuarioValido = true;
+                     }
+                        else
+                        {
+                            cout << "Por favor, escriba un usuario que este en la lista." << endl;
+                        }
+                    }
+
+                    //seleccionarUsuario
+                    interfazUsuarios->seleccionarUsuario(mailUsuario);
+
+                    //listarDatos
+                    if (interfazUsuarios->esEmp()){
+                        DTEmpleado e = interfazUsuarios->getDTEmpleado();
+                        cout << "Email: " << e.getEmail() << endl;
+                        cout << "Nombre: " << e.getNombre() << endl;
+                        cout << "Cargo: " << e.getCargo() << endl;
+                    }
+                    else{
+                        DTHuesped h = interfazUsuarios->getDTHuesped();
+                        cout << "Email: " << h.getEmail() << endl;
+                        cout << "Nombre: " << h.getNombre() << endl;
+                        if (h.getEsFinger()){
+                            cout << "Es finger: Si" << endl;
+                        }
+                        else{
+                            cout << "Es finger: No" << endl;
+                        }
                     }
                 }
-
-                //seleccionarUsuario
-                interfazUsuarios->seleccionarUsuario(nombreUsuario);
-
-                //listarDatos
-                DTUsuario u = interfazUsuarios->listarDatos();
-                
-
                 break;
             }
             case 20:

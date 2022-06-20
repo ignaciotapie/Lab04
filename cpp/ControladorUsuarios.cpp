@@ -90,12 +90,12 @@ Huesped* ControladorUsuarios::getHuesped(string emailUsuario)
 set<string> ControladorUsuarios::getUsuarios()
 {
     map<string,Usuario*>::iterator it = usuarios.begin();
-    set<string> nombres;
+    set<string> mails;
     for (; it != usuarios.end(); it++)
     {
-        nombres.insert(it->second->getNombre());
+        mails.insert(it->second->getEmail());
     }
-    return nombres;
+    return mails;
 }
 
 void ControladorUsuarios::seleccionarUsuario(string){}
@@ -123,12 +123,6 @@ void ControladorUsuarios::registrarEstadia(){
 	Huesped* hues = huespedes.find(this->emailHuesped)->second;
     ControladorReservas* cr = ControladorReservas::getInstance();
 	cr->registrarEstadia(this->codigoReserva, hues); //mandar la funcion de controldorReservas
-}
-
-
-DTUsuario ControladorUsuarios::listarDatos(){
-    map<string,Usuario*>::iterator ite = this->usuarios.find(this->usuarioSeleccionado);
-    return (*ite).second->getDTUsuario();
 }
 
 void ControladorUsuarios::finalizarConsultaUsuario(){}
@@ -196,4 +190,18 @@ void ControladorUsuarios::suscribirEmpleado()
 void ControladorUsuarios::finalizarSuscripcion()
 {
 
+}
+
+bool ControladorUsuarios::esEmp(){
+    return (this->empleados.find(this->usuarioSeleccionado) != this->empleados.end());
+}
+
+DTEmpleado ControladorUsuarios::getDTEmpleado(){
+    map<string,Empleado*>::iterator ite = this->empleados.find(this->usuarioSeleccionado);
+    return (*ite).second->getDTEmpleado();
+}
+
+DTHuesped ControladorUsuarios::getDTHuesped(){
+    map<string,Huesped*>::iterator ite = this->huespedes.find(this->usuarioSeleccionado);
+    return (*ite).second->getDTHuesped();
 }
