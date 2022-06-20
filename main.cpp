@@ -511,7 +511,7 @@ int main()
                 cout << "Mes (Formato M/MM): ";
                 int mesCheckIn = CheckIntCin();
                 cout << endl;
-                cout << "Anio (Formato YYYY): ";
+                cout << "Anio: ";
                 int anioCheckIn = CheckIntCin();
                 cout << endl;
 
