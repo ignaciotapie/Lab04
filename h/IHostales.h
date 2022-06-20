@@ -26,7 +26,7 @@ class IHostales{
 		virtual set<string> getTop3Hostales() = 0;
 		virtual vector<DTCalificacion> getDetallesHostal(string) = 0;
 		virtual void finalizarConsultaHostal() = 0;
-		virtual void setHostalInfo(string, string, int) = 0;
+		virtual void setHostalInfo(string, string, string) = 0;
 		virtual void cancelarAltaHostal() = 0;
 		virtual void confirmarAltaHostal() = 0;
 		virtual void asignarEmpleado(string, CargoEmpleado) = 0;

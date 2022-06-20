@@ -33,7 +33,7 @@ const string Hostal::getDireccion() const{
     return this->direccion;
 }
 
-const int Hostal::getTelefono() const {
+const string Hostal::getTelefono() const {
     return this->telefono;
 }
 
