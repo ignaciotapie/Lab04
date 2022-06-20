@@ -1089,10 +1089,21 @@ int main()
 
                     //listarDatos
                     if (interfazUsuarios->esEmp()){
-                        DTEmpleado e = getDTEmpleado();
+                        DTEmpleado e = interfazUsuarios->getDTEmpleado();
+                        cout << "Email: " << e.getEmail() << endl;
+                        cout << "Nombre: " << e.getNombre() << endl;
+                        cout << "Cargo: " << e.getCargo() << endl;
                     }
                     else{
-                        DTHuesped h = getDTHuesped();
+                        DTHuesped h = interfazUsuarios->getDTHuesped();
+                        cout << "Email: " << h.getEmail() << endl;
+                        cout << "Nombre: " << h.getNombre() << endl;
+                        if (h.getEsFinger()){
+                            cout << "Es finger: Si" << endl;
+                        }
+                        else{
+                            cout << "Es finger: No" << endl;
+                        }
                     }
 
                 }
