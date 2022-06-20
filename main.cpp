@@ -520,15 +520,21 @@ int main()
                 float horaCheckOut;
                 cin >> horaCheckOut;
                 cout << endl;
-                cout << "Dia: ";
+                cout << "Dia (Formato D/DD): ";
                 int diaCheckOut = CheckIntCin();
                 cout << endl;
-                cout << "Mes: ";
+                cout << "Mes (Formato M/MM): ";
                 int mesCheckOut = CheckIntCin();
                 cout << endl;
-                cout << "Anio: ";
+                cout << "Anio (Formato YYYY): ";
                 int anioCheckOut = CheckIntCin();
                 cout << endl;
+
+                if (Fecha(horaCheckOut,diaCheckOut,mesCheckOut, anioCheckOut).before(Fecha(horaCheckIn,diaCheckIn,mesCheckIn,anioCheckIn)))
+                {
+                    cout << "ERROR: El check-in no puede ser anterior al check-out" << endl;
+                    break;
+                }
 
                 bool esReservaGrupal = false;
                 cout << "Es Reserva Grupal?\n" << "(1) Si\n" << "(2) No\n";
@@ -625,6 +631,8 @@ int main()
                 }
                 cout << "Datos de la reserva:" << endl;
                 cout << "Hostal: " << nombreHostal << endl;
+                cout << "Check-in: " << diaCheckIn << "/" << mesCheckIn << "/" <<  anioCheckIn << " " << horaCheckIn << endl;
+                cout << "Check-in: " << diaCheckOut << "/" << mesCheckOut << "/" <<  anioCheckOut << " " << horaCheckOut << endl;
                 cout << "Es reserva grupal: " << (esReservaGrupal ? "Si" : "No") << endl;
                 cout << "Huespedes: " << endl;
                 for (set<string>::iterator huespedIt = nombreHuespedes.begin(); huespedIt != nombreHuespedes.end(); huespedIt++)
