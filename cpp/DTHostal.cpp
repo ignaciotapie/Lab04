@@ -1,6 +1,5 @@
 #include "../h/DTHostal.h"
 #include "../h/Hostal.h"
-#include "../h/DTHabitacion.h"
 
 DTHostal::DTHostal(string nom, string dir, int tel, float prom){
     nombre = nom;
