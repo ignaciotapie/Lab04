@@ -48,30 +48,30 @@ int main()
     {
         std::cout << 
         "Ingrese un numero:\n" <<
-        "1. Agregar Usuario\n" << 
-        "2. Agregar Hostal\n" << 
-        "3. Agregar Habitacion\n" <<
+        "1. Alta de Usuario\n" << 
+        "2. Alta de Hostal\n" << 
+        "3. Alta de Habitacion\n" <<
         "4. Asignar Empleado a Hostal\n" <<
-        "5. Obtener Huespedes\n" << 
-        "6. Obtener Habitaciones\n" <<
-        "7. Registrar Reserva\n" << 
-        "8. Obtener Reservas\n" << 
-        "9. Salir\n" <<
+        "5. Registrar Reserva\n" << 
+        "6. Consulta top 3 de Hostales\n" << 
+        "7. Registrar Estadia\n" << 
+        "8. Finalizar Estadia\n" << 
+        "9. Calificar Estadia\n" << 
+        "10. Comentar Calificacion\n" << 
+        "11. Consulta de Usuario\n" << 
+        "12. Consulta de Hostal\n" << 
+        "13. Consulta de Reserva\n" << //no esta aun
+        "14. Consulta de Estadia\n" << 
+        "15. Baja de Reserva\n" << //no esta aun
+        "16. Subscribirse a notificaciones \n" <<
+        "17. Consultar notificaciones\n" << 
+        "18. Eliminar suscripcion\n"<< 
+        "19. Salir\n" << 
         endl <<
         "DEBUG:\n"
-        "10. Cargar Datos de Prueba\n" << 
-        "11. Ajustar Fecha\n" <<
-        "12. Calificar Estadia\n" <<
-        "13. Comentar Calificacion\n" <<
-        "14. Consulta Estadia\n" <<
-        "15. Consulta top 3 de Hostales\n" <<
-        "16. Registrar Estadia\n" <<
-        "17. Finalizar Estadia\n" <<
-        "18. Consulta Hostal\n" <<
-        "19. Consulta Usuario\n" <<
-        "20. Subscribirse a notificaciones \n" <<
-        "21. Consultar notificaciones\n" <<
-        "22. Eliminar suscripcion\n";
+        "20. Cargar Datos de Prueba\n" << 
+        "21. Ajustar Fecha\n";
+        
 
         int num = CheckIntCin();
         switch (num)
@@ -472,7 +472,7 @@ int main()
                 }
                 break;
             }
-            case 7:
+            case 5:
             {
                 IHostales* interfazHostales = fabrica->getIHostales();
                 vector<DTHostal> listaHostales = interfazHostales->getHostalesPlus();
@@ -645,167 +645,7 @@ int main()
                 interfazHostales->confirmarReserva();
                 break;
             }
-            case 9:
-                {
-                    loop = false;
-                    break;
-                }
-            case 11:
-            {
-                IReloj* interfazReloj = ControladorReloj::getInstance();
-                cout << "Ingrese la nueva fecha: " << endl;
-                cout << "Hora (Formato H.HH/HH.HH): ";
-                float hora;
-                cin >> hora;
-                cout << endl;
-                cout << "Dia: ";
-                int dia = CheckIntCin();
-                cout << endl;
-                cout << "Mes: ";
-                int mes = CheckIntCin();
-                cout << endl;
-                cout << "Anio: ";
-                int anio = CheckIntCin();
-                cout << endl;
-
-                interfazReloj->modificarFecha(hora,dia,mes,anio);
-                break;
-            }
-            case 12:
-            {
-                IHostales* ihostales = fabrica->getIHostales();
-                set<string> nombresHostales = ihostales->getHostales();
-                cout << "Nombres Hostales:" << endl;
-                set<string>::iterator itr;
-                for (itr = nombresHostales.begin(); itr != nombresHostales.end(); itr++){
-                    cout << *itr << endl;
-                }
-                IReservas* ireservas = fabrica->getIReservas();
-                cout << "Seleccione Hostal(Nombre Hostal):" << endl;
-                string hostalSeleccionado;
-                cin >> hostalSeleccionado;
-                ireservas->seleccionarHostal(hostalSeleccionado);
-                string emailEmpleado;
-                cout << "Ingresar Email Empleado:" << endl;
-                cin >> emailEmpleado;
-                vector<DTEstadia> estadiasFinalizadas = ireservas->getEstadiasFinalizadas(emailEmpleado);
-                vector<DTEstadia>::iterator itrEstadias;
-                for (itrEstadias = estadiasFinalizadas.begin(); itrEstadias != estadiasFinalizadas.end(); itrEstadias++){
-                    DTEstadia DTEst = *itrEstadias;
-                    cout << "Email Huesped: " << DTEst.getEmailHuesped() << endl;
-                    cout << "Codigo Reserva: " << DTEst.getCodigoReserva() << endl;
-                    cout << "CheckIn: " << DTEst.getCheckInReal().getDia() << "/" << DTEst.getCheckInReal().getMes() << "/" << DTEst.getCheckInReal().getAnio() << ":" << DTEst.getCheckInReal().getHora() << "hs." << endl;
-                    cout << "CheckOut: " << DTEst.getCheckOutReal().getDia() << "/" << DTEst.getCheckOutReal().getMes() << "/" << DTEst.getCheckOutReal().getAnio() << ":" << DTEst.getCheckOutReal().getHora() << "hs." << endl;
-                    cout << "Codigo Promo: " << DTEst.getPromo() << endl;
-                }
-                cout << "Seleccione Estadia(Codigo Reserva y luego Email Huesped):" << endl;
-                int codigoRes;
-                string emailHues;
-                cin >> codigoRes;
-                cin >> emailHues;
-                ireservas->seleccionarEstadia(codigoRes, emailHues);
-                cout << "Ingresar Comentario: " << endl;
-                string comentario;
-                cin >> comentario;
-                cout << "Ingresar Calificacion (1-5):" << endl;
-                int cal;
-                cin >> cal;
-                ireservas->setCalificacion(comentario, cal);
-                break;
-            }
-            case 13:
-            {
-                IReservas* ireservas = fabrica->getIReservas();
-                cout << "Ingrese Email Empleado:" << endl;
-                string emailEmpleado;
-                cin >> emailEmpleado;
-                vector<DTCalificacion> calificacionesSinResponder = ireservas->getCalificacionesSinResponder(emailEmpleado);
-                vector<DTCalificacion>::iterator itr;
-                cout << "Calificaciones" << endl;
-                for (itr = calificacionesSinResponder.begin(); itr != calificacionesSinResponder.end(); itr++){
-                    cout << "Codigo Reserva: " << itr->getCodigoReserva() << endl;
-                    cout << "Email Hueped: " << itr->getEmailHuesp() << endl;
-                    cout << "Puntaje: " << itr->getPuntaje() << endl;
-                    cout << "Comentario: " << itr->getComentario() << endl;
-                    cout << "Fecha: " << itr->getFecha().getDia() << "/" << itr->getFecha().getMes() << "/" << itr->getFecha().getAnio() << ":" << itr->getFecha().getHora() << "hs" << endl;
-                }
-                cout << "Seleccionar Calificacion (Codigo Reserva y Email Huesped):" << endl;
-                int codigoReserva;
-                string emailHuesped;
-                cin >> codigoReserva;
-                cin >> emailHuesped;
-                ireservas->setCalificacion(emailHuesped, codigoReserva);
-                break;
-            }
-            case 14:
-            {
-                IHostales* ihostales = fabrica->getIHostales();
-                IReservas* ireservas = fabrica->getIReservas();
-                set<string> nombresHostales = ihostales->getHostales();
-                set<string>::iterator itrHostales;
-                cout << "Hostales" << endl; 
-                for (itrHostales = nombresHostales.begin(); itrHostales != nombresHostales.end(); itrHostales++){
-                    cout << *itrHostales << endl;
-                }
-                cout << "Seleccione Hostal: " << endl;
-                string nombreHostal;
-                cin >> nombreHostal;
-                ireservas->seleccionarHostal(nombreHostal);
-                vector<DTEstadia> estadias = ireservas->getEstadias();
-                vector<DTEstadia>::iterator itrEstadias;
-                for (itrEstadias = estadias.begin(); itrEstadias != estadias.end(); itrEstadias++){
-                    DTEstadia DTEst = *itrEstadias;
-                    cout << "Email Huesped: " << DTEst.getEmailHuesped() << endl;
-                    cout << "Codigo Reserva: " << DTEst.getCodigoReserva() << endl;
-                    cout << "CheckIn: " << DTEst.getCheckInReal().getDia() << "/" << DTEst.getCheckInReal().getMes() << "/" << DTEst.getCheckInReal().getAnio() << ":" << DTEst.getCheckInReal().getHora() << "hs." << endl;
-                    cout << "CheckOut: " << DTEst.getCheckOutReal().getDia() << "/" << DTEst.getCheckOutReal().getMes() << "/" << DTEst.getCheckOutReal().getAnio() << ":" << DTEst.getCheckOutReal().getHora() << "hs." << endl;
-                    cout << "Codigo Promo: " << DTEst.getPromo() << endl;
-                }
-                cout << "Seleccione Estadia(Codigo Reserva y luego Email Huesped):" << endl;
-                int codigoRes;
-                string emailHues;
-                cin >> codigoRes;
-                cin >> emailHues;
-                DTEstadiaPlus estadiaSeleccionada = ireservas->getEstadiaPlus();
-                cout << "Nombre Hostal: " << estadiaSeleccionada.getNombreHostal() << endl;
-                cout << "Nombre Huesped: " << estadiaSeleccionada.getNombreHuesped() << endl;
-                cout << "Numero Habitacion: " << estadiaSeleccionada.getNumeroHabitacion() << endl;
-                cout << "Codigo Reserva: " << estadiaSeleccionada.getCodigoReserva() << endl;
-                cout << "CheckIn: " << estadiaSeleccionada.getCheckInReal().getDia() << "/" << estadiaSeleccionada.getCheckInReal().getMes() << "/" << estadiaSeleccionada.getCheckInReal().getAnio() << ":" << estadiaSeleccionada.getCheckInReal().getHora() << "hs." << endl;
-                cout << "CheckOut: " << estadiaSeleccionada.getCheckOutReal().getDia() << "/" << estadiaSeleccionada.getCheckOutReal().getMes() << "/" << estadiaSeleccionada.getCheckOutReal().getAnio() << ":" << estadiaSeleccionada.getCheckOutReal().getHora() << "hs." << endl;
-                cout << "Codigo Promo: " << estadiaSeleccionada.getPromo() << endl;
-                if (ireservas->existeCalificacion()){
-                    cout << "Desea ver la Info de la Calificacion (1/0)(Si/No): " << endl;
-                    bool verCal;
-                    cin >> verCal;
-                    if (verCal){
-                        DTCalificacion cal = ireservas->getDTCalificacion();
-                        cout << "Puntaje: " << cal.getPuntaje() << endl;
-                        cout << "Comentario: " << cal.getComentario() << endl;
-                        cout << "Fecha: " << cal.getFecha().getDia() << "/" << cal.getFecha().getMes() << "/" << cal.getFecha().getAnio() << ":" << cal.getFecha().getHora() << "hs" << endl;
-                        if (ireservas->existeRespuestaEmpleado())
-                            cout << "Respuesta Empleado: " << ireservas->getRespuestaEmpleado() << endl;
-                    }
-                }else{
-                    cout << "No hay Calificacion." << endl;
-                }
-                cout << "Desea ver la Info de la Reserva (1/0)(Si/No): " << endl;
-                bool verRes;
-                cin >> verRes;
-                if (verRes){
-                    DTReserva res = ireservas->getDTReserva();
-                    cout << "Info Reserva: " << endl;
-                    cout << "Codigo Reserva " << res.getCodigo() << endl
-                    << "CheckIn: " << res.getCheckIn().getDia() << "/" << res.getCheckIn().getMes() << "/" << res.getCheckIn().getAnio() << ":" << res.getCheckIn().getHora() << "hs." << endl
-                    << "CheckOut: " << res.getCheckOut().getDia() << "/" << res.getCheckOut().getMes() << "/" << res.getCheckOut().getAnio() << ":" << res.getCheckOut().getHora() << "hs." << endl
-                    << "Estado Reserva " << res.getEstado() << endl
-                    << "Costo: " << res.getCosto() << endl
-                    << "Numero Habitacion: " << endl;
-                }
-                break;
-            }
-
-            case 15:
+            case 6:
             {
                 IHostales* interfazHostales = fabrica->getIHostales();
                 set<string> top3Hostales = interfazHostales->getTop3Hostales();
@@ -893,7 +733,8 @@ int main()
                     }
                 break;
             }
-            case 16:{
+            case 7:
+            {
                 IHostales* interfazHostales = fabrica->getIHostales();
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
                 set<string> allHostales = interfazHostales->getHostales();
@@ -979,7 +820,8 @@ int main()
 
                 break;
             }
-            case 17:{
+            case 8:
+            {
                 IHostales* interfazHostales = fabrica->getIHostales();
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
                 IReservas* interfazReservas = fabrica->getIReservas();
@@ -1029,51 +871,73 @@ int main()
                 cout << "Se ha finalizado la estadia." << endl;
                 break;
             }
-
-            case 18:{
-                //getHostales
-                IHostales* interfazHostales = fabrica->getIHostales();
-
-                set<string> allHostales = interfazHostales->getHostales();
-                int i = 1;
-                for(set<string>::iterator it = allHostales.begin(); it != allHostales.end(); ++it)
-                {
-                    cout << i << ". " << *it << endl;
-                    ++i;
+            case 9:
+            {
+                IHostales* ihostales = fabrica->getIHostales();
+                set<string> nombresHostales = ihostales->getHostales();
+                cout << "Nombres Hostales:" << endl;
+                set<string>::iterator itr;
+                for (itr = nombresHostales.begin(); itr != nombresHostales.end(); itr++){
+                    cout << *itr << endl;
                 }
-                string nombreHostal;
-                bool nombreHostalValido = false;
-                cout << "Ingrese nombre del hostal\n";
-                while (!nombreHostalValido)
-                {
-                    cin.ignore();
-                    getline(cin, nombreHostal);
-
-                    if (allHostales.find(nombreHostal) != allHostales.end())
-                    {
-                        nombreHostalValido = true;
-                    }
-                    else 
-                    {
-                        cout << "Por favor, escriba un hostal que esta en la lista." << endl;
-                    }
+                IReservas* ireservas = fabrica->getIReservas();
+                cout << "Seleccione Hostal(Nombre Hostal):" << endl;
+                string hostalSeleccionado;
+                cin >> hostalSeleccionado;
+                ireservas->seleccionarHostal(hostalSeleccionado);
+                string emailEmpleado;
+                cout << "Ingresar Email Empleado:" << endl;
+                cin >> emailEmpleado;
+                vector<DTEstadia> estadiasFinalizadas = ireservas->getEstadiasFinalizadas(emailEmpleado);
+                vector<DTEstadia>::iterator itrEstadias;
+                for (itrEstadias = estadiasFinalizadas.begin(); itrEstadias != estadiasFinalizadas.end(); itrEstadias++){
+                    DTEstadia DTEst = *itrEstadias;
+                    cout << "Email Huesped: " << DTEst.getEmailHuesped() << endl;
+                    cout << "Codigo Reserva: " << DTEst.getCodigoReserva() << endl;
+                    cout << "CheckIn: " << DTEst.getCheckInReal().getDia() << "/" << DTEst.getCheckInReal().getMes() << "/" << DTEst.getCheckInReal().getAnio() << ":" << DTEst.getCheckInReal().getHora() << "hs." << endl;
+                    cout << "CheckOut: " << DTEst.getCheckOutReal().getDia() << "/" << DTEst.getCheckOutReal().getMes() << "/" << DTEst.getCheckOutReal().getAnio() << ":" << DTEst.getCheckOutReal().getHora() << "hs." << endl;
+                    cout << "Codigo Promo: " << DTEst.getPromo() << endl;
                 }
-
-                //seleccionarHostal
-                interfazHostales->seleccionarHostal(nombreHostal);
-
-                //getDTHostal
-                DTHostal h = interfazHostales->getDTHostal();
-                cout << "Nombre:" << h.getNombre() << endl;
-                cout << "Direccion:" << h.getDireccion() << endl;
-                cout << "Telefono:" << h.getTelefono() << endl;
-
-                //finalizarConsultaHostal
-                interfazHostales->finalizarConsultaHostal();
-
+                cout << "Seleccione Estadia(Codigo Reserva y luego Email Huesped):" << endl;
+                int codigoRes;
+                string emailHues;
+                cin >> codigoRes;
+                cin >> emailHues;
+                ireservas->seleccionarEstadia(codigoRes, emailHues);
+                cout << "Ingresar Comentario: " << endl;
+                string comentario;
+                cin >> comentario;
+                cout << "Ingresar Calificacion (1-5):" << endl;
+                int cal;
+                cin >> cal;
+                ireservas->setCalificacion(comentario, cal);
                 break;
             }
-            case 19:{
+            case 10:
+            {
+                IReservas* ireservas = fabrica->getIReservas();
+                cout << "Ingrese Email Empleado:" << endl;
+                string emailEmpleado;
+                cin >> emailEmpleado;
+                vector<DTCalificacion> calificacionesSinResponder = ireservas->getCalificacionesSinResponder(emailEmpleado);
+                vector<DTCalificacion>::iterator itr;
+                cout << "Calificaciones" << endl;
+                for (itr = calificacionesSinResponder.begin(); itr != calificacionesSinResponder.end(); itr++){
+                    cout << "Codigo Reserva: " << itr->getCodigoReserva() << endl;
+                    cout << "Email Hueped: " << itr->getEmailHuesp() << endl;
+                    cout << "Puntaje: " << itr->getPuntaje() << endl;
+                    cout << "Comentario: " << itr->getComentario() << endl;
+                    cout << "Fecha: " << itr->getFecha().getDia() << "/" << itr->getFecha().getMes() << "/" << itr->getFecha().getAnio() << ":" << itr->getFecha().getHora() << "hs" << endl;
+                }
+                cout << "Seleccionar Calificacion (Codigo Reserva y Email Huesped):" << endl;
+                int codigoReserva;
+                string emailHuesped;
+                cin >> codigoReserva;
+                cin >> emailHuesped;
+                ireservas->setCalificacion(emailHuesped, codigoReserva);
+                break;
+            }
+            case 11:{
                 //getUsuarios
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
 
@@ -1133,7 +997,127 @@ int main()
                 }
                 break;
             }
-            case 20:
+            case 12:
+            {
+                //getHostales
+                IHostales* interfazHostales = fabrica->getIHostales();
+
+                set<string> allHostales = interfazHostales->getHostales();
+                int i = 1;
+                for(set<string>::iterator it = allHostales.begin(); it != allHostales.end(); ++it)
+                {
+                    cout << i << ". " << *it << endl;
+                    ++i;
+                }
+                string nombreHostal;
+                bool nombreHostalValido = false;
+                cout << "Ingrese nombre del hostal\n";
+                while (!nombreHostalValido)
+                {
+                    cin.ignore();
+                    getline(cin, nombreHostal);
+
+                    if (allHostales.find(nombreHostal) != allHostales.end())
+                    {
+                        nombreHostalValido = true;
+                    }
+                    else 
+                    {
+                        cout << "Por favor, escriba un hostal que esta en la lista." << endl;
+                    }
+                }
+
+                //seleccionarHostal
+                interfazHostales->seleccionarHostal(nombreHostal);
+
+                //getDTHostal
+                DTHostal h = interfazHostales->getDTHostal();
+                cout << "Nombre:" << h.getNombre() << endl;
+                cout << "Direccion:" << h.getDireccion() << endl;
+                cout << "Telefono:" << h.getTelefono() << endl;
+
+                //finalizarConsultaHostal
+                interfazHostales->finalizarConsultaHostal();
+
+                break;
+            }
+            case 13:{
+
+                break;
+            }
+            case 14:
+            {
+                IHostales* ihostales = fabrica->getIHostales();
+                IReservas* ireservas = fabrica->getIReservas();
+                set<string> nombresHostales = ihostales->getHostales();
+                set<string>::iterator itrHostales;
+                cout << "Hostales" << endl; 
+                for (itrHostales = nombresHostales.begin(); itrHostales != nombresHostales.end(); itrHostales++){
+                    cout << *itrHostales << endl;
+                }
+                cout << "Seleccione Hostal: " << endl;
+                string nombreHostal;
+                cin >> nombreHostal;
+                ireservas->seleccionarHostal(nombreHostal);
+                vector<DTEstadia> estadias = ireservas->getEstadias();
+                vector<DTEstadia>::iterator itrEstadias;
+                for (itrEstadias = estadias.begin(); itrEstadias != estadias.end(); itrEstadias++){
+                    DTEstadia DTEst = *itrEstadias;
+                    cout << "Email Huesped: " << DTEst.getEmailHuesped() << endl;
+                    cout << "Codigo Reserva: " << DTEst.getCodigoReserva() << endl;
+                    cout << "CheckIn: " << DTEst.getCheckInReal().getDia() << "/" << DTEst.getCheckInReal().getMes() << "/" << DTEst.getCheckInReal().getAnio() << ":" << DTEst.getCheckInReal().getHora() << "hs." << endl;
+                    cout << "CheckOut: " << DTEst.getCheckOutReal().getDia() << "/" << DTEst.getCheckOutReal().getMes() << "/" << DTEst.getCheckOutReal().getAnio() << ":" << DTEst.getCheckOutReal().getHora() << "hs." << endl;
+                    cout << "Codigo Promo: " << DTEst.getPromo() << endl;
+                }
+                cout << "Seleccione Estadia(Codigo Reserva y luego Email Huesped):" << endl;
+                int codigoRes;
+                string emailHues;
+                cin >> codigoRes;
+                cin >> emailHues;
+                DTEstadiaPlus estadiaSeleccionada = ireservas->getEstadiaPlus();
+                cout << "Nombre Hostal: " << estadiaSeleccionada.getNombreHostal() << endl;
+                cout << "Nombre Huesped: " << estadiaSeleccionada.getNombreHuesped() << endl;
+                cout << "Numero Habitacion: " << estadiaSeleccionada.getNumeroHabitacion() << endl;
+                cout << "Codigo Reserva: " << estadiaSeleccionada.getCodigoReserva() << endl;
+                cout << "CheckIn: " << estadiaSeleccionada.getCheckInReal().getDia() << "/" << estadiaSeleccionada.getCheckInReal().getMes() << "/" << estadiaSeleccionada.getCheckInReal().getAnio() << ":" << estadiaSeleccionada.getCheckInReal().getHora() << "hs." << endl;
+                cout << "CheckOut: " << estadiaSeleccionada.getCheckOutReal().getDia() << "/" << estadiaSeleccionada.getCheckOutReal().getMes() << "/" << estadiaSeleccionada.getCheckOutReal().getAnio() << ":" << estadiaSeleccionada.getCheckOutReal().getHora() << "hs." << endl;
+                cout << "Codigo Promo: " << estadiaSeleccionada.getPromo() << endl;
+                if (ireservas->existeCalificacion()){
+                    cout << "Desea ver la Info de la Calificacion (1/0)(Si/No): " << endl;
+                    bool verCal;
+                    cin >> verCal;
+                    if (verCal){
+                        DTCalificacion cal = ireservas->getDTCalificacion();
+                        cout << "Puntaje: " << cal.getPuntaje() << endl;
+                        cout << "Comentario: " << cal.getComentario() << endl;
+                        cout << "Fecha: " << cal.getFecha().getDia() << "/" << cal.getFecha().getMes() << "/" << cal.getFecha().getAnio() << ":" << cal.getFecha().getHora() << "hs" << endl;
+                        if (ireservas->existeRespuestaEmpleado())
+                            cout << "Respuesta Empleado: " << ireservas->getRespuestaEmpleado() << endl;
+                    }
+                }else{
+                    cout << "No hay Calificacion." << endl;
+                }
+                cout << "Desea ver la Info de la Reserva (1/0)(Si/No): " << endl;
+                bool verRes;
+                cin >> verRes;
+                if (verRes){
+                    DTReserva res = ireservas->getDTReserva();
+                    cout << "Info Reserva: " << endl;
+                    cout << "Codigo Reserva " << res.getCodigo() << endl
+                    << "CheckIn: " << res.getCheckIn().getDia() << "/" << res.getCheckIn().getMes() << "/" << res.getCheckIn().getAnio() << ":" << res.getCheckIn().getHora() << "hs." << endl
+                    << "CheckOut: " << res.getCheckOut().getDia() << "/" << res.getCheckOut().getMes() << "/" << res.getCheckOut().getAnio() << ":" << res.getCheckOut().getHora() << "hs." << endl
+                    << "Estado Reserva " << res.getEstado() << endl
+                    << "Costo: " << res.getCosto() << endl
+                    << "Numero Habitacion: " << endl;
+                }
+                break;
+            }
+            case 15:
+            {
+
+                break;
+            }
+            case 16:
             {
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
                 map<string, string> lista = interfazUsuarios->getListaEmpleados();
@@ -1196,7 +1180,7 @@ int main()
                 }
             break;
             }
-            case 21:
+            case 17:
             {
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
                 map<string, string> lista = interfazUsuarios->getListaEmpleados();
@@ -1245,9 +1229,9 @@ int main()
                     cout << "Comentario: " << iter->getComentario() << endl;
                     cout << endl;
                 }
-
+            break;
             }
-            case 22:
+            case 18:
             {
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
                 map<string, string> lista = interfazUsuarios->getListaEmpleados();
@@ -1307,8 +1291,15 @@ int main()
                         cout << "Por favor, elija una opcion correcta" << endl;
                     }
                 }
+                break;
             }
-            case 10:
+            case 19:
+                {
+                    loop = false;
+                    break;
+            }
+
+            case 20:
             {
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
                 IHostales* interfazHostales = fabrica->getIHostales();
@@ -1319,7 +1310,32 @@ int main()
                 interfazHostales->cargaDatos();
                 interfazReloj->cargaDatos();
                 interfazReservas->cargaDatos();
+                
+                break;
             }
+
+            case 21:
+            {
+                IReloj* interfazReloj = ControladorReloj::getInstance();
+                cout << "Ingrese la nueva fecha: " << endl;
+                cout << "Hora (Formato H.HH/HH.HH): ";
+                float hora;
+                cin >> hora;
+                cout << endl;
+                cout << "Dia: ";
+                int dia = CheckIntCin();
+                cout << endl;
+                cout << "Mes: ";
+                int mes = CheckIntCin();
+                cout << endl;
+                cout << "Anio: ";
+                int anio = CheckIntCin();
+                cout << endl;
+
+                interfazReloj->modificarFecha(hora,dia,mes,anio);
+                break;
+            }
+            
             default:
             {
                 cout << "Por favor ingrese un numero valido" << endl;
