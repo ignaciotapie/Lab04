@@ -662,6 +662,10 @@ int main()
             case 6:
             {
                 IHostales* interfazHostales = fabrica->getIHostales();
+                set<string> hostales = interfazHostales->getHostales();
+                if (hostales.empty()){
+                    cout << "No hay Hostales ingresados en el sistema\n";
+                }else{
                 set<string> top3Hostales = interfazHostales->getTop3Hostales();
                 int i = 1;
                 set<string>::iterator it;
@@ -745,6 +749,7 @@ int main()
                         cout << i << ".Puntaje: " << DTCalif.getPuntaje()<< ".Comentario: " << DTCalif.getComentario() << endl;
                         ++i;
                     }
+                }
                 break;
             }
             case 7:
