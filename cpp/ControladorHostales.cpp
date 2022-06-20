@@ -154,10 +154,16 @@ set<string> ControladorHostales::getTop3Hostales(){
 			    prom3 = prom;
 			    h3 = it->second;
 	    	}
-	    }	
-	    res.insert(h1->getNombreHostal());
-	    res.insert(h2->getNombreHostal());
-	    res.insert(h3->getNombreHostal());
+	    }
+        if (h1!=NULL){	
+	        res.insert(h1->getNombreHostal());
+        }
+        if (h2!=NULL){
+	        res.insert(h2->getNombreHostal());
+        }
+        if (h3!=NULL){
+            res.insert(h3->getNombreHostal());
+        }
     } 
     return res;
 
