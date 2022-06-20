@@ -28,6 +28,8 @@ class IUsuarios{
 
 		//Caso de Uso: Consulta de Usuario
 		virtual bool esEmp() = 0;
+		virtual DTEmpleado getDTEmpleado() = 0;
+		virtual DTHuesped getDTHuesped() = 0;
 
 		virtual set<string> getHuespedes() = 0;
 
@@ -36,7 +38,6 @@ class IUsuarios{
 		virtual set<int> getReservasDelHuesped(string) = 0;
 		virtual void seleccionarReserva(int) = 0;
 		virtual void registrarEstadia() = 0;
-		virtual DTUsuario listarDatos() = 0;
 		virtual void finalizarConsultaUsuario() = 0;
 		virtual void suscribirEmpleado() = 0;
 		virtual void finalizarSuscripcion() = 0;

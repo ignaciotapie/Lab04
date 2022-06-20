@@ -79,7 +79,8 @@ class ControladorUsuarios : public IUsuarios
 		map<string,Empleado*>  getEmpleados();
 
 		//Consulta de Usuario
-		DTUsuario listarDatos();
+		DTEmpleado getDTEmpleado();
+		DTHuesped getDTHuesped();
 		void finalizarConsultaUsuario();
 		bool esEmp();
 

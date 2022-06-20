@@ -1088,11 +1088,17 @@ int main()
                     interfazUsuarios->seleccionarUsuario(mailUsuario);
 
                     //listarDatos
-                    DTUsuario u = interfazUsuarios->listarDatos();
+                    if (interfazUsuarios->esEmp()){
+                        DTEmpleado e = getDTEmpleado();
                     }
+                    else{
+                        DTHuesped h = getDTHuesped();
+                    }
+
+                }
                 
 
-                    break;
+                break;
             }
             case 20:
             {
