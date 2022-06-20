@@ -286,6 +286,7 @@ int main()
                     cout << "Ingrese nombre del hostal\n";
                     while (!nombreHostalValido)
                     {
+                        cin.ignore();
                         getline(cin, nombreHostal);
 
                         if (allHostales.find(nombreHostal) != allHostales.end())
@@ -1286,13 +1287,25 @@ int main()
                     }
                 }
             }
+            case 10:
+            {
+                IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
+                IHostales* interfazHostales = fabrica->getIHostales();
+                IReloj* interfazReloj = fabrica->getIReloj();
+                IReservas* interfazReservas = fabrica->getIReservas();
+
+                interfazUsuarios->cargaDatos();
+                interfazHostales->cargaDatos();
+                interfazReloj->cargaDatos();
+                interfazReservas->cargaDatos();
+            }
             default:
-                {
-                    cout << "Por favor ingrese un numero valido" << endl;
-                    cin.clear();
-                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                    break;
-                }
+            {
+                cout << "Por favor ingrese un numero valido" << endl;
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                break;
+            }
         }
     }
     return 0;

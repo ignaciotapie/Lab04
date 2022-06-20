@@ -227,3 +227,11 @@ void ControladorHostales::seleccionarHuesped(string nombreHuesped)
 Hostal* ControladorHostales::getHostal(string nombreHostal){
     return hostales.find(nombreHostal)->second;
 }
+
+void ControladorHostales::cargaDatos()
+{
+    //Hostales
+    Hostal* finger = new Hostal("La posada del finger", "Av de la playa 123, Maldonado", 9911111);
+    hostales.insert({finger->getNombreHostal(), finger});
+    
+}

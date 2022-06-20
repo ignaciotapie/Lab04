@@ -92,6 +92,7 @@ class ControladorUsuarios : public IUsuarios
 		// Caso de Uso: Subscribirse a Notis
 		map<string, string> getListaEmpleados();
 		void seleccionarEmpleado(string empleado);
+		void cargaDatos();		
 		
 	    
 };

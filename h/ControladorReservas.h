@@ -55,6 +55,8 @@ class ControladorReservas : public IReservas
 		//Caso de uso: Realizar Reserva
 		void addReserva(Reserva* r);
 		int getCodigoReservaACrear();
+
+		void cargaDatos(){};		
 };
 
 #endif

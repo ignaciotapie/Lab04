@@ -205,3 +205,50 @@ DTHuesped ControladorUsuarios::getDTHuesped(){
     map<string,Huesped*>::iterator ite = this->huespedes.find(this->usuarioSeleccionado);
     return (*ite).second->getDTHuesped();
 }
+
+void ControladorUsuarios::cargaDatos()
+{
+    //Empleados
+    Empleado* emilia = new Empleado("Emilia", "emilia@mail.com", "123", CargoEmpleado::Recepcion);
+    empleados.insert({emilia->getEmail(), emilia});
+    usuarios.insert({emilia->getEmail(), emilia});
+
+    Empleado* leonardo = new Empleado("Leonardo", "leo@mail.com", "123", CargoEmpleado::Recepcion);
+    empleados.insert({leonardo->getEmail(), leonardo});
+    usuarios.insert({leonardo->getEmail(), leonardo});
+
+    Empleado* alina = new Empleado("Alina", "alina@mail.com", "123", CargoEmpleado::Administracion);
+    empleados.insert({alina->getEmail(), alina});
+    usuarios.insert({alina->getEmail(), alina});
+
+    Empleado* barliman = new Empleado("Barliman", "barli@mail.com", "123", CargoEmpleado::Recepcion);
+    empleados.insert({barliman->getEmail(), barliman});
+    usuarios.insert({barliman->getEmail(), barliman});
+
+
+    //Huesped
+
+    Huesped* sofia = new Huesped("Sofia", "sofia@mail.com", "123", true);
+    huespedes.insert({sofia->getEmail(), sofia});
+    usuarios.insert({sofia->getEmail(), sofia});
+
+    Huesped* frodo = new Huesped("Frodo", "frodo@mail.com", "123", true);
+    huespedes.insert({frodo->getEmail(), frodo});
+    usuarios.insert({frodo->getEmail(), frodo});
+
+    Huesped* sam = new Huesped("Sam", "sam@mail.com", "123", false);
+    huespedes.insert({sam->getEmail(), sam});
+    usuarios.insert({sam->getEmail(), sam});
+
+    Huesped* merry = new Huesped("Merry", "merry@mail.com", "123", false);
+    huespedes.insert({merry->getEmail(), merry});
+    usuarios.insert({merry->getEmail(), merry});
+
+    Huesped* pippin = new Huesped("Pippin", "pippin@mail.com", "123", false);
+    huespedes.insert({pippin->getEmail(), pippin});
+    usuarios.insert({pippin->getEmail(), pippin});
+
+    Huesped* seba = new Huesped("Seba", "seba@mail.com", "123", true);
+    huespedes.insert({seba->getEmail(), seba});
+    usuarios.insert({seba->getEmail(), seba});
+}
