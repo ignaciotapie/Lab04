@@ -885,13 +885,28 @@ int main()
                     cout << *itr << endl;
                 }
                 IReservas* ireservas = fabrica->getIReservas();
-                cout << "Seleccione Hostal(Nombre Hostal):" << endl;
                 string hostalSeleccionado;
-                cin >> hostalSeleccionado;
+                bool nombreHostalValido = false;
+                cout << "Ingrese nombre del hostal" << endl;
+                while (!nombreHostalValido)
+                {
+                    cin.ignore();
+                    getline(cin, hostalSeleccionado);
+
+                    if (nombresHostales.find(hostalSeleccionado) != nombresHostales.end())
+                    {
+                        nombreHostalValido = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, escriba un hostal que esta en la lista." << endl;
+                    }
+                }
                 ireservas->seleccionarHostal(hostalSeleccionado);
                 string emailEmpleado;
                 cout << "Ingresar Email Empleado:" << endl;
-                cin >> emailEmpleado;
+                cin.ignore();
+                getline(cin, emailEmpleado);
                 vector<DTEstadia> estadiasFinalizadas = ireservas->getEstadiasFinalizadas(emailEmpleado);
                 vector<DTEstadia>::iterator itrEstadias;
                 for (itrEstadias = estadiasFinalizadas.begin(); itrEstadias != estadiasFinalizadas.end(); itrEstadias++){
@@ -906,11 +921,13 @@ int main()
                 int codigoRes;
                 string emailHues;
                 cin >> codigoRes;
-                cin >> emailHues;
+                cin.ignore();
+                getline(cin, emailHues);
                 ireservas->seleccionarEstadia(codigoRes, emailHues);
                 cout << "Ingresar Comentario: " << endl;
                 string comentario;
-                cin >> comentario;
+                cin.ignore();
+                getline(cin, comentario);
                 cout << "Ingresar Calificacion (1-5):" << endl;
                 int cal;
                 cin >> cal;
@@ -922,7 +939,8 @@ int main()
                 IReservas* ireservas = fabrica->getIReservas();
                 cout << "Ingrese Email Empleado:" << endl;
                 string emailEmpleado;
-                cin >> emailEmpleado;
+                cin.ignore();
+                getline(cin, emailEmpleado);
                 vector<DTCalificacion> calificacionesSinResponder = ireservas->getCalificacionesSinResponder(emailEmpleado);
                 vector<DTCalificacion>::iterator itr;
                 cout << "Calificaciones" << endl;
@@ -937,8 +955,14 @@ int main()
                 int codigoReserva;
                 string emailHuesped;
                 cin >> codigoReserva;
-                cin >> emailHuesped;
-                ireservas->setCalificacion(emailHuesped, codigoReserva);
+                cin.ignore();
+                getline(cin, emailHuesped);
+                ireservas->selectCalificacion(emailHuesped, codigoReserva);
+                cout << "Dejar Comentario: " << endl;
+                string comentario;
+                cin.ignore();
+                getline(cin, comentario);
+                ireservas->setComentarioCalificacion(comentario);
                 break;
             }
             case 11:{
@@ -1061,9 +1085,23 @@ int main()
                 for (itrHostales = nombresHostales.begin(); itrHostales != nombresHostales.end(); itrHostales++){
                     cout << *itrHostales << endl;
                 }
-                cout << "Seleccione Hostal: " << endl;
                 string nombreHostal;
-                cin >> nombreHostal;
+                bool nombreHostalValido = false;
+                cout << "Ingrese nombre del hostal" << endl;
+                while (!nombreHostalValido)
+                {
+                    cin.ignore();
+                    getline(cin, nombreHostal);
+
+                    if (nombresHostales.find(nombreHostal) != nombresHostales.end())
+                    {
+                        nombreHostalValido = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, escriba un hostal que esta en la lista." << endl;
+                    }
+                }
                 ireservas->seleccionarHostal(nombreHostal);
                 vector<DTEstadia> estadias = ireservas->getEstadias();
                 vector<DTEstadia>::iterator itrEstadias;
@@ -1079,7 +1117,8 @@ int main()
                 int codigoRes;
                 string emailHues;
                 cin >> codigoRes;
-                cin >> emailHues;
+                cin.ignore();
+                getline(cin, emailHues);
                 DTEstadiaPlus estadiaSeleccionada = ireservas->getEstadiaPlus();
                 cout << "Nombre Hostal: " << estadiaSeleccionada.getNombreHostal() << endl;
                 cout << "Nombre Huesped: " << estadiaSeleccionada.getNombreHuesped() << endl;

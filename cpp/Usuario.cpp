@@ -93,8 +93,8 @@ void Huesped::addReserva(Reserva* r)
     }
 }
 
-void Huesped::agregarEstadia(Estadia* e){
-    this->e.insert(e);
+void Huesped::agregarEstadia(Estadia* est){
+    this->e.emplace(est);
 }
 
 
