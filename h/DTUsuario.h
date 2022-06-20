@@ -12,8 +12,6 @@ class DTUsuario
         string nombre;
         string email;
     public:
-        virtual string getNombre();
-        virtual string getEmail();
 
 };
 
