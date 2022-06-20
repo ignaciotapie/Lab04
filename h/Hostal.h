@@ -16,49 +16,52 @@ class DTCalificacion;
 class Reserva;
 class DTEstadia;
 class DTHostal;
+class DTReserva;
 
 class Hostal{
     private:
         string nombreHostal;
         string direccion;
-        string telefono;
+        int telefono;
         map<int, Habitacion*> habitaciones;
         set<Calificacion*> calificaciones;
         map<string, Empleado*> empleados;
     public:
         Hostal();
-        Hostal(string nombre, string direccion, string telefono);
-        Hostal(string nombreHostal, string direccion, string telefono, map<int, Habitacion*> habitaciones, set<Calificacion*> calificaciones, map<string, Empleado*> empleados);
+        Hostal(string nombre, string direccion, int telefono);
+        Hostal(string nombreHostal, string direccion, int telefono, map<int, Habitacion*> habitaciones, set<Calificacion*> calificaciones, map<string, Empleado*> empleados);
 
         //Caso de uso: Alta de Habitacion
         //string getNombreHostal();
-        void nuevaHabitacion(int numero, int precio, int capacidad, Hostal* h);
+        void nuevaHabitacion(int, int, int);
         DTHostal getDataHostal();
-        bool checkHab(int);
 
         //Caso de uso: Realizar Reserva
         set<int> getHabitacionesLibres(Fecha CheckIn, Fecha CheckOut);
         
         const string getNombreHostal() const;
         const string getDireccion() const;
-        const string getTelefono() const;
+        const int getTelefono() const;
         map<int, Habitacion*> getHabitaciones();
         set<Calificacion*> getCalificaciones();
         map<string, Empleado*> getEmpleados();
         void agregarCalificacion(Calificacion*);
-        const float getPromedioPuntaje() const;
+        const int getPromedioPuntaje() const;
         vector<DTCalificacion> getDetalles();
         void asignarEmpleado(Empleado*);
         void reservarHabitacion(Reserva*, int);
+        //consultar reserva
+        vector<DTReserva> listarReservasDeHostal();
+        //baja reserva
+        set<int> listarCodigoReservasDeHostal();
         //CalificarEstadia
         vector<DTEstadia> getEstadiasFinalizadas(string);
         //ComentarCalificacion
         vector<DTCalificacion> getCalificacionesSinResponder();\
         //ConsultaEstadia
         vector<DTEstadia> getDTEstadias();
-
-        //Cargar datos
-        Habitacion* getHabitacion(int num);
+        //baja reserva
+        void eliminarCalificacion(Calificacion*);
 };
 
 

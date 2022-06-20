@@ -10,7 +10,6 @@
 #include "../h/DTEstadiaPlus.h"
 #include "../h/DTCalificacion.h"
 #include "../h/DTEstadia.h"
-#include "../h/RespuestaEmpleado.h"
 
 using namespace std;
 
@@ -136,80 +135,30 @@ int ControladorReservas::getCodigoReservaACrear()
     sigCodigoReserva++;
     return codigo;
 }
-
-bool ControladorReservas::existeCalificacion(){
-    Estadia* est = reservas.find(codigoReservaEstadia)->second->getEstadia(emailHuespedEstadia);
-    return est->getCalificacion() != NULL;
-}
-
-bool ControladorReservas::existeRespuestaEmpleado(){
-    Estadia* est = reservas.find(codigoReservaEstadia)->second->getEstadia(emailHuespedEstadia);
-    if (est->getCalificacion() != NULL){
-        if (est->getCalificacion()->getRespuestaempleados() != NULL){
-            return 1;
-        }
-    }
-    return 0;
-}
-
-string ControladorReservas::getRespuestaEmpleado(){
-    Estadia* est = reservas.find(codigoReservaEstadia)->second->getEstadia(emailHuespedEstadia);
-    return est->getCalificacion()->getRespuestaempleados()->getMensaje();
-}
-
-void ControladorReservas::cargaDatos()
-{
+//consulta reserva
+vector<DTReserva> ControladorReservas::listarReservasDeHostal(string nombreHostal){
     ControladorHostales* ch = ControladorHostales::getInstance();
+    Hostal* h = ch->getHostal(nombreHostal);
+    vector<DTReserva> res = h->listarReservasDeHostal();
+    return res;
+}
+//baja reserva
+set<int> ControladorReservas::listarCodigoReservasDeHostal(string nombreHostal){
+    ControladorHostales* ch = ControladorHostales::getInstance();
+    Hostal* h = ch->getHostal(nombreHostal);
+    set<int> res = h->listarCodigoReservasDeHostal();
+    return res;
+}
 
+void ControladorReservas::confirmarBajaReserva(){
+    //acordarse de eliminar la instancia de reserva
+    map<int, Reserva*>::iterator it;
+    //hacer una variable codigoreserva especifica para esto?
+    it = reservas.find(codigoReservaEstadia);
+    it->second->eliminarReservaDeHabitacion(codigoReservaEstadia);
+    reservas.erase(it);
+}
 
-    //R1
-    Hostal* finger = ch->getHostal("La posada del finger");
-    Habitacion* habFinger = finger->getHabitacion(1);
-    Reserva* r = new ReservaIndividual(1, Fecha(14.00, 1, 5, 2022), Fecha(10.00, 10, 5, 2022), EstadoReserva::Abierta, habFinger);
-    set<string> huespedes;
-    huespedes.insert("sofia@mail.com");
-    r->setHuespedes(huespedes);
-    finger->reservarHabitacion(r, 1);
-    this->addReserva(r);
-
-
-    //R2
-    Hostal* pony = ch->getHostal("El Pony Pisador");
-    Habitacion* habPony = pony->getHabitacion(1);
-    Reserva* re = new ReservaGrupal(2, Fecha(20.00,4,1,2001), Fecha(2.00, 5,1,2001), EstadoReserva::Abierta, habPony);
-    set<string> huespedesPony;
-    huespedesPony.insert("frodo@mail.com");
-    huespedesPony.insert("sam@mail.com");
-    huespedesPony.insert("merry@mail.com");
-    huespedesPony.insert("pippin@mail.com");
-    re->setHuespedes(huespedesPony);
-    pony->reservarHabitacion(re, 1);
-    this->addReserva(re);
-
-
-    //R3
-    Habitacion* habFingerDos = finger->getHabitacion(3);
-    Reserva* res = new ReservaIndividual(3, Fecha(14.00, 7,6,2022), Fecha(11.00,30,6,2022), EstadoReserva::Abierta, habFingerDos);
-    set<string> huespedesFingerDos;
-    huespedesFingerDos.insert("sofia@mail.com");
-    res->setHuespedes(huespedesFingerDos);    
-    finger->reservarHabitacion(res, 3);
-    this->addReserva(res);
-
-
-    //R4
-    Hostal* caverna = ch->getHostal("Caverna Lujosa");
-    Habitacion* habCaverna = caverna->getHabitacion(1);
-    Reserva* rese = new ReservaIndividual(4, Fecha(14.00, 10, 6, 2022), Fecha(11.00, 30, 6, 2022), EstadoReserva::Abierta, habCaverna);
-    set<string> huespedesCaverna;
-    huespedesCaverna.insert("seba@mail.com");
-    rese->setHuespedes(huespedesCaverna);
-    caverna->reservarHabitacion(rese, 1);
-    this->addReserva(rese);
-
-
-
-    
-
-
+void ControladorReservas::seleccionarReserva(int codigo){
+    codigoReservaEstadia = codigo;
 }
