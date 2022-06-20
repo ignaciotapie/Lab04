@@ -40,7 +40,6 @@ class Usuario {
         string getEmail();
         string getNombre();
         string getPassword();
-        virtual DTUsuario getDTUsuario() = 0;
 };
 
 class Huesped : public Usuario {
@@ -52,7 +51,7 @@ class Huesped : public Usuario {
         map<int,Estadia*> e;
     public:
         Huesped(string nombre, string email, string password, bool esFinger);
-        DTUsuario getDTUsuario();
+        DTHuesped getDTHuesped();
         set<int> getCodigosReservas();
         bool getEsFinger();
 
@@ -79,7 +78,7 @@ class Empleado : public Usuario, public Observer {
         void setHostal(Hostal* hostal) {this->hostal = hostal;}
 
 
-        DTUsuario getDTUsuario();
+        DTEmpleado getDTEmpleado();
         void notificarCalificacion(Notificacion*);
         vector<DTNotificacion> getNotificaciones();
         void setRespuestaEmpleado(RespuestaEmpleado*);
