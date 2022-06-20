@@ -262,3 +262,7 @@ void ControladorHostales::cargaDatos()
 
 
 }
+
+map<string,Hostal*> ControladorHostales::hostalesCont(){
+    return this->hostales;
+}

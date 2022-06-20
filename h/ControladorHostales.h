@@ -50,6 +50,7 @@ class ControladorHostales : public IHostales{
 		void altaHabitacion(int, int, int);
 		void confirmarAltaHabitacion();
 		void cancelarAltaHabitacion();
+		map<string,Hostal*> hostalesCont();
 
 		//Caso de uso: Consulta de Hostal
 		DTHostal getDTHostal();
