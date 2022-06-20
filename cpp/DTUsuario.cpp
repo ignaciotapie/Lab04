@@ -16,3 +16,17 @@ DTEmpleado::DTEmpleado(string nombre, string email, CargoEmpleado cargo, string 
     this->cargo = cargo;
     this->nombreHostal = nombreHostal;
 }
+
+const string DTEmpleado::getNombre() const{
+    return this->nombre;
+}
+const string DTEmpleado::getEmail() const{
+    return this->email;
+}
+const CargoEmpleado DTEmpleado::getCargo() const{
+return this->cargo;
+}
+
+const string DTEmpleado::getNombreHostal() const{
+    return this->nombreHostal;
+}
