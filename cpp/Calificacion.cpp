@@ -45,3 +45,11 @@ void Calificacion::setComentarioCalificacion(string mensaje, Empleado* empleado,
     empleado->setRespuestaEmpleado(&res);
     this->respuestaEmpleados = &res;
 }
+
+void Calificacion::eliminarCalificacion(){
+    hostal->eliminarCalificacion(this);
+    respuestaEmpleados->eliminarRespuesta();
+    respuestaEmpleados->~RespuestaEmpleado();
+//Que tan bien anda el destructor si no lo defini en la clase? (usa el por defecto supongo)
+//ELIMINAR NOTIFICACIOOOON
+}
