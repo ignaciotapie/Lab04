@@ -963,7 +963,7 @@ int main()
                 cout << "Ingrese el codigo de la reserva para registrar la estadia\n";
                 while (!codResValido)
                 {
-                    cin >> codRes;
+                    codRes = CheckIntCin();
 
                     if (ReservasNoCanceladasDelHuesped.find(codRes) != ReservasNoCanceladasDelHuesped.end())
                     {
