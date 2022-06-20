@@ -923,22 +923,36 @@ int main()
 
                 set<string> HuespedesRegistrados = interfazUsuarios->getHuespedes();
 
-                bool emailHuespedValido = false;
-                string emailHuesped;
-                cout << "Ingrese el email del huesped a registrar su estadia:" << endl;
-                while (!emailHuespedValido)
-                {
-                    getline(cin, emailHuesped);
-
-                    if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
-                    {
-                        emailHuespedValido = true;
-                    }
-                    else
-                    {
-                        cout << "Por favor, escriba un email de un huesped." << endl;
-                    }
+                if (HuespedesRegistrados.empty()){
+                    cout << "No hay huespedes registrados" << endl;
+                    break;
                 }
+                else{
+                int i = 1;
+                for(set<string>::iterator it = HuespedesRegistrados.begin(); it != HuespedesRegistrados.end(); ++it)
+                    {
+                        cout << i << ". " << *it << endl;
+                        ++i;
+                    }
+                    string emailHuesped;
+                    bool emailHuespedValido = false;
+                    cout << "Ingrese mail del huesped a registrar su estadia\n";
+                    while (!emailHuespedValido)
+                    {
+                        cin.ignore();
+                        getline(cin, emailHuesped);
+
+                        if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
+                        {
+                            emailHuespedValido = true;
+                     }
+                        else
+                        {
+                            cout << "Por favor, escriba un usuario que este en la lista." << endl;
+                        }
+                    }
+
+            
 
                 set<int> ReservasNoCanceladasDelHuesped = interfazUsuarios->getReservasDelHuesped(emailHuesped);
                 i = 1;
