@@ -930,39 +930,37 @@ int main()
                 else{
                 int i = 1;
                 for(set<string>::iterator it = HuespedesRegistrados.begin(); it != HuespedesRegistrados.end(); ++it)
+                {
+                    cout << i << ". " << *it << endl;
+                    ++i;
+                }
+                string emailHuesped;
+                bool emailHuespedValido = false;
+                cout << "Ingrese mail del huesped a registrar su estadia\n";
+                while (!emailHuespedValido)
+                {
+                    cin.ignore();
+                    getline(cin, emailHuesped);
+                    if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
                     {
-                        cout << i << ". " << *it << endl;
-                        ++i;
+                        emailHuespedValido = true;
                     }
-                    string emailHuesped;
-                    bool emailHuespedValido = false;
-                    cout << "Ingrese mail del huesped a registrar su estadia\n";
-                    while (!emailHuespedValido)
+                    else
                     {
-                        cin.ignore();
-                        getline(cin, emailHuesped);
-
-                        if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
-                        {
-                            emailHuespedValido = true;
-                     }
-                        else
-                        {
-                            cout << "Por favor, escriba un usuario que este en la lista." << endl;
-                        }
+                        cout << "Por favor, escriba un usuario que este en la lista." << endl;
                     }
+                }
             
                 set<int> ReservasNoCanceladasDelHuesped = interfazUsuarios->getReservasDelHuesped(emailHuesped);
                 i = 1;
                 for(set<int>::iterator it = ReservasNoCanceladasDelHuesped.begin(); it != ReservasNoCanceladasDelHuesped.end(); ++it)
                 {
-                    cout << i << ". " << (*it) << endl;
+                    cout << i << ". " << *it << endl;
                     ++i;
                 }
-
                 bool codResValido = false;
                 int codRes;
-                cout << "Ingrese el codigo de la reserva para registrar la estadia:" << endl;
+                cout << "Ingrese el codigo de la reserva para registrar la estadia\n";
                 while (!codResValido)
                 {
                     cin >> codRes;
