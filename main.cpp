@@ -505,13 +505,13 @@ int main()
                 float horaCheckIn;
                 cin >> horaCheckIn;
                 cout << endl;
-                cout << "Dia: ";
+                cout << "Dia (Formato D/DD): ";
                 int diaCheckIn = CheckIntCin();
                 cout << endl;
-                cout << "Mes: ";
+                cout << "Mes (Formato M/MM): ";
                 int mesCheckIn = CheckIntCin();
                 cout << endl;
-                cout << "Anio: ";
+                cout << "Anio (Formato YYYY): ";
                 int anioCheckIn = CheckIntCin();
                 cout << endl;
 

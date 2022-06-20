@@ -5,6 +5,7 @@
 #include "../h/Reserva.h"
 #include "../h/RespuestaEmpleado.h"
 #include "../h/Notificacion.h"
+#include "../h/Hostal.h"
 
 Calificacion::Calificacion(int i, string c, Fecha f, Estadia* e, Hostal* h, RespuestaEmpleado* emp){
     this->puntaje = i;
@@ -47,9 +48,9 @@ void Calificacion::setComentarioCalificacion(string mensaje, Empleado* empleado,
 }
 
 void Calificacion::eliminarCalificacion(){
-    hostal->eliminarCalificacion(this);
+/*    hostal->eliminarCalificacion(this);
     respuestaEmpleados->eliminarRespuesta();
-    respuestaEmpleados->~RespuestaEmpleado();
+    respuestaEmpleados->~RespuestaEmpleado();*/
 //Que tan bien anda el destructor si no lo defini en la clase? (usa el por defecto supongo)
 //ELIMINAR NOTIFICACIOOOON
 }
