@@ -837,6 +837,7 @@ int main()
                         }
                     }
                     interfazUsuarios->registrarEstadia();
+                    }
                 }
                 break;
             }
