@@ -12,6 +12,8 @@ using namespace std;
 class DTUsuario;
 class DTNotificacion;
 class DTCalificacion;
+class DTEmpleado;
+class DTHuesped;
 
 
 class IUsuarios{
