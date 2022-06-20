@@ -486,7 +486,6 @@ int main()
                 for(; auxiliarLista != listaHostales.end(); auxiliarLista++ )
                 {
                     cout << i << ". " << auxiliarLista->getNombre() << " - " << auxiliarLista->getDireccion() << " - " << auxiliarLista->getPromCalif() << endl;
-                    i++;
                 }
                 string nombreHostal;
                 cout << "Ingrese nombre del Hostal que desea reservar: \n";
@@ -529,11 +528,6 @@ int main()
                 cout << "Anio: ";
                 int anioCheckOut = CheckIntCin();
                 cout << endl;
-                
-                if (Fecha(horaCheckOut, diaCheckOut, mesCheckOut, anioCheckOut).before(Fecha(horaCheckIn,diaCheckIn,mesCheckIn,anioCheckIn)))
-                {
-                    cout << "ERROR: El check-out no puede ser anterior al check-in.\n" << endl;
-                }
 
                 bool esReservaGrupal = false;
                 cout << "Es Reserva Grupal?\n" << "(1) Si\n" << "(2) No\n";
@@ -557,7 +551,7 @@ int main()
                 set<int> habitacionesLibres = interfazHostales->getHabitacionesLibres();
                 if (habitacionesLibres.empty())
                 {
-                    cout << "ERROR: No hay habitaciones libres.\n" << endl;
+                    cout << "No hay habitaciones libres." << endl;
                     break;
                 }
                 set<int>::iterator it = habitacionesLibres.begin();
@@ -1323,8 +1317,6 @@ int main()
                 interfazHostales->cargaDatos();
                 interfazReloj->cargaDatos();
                 interfazReservas->cargaDatos();
-
-                cout << "Carga de datos exitosa." << endl;
                 
                 break;
             }

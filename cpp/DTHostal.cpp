@@ -2,7 +2,7 @@
 #include "../h/Hostal.h"
 #include "../h/DTHabitacion.h"
 
-DTHostal::DTHostal(string nom, string dir, int tel, float prom){
+DTHostal::DTHostal(string nom, string dir, string tel, float prom){
     nombre = nom;
     direccion = dir;
     telefono = tel;
@@ -23,9 +23,13 @@ const string DTHostal::getNombre() const{
 const string DTHostal::getDireccion() const{
     return direccion;
 }
-const int DTHostal::getTelefono() const{
+const string DTHostal::getTelefono() const{
     return telefono;
 }
 const float DTHostal::getPromCalif() const{
     return promCalif;
+}
+
+const vector<DTHabitacion> DTHostal::getDTHabs() const{
+    return this->habs;
 }

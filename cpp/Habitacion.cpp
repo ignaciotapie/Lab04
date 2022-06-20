@@ -2,7 +2,6 @@
 #include "../h/Reserva.h"
 #include "../h/Fecha.h"
 #include "../h/DTEstadia.h"
-#include "../h/DTReserva.h"
 
 #include <iterator>
 #include <vector>
@@ -10,11 +9,12 @@
 using namespace std;
 
      
-Habitacion::Habitacion(int numero, int precio, int capacidad, Hostal* phostal, map<int, Reserva*> preservas){
+Habitacion::Habitacion(int numero, int precio, int capacidad, Hostal* phostal){
     this->numero = numero;
     this->precio = precio;
     this->capacidad = capacidad;
     this->hostal = phostal;
+    map<int, Reserva*> preservas;
     this->reservas = preservas;
 }
 
@@ -66,7 +66,9 @@ vector<DTEstadia> Habitacion::getDTEstadias(){
     return res;
 }
 void Habitacion::addReserva(Reserva* reserva){
-     reservas.insert(pair<int,Reserva*>(reserva->getCodigoReserva(), reserva));
+
+    reserva->calcularCosto();
+    reservas.insert(pair<int,Reserva*>(reserva->getCodigoReserva(), reserva));
 }
 bool Habitacion::isReservado(Fecha checkIn, Fecha checkOut){
     map<int, Reserva*>::iterator it = reservas.begin();
@@ -77,32 +79,4 @@ bool Habitacion::isReservado(Fecha checkIn, Fecha checkOut){
     }
     return false;
 
-}
-
-//consulta reserva
-vector<DTReserva> Habitacion::getDataReservaDeHabitacion(){
-    map<int, Reserva*> rs = this->getReservas();
-    map<int, Reserva*>::iterator itr;
-    vector<DTReserva> res;
-    for (itr = rs.begin(); itr != rs.end(); ++itr) {
-        res.emplace_back(itr->second->getDTReserva());
-    }
-    return res;
-}
-
-//baja reserva
-set<int> Habitacion::listarCodigoReservasDeHabitacion(){
-    map<int, Reserva*> rs = this->getReservas();
-    map<int, Reserva*>::iterator itr;
-    set<int> res;
-    for (itr = rs.begin(); itr != rs.end(); ++itr) {
-        res.insert(itr->second->getCodigoReserva());
-    }
-    return res;
-}
-
-void Habitacion::eliminarReservaDeHabitacion(int codigoReservaEstadia){
-    map<int, Reserva*>::iterator it;
-    it = reservas.find(codigoReservaEstadia);
-    reservas.erase(it);
 }
