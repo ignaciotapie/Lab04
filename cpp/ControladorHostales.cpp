@@ -259,9 +259,6 @@ void ControladorHostales::cargaDatos()
     mochileros->asignarEmpleado(cu->getEmpleado("alina@mail.com"));
     pony->asignarEmpleado(cu->getEmpleado("barli@mail.com"));
 
-
-
-
 }
 
 bool ControladorHostales::checkearHab(int h){
