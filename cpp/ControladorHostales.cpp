@@ -6,7 +6,6 @@
 #include "../h/Reserva.h"
 #include "../h/ControladorReservas.h"
 #include "../h/Fecha.h"
-#include "../h/DTHabitacion.h"
 
 ControladorHostales* ControladorHostales::instance = NULL;
 
