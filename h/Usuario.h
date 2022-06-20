@@ -54,6 +54,7 @@ class Huesped : public Usuario {
         Huesped(string nombre, string email, string password, bool esFinger);
         DTHuesped getDTHuesped();
         set<int> getCodigosReservas();
+        set<Estadia*> getEstadiasHuesped();
         bool getEsFinger();
         //baja reserva
         void eliminarReservaDeHuesped(int);
