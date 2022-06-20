@@ -80,7 +80,7 @@ set<int> Huesped::getCodigosReservas() {
 }
 
 set<Estadia*> Huesped::getEstadiasHuesped(){
-    this->e;
+    return this->e;
 }
 
 void Huesped::addReserva(Reserva* r)
