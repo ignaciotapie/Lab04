@@ -1082,6 +1082,35 @@ int main()
                 break;
             }
             case 13:{
+                
+                IHostales* ihostales = fabrica->getIHostales();
+                set<string> nombresHostales = ihostales->getHostales();
+                set<string>::iterator itrHostales;
+                cout << "Hostales" << endl; 
+                for (itrHostales = nombresHostales.begin(); itrHostales != nombresHostales.end(); itrHostales++){
+                    cout << *itrHostales << endl;
+                }
+                string nombreHostal;
+                bool nombreHostalValido = false;
+                cout << "Ingrese nombre del hostal" << endl;
+                while (!nombreHostalValido)
+                {
+                    cin.ignore();
+                    getline(cin, nombreHostal);
+
+                    if (nombresHostales.find(nombreHostal) != nombresHostales.end()){
+                        nombreHostalValido = true;
+                    }
+                    else{
+                        cout << "Por favor, escriba un hostal que esta en la lista." << endl;
+                    }
+                }
+                IReservas* ireservas = fabrica->getIReservas();
+                vector<DTReserva> reservas = ireservas->listarReservasDeHostal(nombreHostal);
+                vector<DTReserva>::iterator itrReservas;
+                for (itrReservas = reservas.begin(); itrReservas != reservas.end(); itrReservas++){
+                    //(*itrReservas).imprimir();
+                }
 
                 break;
             }
