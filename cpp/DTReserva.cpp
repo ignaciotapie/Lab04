@@ -29,6 +29,15 @@ int DTReserva::getNumeroHabitacion(){
 return numeroHabitacion;
 }
 
+//consulta reserva
+DTReservaIndividual::DTReservaIndividual(int codigo, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo, int numeroHabitacion) : DTReserva(codigo, checkIn, checkOut, estado, costo, numeroHabitacion){
+
+}
+
+DTReservaGrupal::DTReservaGrupal(int codigo, Fecha checkIn, Fecha checkOut, EstadoReserva estado, int costo, int numeroHabitacion, set<string> nombreHuesped) : DTReserva(codigo, checkIn, checkOut, estado, costo, numeroHabitacion){
+    this->nombreHuesped = nombreHuesped;
+}
+
 // void DTReservaGrupal::imprimir(){
 //     cout << "Codigo Reserva " << getCodigo() << endl
 //     << "CheckIn: " << getCheckIn().getDia() << "/" << getCheckIn().getMes() << "/" << getCheckIn().getAnio() << ":" << getCheckIn().getHora() << "hs." << endl
