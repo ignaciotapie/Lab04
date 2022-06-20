@@ -43,6 +43,8 @@ class Estadia
         //ConsultaEstadia
         DTEstadiaPlus getDTEstadiaPlus();
         DTCalificacion getDTCalificacion();
+        //baja reserva
+        void eliminarEstadia();
 };
 
 #endif
