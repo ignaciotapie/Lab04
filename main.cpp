@@ -269,57 +269,64 @@ int main()
                 IHostales* interfazHostales = fabrica->getIHostales();
 
                 set<string> allHostales = interfazHostales->getHostales();
-                int i = 1;
-                for(set<string>::iterator it = allHostales.begin(); it != allHostales.end(); ++it)
-                {
-                    cout << i << ". " << *it << endl;
-                    ++i;
+
+                if (allHostales.empty()){
+                    cout << "No hostales registrados" << endl;
+                    break;
                 }
-                string nombreHostal;
-                bool nombreHostalValido = false;
-                cout << "Ingrese nombre del hostal\n";
-                while (!nombreHostalValido)
-                {
-                    getline(cin, nombreHostal);
-
-                    if (allHostales.find(nombreHostal) != allHostales.end())
+                else{
+                    int i = 1;
+                    for(set<string>::iterator it = allHostales.begin(); it != allHostales.end(); ++it)
                     {
-                        nombreHostalValido = true;
+                        cout << i << ". " << *it << endl;
+                        ++i;
                     }
-                    else
+                    string nombreHostal;
+                    bool nombreHostalValido = false;
+                    cout << "Ingrese nombre del hostal\n";
+                    while (!nombreHostalValido)
                     {
-                        cout << "Por favor, escriba un hostal que esta en la lista." << endl;
-                    }
-                }
+                        getline(cin, nombreHostal);
 
-                //altaHabitacion
-                int numero, precio, capacidad;
-                cout << "Ingrese numero" << endl;
-                numero = CheckIntCin();
-                cout << "Ingrese precio" << endl;
-                precio = CheckIntCin();
-                cout << "Ingrese capacidad" << endl;
-                capacidad = CheckIntCin();
-                interfazHostales->altaHabitacion(numero, precio, capacidad);
-
-                //Confirmar/Cancelar
-                cout << "Desea confirmar la creacion de la habitacion?\n" << "(1) Si\n" << "(2) No\n";
-                bool incorrecto = true;
-                while (incorrecto)
-                {
-                    string fin;
-                    cin >> fin;
-                    if (fin == "1" || fin == "2")
-                    {
-                        incorrecto = false;
-                        if (fin == "1")
-                            interfazHostales->confirmarAltaHabitacion();
+                        if (allHostales.find(nombreHostal) != allHostales.end())
+                        {
+                            nombreHostalValido = true;
+                        }
                         else
-                            interfazHostales->cancelarAltaHabitacion();
+                        {
+                            cout << "Por favor, escriba un hostal que esta en la lista." << endl;
+                        }
                     }
-                    else
+
+                    //altaHabitacion
+                    int numero, precio, capacidad;
+                    cout << "Ingrese numero" << endl;
+                    numero = CheckIntCin();
+                    cout << "Ingrese precio" << endl;
+                    precio = CheckIntCin();
+                    cout << "Ingrese capacidad" << endl;
+                    capacidad = CheckIntCin();
+                    interfazHostales->altaHabitacion(numero, precio, capacidad);
+
+                    //Confirmar/Cancelar
+                    cout << "Desea confirmar la creacion de la habitacion?\n" << "(1) Si\n" << "(2) No\n";
+                    bool incorrecto = true;
+                    while (incorrecto)
                     {
-                        cout << "Por favor, elija una opcion correcta" << endl;
+                        string fin;
+                        cin >> fin;
+                        if (fin == "1" || fin == "2")
+                        {
+                            incorrecto = false;
+                            if (fin == "1")
+                                interfazHostales->confirmarAltaHabitacion();
+                            else
+                                interfazHostales->cancelarAltaHabitacion();
+                        }
+                        else
+                        {
+                            cout << "Por favor, elija una opcion correcta" << endl;
+                        }
                     }
                 }
                 break;
