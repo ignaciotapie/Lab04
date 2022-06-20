@@ -39,19 +39,20 @@ map<int, Reserva*> Habitacion::getReservas(){
 }
 
 vector<DTEstadia> Habitacion::getEstadiasFinalizadas(string emailHuesped){
-    map<int, Reserva*> rs = reservas;
-    map<int, Reserva*>::iterator itr;
-    vector<DTEstadia> res;
-    for (itr = rs.begin(); itr != rs.end(); ++itr) {
-        vector<DTEstadia> aux = itr->second->getEstadiasFinalizadas(emailHuesped);
-        // agregar aux a res
-        vector<DTEstadia>::iterator itr2;
-        for (itr2 = aux.begin(); itr2 != aux.end(); ++itr){
-            res.emplace_back(*itr2);
+    map<int, Reserva*> res = this->reservas;
+    vector<DTEstadia> nuevo;
+    for (map<int, Reserva*>::iterator ite = res.begin(); ite != res.end(); ite++){
+        vector<DTEstadia> est = (*ite).second->getEstadiasFinalizadas(emailHuesped);
+        for (vector<DTEstadia>::iterator ite2 = est.begin(); ite2 != est.end(); ite2++){
+            nuevo.emplace_back((*ite2));
         }
     }
-    return res;
+    return nuevo;
 }
+
+
+
+
 vector<DTEstadia> Habitacion::getDTEstadias(){
     map<int, Reserva*>::iterator itr;
     vector<DTEstadia> res;

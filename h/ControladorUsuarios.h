@@ -92,6 +92,7 @@ class ControladorUsuarios : public IUsuarios
 		//ComentarCalificacion
 		vector<DTCalificacion> getCalificacionesSinResponder(string);
 		void seleccionarHuesped(string emailHuesped);
+		string getHuespedSeleccionado();
 
 		// Caso de Uso: Subscribirse a Notis
 		map<string, string> getListaEmpleados();

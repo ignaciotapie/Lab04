@@ -11,6 +11,7 @@
 #include "../h/DTCalificacion.h"
 #include "../h/DTEstadia.h"
 #include "../h/RespuestaEmpleado.h"
+#include "../h/Habitacion.h"
 
 using namespace std;
 
@@ -123,12 +124,23 @@ void ControladorReservas::seleccionarHostal(string h){
 vector<DTEstadia> ControladorReservas::getEstadiasFinalizadas(){
     
     ControladorHostales* ch = ControladorHostales::getInstance();
+    ControladorUsuarios* cu = ControladorUsuarios::getInstance();
+
+    string mail = cu->getHuespedSeleccionado();
 
     Hostal* h = ch->getHostal(ch->getHostalSeleccionado());
 
-    for (map<int,Habitacion*>::iterator ite = h->getHabitaciones().begin(); ite != h->getHabitaciones().end(); ite++){
-        ;
+    vector<DTEstadia> nuevo;
+    map<int,Habitacion*>::iterator ite;
+
+
+    for (ite = h->getHabitaciones().begin(); ite != h->getHabitaciones().end(); ite++){
+        vector<DTEstadia> est = (*ite).second->getEstadiasFinalizadas(mail);
+        for (vector<DTEstadia>::iterator ite2 = est.begin(); ite2 != est.end(); ite2++){
+            nuevo.emplace_back((*ite2));
+        }
     }
+    return nuevo;
     
 }
 

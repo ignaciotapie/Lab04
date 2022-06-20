@@ -258,3 +258,7 @@ void ControladorUsuarios::cargaDatos()
 void ControladorUsuarios::seleccionarHuesped(string emailHuesped){
     this->huespedSeleccionado = emailHuesped;
 }
+
+string ControladorUsuarios::getHuespedSeleccionado(){
+    return this->huespedSeleccionado;
+}
