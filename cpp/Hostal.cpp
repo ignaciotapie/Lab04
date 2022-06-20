@@ -61,7 +61,11 @@ const int Hostal::getPromedioPuntaje() const{
 		sum = sum + (*iter)->getPuntaje();
 		iteraciones++;
 	}
-	return sum/iteraciones;
+	if (iteraciones == 0){
+        return 0;
+    }else{
+	    return sum/iteraciones;
+    }
 }
 
  

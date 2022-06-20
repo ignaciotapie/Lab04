@@ -16,8 +16,7 @@ class ControladorHostales : public IHostales{
 		map<string, Hostal*> hostales;
 		
 		//Caso de Uso: Alta de Hostal
-		string nombreHostal, direccionHostal;
-		string telefonoHostal;
+		string nombreHostal, direccionHostal, telefonoHostal;
 
 		//Caso de Uso: Alta de Habitacion
 		string hostalSeleccionado;
