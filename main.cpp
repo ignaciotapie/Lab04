@@ -85,16 +85,14 @@ int main()
                 {
                     string email, nombre, password;
                     bool esEmpleado, esFinger;
-                    cout << "Ingrese nombre\n";
+                    cout << "Ingrese nombre" << endl;;
                     cin.ignore();
                     getline(cin, nombre);
-                    cout << "Ingrese email\n";
-                    cin.ignore();
+                    cout << "Ingrese email" << endl;
                     getline(cin, email);
-                    cout << "Ingrese password\n";
-                    cin.ignore();
+                    cout << "Ingrese password" << endl;
                     getline(cin, password);
-                    cout << "Es empleado?\n" << "(1) Si\n" << "(2) No\n";
+                    cout << "Es empleado?\n" << "(1) Si" << endl << "(2) No" << endl;
                     bool incorrecto = true;
                     while (incorrecto)
                     {
@@ -238,7 +236,6 @@ int main()
                 cin.ignore();
                 getline(cin, nombre);
                 cout << "Ingrese direccion del Hostal: \n";
-                cin.ignore();
                 getline(cin, email);
                 cout << "Ingrese telefono del Hostal: \n";
                 telefono = CheckIntCin();
@@ -283,7 +280,6 @@ int main()
                 cout << "Ingrese nombre del hostal\n";
                 while (!nombreHostalValido)
                 {
-                    cin.ignore();
                     getline(cin, nombreHostal);
 
                     if (allHostales.find(nombreHostal) != allHostales.end())
@@ -375,7 +371,6 @@ int main()
                 cout << "Ingrese nombre del empleado a asignar:" << endl;
                 while (!nombreEmpleadoValido)
                 {
-                    cin.ignore();
                     getline(cin, nombreEmpleado);
 
                     if (EmpleadosFueraHostal.find(nombreEmpleado) != EmpleadosFueraHostal.end())
@@ -571,7 +566,6 @@ int main()
                     cout << i << ". " << *aux << endl;
                 }
                 cout << "Ingrese el nombre del huesped a registrar: " ;
-                cin.ignore();
                 string nombreHuesped;
                 getline(cin, nombreHuesped);
                 interfazHostales->seleccionarHuesped(nombreHuesped);
@@ -805,7 +799,6 @@ int main()
                 cout << "Ingrese nombre del hostal\n";
                 while (!nombreHostalValido)
                 {
-                    cin.ignore();
                     getline(cin, nombreHostal);
 
                     if (top3Hostales.find(nombreHostal) != top3Hostales.end())
@@ -913,7 +906,6 @@ int main()
                 cout << "Ingrese el email del huesped a registrar su estadia:" << endl;
                 while (!emailHuespedValido)
                 {
-                    cin.ignore();
                     getline(cin, emailHuesped);
 
                     if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
@@ -988,7 +980,6 @@ int main()
                 cout << "Ingrese el email del huesped a finalizar su estadia:" << endl;
                 while (!emailHuespedValido)
                 {
-                    cin.ignore();
                     getline(cin, emailHuesped);
 
                     if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
@@ -1172,7 +1163,6 @@ int main()
                 bool nombreExiste = false;
                 while (!nombreExiste)
                 {
-                    cin.ignore();
                     getline(cin, nombreEmpleado);
                     if (lista.find(nombreEmpleado) != lista.end())
                     {
@@ -1224,7 +1214,6 @@ int main()
                 bool nombreExiste = false;
                 while (!nombreExiste)
                 {
-                    cin.ignore();
                     getline(cin, nombreEmpleado);
                     if (lista.find(nombreEmpleado) != lista.end())
                     {
