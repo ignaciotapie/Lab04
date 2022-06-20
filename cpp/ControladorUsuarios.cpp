@@ -125,12 +125,6 @@ void ControladorUsuarios::registrarEstadia(){
 	cr->registrarEstadia(this->codigoReserva, hues); //mandar la funcion de controldorReservas
 }
 
-
-DTUsuario ControladorUsuarios::listarDatos(){
-    map<string,Usuario*>::iterator ite = this->usuarios.find(this->usuarioSeleccionado);
-    return (*ite).second->getDTUsuario();
-}
-
 void ControladorUsuarios::finalizarConsultaUsuario(){}
 void ControladorUsuarios::eliminarEmpleado()
 {
@@ -200,4 +194,14 @@ void ControladorUsuarios::finalizarSuscripcion()
 
 bool ControladorUsuarios::esEmp(){
     return (this->empleados.find(this->usuarioSeleccionado) != this->empleados.end());
+}
+
+DTEmpleado ControladorUsuarios::getDTEmpleado(){
+    map<string,Empleado*>::iterator ite = this->empleados.find(this->usuarioSeleccionado);
+    return (*ite).second->getDTEmpleado();
+}
+
+DTHuesped ControladorUsuarios::getDTHuesped(){
+    map<string,Huesped*>::iterator ite = this->huespedes.find(this->usuarioSeleccionado);
+    return (*ite).second->getDTHuesped();
 }
