@@ -1105,10 +1105,7 @@ int main()
                             cout << "Es finger: No" << endl;
                         }
                     }
-
                 }
-                
-
                 break;
             }
             case 20:
