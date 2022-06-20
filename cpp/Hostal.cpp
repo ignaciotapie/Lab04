@@ -5,6 +5,14 @@
 #include "../h/Usuario.h"
 #include "../h/DTCalificacion.h"
 #include "../h/DTEstadia.h"
+<<<<<<< HEAD
+=======
+
+#include "../h/DTReserva.h"
+>>>>>>> parent of 37bf365 (Revert "Merge branch 'main' of https://github.com/santiagosommer/Lab04")
+
+#include "../h/DTHabitacion.h"
+
 
 Hostal::Hostal(){
 }
