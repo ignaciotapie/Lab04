@@ -371,6 +371,10 @@ int main()
 
 
                 set<string> EmpleadosFueraHostal = interfazHostales->getEmpleadosFueraDeHostal(nombreHostal);
+                if (EmpleadosFueraHostal.empty()){
+                    cout << "No hay empleados registrados" << endl;
+                    break;
+                }
                 i = 1;
                 for(set<string>::iterator it = EmpleadosFueraHostal.begin(); it != EmpleadosFueraHostal.end(); ++it)
                 {
