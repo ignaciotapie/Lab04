@@ -15,7 +15,3 @@ Empleado* RespuestaEmpleado::getEmpleado(){
 Calificacion* RespuestaEmpleado::getCalificacion(){
     return this->calificacion;
 }
-
-void RespuestaEmpleado::eliminarRespuesta(){
-	empleado->eliminarRespuesta(this);
-}
