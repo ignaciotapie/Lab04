@@ -480,7 +480,7 @@ int main()
                 int i = 1;
                 for(; auxiliarLista != listaHostales.end(); auxiliarLista++ )
                 {
-                    cout << i << ". " << auxiliarLista->getNombre() << " - " << auxiliarLista->getDireccion() << " - " << auxiliarLista->getPromCalif();
+                    cout << i << ". " << auxiliarLista->getNombre() << " - " << auxiliarLista->getDireccion() << " - " << auxiliarLista->getPromCalif() << endl;
                 }
                 string nombreHostal;
                 cout << "Ingrese nombre del Hostal que desea reservar: \n";
