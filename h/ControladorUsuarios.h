@@ -81,6 +81,7 @@ class ControladorUsuarios : public IUsuarios
 		//Consulta de Usuario
 		DTUsuario listarDatos();
 		void finalizarConsultaUsuario();
+		bool esEmp();
 
 		//CalificarEstadia
 		void notificarObservadores(Notificacion*);

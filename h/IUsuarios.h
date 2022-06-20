@@ -26,6 +26,9 @@ class IUsuarios{
 		virtual void cancelarAltaUsuario() = 0;
 		virtual void confirmarAltaUsuario() = 0; 
 
+		//Caso de Uso: Consulta de Usuario
+		virtual bool esEmp() = 0;
+
 		virtual set<string> getHuespedes() = 0;
 
 		virtual set<string> getUsuarios() = 0;
