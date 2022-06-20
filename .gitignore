@@ -9,3 +9,5 @@ o/*.o
 h/ControladorUsuarios
 main.dSYM/Contents/Info.plist
 o/Calificacion.o
+.vscode/launch.json
+../vscode

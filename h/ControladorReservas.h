@@ -37,6 +37,7 @@ class ControladorReservas : public IReservas
 		void seleccionarHostal(string);
 		vector<DTEstadia> getEstadiasFinalizadas(string);
 		void seleccionarEstadia(int, string);
+		void seleccionarEstadiaConHostal(string, string);
 		//ComentarCalificacion
 		vector<DTCalificacion> getCalificacionesSinResponder(string);
 		void selectCalificacion(string, int);
