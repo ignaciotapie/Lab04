@@ -17,7 +17,7 @@ ControladorHostales* ControladorHostales::getInstance(){
     return instance;
 }
 
-void ControladorHostales::setHostalInfo(string nombre, string direccion, int telefono)
+void ControladorHostales::setHostalInfo(string nombre, string direccion, string telefono)
 {
     nombreHostal = nombre;
     direccionHostal = direccion;
