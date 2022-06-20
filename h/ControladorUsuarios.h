@@ -32,6 +32,9 @@ class ControladorUsuarios : public IUsuarios
 		//Consulta de Usuario
 		string usuarioSeleccionado;
 
+		//Calificar Estadia
+		string huespedSeleccionado;
+
 		//Arreglos Nacho
 		string emailHuesped;
 		int codigoReserva;
@@ -88,7 +91,7 @@ class ControladorUsuarios : public IUsuarios
 		void notificarObservadores(Notificacion*);
 		//ComentarCalificacion
 		vector<DTCalificacion> getCalificacionesSinResponder(string);
-		void seleccionarHuesped();
+		void seleccionarHuesped(string emailHuesped);
 
 		// Caso de Uso: Subscribirse a Notis
 		map<string, string> getListaEmpleados();

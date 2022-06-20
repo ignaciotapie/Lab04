@@ -34,7 +34,7 @@ class IUsuarios{
 		virtual DTHuesped getDTHuesped() = 0;
 
 		//Caso de uso: calificar estadia
-		virtual void seleccionarHuesped() = 0;
+		virtual void seleccionarHuesped(string) = 0;
 
 		virtual set<string> getHuespedes() = 0;
 

@@ -255,6 +255,6 @@ void ControladorUsuarios::cargaDatos()
     usuarios.insert({seba->getEmail(), seba});
 }
 
-void seleccionarHuesped(string email){
-    this->huespedSeleccionado = email;
+void ControladorUsuarios::seleccionarHuesped(string emailHuesped){
+    this->huespedSeleccionado = emailHuesped;
 }
