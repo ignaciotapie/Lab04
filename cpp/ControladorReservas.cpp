@@ -246,7 +246,7 @@ void ControladorReservas::cargaDatos()
     huesSeba->agregarEstadia(estSeba);
     //crear Estadias
     Calificacion* calSeba = new Calificacion(1, "Había pulgas en la habitación. Que lugar más mamarracho!!", Fecha(23.00, 15, 6, 2022), estSeba, caverna, NULL);
-
+    estSeba->setPunteroCalificacion(calSeba);
 
     
 
