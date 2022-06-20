@@ -15,7 +15,8 @@ class Estadia;
 class Calificacion;
 class Notificacion;
 class Hostal;
-class DTUsuario;
+class DTHuesped;
+class DTEmpleado;
 class DTNotificacion;
 class DTCalificacion;
 
