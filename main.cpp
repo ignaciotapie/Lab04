@@ -782,7 +782,7 @@ int main()
                 if (verRes){
                     DTReserva res = ireservas->getDTReserva();
                     cout << "Info Reserva: " << endl;
-                    // Info Res
+                    res.imprimir();
                 }
                 break;
             }
