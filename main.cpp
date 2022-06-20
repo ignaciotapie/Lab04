@@ -676,6 +676,7 @@ int main()
                     cout << "Ingrese nombre del hostal\n";
                     while (!nombreHostalValido)
                     {
+                        cin.ignore();
                         getline(cin, nombreHostal);
                         if (top3Hostales.find(nombreHostal) != top3Hostales.end())
                     {
@@ -746,7 +747,7 @@ int main()
                         ++i;
                     }
                 }
-                break;
+6                break;
             }
             case 7:
             {
