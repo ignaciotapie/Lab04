@@ -33,6 +33,9 @@ class IUsuarios{
 		virtual DTEmpleado getDTEmpleado() = 0;
 		virtual DTHuesped getDTHuesped() = 0;
 
+		//Caso de uso: calificar estadia
+		virtual void seleccionarHuesped();
+
 		virtual set<string> getHuespedes() = 0;
 
 		virtual set<string> getUsuarios() = 0;

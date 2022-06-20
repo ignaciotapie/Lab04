@@ -88,6 +88,7 @@ class ControladorUsuarios : public IUsuarios
 		void notificarObservadores(Notificacion*);
 		//ComentarCalificacion
 		vector<DTCalificacion> getCalificacionesSinResponder(string);
+		void seleccionarHuesped();
 
 		// Caso de Uso: Subscribirse a Notis
 		map<string, string> getListaEmpleados();
