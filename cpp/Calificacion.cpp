@@ -5,6 +5,7 @@
 #include "../h/Reserva.h"
 #include "../h/RespuestaEmpleado.h"
 #include "../h/Notificacion.h"
+#include "../h/Hostal.h"
 
 Calificacion::Calificacion(int i, string c, Fecha f, Estadia* e, Hostal* h, RespuestaEmpleado* emp){
     this->puntaje = i;

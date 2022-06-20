@@ -34,6 +34,11 @@ class Habitacion{
         vector<DTEstadia> getEstadiasFinalizadas(string);
         //ConsultaEstadia
         vector<DTEstadia> getDTEstadias();
+        //consultar reserva
+        vector<DTReserva> getDataReservaDeHabitacion();
+        //baja reserva
+        set<int> listarCodigoReservasDeHabitacion();
+        void eliminarReservaDeHabitacion(int);
 };
 
 #endif

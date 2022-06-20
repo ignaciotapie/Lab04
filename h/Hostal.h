@@ -59,6 +59,11 @@ class Hostal{
 
         //Cargar datos
         Habitacion* getHabitacion(int num);
+        //consultar reserva
+        vector<DTReserva> listarReservasDeHostal();
+        //baja reserva
+        set<int> listarCodigoReservasDeHostal();
+        void eliminarCalificacion(Calificacion*);
 };
 
 

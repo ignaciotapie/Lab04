@@ -167,3 +167,41 @@ Habitacion* Hostal::getHabitacion(int num)
 bool Hostal::checkHab(int h){
     return this->habitaciones.find(h) != this->habitaciones.end();
 }
+
+//consultar reserva
+vector<DTReserva> Hostal::listarReservasDeHostal(){
+    map<int, Habitacion*> hs = this->getHabitaciones();
+    map<int, Habitacion*>::iterator itr;
+    vector<DTReserva> res;
+    for (itr = hs.begin(); itr != hs.end(); ++itr) {
+        vector<DTReserva> aux = itr->second->getDataReservaDeHabitacion();
+        vector<DTReserva>::iterator itr2;
+        for (itr2 = aux.begin(); itr2 != aux.end(); ++itr){
+            res.emplace_back(*itr2);
+        }
+        aux.~vector();
+    }
+    return res;
+}
+
+//baja reserva
+set<int> Hostal::listarCodigoReservasDeHostal(){
+    map<int, Habitacion*> hs = this->getHabitaciones();
+    map<int, Habitacion*>::iterator itr;
+    set<int> res;
+    for (itr = hs.begin(); itr != hs.end(); ++itr) {
+        set<int> aux = itr->second->listarCodigoReservasDeHabitacion();
+        set<int>::iterator itr2;
+        for (itr2 = aux.begin(); itr2 != aux.end(); ++itr){
+            res.insert(*itr2);
+        }
+        aux.~set();
+    }
+    return res;
+}
+
+void Hostal::eliminarCalificacion(Calificacion* calificacionEliminar){
+    set<Calificacion*>::iterator it;
+    it = calificaciones.find(calificacionEliminar);
+    calificaciones.erase(it);
+}

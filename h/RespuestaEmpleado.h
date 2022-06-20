@@ -20,6 +20,7 @@ public:
     string getMensaje();
     Empleado* getEmpleado();
     Calificacion* getCalificacion();
+    void eliminarRespuesta();
 };
 
 

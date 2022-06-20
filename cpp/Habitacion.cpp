@@ -80,3 +80,31 @@ bool Habitacion::isReservado(Fecha checkIn, Fecha checkOut){
     return false;
 
 }
+
+//consulta reserva
+vector<DTReserva> Habitacion::getDataReservaDeHabitacion(){
+    map<int, Reserva*> rs = this->getReservas();
+    map<int, Reserva*>::iterator itr;
+    vector<DTReserva> res;
+    for (itr = rs.begin(); itr != rs.end(); ++itr) {
+        res.emplace_back(itr->second->getDTReserva());
+    }
+    return res;
+}
+
+//baja reserva
+set<int> Habitacion::listarCodigoReservasDeHabitacion(){
+    map<int, Reserva*> rs = this->getReservas();
+    map<int, Reserva*>::iterator itr;
+    set<int> res;
+    for (itr = rs.begin(); itr != rs.end(); ++itr) {
+        res.insert(itr->second->getCodigoReserva());
+    }
+    return res;
+}
+
+void Habitacion::eliminarReservaDeHabitacion(int codigoReservaEstadia){
+    map<int, Reserva*>::iterator it;
+    it = reservas.find(codigoReservaEstadia);
+    reservas.erase(it);
+}
