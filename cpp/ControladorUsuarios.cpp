@@ -54,13 +54,13 @@ void ControladorUsuarios::confirmarAltaUsuario()
     if (esEmpleadoUsuario)
     {
         Empleado* empleado = new Empleado(nombreUsuario, emailUsuario, passwordUsuario, cargoUsuario);
-	empleados.insert(pair<string,Empleado*>(emailUsuario, empleado));
+	    empleados.insert({emailUsuario, empleado});
         user = empleado;
     }
     else
     {
         Huesped* huesped = new Huesped(nombreUsuario, emailUsuario, passwordUsuario, esFingerUsuario);
-	huespedes.insert(pair<string,Huesped*>(emailUsuario, huesped));
+	    huespedes.insert({emailUsuario, huesped});
         user = huesped;
     }
 	usuarios.insert(pair<string,Usuario*>(emailUsuario, user));
