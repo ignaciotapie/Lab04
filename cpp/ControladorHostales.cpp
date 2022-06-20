@@ -266,3 +266,7 @@ void ControladorHostales::cargaDatos()
 bool ControladorHostales::checkearHab(int h){
     return this->hostales.find(this->hostalSeleccionado)->second->checkHab(h);
 }
+
+map<string, Hostal*> ControladorHostales::arrayHostales(){
+    return this->hostales;
+}

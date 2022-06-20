@@ -1,11 +1,16 @@
 #include "../h/DTHostal.h"
 #include "../h/Hostal.h"
+#include "../h/ControladorHostales.h"
 
 DTHostal::DTHostal(string nom, string dir, string tel, float prom){
     nombre = nom;
     direccion = dir;
     telefono = tel;
     promCalif = prom;
+
+    ControladorHostales* controladorHostales = ControladorHostales::getInstance();
+    map<string,Hostal*>::iterator h = controladorHostales->arrayHostales().find(nom);
+    h->second->getDTHabitaciones();
 }
 
 DTHostal::DTHostal(const Hostal& hostal)

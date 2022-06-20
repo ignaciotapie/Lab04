@@ -55,6 +55,7 @@ class ControladorHostales : public IHostales{
 		//Caso de uso: Consulta de Hostal
 		DTHostal getDTHostal();
 		void finalizarConsultaHostal();
+		map<string, Hostal*> arrayHostales();
 
 		//Caso de uso: Realizar Reserva
 		bool existeHostal(string nombreHostal);

@@ -16,6 +16,7 @@ class DTCalificacion;
 class Reserva;
 class DTEstadia;
 class DTHostal;
+class DTHabitacion;
 
 class Hostal{
     private:
@@ -38,6 +39,9 @@ class Hostal{
 
         //Caso de uso: Realizar Reserva
         set<int> getHabitacionesLibres(Fecha CheckIn, Fecha CheckOut);
+
+        //Caso de uso: Consulta de Hostal
+        vector<DTHabitacion> getDTHabitaciones();
         
         const string getNombreHostal() const;
         const string getDireccion() const;

@@ -165,3 +165,13 @@ Habitacion* Hostal::getHabitacion(int num)
 bool Hostal::checkHab(int h){
     return this->habitaciones.find(h) != this->habitaciones.end();
 }
+
+vector<DTHabitacion> Hostal::getDTHabitaciones(){
+
+    vector<DTHabitacion> nuevo;
+
+    for (map<int, Habitacion*>::iterator ite = this->habitaciones.begin();ite != this->habitaciones.end(); ite++){
+        nuevo.emplace_back(ite->second->getDTHabitacion());
+    }
+    return nuevo;
+}

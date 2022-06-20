@@ -1,6 +1,8 @@
 #include "../h/DTHabitacion.h"
 
-DTHabitacion::DTHabitacion(int num, int pre, int cap, map<string, DTCalificacion>* cals){
+#include <vector>
+
+DTHabitacion::DTHabitacion(int num, int pre, int cap, vector<DTCalificacion> cals){
     numero = num;
     precio = pre;
     capacidad = cap;
@@ -15,6 +17,6 @@ DTHabitacion::DTHabitacion(int num, int pre, int cap, map<string, DTCalificacion
  const int DTHabitacion::getCapacidad() const {
     return capacidad;
 }
- const map<string, DTCalificacion>* DTHabitacion::getCalificaciones() const {
+ const vector<DTCalificacion> DTHabitacion::getCalificaciones() const {
     return calificaciones;
 }

@@ -26,6 +26,7 @@ class Habitacion{
         int getNumero();
         int getCapacidad();
         int getPrecio();
+        DTHabitacion getDTHabitacion();
         Hostal* getHostal();
         map<int, Reserva*> getReservas();
         void addReserva(Reserva*);
@@ -34,6 +35,7 @@ class Habitacion{
         vector<DTEstadia> getEstadiasFinalizadas(string);
         //ConsultaEstadia
         vector<DTEstadia> getDTEstadias();
+        vector<DTCalificacion> getDTCalificaciones();
 };
 
 #endif
