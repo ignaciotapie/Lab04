@@ -229,8 +229,7 @@ int main()
 
             case 2: 
             { 
-                string nombre, email;
-                int telefono;
+                string nombre, email, telefono;
 
                 cout << "Ingrese nombre del Hostal: \n";
                 cin.ignore();
@@ -238,7 +237,7 @@ int main()
                 cout << "Ingrese direccion del Hostal: \n";
                 getline(cin, email);
                 cout << "Ingrese telefono del Hostal: \n";
-                telefono = CheckIntCin();
+                getline(cin, telefono);
 
                 IHostales* interfazHostales = fabrica->getIHostales();
                 interfazHostales->setHostalInfo(nombre, email, telefono);

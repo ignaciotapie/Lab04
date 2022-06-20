@@ -17,7 +17,7 @@ class ControladorHostales : public IHostales{
 		
 		//Caso de Uso: Alta de Hostal
 		string nombreHostal, direccionHostal;
-		int telefonoHostal;
+		string telefonoHostal;
 
 		//Caso de Uso: Alta de Habitacion
 		string hostalSeleccionado;
@@ -41,7 +41,7 @@ class ControladorHostales : public IHostales{
 
 
 		//Caso de uso: Alta de Hostal
-		void setHostalInfo(string nombre, string direccion, int telefono);
+		void setHostalInfo(string nombre, string direccion, string telefono);
 		void confirmarAltaHostal();
 		void cancelarAltaHostal();
 
