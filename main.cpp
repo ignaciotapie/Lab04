@@ -917,11 +917,11 @@ int main()
                     }
                 }
                 ireservas->seleccionarHostal(hostalSeleccionado);
-                string emailEmpleado;
-                cout << "Ingresar Email Empleado:" << endl;
-                cin.ignore();
-                getline(cin, emailEmpleado);
-                vector<DTEstadia> estadiasFinalizadas = ireservas->getEstadiasFinalizadas(emailEmpleado);
+                string emailHuesped;
+                cout << "Ingresar Email Huesped:" << endl;
+                // cin.ignore();
+                getline(cin, emailHuesped);
+                vector<DTEstadia> estadiasFinalizadas = ireservas->getEstadiasFinalizadas(emailHuesped);
                 vector<DTEstadia>::iterator itrEstadias;
                 for (itrEstadias = estadiasFinalizadas.begin(); itrEstadias != estadiasFinalizadas.end(); itrEstadias++){
                     DTEstadia DTEst = *itrEstadias;
@@ -940,7 +940,7 @@ int main()
                 ireservas->seleccionarEstadia(codigoRes, emailHues);
                 cout << "Ingresar Comentario: " << endl;
                 string comentario;
-                cin.ignore();
+                // cin.ignore();
                 getline(cin, comentario);
                 cout << "Ingresar Calificacion (1-5):" << endl;
                 int cal;
