@@ -842,22 +842,7 @@ int main()
                     }
 
                     cout << "Desea ver detalles de algun hostal?\n" << "(1) Si\n" << "(2) No\n";
-                    int op;
-                    cin >> op;
-
-                   /* while (incorrecto)
-                    {
-                        string op;
-                        cin >> op;
-                        if (op == "1" || op == "2")
-                        {
-                            incorrecto = false;
-                        }
-                        else
-                        {
-                            cout << "Por favor, elija una opcion correcta" << endl;
-                        }
-                    }*/
+                    int op = CheckIntCin();
                     if (op == 2) {break;}
 
                     cout << "De cual?\n" << "(1) Primero\n" << "(2) Segundo\n"<< "(3) Tercero\n";
