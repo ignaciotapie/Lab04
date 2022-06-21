@@ -194,7 +194,7 @@ set<int> Hostal::listarCodigoReservasDeHostal(){
     for (itr = hs.begin(); itr != hs.end(); ++itr) {
         set<int> aux = itr->second->listarCodigoReservasDeHabitacion();
         set<int>::iterator itr2;
-        for (itr2 = aux.begin(); itr2 != aux.end(); ++itr){
+        for (itr2 = aux.begin(); itr2 != aux.end(); ++itr2){
             res.insert(*itr2);
         }
         aux.~set();
