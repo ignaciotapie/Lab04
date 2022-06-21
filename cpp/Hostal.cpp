@@ -101,7 +101,7 @@ vector<DTEstadia> Hostal::getEstadiasFinalizadas(string emailHuesped){
         vector<DTEstadia> aux = itr->second->getEstadiasFinalizadas(emailHuesped);
         // agregar aux a res
         vector<DTEstadia>::iterator itr2;
-        for (itr2 = aux.begin(); itr2 != aux.end(); ++itr){
+        for (itr2 = aux.begin(); itr2 != aux.end(); ++itr2){
             res.emplace_back(*itr2);
         }
     }
@@ -109,10 +109,10 @@ vector<DTEstadia> Hostal::getEstadiasFinalizadas(string emailHuesped){
 }
 
 vector<DTCalificacion> Hostal::getCalificacionesSinResponder(){
-    set<Calificacion*> cals = this->calificaciones;
+    // set<Calificacion*> cals = this->calificaciones;
     set<Calificacion*>::iterator itr;
     vector<DTCalificacion> res;
-    for (itr = cals.begin(); itr != cals.end(); itr++) {
+    for (itr = calificaciones.begin(); itr != calificaciones.end(); itr++) {
         Calificacion* aux = *itr;
         if (aux->noEstaRespuesta()){
             res.emplace_back(aux->getDTCalificacion());

@@ -9,6 +9,7 @@
 #include "../h/Calificacion.h"
 #include "../h/DTReserva.h"
 #include "../h/ControladorReloj.h"
+#include "../h/Fecha.h"
 
 Estadia::Estadia(Fecha in, Fecha out, int pro, Reserva* res, Huesped* hue, Calificacion* cal){
     this->checkInReal = in;
@@ -48,7 +49,7 @@ void Estadia::setCheckOut(Fecha f){
 }
 
 bool Estadia::estaFinalizada(){
-    return this->getCheckOut().getAnio() == 0;
+    return this->getCheckOut().getAnio() != 0;
 }
 
 bool Estadia::esHues(string hues){
@@ -62,9 +63,9 @@ DTEstadia Estadia::getDTEstadia(){
 
 void Estadia::setCalificacion(string comentario, int puntaje, Hostal* h){
     ControladorReloj* cr = ControladorReloj::getInstance();
-    Calificacion c(puntaje, comentario, cr->getFechaActual(), this, h, NULL);
-    this->calificacion = &c;
-    h->agregarCalificacion(&c);
+    Calificacion* c = new Calificacion(puntaje, comentario, cr->getFechaActual(), this, h, NULL);
+    this->calificacion = c;
+    h->agregarCalificacion(c);
 }
 
 /*DTEstadia Estadia::getDTEstadia(){
@@ -78,7 +79,8 @@ DTEstadiaPlus Estadia::getDTEstadiaPlus(){
 }
 
 DTCalificacion Estadia::getDTCalificacion(){
-    return this->getCalificacion()->getDTCalificacion();
+    DTCalificacion nuevo = this->calificacion->getDTCalificacion();
+    return nuevo;
 }
 
 DTReserva Estadia::getDTReserva(){
