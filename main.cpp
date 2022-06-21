@@ -834,6 +834,7 @@ int main()
                 }else{
                     map<int,string> top3Hostales = interfazHostales->getTop3Hostales();
                     int i = 1;
+                    cout << "Los hoteles con las mejores calificaciones son:\n";
                     map<int,string>::iterator it;
                     for(it = top3Hostales.begin(); it != top3Hostales.end(); ++it)
                     {
