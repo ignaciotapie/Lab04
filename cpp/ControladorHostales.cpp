@@ -265,9 +265,13 @@ void ControladorHostales::cargaDatos()
 
     ControladorUsuarios* cu = ControladorUsuarios::getInstance();
     finger->asignarEmpleado(cu->getEmpleado("emilia@mail.com"));
+    cu->getEmpleado("emilia@mail.com")->setHostal(finger);
     mochileros->asignarEmpleado(cu->getEmpleado("leo@mail.com"));
+    cu->getEmpleado("leo@mail.com")->setHostal(mochileros);
     mochileros->asignarEmpleado(cu->getEmpleado("alina@mail.com"));
+    cu->getEmpleado("alina@mail.com")->setHostal(mochileros);
     pony->asignarEmpleado(cu->getEmpleado("barli@mail.com"));
+    cu->getEmpleado("barli@mail.com")->setHostal(pony);
 
 }
 
