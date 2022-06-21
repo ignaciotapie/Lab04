@@ -28,13 +28,16 @@ DTHostal::DTHostal(string nom, string dir, string tel, float prom, map<int, Habi
 
         for (map<int, Reserva*>::iterator ite2 = res.begin(); ite2 != res.end(); ite2++){
             set<Estadia*> est = ite2->second->getEstadias();
+            if (!est.empty()){
 
-            for (set<Estadia*>::iterator ite3 = est.begin(); ite3 != est.end(); ite3++){
-                vdtc.emplace_back((*ite3)->getDTCalificacion());
+                for (set<Estadia*>::iterator ite3 = est.begin(); ite3 != est.end(); ite3++){
+                    if ((*ite3)->getCalificacion() != NULL)
+                        vdtc.emplace_back((*ite3)->getDTCalificacion());
+                }
+
+                DTHabitacion h = DTHabitacion(ite->second->getNumero(), ite->second->getPrecio(), ite->second->getCapacidad(), nuevo2);
+                nuevo.emplace_back(h);
             }
-
-            DTHabitacion h = DTHabitacion(ite->second->getNumero(), ite->second->getPrecio(), ite->second->getCapacidad(), nuevo2);
-            nuevo.emplace_back(h);
         }
         
     }
