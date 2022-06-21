@@ -42,6 +42,30 @@ DTReservaGrupal::DTReservaGrupal(int codigo, Fecha checkIn, Fecha checkOut, Esta
     this->nombreHuesped = nombreHuesped;
 }
 
+/*
+ void DTReservaGrupal::imprimir(){
+     cout << "Codigo Reserva " << getCodigo() << endl
+     << "CheckIn: " << getCheckIn().getDia() << "/" << getCheckIn().getMes() << "/" << getCheckIn().getAnio() << ":" << getCheckIn().getHora() << "hs." << endl
+     << "CheckOut: " << getCheckOut().getDia() << "/" << getCheckOut().getMes() << "/" << getCheckOut().getAnio() << ":" << getCheckOut().getHora() << "hs." << endl
+     << "Estado Reserva " << getEstado() << endl
+     << "Costo: " << getCosto() << endl
+     << "Numero Habitacion: " << endl
+     << "Huespedes: " << endl;
+     set<string>::iterator itr;
+     for (itr = nombreHuesped.begin(); itr != nombreHuesped.end(); itr++){
+         cout << *itr << endl;
+     }
+ }
+
+ void DTReservaIndividual::imprimir(){
+     cout << "Codigo Reserva " << getCodigo() << endl
+     << "CheckIn: " << getCheckIn().getDia() << "/" << getCheckIn().getMes() << "/" << getCheckIn().getAnio() << ":" << getCheckIn().getHora() << "hs." << endl
+     << "CheckOut: " << getCheckOut().getDia() << "/" << getCheckOut().getMes() << "/" << getCheckOut().getAnio() << ":" << getCheckOut().getHora() << "hs." << endl
+     << "Estado Reserva " << getEstado() << endl
+     << "Costo: " << getCosto() << endl
+     << "Numero Habitacion: " << endl;
+ }
+ */
 void DTReservaGrupal::imprimir(){
     cout << endl << "Codigo Reserva " << getCodigo() << endl
     << "CheckIn: " << getCheckIn().getDia() << "/" << getCheckIn().getMes() << "/" << getCheckIn().getAnio() << " " << ":" << getCheckIn().getHora() << "hs." << endl
