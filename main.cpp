@@ -882,10 +882,7 @@ int main()
                                 it = top3Hostales.find(3);
                                 nomHost = (it->second);                               
                             }
-                            default:
-                                repetir = true;
-                                cout << "Por favor, elija una opcion correcta" << endl;
-                            break;
+                
                         }
                     }
                     vector<DTCalificacion> calif = interfazHostales->getDetallesHostal(nomHost);
