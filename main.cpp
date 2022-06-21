@@ -842,7 +842,6 @@ int main()
                     }
 
                     cout << "Desea ver detalles de algun hostal?\n" << "(1) Si\n" << "(2) No\n";
-                    bool incorrecto = true;
                     int op;
                     cin >> op;
 
