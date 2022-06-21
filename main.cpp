@@ -374,23 +374,20 @@ int main()
                         cout << "Por favor, escriba un hostal que esta en la lista." << endl;
                     }
                 }
-
-
-                set<string> EmpleadosFueraHostal = interfazHostales->getEmpleadosFueraDeHostal(nombreHostal);
-                if (EmpleadosFueraHostal.empty()){
-                    cout << "No hay empleados registrados" << endl;
-                    break;
-                }
-                i = 1;
-                for(set<string>::iterator it = EmpleadosFueraHostal.begin(); it != EmpleadosFueraHostal.end(); ++it)
-                {
-                    cout << i << ". " << *it << endl;
-                    ++i;
-                }
                 bool masEmpleados = true;
                 while (masEmpleados)
                 {
-
+                    set<string> EmpleadosFueraHostal = interfazHostales->getEmpleadosFueraDeHostal(nombreHostal);
+                    if (EmpleadosFueraHostal.empty()){
+                        cout << "No hay empleados libres para asignar" << endl;
+                        break;
+                    }
+                    i = 1;
+                    for(set<string>::iterator it = EmpleadosFueraHostal.begin(); it != EmpleadosFueraHostal.end(); ++it)
+                    {
+                        cout << i << ". " << *it << endl;
+                        ++i;
+                    }
                     bool mailEmpleadoValido = false;
                     string mailEmpleado;
                     cout << "Ingrese mail del empleado a asignar:" << endl;
@@ -511,7 +508,7 @@ int main()
                 cout << "Mes (Formato M/MM): ";
                 int mesCheckIn = CheckIntCin();
                 cout << endl;
-                cout << "Anio (Formato YYYY): ";
+                cout << "Anio: ";
                 int anioCheckIn = CheckIntCin();
                 cout << endl;
 
@@ -679,6 +676,7 @@ int main()
                     cout << "Ingrese nombre del hostal\n";
                     while (!nombreHostalValido)
                     {
+                        cin.ignore();
                         getline(cin, nombreHostal);
                         if (top3Hostales.find(nombreHostal) != top3Hostales.end())
                     {
@@ -811,31 +809,36 @@ int main()
                 }
             
                 set<int> ReservasNoCanceladasDelHuesped = interfazUsuarios->getReservasDelHuesped(emailHuesped);
-                i = 1;
-                for(set<int>::iterator it = ReservasNoCanceladasDelHuesped.begin(); it != ReservasNoCanceladasDelHuesped.end(); ++it)
-                {
-                    cout << i << ". " << *it << endl;
-                    ++i;
+                if (ReservasNoCanceladasDelHuesped.empty()){
+                    cout << "No hay reservas abiertas para este Huesped" << endl;
+                    break;
                 }
-                bool codResValido = false;
-                int codRes;
-                cout << "Ingrese el codigo de la reserva para registrar la estadia\n";
-                while (!codResValido)
-                {
-                    codRes = CheckIntCin();
-
-                    if (ReservasNoCanceladasDelHuesped.find(codRes) != ReservasNoCanceladasDelHuesped.end())
+                else{
+                    i = 1;
+                    for(set<int>::iterator it = ReservasNoCanceladasDelHuesped.begin(); it != ReservasNoCanceladasDelHuesped.end(); ++it)
                     {
-                        codResValido = true;
+                        cout << i << ". " << *it << endl;
+                        ++i;
                     }
-                    else
+                    bool codResValido = false;
+                    int codRes;
+                    cout << "Ingrese el codigo de la reserva para registrar la estadia\n";
+                    while (!codResValido)
                     {
-                        cout << "Por favor, escriba un codigo de reserva que este en la lista." << endl;
+                        codRes = CheckIntCin();
+
+                        if (ReservasNoCanceladasDelHuesped.find(codRes) != ReservasNoCanceladasDelHuesped.end())
+                        {
+                            codResValido = true;
+                        }
+                        else
+                        {
+                            cout << "Por favor, escriba un codigo de reserva que este en la lista." << endl;
+                        }
+                    }
+                    interfazUsuarios->registrarEstadia();
                     }
                 }
-                interfazUsuarios->registrarEstadia();
-                }
-
                 break;
             }
             case 8:
@@ -1163,6 +1166,7 @@ int main()
                 cin >> codigoRes;
                 cin.ignore();
                 getline(cin, emailHues);
+                ireservas->seleccionarEstadia(codigoRes, emailHues);
                 DTEstadiaPlus estadiaSeleccionada = ireservas->getEstadiaPlus();
                 cout << "Nombre Hostal: " << estadiaSeleccionada.getNombreHostal() << endl;
                 cout << "Nombre Huesped: " << estadiaSeleccionada.getNombreHuesped() << endl;
@@ -1197,7 +1201,7 @@ int main()
                     << "CheckOut: " << res.getCheckOut().getDia() << "/" << res.getCheckOut().getMes() << "/" << res.getCheckOut().getAnio() << ":" << res.getCheckOut().getHora() << "hs." << endl
                     << "Estado Reserva " << res.getEstado() << endl
                     << "Costo: " << res.getCosto() << endl
-                    << "Numero Habitacion: " << endl;
+                    << "Numero Habitacion: " << res.getNumeroHabitacion() << endl;
                 }
                 break;
             }

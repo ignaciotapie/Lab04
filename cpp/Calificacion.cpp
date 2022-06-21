@@ -42,9 +42,9 @@ DTCalificacion Calificacion::getDTCalificacion(){
     return res;
 }
 void Calificacion::setComentarioCalificacion(string mensaje, Empleado* empleado, Calificacion* calificacion){
-    RespuestaEmpleado res(mensaje, empleado, calificacion);
-    empleado->setRespuestaEmpleado(&res);
-    this->respuestaEmpleados = &res;
+    RespuestaEmpleado* res = new RespuestaEmpleado(mensaje, empleado, calificacion);
+    empleado->setRespuestaEmpleado(res);
+    this->respuestaEmpleados = res;
 }
 
 void Calificacion::eliminarCalificacion(){

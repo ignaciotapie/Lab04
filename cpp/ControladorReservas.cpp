@@ -46,24 +46,26 @@ void ControladorReservas::seleccionarEstadia(int i, string s){
     codigoReservaEstadia = i;
     emailHuespedEstadia = s;
 }
-/*void ControladorReservas::seleccionarEstadia(string hostal, string email) {
-	this->nombreHostal = hostal;
-	this->emailHuesped = email;
-}*/ //cual?
+
+void ControladorReservas::seleccionarEstadiaConHostal(string hostal, string email) {
+	this->hostalSeleccionado = hostal;
+	this->emailHuespedEstadia = email;
+}
 
 void ControladorReservas::finalizarEstadia(){
-    /*ControladorUsuarios* cu = ControladorUsuarios::getInstance();
+    ControladorUsuarios* cu = ControladorUsuarios::getInstance();
 	ControladorReloj* cr = ControladorReloj::getInstance();
 	Fecha fechaA = cr->getFechaActual();
-	Huesped* h = cu->getHuesped(this->emailHuespedEstadia); 
+	Huesped* h = cu->getHuesped(emailHuespedEstadia); 
 
-    
-    map<int,Estadia*>::iterator iter = h->estadias.begin(); //no podes entrar a los private de otro controlador, tenes que hacer una funcion aparte.
-	for (; iter != h->estadias->end(); iter++){
-		if (!iter->second->estaFinalizada()){
-			iter->second->setCheckOut(fechaA);
+    set<Estadia*> estadias = h->getEstadiasHuesped();
+    set<Estadia*>::iterator iter;
+	for (iter = estadias.begin(); iter != estadias.end(); iter++){
+        Estadia* e = *iter;
+		if (!(e->estaFinalizada())){
+			e->setCheckOut(fechaA);
 		}
-	}*/
+	}
 }
 void ControladorReservas::setCalificacion(string comentario, int calificacion){
     map<int, Reserva*>::iterator itr = reservas.find(codigoReservaEstadia);
@@ -145,12 +147,13 @@ bool ControladorReservas::existeCalificacion(){
 
 bool ControladorReservas::existeRespuestaEmpleado(){
     Estadia* est = reservas.find(codigoReservaEstadia)->second->getEstadia(emailHuespedEstadia);
+    bool existe = false;
     if (est->getCalificacion() != NULL){
         if (est->getCalificacion()->getRespuestaempleados() != NULL){
-            return 1;
+            existe = true;
         }
     }
-    return 0;
+    return existe;
 }
 
 string ControladorReservas::getRespuestaEmpleado(){
