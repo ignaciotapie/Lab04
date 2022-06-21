@@ -282,3 +282,5 @@ void ControladorReservas::confirmarBajaReserva(){
 void ControladorReservas::seleccionarReserva(int codigo){
     codigoReservaEstadia = codigo;
 }
+
+vector<DTReservaIndividual> ControladorReservas::getReservasIndividuales(vector<DT>)
