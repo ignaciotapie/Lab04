@@ -810,7 +810,7 @@ int main()
             
                 set<int> ReservasNoCanceladasDelHuesped = interfazUsuarios->getReservasDelHuesped(emailHuesped);
                 if (ReservasNoCanceladasDelHuesped.empty()){
-                    cout << "No hay reservas activas para este Huesped" << endl;
+                    cout << "No hay reservas abiertas para este Huesped" << endl;
                     break;
                 }
                 else{
