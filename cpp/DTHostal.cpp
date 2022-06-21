@@ -24,6 +24,7 @@ DTHostal::DTHostal(string nom, string dir, string tel, float prom, map<int, Habi
     for (map<int, Habitacion*>::iterator ite = habs.begin(); ite != habs.end(); ite++){
 
         DTHabitacion h = DTHabitacion(ite->second->getNumero(), ite->second->getPrecio(), ite->second->getCapacidad(), NULL);
+        nuevo.emplace_back(h);
         map<int, Reserva*> res = (*ite).second->getReservas();
 
         for (map<int, Reserva*>::iterator ite2 = res.begin(); ite2 != res.end(); ite2++){
@@ -37,7 +38,6 @@ DTHostal::DTHostal(string nom, string dir, string tel, float prom, map<int, Habi
                 }
 
                 h.setCalificaciones(nuevo2);
-                nuevo.emplace_back(h);
             }
         }
         
