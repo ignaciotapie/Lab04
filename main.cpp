@@ -668,29 +668,13 @@ int main()
                 if (hostales.empty()){
                     cout << "No hay Hostales ingresados en el sistema\n";
                 }else{
-                    set<string> top3Hostales = interfazHostales->getTop3Hostales();
+                    map<int,string> top3Hostales = interfazHostales->getTop3Hostales();
                     int i = 1;
-                    set<string>::iterator it;
+                    map<int,string>::iterator it;
                     for(it = top3Hostales.begin(); it != top3Hostales.end(); ++it)
                     {
-                        cout << i << ". " << (*it) << endl;
+                        cout << i << ". " << (it->second) << endl;
                         ++i;
-                    }
-                    string nombreHostal;
-                    bool nombreHostalValido = false;
-                    cout << "Ingrese nombre del hostal\n";
-                    while (!nombreHostalValido)
-                    {
-                        cin.ignore();
-                        getline(cin, nombreHostal);
-                        if (top3Hostales.find(nombreHostal) != top3Hostales.end())
-                    {
-                        nombreHostalValido = true;
-                    }
-                    else
-                    {
-                        cout << "Por favor, escriba un hostal que esta en la lista." << endl;
-                    }
                     }
 
                     cout << "Desea ver detalles de algun hostal?\n" << "(1) Si\n" << "(2) No\n";
@@ -723,18 +707,18 @@ int main()
                             
                             case 1:{
                                 it = top3Hostales.begin();
-                                nomHost = (*it);
+                                nomHost = (it->second);
                             break;
                             }
                             case 2:{
                                 it = top3Hostales.begin();
                                 it++;
-                                nomHost = (*it);
+                                nomHost = (it->second);
                             break;
                             }
                             case 3:{
                                 it = top3Hostales.end();
-                                nomHost = (*it);
+                                nomHost = (it->second);
                             break;                                
                             }
                             default:
