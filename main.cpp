@@ -1342,9 +1342,9 @@ int main()
                 string nombreHostal;
                 bool nombreHostalValido = false;
                 cout << "Ingrese nombre del hostal" << endl;
+                cin.ignore();
                 while (!nombreHostalValido)
                 {
-                    cin.ignore();
                     getline(cin, nombreHostal);
 
                     if (nombresHostales.find(nombreHostal) != nombresHostales.end())
