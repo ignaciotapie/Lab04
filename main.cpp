@@ -1083,11 +1083,28 @@ int main()
 
                 //getDTHostal
                 DTHostal h = interfazHostales->getDTHostalConsulta();
+                cout << "\n" << "Informacion basica del hostal: " << "\n" << endl;
                 cout << "Nombre: " << h.getNombre() << endl;
-                cout << "Direccion :" << h.getDireccion() << endl;
-                cout << "Telefono :" << h.getTelefono() << endl;
-                cout << "Promedio de calificaciones: " << h.getPromCalif() << endl;
+                cout << "Direccion: " << h.getDireccion() << endl;
+                cout << "Telefono: " << h.getTelefono() << endl;
+                cout << "Promedio de calificaciones: " << h.getPromCalif() << "\n" << endl;
+                
+                //Habitaciones
+                vector<DTHabitacion> dthabs = h.getDTHabs();
+                cout << "Informacion de las habitaciones:" << "\n" << endl;
 
+                for (vector<DTHabitacion>::iterator ite = dthabs.begin(); ite != dthabs.end(); ite++){
+                    cout << "Habitacion Nro: " << (*ite).getNumero() << endl;
+                    cout << "Precio: " << (*ite).getPrecio() << endl;
+                    cout << "Capacidad: " << (*ite).getCapacidad() << "\n" << endl;
+                    cout << "Calificaciones: " << "\n" << endl;
+
+                    for (auto itecalis = (*ite).getCalificaciones()->begin(); itecalis != (*ite).getCalificaciones()->end(); itecalis++){
+                        cout << "Comentario: " << (*itecalis).getComentario() << endl;
+                        cout << "Puntaje: " << (*itecalis).getPuntaje() << "\n" << endl;
+                    } 
+                    
+                }
 
                 //finalizarConsultaHostal
                 interfazHostales->finalizarConsultaHostal();
