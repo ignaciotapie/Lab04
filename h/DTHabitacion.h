@@ -3,7 +3,7 @@
 
 #include <string>
 #include <map>
-
+#include <vector>
 
 
 using namespace std;
@@ -15,13 +15,13 @@ class DTHabitacion{
         int numero;
         int precio;
         int capacidad;
-        map<string, DTCalificacion> *calificaciones;
+        vector<DTCalificacion> *calificaciones;
     public:
-        DTHabitacion(int, int, int, map<string, DTCalificacion> *);
+        DTHabitacion(int, int, int, vector<DTCalificacion>*);
         const int getNumero() const;
         const int getPrecio() const;
         const int getCapacidad() const;
-        const map<string, DTCalificacion>* getCalificaciones() const;
+        const vector<DTCalificacion>* getCalificaciones() const;
 };
 
 #endif

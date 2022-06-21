@@ -1072,8 +1072,9 @@ int main()
                 //seleccionarHostal
                 interfazHostales->seleccionarHostal(nombreHostal);
 
+
                 //getDTHostal
-                DTHostal h = interfazHostales->getDTHostal();
+                DTHostal h = interfazHostales->getDTHostalConsulta();
                 cout << "Nombre: " << h.getNombre() << endl;
                 cout << "Direccion :" << h.getDireccion() << endl;
                 cout << "Telefono :" << h.getTelefono() << endl;

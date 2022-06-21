@@ -54,6 +54,7 @@ class ControladorHostales : public IHostales{
 
 		//Caso de uso: Consulta de Hostal
 		DTHostal getDTHostal();
+		DTHostal getDTHostalConsulta();
 		void finalizarConsultaHostal();
 
 		//Caso de uso: Realizar Reserva

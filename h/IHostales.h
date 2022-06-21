@@ -18,6 +18,7 @@ using namespace std;
 class IHostales{
 	public:
 		virtual DTHostal getDTHostal() = 0;
+		virtual DTHostal getDTHostalConsulta() = 0;
 		virtual set<string> getHostales() = 0;
 		virtual void seleccionarHostal(string) = 0;
 		virtual void altaHabitacion(int, int, int) = 0;
