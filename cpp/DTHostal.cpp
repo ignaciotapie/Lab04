@@ -40,9 +40,9 @@ DTHostal::DTHostal(string nom, string dir, string tel, float prom, map<int, Habi
                         (*nuevo2).emplace_back((*ite3)->getDTCalificacion());
                 }
 
-                
-            }
                 h.setCalificaciones(nuevo2);
+            }
+                // h.setCalificaciones(nuevo2);
                // cout << h.getCalificaciones()->size();
         }nuevo.emplace_back(h);
         
