@@ -872,18 +872,15 @@ int main()
                             case 1:{
                                 it = top3Hostales.begin();
                                 nomHost = (it->second);
-                            break;
                             }
                             case 2:{
                                 it = top3Hostales.begin();
                                 it++;
                                 nomHost = (it->second);
-                            break;
                             }
                             case 3:{
-                                it = top3Hostales.end();
-                                nomHost = (it->second);
-                            break;                                
+                                it = top3Hostales.find(3);
+                                nomHost = (it->second);                               
                             }
                             default:
                                 repetir = true;
