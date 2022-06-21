@@ -19,3 +19,7 @@ DTHabitacion::DTHabitacion(int num, int pre, int cap, vector<DTCalificacion>* ca
  const vector<DTCalificacion>* DTHabitacion::getCalificaciones() const {
     return calificaciones;
 }
+
+void DTHabitacion::setCalificaciones(vector<DTCalificacion>* cal){
+    this->calificaciones = cal;
+}
