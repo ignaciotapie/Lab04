@@ -206,3 +206,8 @@ void Hostal::eliminarCalificacion(Calificacion* calificacionEliminar){
     it = calificaciones.find(calificacionEliminar);
     calificaciones.erase(it);
 }
+
+DTHostal Hostal::getDTHostal(){
+    DTHostal nuevo = DTHostal(this->nombreHostal, this->direccion, this->telefono, this->getPromedioPuntaje(), this->habitaciones);
+    return nuevo;
+}

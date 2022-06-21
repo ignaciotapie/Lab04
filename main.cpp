@@ -681,6 +681,7 @@ int main()
                     cout << "Ingrese nombre del hostal\n";
                     while (!nombreHostalValido)
                     {
+                        cin.ignore();
                         getline(cin, nombreHostal);
                         if (top3Hostales.find(nombreHostal) != top3Hostales.end())
                     {
@@ -813,31 +814,36 @@ int main()
                 }
             
                 set<int> ReservasNoCanceladasDelHuesped = interfazUsuarios->getReservasDelHuesped(emailHuesped);
-                i = 1;
-                for(set<int>::iterator it = ReservasNoCanceladasDelHuesped.begin(); it != ReservasNoCanceladasDelHuesped.end(); ++it)
-                {
-                    cout << i << ". " << *it << endl;
-                    ++i;
+                if (ReservasNoCanceladasDelHuesped.empty()){
+                    cout << "No hay reservas abiertas para este Huesped" << endl;
+                    break;
                 }
-                bool codResValido = false;
-                int codRes;
-                cout << "Ingrese el codigo de la reserva para registrar la estadia\n";
-                while (!codResValido)
-                {
-                    codRes = CheckIntCin();
-
-                    if (ReservasNoCanceladasDelHuesped.find(codRes) != ReservasNoCanceladasDelHuesped.end())
+                else{
+                    i = 1;
+                    for(set<int>::iterator it = ReservasNoCanceladasDelHuesped.begin(); it != ReservasNoCanceladasDelHuesped.end(); ++it)
                     {
-                        codResValido = true;
+                        cout << i << ". " << *it << endl;
+                        ++i;
                     }
-                    else
+                    bool codResValido = false;
+                    int codRes;
+                    cout << "Ingrese el codigo de la reserva para registrar la estadia\n";
+                    while (!codResValido)
                     {
-                        cout << "Por favor, escriba un codigo de reserva que este en la lista." << endl;
+                        codRes = CheckIntCin();
+
+                        if (ReservasNoCanceladasDelHuesped.find(codRes) != ReservasNoCanceladasDelHuesped.end())
+                        {
+                            codResValido = true;
+                        }
+                        else
+                        {
+                            cout << "Por favor, escriba un codigo de reserva que este en la lista." << endl;
+                        }
+                    }
+                    interfazUsuarios->registrarEstadia();
                     }
                 }
-                interfazUsuarios->registrarEstadia();
-                }
-
                 break;
             }
             case 8:
@@ -1074,8 +1080,9 @@ int main()
                 //seleccionarHostal
                 interfazHostales->seleccionarHostal(nombreHostal);
 
+
                 //getDTHostal
-                DTHostal h = interfazHostales->getDTHostal();
+                DTHostal h = interfazHostales->getDTHostalConsulta();
                 cout << "Nombre: " << h.getNombre() << endl;
                 cout << "Direccion :" << h.getDireccion() << endl;
                 cout << "Telefono :" << h.getTelefono() << endl;
