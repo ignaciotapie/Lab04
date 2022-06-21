@@ -22,6 +22,7 @@ class DTHabitacion{
         const int getPrecio() const;
         const int getCapacidad() const;
         const vector<DTCalificacion>* getCalificaciones() const;
+        void setCalificaciones(vector<DTCalificacion>*);
 };
 
 #endif

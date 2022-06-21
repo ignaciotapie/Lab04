@@ -1212,7 +1212,7 @@ int main()
                 cout << "Ingrese nombre del hostal\n";
                 while (!nombreHostalValido)
                 {
-                    cin.ignore();
+                   
                     getline(cin, nombreHostal);
 
                     if (allHostales.find(nombreHostal) != allHostales.end())
@@ -1248,21 +1248,28 @@ int main()
                     cout << "Precio: " << (*ite).getPrecio() << endl;
                     cout << "Capacidad: " << (*ite).getCapacidad() << "\n" << endl;
 
+                if (!((*ite).getCalificaciones() == NULL)){
                     cout << "Calificaciones: " << "\n" << endl;
                     
                     for (auto itecalis = (*ite).getCalificaciones()->begin(); itecalis != (*ite).getCalificaciones()->end(); itecalis++){
                         cout << "Comentario: " << (*itecalis).getComentario() << endl;
                         cout << "Puntaje: " << (*itecalis).getPuntaje() << "\n" << endl;
                     } 
+                }
                     
                 }
                 //Reservas
+                
+                
                     ControladorReservas* cr = ControladorReservas::getInstance();
                     set<int> intRes = cr->listarCodigoReservasDeHostal(nombreHostal);
+                    if (intRes.empty())
+                        break;
+                    cout << "Reservas: " << endl;
                     int p = 1;
                     for (auto itera = intRes.begin(); itera != intRes.end(); itera++){
                         cout << p << "." << (*itera) << "\n" << endl;
-                        i++;
+                        p++;
                     }
                 
 
