@@ -1387,9 +1387,9 @@ int main()
                         DTCalificacion cal = ireservas->getDTCalificacion();
                         cout << "Puntaje: " << cal.getPuntaje() << endl;
                         cout << "Comentario: " << cal.getComentario() << endl;
-                        cout << "Fecha: " << cal.getFecha().getDia() << "/" << cal.getFecha().getMes() << "/" << cal.getFecha().getAnio() << ":" << cal.getFecha().getHora() << "hs" << endl;
+                        cout << "Fecha: " << cal.getFecha().getDia() << "/" << cal.getFecha().getMes() << "/" << cal.getFecha().getAnio() << ":" << cal.getFecha().getHora() << "hs" << endl << endl;
                         if (ireservas->existeRespuestaEmpleado())
-                            cout << "Respuesta Empleado: " << ireservas->getRespuestaEmpleado() << endl;
+                            cout << "Respuesta Empleado: " << ireservas->getRespuestaEmpleado() << endl << endl;
                     }
                 }else{
                     cout << "No tiene Calificacion." << endl << endl;
@@ -1402,9 +1402,30 @@ int main()
                     cout << endl << "Info Reserva: " << endl << endl;
                     cout << "Codigo Reserva " << res.getCodigo() << endl
                     << "CheckIn: " << res.getCheckIn().getDia() << "/" << res.getCheckIn().getMes() << "/" << res.getCheckIn().getAnio() << ":" << res.getCheckIn().getHora() << "hs." << endl
-                    << "CheckOut: " << res.getCheckOut().getDia() << "/" << res.getCheckOut().getMes() << "/" << res.getCheckOut().getAnio() << ":" << res.getCheckOut().getHora() << "hs." << endl
-                    << "Estado Reserva " << res.getEstado() << endl
-                    << "Costo: " << res.getCosto() << endl
+                    << "CheckOut: " << res.getCheckOut().getDia() << "/" << res.getCheckOut().getMes() << "/" << res.getCheckOut().getAnio() << ":" << res.getCheckOut().getHora() << "hs." << endl;
+                    cout << "Estado Reserva: ";
+                    switch (res.getEstado())
+                    {
+                    case 0:
+                    {
+                        cout << "Abierta" << endl;
+                        break;
+                    }
+                    case 1:
+                    {
+                        cout << "Cerrada" << endl;
+                        break;
+                    }
+                    case 2:
+                    {
+                        cout << "Cancelada" << endl;
+                        break;
+                    }
+                    
+                    default:
+                        break;
+                    }
+                    cout << "Costo: " << res.getCosto() << endl
                     << "Numero Habitacion: " << res.getNumeroHabitacion() << endl;
                 }
                 break;
