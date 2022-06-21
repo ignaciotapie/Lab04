@@ -19,8 +19,7 @@ DTHostal::DTHostal(string nom, string dir, string tel, float prom, map<int, Habi
     this->telefono = tel;
     this->promCalif = prom;
     vector<DTHabitacion> nuevo;
-    vector<DTCalificacion> vdtc;
-    vector<DTCalificacion>* nuevo2 = &vdtc;
+    vector<DTCalificacion>* nuevo2 = new vector<DTCalificacion>;
 
     //getDTHabs
     for (map<int, Habitacion*>::iterator ite = habs.begin(); ite != habs.end(); ite++){
@@ -32,7 +31,7 @@ DTHostal::DTHostal(string nom, string dir, string tel, float prom, map<int, Habi
 
                 for (set<Estadia*>::iterator ite3 = est.begin(); ite3 != est.end(); ite3++){
                     if ((*ite3)->getCalificacion() != NULL)
-                        vdtc.emplace_back((*ite3)->getDTCalificacion());
+                        (*nuevo2).emplace_back((*ite3)->getDTCalificacion());
                 }
 
                 DTHabitacion h = DTHabitacion(ite->second->getNumero(), ite->second->getPrecio(), ite->second->getCapacidad(), nuevo2);
