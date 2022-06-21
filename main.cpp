@@ -866,7 +866,17 @@ int main()
                     {
                         int option = CheckIntCin();
                         repetir = false;
-                        switch (option)
+                        if (option == 1){
+                            it = top3Hostales.begin();
+                            nomHost = (it->second);
+                        } else if (option == 2) {
+                            it = top3Hostales.find(2);
+                            nomHost = (it->second);
+                        } else if (option == 3){
+                            it = top3Hostales.find(3);
+                            nomHost = (it->second);
+                        }
+                        /*switch (option)
                         {
                             
                             case 1:{
@@ -883,7 +893,7 @@ int main()
                                 nomHost = (it->second);                               
                             }
                 
-                        }
+                        }*/
                     }
                     vector<DTCalificacion> calif = interfazHostales->getDetallesHostal(nomHost);
 					i = 1;
