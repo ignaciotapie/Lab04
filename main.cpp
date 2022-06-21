@@ -668,39 +668,23 @@ int main()
                 if (hostales.empty()){
                     cout << "No hay Hostales ingresados en el sistema\n";
                 }else{
-                    set<string> top3Hostales = interfazHostales->getTop3Hostales();
+                    map<int,string> top3Hostales = interfazHostales->getTop3Hostales();
                     int i = 1;
-                    set<string>::iterator it;
+                    map<int,string>::iterator it;
                     for(it = top3Hostales.begin(); it != top3Hostales.end(); ++it)
                     {
-                        cout << i << ". " << (*it) << endl;
+                        cout << i << ". " << (it->second) << endl;
                         ++i;
-                    }
-                    string nombreHostal;
-                    bool nombreHostalValido = false;
-                    cout << "Ingrese nombre del hostal\n";
-                    while (!nombreHostalValido)
-                    {
-                        cin.ignore();
-                        getline(cin, nombreHostal);
-                        if (top3Hostales.find(nombreHostal) != top3Hostales.end())
-                    {
-                        nombreHostalValido = true;
-                    }
-                    else
-                    {
-                        cout << "Por favor, escriba un hostal que esta en la lista." << endl;
-                    }
                     }
 
                     cout << "Desea ver detalles de algun hostal?\n" << "(1) Si\n" << "(2) No\n";
                     bool incorrecto = true;
-                    string fin;
+                    string op;
                     while (incorrecto)
                     {
-                        string fin;
-                        cin >> fin;
-                        if (fin == "1" || fin == "2")
+                        string op;
+                        cin >> op;
+                        if (op == "1" || op == "2")
                         {
                             incorrecto = false;
                         }
@@ -709,32 +693,32 @@ int main()
                             cout << "Por favor, elija una opcion correcta" << endl;
                         }
                     }
-                    if (fin == "2") break;
+                    if (op == "2") {break;}
 
                     cout << "De cual?\n" << "(1) Primero\n" << "(2) Segundo\n"<< "(3) Tercero\n";
                     bool repetir = true;
                     string nomHost;
                     while (repetir)
                     {
-                       int option = CheckIntCin();
+                        int option = CheckIntCin();
                         repetir = false;
                         switch (option)
                         {
                             
                             case 1:{
                                 it = top3Hostales.begin();
-                                nomHost = (*it);
+                                nomHost = (it->second);
                             break;
                             }
                             case 2:{
                                 it = top3Hostales.begin();
                                 it++;
-                                nomHost = (*it);
+                                nomHost = (it->second);
                             break;
                             }
                             case 3:{
                                 it = top3Hostales.end();
-                                nomHost = (*it);
+                                nomHost = (it->second);
                             break;                                
                             }
                             default:
@@ -1122,13 +1106,10 @@ int main()
                     break;
                 cout << "Informacion de las habitaciones:" << "\n" << endl;
 
-                for (vector<DTHabitacion>::iterator ite = dthabs.begin(); ite != dthabs.end(); ite++){
+                for (auto ite = dthabs.begin(); ite != dthabs.end(); ite++){
                     cout << "Habitacion Nro: " << (*ite).getNumero() << endl;
                     cout << "Precio: " << (*ite).getPrecio() << endl;
                     cout << "Capacidad: " << (*ite).getCapacidad() << "\n" << endl;
-
-                    if ((*ite).getCalificaciones()->empty())
-                        break;
 
                     cout << "Calificaciones: " << "\n" << endl;
                     

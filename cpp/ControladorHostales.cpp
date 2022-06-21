@@ -128,8 +128,8 @@ void ControladorHostales::cancelarAltaHabitacion(){
 }
 
 //Consulta Top 3 Hostales
-set<string> ControladorHostales::getTop3Hostales(){
-    set<string> res;
+map<int,string> ControladorHostales::getTop3Hostales(){
+    map<int,string> res;
     if (!hostales.empty()){
 	    float prom = 0;
 	    float prom1 = 0;
@@ -158,13 +158,13 @@ set<string> ControladorHostales::getTop3Hostales(){
 	    	}
 	    }
         if (h3!=NULL){	
-	        res.insert(res.begin(),h3->getNombreHostal());
+            res.insert(pair<int,string>(3, h3->getNombreHostal()));
         }
         if (h2!=NULL){
-	        res.insert(res.begin(),h2->getNombreHostal());
+	        res.insert(pair<int,string>(2, h2->getNombreHostal()));
         }
         if (h1!=NULL){
-            res.insert(res.begin(),h3->getNombreHostal());
+            res.insert(pair<int,string>(1, h1->getNombreHostal()));
         }
     } 
     return res;
