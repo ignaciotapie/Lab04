@@ -842,22 +842,7 @@ int main()
                     }
 
                     cout << "Desea ver detalles de algun hostal?\n" << "(1) Si\n" << "(2) No\n";
-                    int op;
-                    cin >> op;
-
-                   /* while (incorrecto)
-                    {
-                        string op;
-                        cin >> op;
-                        if (op == "1" || op == "2")
-                        {
-                            incorrecto = false;
-                        }
-                        else
-                        {
-                            cout << "Por favor, elija una opcion correcta" << endl;
-                        }
-                    }*/
+                    int op = CheckIntCin();
                     if (op == 2) {break;}
 
                     cout << "De cual?\n" << "(1) Primero\n" << "(2) Segundo\n"<< "(3) Tercero\n";
@@ -1425,6 +1410,61 @@ int main()
             }
             case 15:
             {
+
+                IHostales* ihostales = fabrica->getIHostales();
+                set<string> nombresHostales = ihostales->getHostales();
+                set<string>::iterator itrHostales;
+                cout << "Hostales:" << endl; 
+                for (itrHostales = nombresHostales.begin(); itrHostales != nombresHostales.end(); itrHostales++){
+                    cout << *itrHostales << endl;
+                }
+                string nombreHostal;
+                bool nombreHostalValido = false;
+                cout << "Ingrese nombre del hostal" << endl;
+                while (!nombreHostalValido)
+                {
+                    cin.ignore();
+                    getline(cin, nombreHostal);
+
+                    if (nombresHostales.find(nombreHostal) != nombresHostales.end()){
+                        nombreHostalValido = true;
+                    }
+                    else{
+                        cout << "Por favor, escriba un hostal que esta en la lista." << endl;
+                    }
+                }
+                IReservas* ireservas = fabrica->getIReservas();
+                set<int> reservas = ireservas->listarCodigoReservasDeHostal(nombreHostal);
+                set<int>::iterator itrReservas;
+                cout << "Reservas:" << endl;
+                for (itrReservas = reservas.begin(); itrReservas != reservas.end(); itrReservas++){
+                    cout << *itrReservas << endl;
+                }
+
+
+                int codigoRes;
+                cout << "Seleccione el codigo de reserva deseado" << endl;
+                cin >> codigoRes;
+                ireservas->seleccionarReserva(codigoRes);
+
+
+                cout << "Desea confirmar la baja de reserva?\n" << "(1) Si\n" << "(2) No\n";
+                    bool incorrecto = true;
+                    while (incorrecto)
+                    {
+                        string fin;
+                        cin >> fin;
+                        if (fin == "1" || fin == "2")
+                        {
+                            incorrecto = false;
+                            if (fin == "1")
+                                ireservas->confirmarBajaReserva();
+                        }
+                        else
+                        {
+                            cout << "Por favor, elija una opcion correcta" << endl;
+                        }
+                    }
 
                 break;
             }
