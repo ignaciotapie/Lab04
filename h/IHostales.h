@@ -18,12 +18,13 @@ using namespace std;
 class IHostales{
 	public:
 		virtual DTHostal getDTHostal() = 0;
+		virtual DTHostal getDTHostalConsulta() = 0;
 		virtual set<string> getHostales() = 0;
 		virtual void seleccionarHostal(string) = 0;
 		virtual void altaHabitacion(int, int, int) = 0;
 		virtual void confirmarAltaHabitacion() = 0;
 		virtual void cancelarAltaHabitacion() = 0;
-		virtual set<string> getTop3Hostales() = 0;
+		virtual map<int,string> getTop3Hostales() = 0;
 		virtual vector<DTCalificacion> getDetallesHostal(string) = 0;
 		virtual void finalizarConsultaHostal() = 0;
 		virtual void setHostalInfo(string, string, string) = 0;

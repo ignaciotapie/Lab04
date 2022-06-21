@@ -54,6 +54,7 @@ class ControladorHostales : public IHostales{
 
 		//Caso de uso: Consulta de Hostal
 		DTHostal getDTHostal();
+		DTHostal getDTHostalConsulta();
 		void finalizarConsultaHostal();
 
 		//Caso de uso: Realizar Reserva
@@ -63,7 +64,7 @@ class ControladorHostales : public IHostales{
 		void seleccionarHabitacion(int habitacion);
 		void seleccionarHuesped(string nombreHuesped);
 
-		set<string> getTop3Hostales();
+		map<int,string> getTop3Hostales();
 		vector<DTCalificacion> getDetallesHostal(string);
 		void asignarEmpleado(string nombreEmpleado, CargoEmpleado cargo);
 		void cancelarAsignacion();

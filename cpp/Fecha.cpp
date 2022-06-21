@@ -29,15 +29,31 @@ Fecha::Fecha(float hora, int dia, int mes, int anio){
 
 bool Fecha::before(Fecha fechaAComparar)
 {
-    if (anio < fechaAComparar.anio) return true;
-    else if (mes < fechaAComparar.mes) return true;
-    else if (dia < fechaAComparar.dia) return true;
-    else if (hora <= fechaAComparar.hora) return true;
-    
+
+    if (fechaAComparar.getAnio() - this->anio  > 0) return true;
+    else if (fechaAComparar.getAnio() - this->anio  == 0)
+    {
+
+        if (fechaAComparar.getMes() - this->mes  > 0) return true;
+        else if (fechaAComparar.getMes() - this->mes  == 0)
+        {
+            if (fechaAComparar.getDia() - this->dia  > 0) return true;
+            else if (fechaAComparar.getDia() - this->dia  == 0)
+            {
+                if(fechaAComparar.getHora() - this->hora >= 0) return true;
+            }
+        }
+    }
     return false;
 }
 
+// Checkea si los inicios o finales de cualquiera de las dos fechas estan dentro del otro
 bool Fecha::areOverlapping(Fecha primerCheckIn, Fecha primerCheckOut, Fecha segundoCheckIn, Fecha segundoCheckOut)
 {
-    return primerCheckIn.before(segundoCheckOut) && segundoCheckIn.before(primerCheckIn);
+    bool inicioPrimerIntervaloEntreSegundoIntervalo = (primerCheckIn.before(segundoCheckOut) && segundoCheckIn.before(primerCheckIn));
+    bool finalPrimerIntervaloEntreSegundoIntervalo = (primerCheckOut.before(segundoCheckOut) && segundoCheckIn.before(primerCheckOut));
+    bool inicioSegundoIntervaloEntrePrimerIntervalo = (segundoCheckIn.before(primerCheckOut) && primerCheckIn.before(segundoCheckIn));
+    bool finalSegundoIntervaloEntrePrimerIntervalo = (segundoCheckOut.before(primerCheckOut) && primerCheckIn.before(segundoCheckOut));
+
+    return ((inicioPrimerIntervaloEntreSegundoIntervalo || finalPrimerIntervaloEntreSegundoIntervalo) || (inicioSegundoIntervaloEntrePrimerIntervalo || finalSegundoIntervaloEntrePrimerIntervalo));
 }

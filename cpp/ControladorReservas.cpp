@@ -12,6 +12,7 @@
 #include "../h/DTEstadia.h"
 #include "../h/RespuestaEmpleado.h"
 #include "../h/Usuario.h"
+#include "../h/DTHostal.h"
 
 using namespace std;
 
@@ -46,24 +47,26 @@ void ControladorReservas::seleccionarEstadia(int i, string s){
     codigoReservaEstadia = i;
     emailHuespedEstadia = s;
 }
-/*void ControladorReservas::seleccionarEstadia(string hostal, string email) {
-	this->nombreHostal = hostal;
-	this->emailHuesped = email;
-}*/ //cual?
+
+void ControladorReservas::seleccionarEstadiaConHostal(string hostal, string email) {
+	this->hostalSeleccionado = hostal;
+	this->emailHuespedEstadia = email;
+}
 
 void ControladorReservas::finalizarEstadia(){
-    /*ControladorUsuarios* cu = ControladorUsuarios::getInstance();
+    ControladorUsuarios* cu = ControladorUsuarios::getInstance();
 	ControladorReloj* cr = ControladorReloj::getInstance();
 	Fecha fechaA = cr->getFechaActual();
-	Huesped* h = cu->getHuesped(this->emailHuespedEstadia); 
+	Huesped* h = cu->getHuesped(emailHuespedEstadia); 
 
-    
-    map<int,Estadia*>::iterator iter = h->estadias.begin(); //no podes entrar a los private de otro controlador, tenes que hacer una funcion aparte.
-	for (; iter != h->estadias->end(); iter++){
-		if (!iter->second->estaFinalizada()){
-			iter->second->setCheckOut(fechaA);
+    set<Estadia*> estadias = h->getEstadiasHuesped();
+    set<Estadia*>::iterator iter;
+	for (iter = estadias.begin(); iter != estadias.end(); iter++){
+        Estadia* e = *iter;
+		if (!(e->estaFinalizada())){
+			e->setCheckOut(fechaA);
 		}
-	}*/
+	}
 }
 void ControladorReservas::setCalificacion(string comentario, int calificacion){
     map<int, Reserva*>::iterator itr = reservas.find(codigoReservaEstadia);
@@ -145,12 +148,13 @@ bool ControladorReservas::existeCalificacion(){
 
 bool ControladorReservas::existeRespuestaEmpleado(){
     Estadia* est = reservas.find(codigoReservaEstadia)->second->getEstadia(emailHuespedEstadia);
+    bool existe = false;
     if (est->getCalificacion() != NULL){
         if (est->getCalificacion()->getRespuestaempleados() != NULL){
-            return 1;
+            existe = true;
         }
     }
-    return 0;
+    return existe;
 }
 
 string ControladorReservas::getRespuestaEmpleado(){
@@ -181,6 +185,7 @@ void ControladorReservas::cargaDatos()
     //crear Calificacion Estadia
     Calificacion* calSofia = new Calificacion(3, "Un poco caro para lo que ofrecen. El famoso gimnasio era una caminadora (que hacía tremendo ruido) y 2 pesas, la piscina parecía el lago del Parque Rodó y el desayuno eran 2 tostadas con mermelada. Internet se pasaba cayendo. No vuelvo.", Fecha(18.00, 11, 5, 2022), estSofia, finger, NULL);
     estSofia->setPunteroCalificacion(calSofia);
+    finger->agregarCalificacion(calSofia);
 
 
     //R2
@@ -215,6 +220,7 @@ void ControladorReservas::cargaDatos()
     //crear Calificacion Estadia
     Calificacion* calFrodo = new Calificacion(2, "Se pone peligroso de noche, no recomiendo. Además no hay caja fuerte para guardar anillos.", Fecha(3.00, 5, 1, 2001), estFrodo, pony, NULL);
     estFrodo->setPunteroCalificacion(calFrodo);
+    pony->agregarCalificacion(calFrodo);
     //crear Comentario a Calificacion
     Empleado* empl = cu->getEmpleado("barli@mail.com");
     calFrodo->setComentarioCalificacion("Desapareció y se fue sin pagar.", empl, calFrodo);
@@ -244,15 +250,12 @@ void ControladorReservas::cargaDatos()
     Estadia* estSeba = new Estadia(Fecha(6.00, 7, 6, 2022), Fecha(22.00, 15, 6, 2022), 0, rese, huesSeba, NULL);
     rese->setEstadia(estSeba);
     huesSeba->agregarEstadia(estSeba);
-    //crear Estadias
+    //crear Calificacion Estadia
     Calificacion* calSeba = new Calificacion(1, "Había pulgas en la habitación. Que lugar más mamarracho!!", Fecha(23.00, 15, 6, 2022), estSeba, caverna, NULL);
     estSeba->setPunteroCalificacion(calSeba);
-
-    
-
+    caverna->agregarCalificacion(calSeba);
 
 }
-
 //consulta reserva
 vector<DTReserva> ControladorReservas::listarReservasDeHostal(string nombreHostal){
     ControladorHostales* ch = ControladorHostales::getInstance();
@@ -279,4 +282,25 @@ void ControladorReservas::confirmarBajaReserva(){
 
 void ControladorReservas::seleccionarReserva(int codigo){
     codigoReservaEstadia = codigo;
+}
+
+vector<DTReservaIndividual> ControladorReservas::getReservasIndividuales(vector<DTReserva> reservasInd)
+{
+    vector<DTReservaIndividual> ret;
+    vector<DTReserva>::iterator retIt = reservasInd.begin();
+    for(; retIt != reservasInd.end(); retIt++)
+    {
+        map<int,Reserva*>::iterator it = reservas.begin();
+        for(; it != reservas.end(); it++)
+        {
+
+        }
+    }
+    return ret;
+}
+
+vector<DTReservaGrupal> ControladorReservas::getReservasGrupales(vector<DTReserva> reservasGrup)
+{
+    vector<DTReservaGrupal> ret;
+    return ret;
 }

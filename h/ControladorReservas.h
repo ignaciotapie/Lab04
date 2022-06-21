@@ -10,6 +10,8 @@
 class Reserva;
 class Empleado;
 class DTReserva;
+class DTReservaIndividual;
+class DTReservaGrupal;
 
 class ControladorReservas : public IReservas
 {
@@ -37,6 +39,7 @@ class ControladorReservas : public IReservas
 		void seleccionarHostal(string);
 		vector<DTEstadia> getEstadiasFinalizadas(string);
 		void seleccionarEstadia(int, string);
+		void seleccionarEstadiaConHostal(string, string);
 		//ComentarCalificacion
 		vector<DTCalificacion> getCalificacionesSinResponder(string);
 		void selectCalificacion(string, int);
@@ -58,12 +61,14 @@ class ControladorReservas : public IReservas
 
 		//consultar reservas
 		vector<DTReserva> listarReservasDeHostal(string nombreHostal);
+		vector<DTReservaIndividual> getReservasIndividuales(vector<DTReserva> reservas);
+		vector<DTReservaGrupal> getReservasGrupales(vector<DTReserva> reservas);
 		//baja reserva
 		set<int> listarCodigoReservasDeHostal(string nombreHostal);
 		void confirmarBajaReserva();
 		void seleccionarReserva(int);
 
-		void cargaDatos();		
+		void cargaDatos();
 };
 
 #endif

@@ -73,10 +73,11 @@ const float Hostal::getPromedioPuntaje() const{
  
 vector<DTCalificacion> Hostal::getDetalles(){
 	vector<DTCalificacion> res;
+    set<Calificacion*> calif = this->getCalificaciones(); 
     set<Calificacion*>::iterator iter;
-	for (iter = this->calificaciones.begin(); iter != this->calificaciones.end(); iter++){
-		DTCalificacion nuevo = DTCalificacion((*iter)->getPuntaje(), (*iter)->getComentario(), /*TEMPORAL*/"temporal", 0);
-		res.emplace_back(nuevo);
+	for (iter = calif.begin(); iter != calif.end(); iter++){
+		DTCalificacion nuevo = DTCalificacion((*iter)->getPuntaje(), (*iter)->getComentario() /*TEMPORAL"temporal", 0*/);
+		res.emplace_back(nuevo); 
 	}
 	return res;
 }
@@ -101,7 +102,7 @@ vector<DTEstadia> Hostal::getEstadiasFinalizadas(string emailHuesped){
         vector<DTEstadia> aux = itr->second->getEstadiasFinalizadas(emailHuesped);
         // agregar aux a res
         vector<DTEstadia>::iterator itr2;
-        for (itr2 = aux.begin(); itr2 != aux.end(); ++itr){
+        for (itr2 = aux.begin(); itr2 != aux.end(); ++itr2){
             res.emplace_back(*itr2);
         }
     }
@@ -109,10 +110,10 @@ vector<DTEstadia> Hostal::getEstadiasFinalizadas(string emailHuesped){
 }
 
 vector<DTCalificacion> Hostal::getCalificacionesSinResponder(){
-    set<Calificacion*> cals = this->calificaciones;
+    // set<Calificacion*> cals = this->calificaciones;
     set<Calificacion*>::iterator itr;
     vector<DTCalificacion> res;
-    for (itr = cals.begin(); itr != cals.end(); itr++) {
+    for (itr = calificaciones.begin(); itr != calificaciones.end(); itr++) {
         Calificacion* aux = *itr;
         if (aux->noEstaRespuesta()){
             res.emplace_back(aux->getDTCalificacion());
@@ -154,7 +155,8 @@ set<int> Hostal::getHabitacionesLibres(Fecha CheckIn, Fecha CheckOut)
     map<int,Habitacion*>::iterator it = habitaciones.begin();
     for (; it != habitaciones.end(); it++)
     {
-        if (!(it->second->isReservado(CheckIn, CheckOut))) habitacionesLibres.insert(it->second->getNumero());
+        if (!(it->second->isReservado(CheckIn, CheckOut))) 
+            habitacionesLibres.insert(it->second->getNumero());
     }
     return habitacionesLibres;
 }
@@ -176,7 +178,7 @@ vector<DTReserva> Hostal::listarReservasDeHostal(){
     for (itr = hs.begin(); itr != hs.end(); ++itr) {
         vector<DTReserva> aux = itr->second->getDataReservaDeHabitacion();
         vector<DTReserva>::iterator itr2;
-        for (itr2 = aux.begin(); itr2 != aux.end(); ++itr){
+        for (itr2 = aux.begin(); itr2 != aux.end(); ++itr2){
             res.emplace_back(*itr2);
         }
         aux.~vector();
@@ -204,4 +206,9 @@ void Hostal::eliminarCalificacion(Calificacion* calificacionEliminar){
     set<Calificacion*>::iterator it;
     it = calificaciones.find(calificacionEliminar);
     calificaciones.erase(it);
+}
+
+DTHostal Hostal::getDTHostal(){
+    DTHostal nuevo = DTHostal(this->nombreHostal, this->direccion, this->telefono, this->getPromedioPuntaje(), this->habitaciones);
+    return nuevo;
 }

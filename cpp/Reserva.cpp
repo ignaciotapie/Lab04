@@ -91,7 +91,7 @@ vector<DTEstadia> Reserva::getEstadiasFinalizadas(string emailHuesped){
     vector<DTEstadia> res;
     for (itr = es.begin(); itr != es.end(); ++itr) {
         //si esta finalizada
-        if ((*itr)->esHues(emailHuesped) && (*itr)->estaFinalizada()){
+        if ((*itr)->esHues(emailHuesped) && (*itr)->estaFinalizada() && (*itr)->getCalificacion() == NULL){
             DTEstadia aux = (*itr)->getDTEstadia();
             res.emplace_back(aux);
         }
@@ -175,6 +175,10 @@ void ReservaGrupal::calcularCosto()
     costo = ((diferenciaAnio * 365) + (diferenciaMes * 31) + (diferenciaDia)) * habitacion->getPrecio() * ((cantidadFingers >=2) ? 0.70 : 1);
 }
 
+void Reserva::addHabitacion(Habitacion* h)
+{
+    this->habitacion = h;
+}
 
 void ReservaIndividual::calcularCosto()
 {
