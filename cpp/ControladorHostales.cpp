@@ -228,9 +228,9 @@ void ControladorHostales::seleccionarHostalParaReserva(string nombreHostal, Fech
     checkOutReserva = checkOut;
     esReservaGrupalReserva = esReservaGrupal;
 }
-void ControladorHostales::seleccionarHuesped(string nombreHuesped)
+void ControladorHostales::seleccionarHuesped(string mailHuesped)
 {
-    huespedesAElegir.insert(nombreHuesped);
+    huespedesAElegir.insert(mailHuesped);
 }
 
 

@@ -3,6 +3,7 @@
 #include <limits>
 #include <algorithm>
 #include <vector>
+#include <cmath>
 
 #include "h/Fabrica.h"
 #include "h/Reserva.h"
@@ -478,6 +479,11 @@ int main()
             {
                 IHostales* interfazHostales = fabrica->getIHostales();
                 vector<DTHostal> listaHostales = interfazHostales->getHostalesPlus();
+                if (listaHostales.empty())
+                {
+                    cout << "No existen hostales en los que reservar." << endl;
+                    break;
+                }
                 vector<DTHostal>::iterator auxiliarLista = listaHostales.begin();
                 int i = 1;
                 for(; auxiliarLista != listaHostales.end(); auxiliarLista++ )
@@ -497,39 +503,166 @@ int main()
                     cout << "El hostal que ha ingresado no existe." << endl;
                     break;
                 }
+                bool fechaValida = false;
+
                 cout << "Ingrese fecha para check-in: " << endl;
                 cout << "Hora (Formato H.HH/HH.HH): ";
-                float horaCheckIn;
-                cin >> horaCheckIn;
+                
+                float horaCheckIn = 9999;
+                fechaValida = false;
+
+                while(!fechaValida)
+                {
+                    cin >> horaCheckIn;
+                    if ((0 <= horaCheckIn) && (horaCheckIn < 24) && (horaCheckIn - floor(horaCheckIn) < 0.60))
+                    {
+                        fechaValida = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, ingrese una fecha valida." << endl;
+                    }
+                }
+
                 cout << endl;
                 cout << "Dia (Formato D/DD): ";
-                int diaCheckIn = CheckIntCin();
+                
+                fechaValida = false;
+                int diaCheckIn = 9999;
+
+                while(!fechaValida)
+                {
+                    diaCheckIn = CheckIntCin();
+                    if ((0 < diaCheckIn) && (diaCheckIn < 32))
+                    {
+                        fechaValida = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, ingrese una fecha valida." << endl;
+                    }
+                }
+
                 cout << endl;
                 cout << "Mes (Formato M/MM): ";
-                int mesCheckIn = CheckIntCin();
+
+
+                fechaValida = false;
+                int mesCheckIn = 9999;
+
+                while(!fechaValida)
+                {
+                    mesCheckIn = CheckIntCin();
+                    if ((0 < mesCheckIn) && (mesCheckIn < 13))
+                    {
+                        fechaValida = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, ingrese una fecha valida." << endl;
+                    }
+                }
+
                 cout << endl;
                 cout << "Anio (Formato YYYY): ";
-                int anioCheckIn = CheckIntCin();
+
+                fechaValida = false;
+                int anioCheckIn = 9999;
+                while(!fechaValida)
+                {
+                    anioCheckIn = CheckIntCin();
+                    if (0 < anioCheckIn)
+                    {
+                        fechaValida = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, ingrese una fecha valida." << endl;
+                    }
+                }
+
                 cout << endl;
 
                 cout << "Ingrese fecha para check-out: " << endl;
                 cout << "Hora (Formato H.HH/HH.HH): ";
-                float horaCheckOut;
-                cin >> horaCheckOut;
+
+                float horaCheckOut = 9999;
+                fechaValida = false;
+
+                while(!fechaValida)
+                {
+                    cin >> horaCheckOut;
+                    if ((0 <= horaCheckOut) && (horaCheckOut < 24) && (horaCheckOut - floor(horaCheckOut) < 0.60))
+                    {
+                        fechaValida = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, ingrese una fecha valida." << endl;
+                    }
+                }
+
                 cout << endl;
                 cout << "Dia (Formato D/DD): ";
-                int diaCheckOut = CheckIntCin();
+
+                fechaValida = false;
+                int diaCheckOut = 9999;
+
+                while(!fechaValida)
+                {
+                    diaCheckOut = CheckIntCin();
+                    if ((0 < diaCheckOut) && (diaCheckOut < 32))
+                    {
+                        fechaValida = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, ingrese una fecha valida." << endl;
+                    }
+                }
                 cout << endl;
                 cout << "Mes (Formato M/MM): ";
-                int mesCheckOut = CheckIntCin();
+
+                fechaValida = false;
+                int mesCheckOut = 9999;
+
+                while(!fechaValida)
+                {
+                    mesCheckOut = CheckIntCin();
+                    if ((0 < mesCheckOut) && (mesCheckOut < 13))
+                    {
+                        fechaValida = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, ingrese una fecha valida." << endl;
+                    }
+                }
+
+
                 cout << endl;
                 cout << "Anio (Formato YYYY): ";
-                int anioCheckOut = CheckIntCin();
+
+
+                fechaValida = false;
+                int anioCheckOut = 9999;
+                while(!fechaValida)
+                {
+                    anioCheckOut = CheckIntCin();
+                    if (0 < anioCheckOut)
+                    {
+                        fechaValida = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, ingrese una fecha valida." << endl;
+                    }
+                }
                 cout << endl;
 
-                if (!Fecha(horaCheckOut,diaCheckOut,mesCheckOut, anioCheckOut).before(Fecha(horaCheckIn,diaCheckIn,mesCheckIn,anioCheckIn)))
+                if (!Fecha(horaCheckIn,diaCheckIn,mesCheckIn, anioCheckIn).before(Fecha(horaCheckOut,diaCheckOut,mesCheckOut,anioCheckOut)))
                 {
-                    cout << "ERROR: El check-in no puede ser anterior al check-out" << endl;
+                    cout << "ERROR: El check-out no puede ser anterior al check-in" << endl;
                     break;
                 }
 
@@ -595,29 +728,59 @@ int main()
                 for (; aux != huespedesListados.end(); aux++)
                 {
                     cout << i << ". " << *aux << endl;
+                    i++;
                 }
-                cout << "Ingrese el nombre del huesped a registrar: " ;
-                string nombreHuesped;
-                cin.ignore();
-                getline(cin, nombreHuesped);
-                interfazHostales->seleccionarHuesped(nombreHuesped);
+                cout << "Ingrese el email del huesped a registrar: " ;
                 set<string> nombreHuespedes;
-                nombreHuespedes.insert(nombreHuesped);
+                bool mailHuespedValido = false;
+                string mailHuesped;
+                while (!mailHuespedValido)
+                {
+                    cin >> mailHuesped;
+                    
+                    if (huespedesListados.find(mailHuesped) != huespedesListados.end())
+                    {
+                        mailHuespedValido = true;
+                    }
+                    else
+                    {
+                        cout << "Por favor, escriba un huesped que este en la lista." << endl;
+                    }
+                }
+                interfazHostales->seleccionarHuesped(mailHuesped);
+                nombreHuespedes.insert(mailHuesped);
                 if (esReservaGrupal)
                 {
                     bool quiereAgregar = true;
                     while (quiereAgregar)
                     {
-                        cout << "Ingrese el nombre de otro huesped a agregar a la reserva grupal: ";
-                        getline(cin, nombreHuesped);
-                        interfazHostales->seleccionarHuesped(nombreHuesped);
-                        nombreHuespedes.insert(nombreHuesped);
+                        cout << "Ingrese el mail de otro huesped a agregar a la reserva grupal: ";
+                        mailHuespedValido = false;
+                        while (!mailHuespedValido)
+                        {
+                            cin >> mailHuesped;
+                            
+                            if (huespedesListados.find(mailHuesped) != huespedesListados.end())
+                            {
+                                if (nombreHuespedes.find(mailHuesped) != nombreHuespedes.end())
+                                {
+                                    cout << "Escriba un huesped que no este asignado a esta reserva: " << endl;
+                                }
+                                else mailHuespedValido = true;
+                            }
+                            else
+                            {
+                                cout << "Por favor, escriba un huesped que este en la lista." << endl;
+                            }
+                        }
+                        interfazHostales->seleccionarHuesped(mailHuesped);
+                        nombreHuespedes.insert(mailHuesped);
                         cout << "Desea agregar mas huespedes?\n" << "(1) Si\n" << "(2) No\n";
                         bool incorrecto = true;
                         while (incorrecto)
                         {
                             string fin;
-                            getline(cin, fin);
+                            cin >> fin;
                             if (fin == "1" || fin == "2")
                             {
                                 incorrecto = false;
@@ -634,7 +797,7 @@ int main()
                 cout << "Datos de la reserva:" << endl;
                 cout << "Hostal: " << nombreHostal << endl;
                 cout << "Check-in: " << diaCheckIn << "/" << mesCheckIn << "/" <<  anioCheckIn << " " << horaCheckIn << endl;
-                cout << "Check-in: " << diaCheckOut << "/" << mesCheckOut << "/" <<  anioCheckOut << " " << horaCheckOut << endl;
+                cout << "Check-out: " << diaCheckOut << "/" << mesCheckOut << "/" <<  anioCheckOut << " " << horaCheckOut << endl;
                 cout << "Es reserva grupal: " << (esReservaGrupal ? "Si" : "No") << endl;
                 cout << "Huespedes: " << endl;
                 for (set<string>::iterator huespedIt = nombreHuespedes.begin(); huespedIt != nombreHuespedes.end(); huespedIt++)
@@ -658,6 +821,7 @@ int main()
                     }
                 }
                 if (fin == "2") break;
+                
                 interfazHostales->confirmarReserva();
                 break;
             }

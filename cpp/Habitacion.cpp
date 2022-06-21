@@ -66,17 +66,19 @@ vector<DTEstadia> Habitacion::getDTEstadias(){
     }
     return res;
 }
-void Habitacion::addReserva(Reserva* reserva){
-
-    reserva->calcularCosto();
+void Habitacion::addReserva(Reserva* reserva)
+{
+    reserva->addHabitacion(this);
     reservas.insert(pair<int,Reserva*>(reserva->getCodigoReserva(), reserva));
+    reserva->calcularCosto();
 }
 bool Habitacion::isReservado(Fecha checkIn, Fecha checkOut){
     map<int, Reserva*>::iterator it = reservas.begin();
     for(; it != reservas.end(); it++)
     {   
         Reserva* reserva = it->second;
-        if (Fecha::areOverlapping(checkIn, checkOut, reserva->getCheckIn(), reserva->getCheckOut())) return true;
+        bool estaReservada = Fecha::areOverlapping(checkIn, checkOut, reserva->getCheckIn(), reserva->getCheckOut());
+        if (estaReservada) return true;
     }
     return false;
 

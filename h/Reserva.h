@@ -46,6 +46,7 @@ class Reserva{
         //ConsultaEstadia
         vector<DTEstadia> getDTEstadias();
         void setCerradaReserva();
+        void addHabitacion(Habitacion* h);
         
         virtual void calcularCosto() = 0;
 

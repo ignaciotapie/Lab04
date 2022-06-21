@@ -175,6 +175,10 @@ void ReservaGrupal::calcularCosto()
     costo = ((diferenciaAnio * 365) + (diferenciaMes * 31) + (diferenciaDia)) * habitacion->getPrecio() * ((cantidadFingers >=2) ? 0.70 : 1);
 }
 
+void Reserva::addHabitacion(Habitacion* h)
+{
+    this->habitacion = h;
+}
 
 void ReservaIndividual::calcularCosto()
 {
