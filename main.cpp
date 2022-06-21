@@ -1212,7 +1212,7 @@ int main()
                 cout << "Ingrese nombre del hostal\n";
                 while (!nombreHostalValido)
                 {
-                    cin.ignore();
+                   
                     getline(cin, nombreHostal);
 
                     if (allHostales.find(nombreHostal) != allHostales.end())
