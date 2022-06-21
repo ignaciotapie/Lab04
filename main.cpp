@@ -1093,7 +1093,7 @@ int main()
                 bool esValidoCodigo = false;
                 while (!esValidoCodigo)
                 {
-                    cin >> codigoRes;
+                    codigoRes = CheckIntCin();
 
                     for (itrEstadias = estadiasFinalizadas.begin(); itrEstadias != estadiasFinalizadas.end(); itrEstadias++){
                         DTEstadia DTEst = *itrEstadias;
@@ -1137,7 +1137,7 @@ int main()
                 int codigoReserva;
                 string emailHuesped;
                 cout << "Codigo Reserva:" << endl;
-                cin >> codigoReserva;
+                codigoReserva = CheckIntCin();
                 cout << "Email Huesped:" << endl;
                 cin.ignore();
                 getline(cin, emailHuesped);
@@ -1357,7 +1357,7 @@ int main()
                 int codigoRes;
                 string emailHues;
                 cout << "Codigo Reserva:" << endl;
-                cin >> codigoRes;
+                codigoRes = CheckIntCin();
                 cout << "Email Huesped:" << endl;
                 cin.ignore();
                 getline(cin, emailHues);
