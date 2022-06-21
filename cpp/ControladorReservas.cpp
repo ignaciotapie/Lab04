@@ -12,6 +12,7 @@
 #include "../h/DTEstadia.h"
 #include "../h/RespuestaEmpleado.h"
 #include "../h/Usuario.h"
+#include "../h/DTHostal.h"
 
 using namespace std;
 
@@ -148,15 +149,7 @@ bool ControladorReservas::existeCalificacion(){
 bool ControladorReservas::existeRespuestaEmpleado(){
     Estadia* est = reservas.find(codigoReservaEstadia)->second->getEstadia(emailHuespedEstadia);
     bool existe = false;
-    if (est->getCalificacion() != NULL){
-        if (est->getCalificacion()->getRespuestaempleados() != NULL){
-            existe = true;
-        }
-    }
-    return existe;
-}
-
-string ControladorReservas::getRespuestaEmpleado(){
+    if (est->getCalificacion() != NULL){DTReservaIndividual(){
     Estadia* est = reservas.find(codigoReservaEstadia)->second->getEstadia(emailHuespedEstadia);
     return est->getCalificacion()->getRespuestaempleados()->getMensaje();
 }
@@ -283,4 +276,16 @@ void ControladorReservas::seleccionarReserva(int codigo){
     codigoReservaEstadia = codigo;
 }
 
-vector<DTReservaIndividual> ControladorReservas::getReservasIndividuales(vector<DT>)
+vector<DTReservaIndividual> ControladorReservas::getReservasIndividuales(vector<DTReserva> reservas)
+{
+    vector<DTReservaIndividual> ret;
+     
+
+    return ret;
+}
+
+vector<DTReservaIndividual> ControladorReservas::getReservasGrupales(vector<DTReserva> reservas)
+{
+    vector<DTReservaGrupal>() ret;
+    return ();
+}

@@ -12,6 +12,8 @@ class DTReserva;
 class DTCalificacion;
 class DTEstadia;
 class DTEstadiaPlus;
+class DTReservaIndividual;
+class DTReservaGrupal;
 class Huesped;
 
 class IReservas{

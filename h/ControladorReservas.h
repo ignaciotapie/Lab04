@@ -10,6 +10,8 @@
 class Reserva;
 class Empleado;
 class DTReserva;
+class DTReservaIndividual;
+class DTReservaGrupal;
 
 class ControladorReservas : public IReservas
 {
