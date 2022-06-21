@@ -876,37 +876,25 @@ int main()
                     }
                 }
                 set<string> HuespedesRegistrados = interfazUsuarios->getHuespedes();
+                bool emailHuespedValido = false;
+                string emailHuesped;
+                cout << "Ingrese el email del huesped a finalizar su estadia:" << endl;
+                while (!emailHuespedValido)
+                {
+                    getline(cin, emailHuesped);
 
-                if (HuespedesRegistrados.empty()){
-                    cout << "No hay huespedes registrados" << endl;
-                    break;
-                }
-                else{
-                    int i = 1;
-                    for(set<string>::iterator it = HuespedesRegistrados.begin(); it != HuespedesRegistrados.end(); ++it)
+                    if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
                     {
-                    cout << i << ". " << *it << endl;
-                    ++i;
-                     }
-                    string emailHuesped;
-                    bool emailHuespedValido = false;
-                    cout << "Ingrese mail del huesped a registrar su estadia\n";
-                    while (!emailHuespedValido)
-                    {
-                       cin.ignore();
-                       getline(cin, emailHuesped);
-                        if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
-                        {
-                            emailHuespedValido = true;
-                        }
-                    else
-                        {
-                            cout << "Por favor, escriba un usuario que este en la lista." << endl;
-                       }
+                        emailHuespedValido = true;
                     }
-                    interfazReservas->finalizarEstadia();
-                    cout << "Se ha finalizado la estadia." << endl;
+                    else
+                    {
+                        cout << "Por favor, escriba un email de un huesped." << endl;
+                    }
                 }
+                
+                interfazReservas->finalizarEstadia();
+                cout << "Se ha finalizado la estadia." << endl;
                 break;
             }
             case 9:
