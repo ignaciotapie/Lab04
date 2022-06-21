@@ -73,7 +73,7 @@ set<int> Huesped::getCodigosReservas() {
     for (; iter != rg.end(); iter++)
     {
         if (iter->second->getEstado() == Abierta) {
-			res.insert(it->second->getCodigoReserva());
+			res.insert(iter->second->getCodigoReserva());
 		}
     }
 	return res;
