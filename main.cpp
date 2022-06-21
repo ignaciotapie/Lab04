@@ -900,7 +900,7 @@ int main()
                     for(vector<DTCalificacion>::iterator it = calif.begin(); it != calif.end(); ++it)
                     {
                         DTCalificacion DTCalif = *it;
-                        cout << i << ".Puntaje: " << DTCalif.getPuntaje()<< ".Comentario: " << DTCalif.getComentario() << endl;
+                        cout << i << ".Puntaje: " << DTCalif.getPuntaje()<< "\n.Comentario: " << DTCalif.getComentario() << endl;
                         ++i;
                     }
                 }
