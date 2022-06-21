@@ -879,9 +879,7 @@ int main()
                                 nomHost = (it->second);
                             }
                             case 3:{
-                                it = top3Hostales.begin();
-                                it++;
-                                it++;
+                                it = top3Hostales.find(3);
                                 nomHost = (it->second);                               
                             }
                             default:
