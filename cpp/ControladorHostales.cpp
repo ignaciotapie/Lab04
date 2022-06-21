@@ -95,6 +95,8 @@ DTHostal ControladorHostales::getDTHostal(){
     map<string, Hostal*>::iterator h = this->hostales.find(this->hostalSeleccionado);
     return h->second->getDataHostal();
 }
+
+
 set<string> ControladorHostales::getHostales(){
     set<string> aRetornar;
     map<string, Hostal*>::iterator it = hostales.begin();
@@ -271,4 +273,9 @@ void ControladorHostales::cargaDatos()
 
 bool ControladorHostales::checkearHab(int h){
     return this->hostales.find(this->hostalSeleccionado)->second->checkHab(h);
+}
+
+DTHostal ControladorHostales::getDTHostalConsulta(){
+    map<string, Hostal*>::iterator h = this->hostales.find(this->hostalSeleccionado);
+    return h->second->getDTHostal();
 }

@@ -39,6 +39,9 @@ class Hostal{
 
         //Caso de uso: Realizar Reserva
         set<int> getHabitacionesLibres(Fecha CheckIn, Fecha CheckOut);
+
+        //Caso de uso: Consulta de Hostal
+        DTHostal getDTHostal();
         
         const string getNombreHostal() const;
         const string getDireccion() const;

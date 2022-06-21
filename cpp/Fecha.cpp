@@ -29,10 +29,10 @@ Fecha::Fecha(float hora, int dia, int mes, int anio){
 
 bool Fecha::before(Fecha fechaAComparar)
 {
-    if (anio < fechaAComparar.anio) return true;
-    else if (mes < fechaAComparar.mes) return true;
-    else if (dia < fechaAComparar.dia) return true;
-    else if (hora <= fechaAComparar.hora) return true;
+    if (anio > fechaAComparar.anio) return true;
+    else if (mes > fechaAComparar.mes) return true;
+    else if (dia > fechaAComparar.dia) return true;
+    else if (hora >= fechaAComparar.hora) return true;
     
     return false;
 }

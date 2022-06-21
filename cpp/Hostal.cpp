@@ -154,7 +154,8 @@ set<int> Hostal::getHabitacionesLibres(Fecha CheckIn, Fecha CheckOut)
     map<int,Habitacion*>::iterator it = habitaciones.begin();
     for (; it != habitaciones.end(); it++)
     {
-        if (!(it->second->isReservado(CheckIn, CheckOut))) habitacionesLibres.insert(it->second->getNumero());
+        if (!(it->second->isReservado(CheckIn, CheckOut))) 
+            habitacionesLibres.insert(it->second->getNumero());
     }
     return habitacionesLibres;
 }
@@ -204,4 +205,9 @@ void Hostal::eliminarCalificacion(Calificacion* calificacionEliminar){
     set<Calificacion*>::iterator it;
     it = calificaciones.find(calificacionEliminar);
     calificaciones.erase(it);
+}
+
+DTHostal Hostal::getDTHostal(){
+    DTHostal nuevo = DTHostal(this->nombreHostal, this->direccion, this->telefono, this->getPromedioPuntaje(), this->habitaciones);
+    return nuevo;
 }

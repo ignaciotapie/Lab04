@@ -56,7 +56,7 @@ bool Estadia::esHues(string hues){
 }
 
 DTEstadia Estadia::getDTEstadia(){
-    DTEstadia res(this->getHuesped()->getEmail(), this->getReserva()->getCodigoReserva(), this->getCheckIn(), this->getCheckOut(), this->getPromo());
+    DTEstadia res = DTEstadia(this->getHuesped()->getEmail(), this->getReserva()->getCodigoReserva(), this->getCheckIn(), this->getCheckOut(), this->getPromo());
     return res;
 }
 
