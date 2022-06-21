@@ -177,7 +177,7 @@ vector<DTReserva> Hostal::listarReservasDeHostal(){
     for (itr = hs.begin(); itr != hs.end(); ++itr) {
         vector<DTReserva> aux = itr->second->getDataReservaDeHabitacion();
         vector<DTReserva>::iterator itr2;
-        for (itr2 = aux.begin(); itr2 != aux.end(); ++itr){
+        for (itr2 = aux.begin(); itr2 != aux.end(); ++itr2){
             res.emplace_back(*itr2);
         }
         aux.~vector();

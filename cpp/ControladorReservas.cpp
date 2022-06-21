@@ -254,11 +254,7 @@ void ControladorReservas::cargaDatos()
     estSeba->setPunteroCalificacion(calSeba);
     caverna->agregarCalificacion(calSeba);
 
-    
-
-
 }
-
 //consulta reserva
 vector<DTReserva> ControladorReservas::listarReservasDeHostal(string nombreHostal){
     ControladorHostales* ch = ControladorHostales::getInstance();
