@@ -170,7 +170,7 @@ map<int,string> ControladorHostales::getTop3Hostales(){
     return res;
 
 }
-vector<DTCalificacion> ControladorHostales::getDetallesHostal(string){
+vector<DTCalificacion> ControladorHostales::getDetallesHostal(string nombreHostal){
     map<string,Hostal*>::iterator it = hostales.find(nombreHostal);
 	vector<DTCalificacion> res = it->second->getDetalles();
 	return res;

@@ -73,10 +73,11 @@ const float Hostal::getPromedioPuntaje() const{
  
 vector<DTCalificacion> Hostal::getDetalles(){
 	vector<DTCalificacion> res;
+    set<Calificacion*> calif = this->getCalificaciones(); 
     set<Calificacion*>::iterator iter;
-	for (iter = this->calificaciones.begin(); iter != this->calificaciones.end(); iter++){
-		DTCalificacion nuevo = DTCalificacion((*iter)->getPuntaje(), (*iter)->getComentario(), /*TEMPORAL*/"temporal", 0);
-		res.emplace_back(nuevo);
+	for (iter = calif.begin(); iter != calif.end(); iter++){
+		DTCalificacion nuevo = DTCalificacion((*iter)->getPuntaje(), (*iter)->getComentario() /*TEMPORAL"temporal", 0*/);
+		res.emplace_back(nuevo); 
 	}
 	return res;
 }
