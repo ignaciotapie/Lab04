@@ -1248,12 +1248,14 @@ int main()
                     cout << "Precio: " << (*ite).getPrecio() << endl;
                     cout << "Capacidad: " << (*ite).getCapacidad() << "\n" << endl;
 
+                if (!((*ite).getCalificaciones() == NULL)){
                     cout << "Calificaciones: " << "\n" << endl;
                     
                     for (auto itecalis = (*ite).getCalificaciones()->begin(); itecalis != (*ite).getCalificaciones()->end(); itecalis++){
                         cout << "Comentario: " << (*itecalis).getComentario() << endl;
                         cout << "Puntaje: " << (*itecalis).getPuntaje() << "\n" << endl;
                     } 
+                }
                     
                 }
                 //Reservas
