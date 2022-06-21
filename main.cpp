@@ -882,28 +882,28 @@ int main()
                     break;
                 }
                 else{
-                int i = 1;
-                for(set<string>::iterator it = HuespedesRegistrados.begin(); it != HuespedesRegistrados.end(); ++it)
-                {
+                    int i = 1;
+                    for(set<string>::iterator it = HuespedesRegistrados.begin(); it != HuespedesRegistrados.end(); ++it)
+                    {
                     cout << i << ". " << *it << endl;
                     ++i;
-                }
-                string emailHuesped;
-                bool emailHuespedValido = false;
-                cout << "Ingrese mail del huesped a registrar su estadia\n";
-                while (!emailHuespedValido)
-                {
-                    cin.ignore();
-                    getline(cin, emailHuesped);
-                    if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
+                     }
+                    string emailHuesped;
+                    bool emailHuespedValido = false;
+                    cout << "Ingrese mail del huesped a registrar su estadia\n";
+                    while (!emailHuespedValido)
                     {
-                        emailHuespedValido = true;
-                    }
+                       cin.ignore();
+                       getline(cin, emailHuesped);
+                        if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
+                        {
+                            emailHuespedValido = true;
+                        }
                     else
-                    {
-                        cout << "Por favor, escriba un usuario que este en la lista." << endl;
+                        {
+                            cout << "Por favor, escriba un usuario que este en la lista." << endl;
+                       }
                     }
-                }
                 }
                 
                 interfazReservas->finalizarEstadia();
