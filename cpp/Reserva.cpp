@@ -91,7 +91,7 @@ vector<DTEstadia> Reserva::getEstadiasFinalizadas(string emailHuesped){
     vector<DTEstadia> res;
     for (itr = es.begin(); itr != es.end(); ++itr) {
         //si esta finalizada
-        if ((*itr)->esHues(emailHuesped) && (*itr)->estaFinalizada()){
+        if ((*itr)->esHues(emailHuesped) && (*itr)->estaFinalizada() && (*itr)->getCalificacion() == NULL){
             DTEstadia aux = (*itr)->getDTEstadia();
             res.emplace_back(aux);
         }

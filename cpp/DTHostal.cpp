@@ -34,7 +34,7 @@ DTHostal::DTHostal(string nom, string dir, string tel, float prom, map<int, Habi
                     if ((*ite3)->getCalificacion() != NULL)
                         vdtc.emplace_back((*ite3)->getDTCalificacion());
                 }
-
+                
                 DTHabitacion h = DTHabitacion(ite->second->getNumero(), ite->second->getPrecio(), ite->second->getCapacidad(), nuevo2);
                 nuevo.emplace_back(h);
             }
