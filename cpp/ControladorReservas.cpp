@@ -288,18 +288,19 @@ vector<DTReservaIndividual> ControladorReservas::getReservasIndividuales(vector<
 {
     vector<DTReservaIndividual> ret;
     vector<DTReserva>::iterator retIt = reservasInd.begin();
-    for ()
-    map<int,Reserva*>::iterator it = reservas.begin();
-    for(; it != reservas.end(); it++)
+    for(; retIt != reservasInd.end(); retIt++)
     {
+        map<int,Reserva*>::iterator it = reservas.begin();
+        for(; it != reservas.end(); it++)
+        {
 
+        }
     }
-
     return ret;
 }
 
 vector<DTReservaGrupal> ControladorReservas::getReservasGrupales(vector<DTReserva> reservasGrup)
 {
     vector<DTReservaGrupal> ret;
-    return v
+    return ret;
 }
