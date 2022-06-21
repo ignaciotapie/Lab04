@@ -904,10 +904,9 @@ int main()
                             cout << "Por favor, escriba un usuario que este en la lista." << endl;
                        }
                     }
+                    interfazReservas->finalizarEstadia();
+                    cout << "Se ha finalizado la estadia." << endl;
                 }
-                
-                interfazReservas->finalizarEstadia();
-                cout << "Se ha finalizado la estadia." << endl;
                 break;
             }
             case 9:
