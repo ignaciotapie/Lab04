@@ -59,12 +59,14 @@ class ControladorReservas : public IReservas
 
 		//consultar reservas
 		vector<DTReserva> listarReservasDeHostal(string nombreHostal);
+		vector<DTReservaIndividual> getReservasIndividuales(vector<DTReserva> reservas);
+		vector<DTReservaGrupal> getReservasGrupales(vector<DTReserva> reservas);
 		//baja reserva
 		set<int> listarCodigoReservasDeHostal(string nombreHostal);
 		void confirmarBajaReserva();
 		void seleccionarReserva(int);
 
-		void cargaDatos();		
+		void cargaDatos();
 };
 
 #endif

@@ -1311,9 +1311,16 @@ int main()
                 }
                 IReservas* ireservas = fabrica->getIReservas();
                 vector<DTReserva> reservas = ireservas->listarReservasDeHostal(nombreHostal);
-                vector<DTReserva>::iterator itrReservas;
-                for (itrReservas = reservas.begin(); itrReservas != reservas.end(); itrReservas++){
-                    (*itrReservas).imprimir();
+                vector<DTReservaIndividual> reservasIndividuales = ireservas->getReservasIndividuales(reservas);
+                vector<DTReservaGrupal> reservasGrupales = ireservas->getReservasGrupales(reservas);
+                
+                vector<DTReservaIndividual>::iterator itrReservasInd;
+                for (itrReservasInd = reservasIndividuales.begin(); itrReservasInd != reservasIndividuales.end(); itrReservasInd++){
+                    (*itrReservasInd).imprimir();
+                }
+                vector<DTReservaGrupal>:: iterator itrReservasGrupales;
+                for (itrReservasGrupales = reservasGrupales.begin(); itrReservasGrupales != reservasGrupales.end(); itrReservasGrupales++){
+                    (*itrReservasGrupales).imprimir();
                 }
                 break;
             }

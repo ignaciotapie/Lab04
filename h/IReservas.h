@@ -35,7 +35,8 @@ class IReservas{
 		virtual bool existeRespuestaEmpleado() = 0;
 		virtual string getRespuestaEmpleado() = 0;
 		virtual vector<DTReserva>listarReservasDeHostal(string) = 0;
-
+		virtual vector<DTReservaIndividual> getReservasIndividuales(vector<DTReserva> hostales) = 0;
+		virtual vector<DTReservaGrupal> getReservasGrupales(vector<DTReserva> hostales) = 0;
 		virtual void cargaDatos() = 0;
 };
 
