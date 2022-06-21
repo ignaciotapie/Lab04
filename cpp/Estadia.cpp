@@ -93,5 +93,7 @@ void Estadia::setPunteroCalificacion(Calificacion* c){
 
 void Estadia::eliminarEstadia(){
     huesped->eliminarEstadia(this);
-    calificacion->eliminarCalificacion();
+    if(calificacion){
+        calificacion->eliminarCalificacion();
+    }
 }
