@@ -926,9 +926,21 @@ int main()
                 }
                 ireservas->seleccionarHostal(hostalSeleccionado);
                 string emailHuesped;
+                bool emailHuespedValido = false;
+                IUsuarios* iusuarios = fabrica->getIUsuarios();
+                set<string> emailsHuespedes = iusuarios->getHuespedes();
                 cout << "Ingresar Email Huesped:" << endl;
-                // cin.ignore();
-                getline(cin, emailHuesped);
+                while (!emailHuespedValido)
+                {
+                    cin.ignore();
+                    getline(cin, emailHuesped);
+
+                    if (emailsHuespedes.find(emailHuesped) != emailsHuespedes.end()){
+                        emailHuespedValido = true;
+                    }else
+                        cout << "Por favor, escriba un email valido." << endl;
+                }
+                
                 vector<DTEstadia> estadiasFinalizadas = ireservas->getEstadiasFinalizadas(emailHuesped);
                 vector<DTEstadia>::iterator itrEstadias;
                 for (itrEstadias = estadiasFinalizadas.begin(); itrEstadias != estadiasFinalizadas.end(); itrEstadias++){
@@ -1098,7 +1110,7 @@ int main()
                     cout << "Precio: " << (*ite).getPrecio() << endl;
                     cout << "Capacidad: " << (*ite).getCapacidad() << "\n" << endl;
                     cout << "Calificaciones: " << "\n" << endl;
-
+                    
                     for (auto itecalis = (*ite).getCalificaciones()->begin(); itecalis != (*ite).getCalificaciones()->end(); itecalis++){
                         cout << "Comentario: " << (*itecalis).getComentario() << endl;
                         cout << "Puntaje: " << (*itecalis).getPuntaje() << "\n" << endl;
