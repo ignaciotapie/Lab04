@@ -1257,12 +1257,13 @@ int main()
                     
                 }
                 //Reservas
+                cout << "Reservas: " << endl;
                     ControladorReservas* cr = ControladorReservas::getInstance();
                     set<int> intRes = cr->listarCodigoReservasDeHostal(nombreHostal);
                     int p = 1;
                     for (auto itera = intRes.begin(); itera != intRes.end(); itera++){
                         cout << p << "." << (*itera) << "\n" << endl;
-                        i++;
+                        p++;
                     }
                 
 
