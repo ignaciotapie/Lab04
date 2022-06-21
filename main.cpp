@@ -446,7 +446,11 @@ int main()
                         {
                             incorrecto = false;
                             if (fin == "1")
+                            {
                                 interfazHostales->confirmarAsignacion();
+                                cout << "Asignacion exitosa." << endl;
+                            }
+                                
                             else
                                 interfazHostales->cancelarAsignacion();
                         }
@@ -964,6 +968,7 @@ int main()
                         }
                     }
                     interfazUsuarios->registrarEstadia();
+                    cout << "Estadia agregada existosamente." << endl;
                     }
                 }
                 break;
