@@ -679,12 +679,12 @@ int main()
 
                     cout << "Desea ver detalles de algun hostal?\n" << "(1) Si\n" << "(2) No\n";
                     bool incorrecto = true;
-                    string fin;
+                    string op;
                     while (incorrecto)
                     {
-                        string fin;
-                        cin >> fin;
-                        if (fin == "1" || fin == "2")
+                        string op;
+                        cin >> op;
+                        if (op == "1" || op == "2")
                         {
                             incorrecto = false;
                         }
@@ -693,14 +693,14 @@ int main()
                             cout << "Por favor, elija una opcion correcta" << endl;
                         }
                     }
-                    if (fin == "2") break;
+                    if (op == "2") {break;}
 
                     cout << "De cual?\n" << "(1) Primero\n" << "(2) Segundo\n"<< "(3) Tercero\n";
                     bool repetir = true;
                     string nomHost;
                     while (repetir)
                     {
-                       int option = CheckIntCin();
+                        int option = CheckIntCin();
                         repetir = false;
                         switch (option)
                         {
