@@ -904,7 +904,7 @@ int main()
                     }
                 }
 
-                set<string> HuespedesRegistrados = interfazUsuarios->getHuespedes();
+                set<string> HuespedesRegistrados = interfazHostales->getHuespedesConReserva(nombreHostal);
 
                 if (HuespedesRegistrados.empty()){
                     cout << "No hay huespedes registrados" << endl;
@@ -956,6 +956,7 @@ int main()
                         if (ReservasNoCanceladasDelHuesped.find(codRes) != ReservasNoCanceladasDelHuesped.end())
                         {
                             codResValido = true;
+                            interfazUsuarios->seleccionarReserva(codRes);
                         }
                         else
                         {

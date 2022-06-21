@@ -210,3 +210,22 @@ DTHostal Hostal::getDTHostal(){
     DTHostal nuevo = DTHostal(this->nombreHostal, this->direccion, this->telefono, this->getPromedioPuntaje(), this->habitaciones);
     return nuevo;
 }
+
+set<string> Hostal::getHuespedesConReserva()
+{
+    map<int, Habitacion*> habs = habitaciones;
+    map<int, Habitacion*>::iterator itHabs = habs.begin();
+    set<string> resultado;
+
+    for (; itHabs != habs.end(); itHabs++)
+    {
+        set<string> allHuespedes = itHabs->second->getAllHuespedes();
+        set<string>::iterator allIt = allHuespedes.begin();
+        for(; allIt != allHuespedes.end(); allIt++)
+        {
+            resultado.insert(*allIt);
+        }
+    }
+
+    return resultado;
+}

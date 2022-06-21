@@ -40,6 +40,8 @@ class Habitacion{
         //baja reserva
         set<int> listarCodigoReservasDeHabitacion();
         void eliminarReservaDeHabitacion(int);
+
+        set<string> getAllHuespedes();
 };
 
 #endif

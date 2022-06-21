@@ -283,3 +283,9 @@ DTHostal ControladorHostales::getDTHostalConsulta(){
     map<string, Hostal*>::iterator h = this->hostales.find(this->hostalSeleccionado);
     return h->second->getDTHostal();
 }
+
+set<string> ControladorHostales::getHuespedesConReserva(string nombreHostal)
+{
+    Hostal* hostal = hostales.find(nombreHostal)->second;
+    return hostal->getHuespedesConReserva();
+}

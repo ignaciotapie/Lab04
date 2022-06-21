@@ -43,6 +43,7 @@ class IHostales{
 		virtual void seleccionarHuesped(string nombreHuesped) = 0;
 		virtual bool existeHostal(string nombreHostal) = 0;
 		virtual bool checkearHab(int) = 0;
+		virtual set<string> getHuespedesConReserva(string) = 0;
 
 		virtual void cargaDatos() = 0;
 };

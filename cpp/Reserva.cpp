@@ -136,6 +136,7 @@ void Reserva::setHuespedes(set<string> huespedes)
     set<string>::iterator it = huespedes.begin();
     ControladorUsuarios* cu = ControladorUsuarios::getInstance();
     Huesped* huesped = cu->getHuesped(*it);
+    huesped->addReserva(this);
     this->huesped = huesped;
     it++;
     ReservaGrupal* aux = dynamic_cast<ReservaGrupal*>(this);

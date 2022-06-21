@@ -77,6 +77,9 @@ class ControladorHostales : public IHostales{
 		//CalificarEstadia
 		Hostal* getHostal(string);
 		void cargaDatos();		
+
+
+		set<string> getHuespedesConReserva(string nombreHostal);
 };
 
 #endif

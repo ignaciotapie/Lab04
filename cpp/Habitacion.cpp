@@ -3,6 +3,7 @@
 #include "../h/Fecha.h"
 #include "../h/DTEstadia.h"
 #include "../h/DTReserva.h"
+#include "../h/Usuario.h"
 
 #include <iterator>
 #include <vector>
@@ -108,4 +109,32 @@ set<int> Habitacion::listarCodigoReservasDeHabitacion(){
 
 void Habitacion::eliminarReservaDeHabitacion(int codigoReservaEstadia){
     reservas.erase(codigoReservaEstadia);
+}
+
+set<string> Habitacion::getAllHuespedes()
+{
+    map<int, Reserva*> allReservas = reservas;
+    map<int, Reserva*>::iterator resIt = allReservas.begin();
+    set<string> huespedes;
+
+    for(; resIt != allReservas.end(); resIt++)
+    {
+        ReservaGrupal* rg = dynamic_cast<ReservaGrupal*>(resIt->second);
+        ReservaIndividual* ri = dynamic_cast<ReservaIndividual*>(resIt->second);
+        if(rg)
+        {
+            huespedes.insert(rg->getHuesped()->getEmail());
+            set<string> huespedesRg = rg->getHuespedes();
+            set<string>::iterator huesped = huespedesRg.begin();
+            for(; huesped != huespedesRg.end(); huesped++)
+            {
+                huespedes.insert(*huesped);
+            }
+        }
+        else if (ri)
+        {
+            huespedes.insert(rg->getHuesped()->getEmail());
+        }
+    }
+    return huespedes;
 }

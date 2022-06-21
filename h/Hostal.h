@@ -68,6 +68,8 @@ class Hostal{
         //baja reserva
         set<int> listarCodigoReservasDeHostal();
         void eliminarCalificacion(Calificacion*);
+
+        set<string> getHuespedesConReserva();
 };
 
 
