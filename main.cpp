@@ -1459,7 +1459,7 @@ int main()
                 IReservas* ireservas = fabrica->getIReservas();
                 set<int> reservas = ireservas->listarCodigoReservasDeHostal(nombreHostal);
                 set<int>::iterator itrReservas;
-                cout << "Reservas:" << endl;
+                cout << "Codigos de reservas:" << endl;
                 for (itrReservas = reservas.begin(); itrReservas != reservas.end(); itrReservas++){
                     cout << *itrReservas << endl;
                 }
@@ -1478,11 +1478,11 @@ int main()
                     cin >> fin;
                     if (fin == "1" || fin == "2"){
                         incorrecto = false;
-                        if (fin == "1")
+                        if (fin == "1"){
                             ireservas->confirmarBajaReserva();
                         }
-                    else
-                    {
+                    }
+                    else{
                         cout << "Por favor, elija una opcion correcta" << endl;
                     }
                 }

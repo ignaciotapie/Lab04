@@ -133,25 +133,28 @@ vector<DTNotificacion> Empleado::getNotificaciones()
 
 //baja reserva
 void Huesped::eliminarReservaDeHuesped(int codigoReservaEstadia){
-    map<int, ReservaIndividual*>::iterator it;
-    it = r.find(codigoReservaEstadia);
-    r.erase(it);
+    //map<int, ReservaIndividual*>::iterator it;
+    //it = r.find(codigoReservaEstadia);
+    r.erase(codigoReservaEstadia);
+
 }
 
 void Huesped::eliminarReservaDeHuespedGrupal(int codigoReservaEstadia){
-    map<int, ReservaGrupal*>::iterator it;
-    it = rg.find(codigoReservaEstadia);
-    rg.erase(it);
+    //map<int, ReservaGrupal*>::iterator it;
+    //it = rg.find(codigoReservaEstadia);
+    rg.erase(codigoReservaEstadia);
 }
 
 void Huesped::eliminarEstadia(Estadia* estadiaEliminar){
-    set<Estadia*>::iterator it;
-    it = e.find(estadiaEliminar);
-    e.erase(it);
+    //set<Estadia*>::iterator it;
+    //it = e.find(estadiaEliminar);
+    //e.erase(it);
+    e.erase(estadiaEliminar);
 }
 
 void Empleado::eliminarRespuesta(RespuestaEmpleado* RespuestaEliminar){
-    set<RespuestaEmpleado*>::iterator it;
-    it = re.find(RespuestaEliminar);
-    re.erase(it);
+    //set<RespuestaEmpleado*>::iterator it;
+    //it = re.find(RespuestaEliminar);
+    //re.erase(it);
+    re.erase(RespuestaEliminar);
 }

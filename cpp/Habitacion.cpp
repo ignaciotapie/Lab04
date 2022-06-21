@@ -107,7 +107,5 @@ set<int> Habitacion::listarCodigoReservasDeHabitacion(){
 }
 
 void Habitacion::eliminarReservaDeHabitacion(int codigoReservaEstadia){
-    map<int, Reserva*>::iterator it;
-    it = reservas.find(codigoReservaEstadia);
-    reservas.erase(it);
+    reservas.erase(codigoReservaEstadia);
 }
