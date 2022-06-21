@@ -1079,13 +1079,10 @@ int main()
                     break;
                 cout << "Informacion de las habitaciones:" << "\n" << endl;
 
-                for (vector<DTHabitacion>::iterator ite = dthabs.begin(); ite != dthabs.end(); ite++){
+                for (auto ite = dthabs.begin(); ite != dthabs.end(); ite++){
                     cout << "Habitacion Nro: " << (*ite).getNumero() << endl;
                     cout << "Precio: " << (*ite).getPrecio() << endl;
                     cout << "Capacidad: " << (*ite).getCapacidad() << "\n" << endl;
-
-                    if ((*ite).getCalificaciones()->empty())
-                        break;
 
                     cout << "Calificaciones: " << "\n" << endl;
 
