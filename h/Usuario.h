@@ -58,7 +58,9 @@ class Huesped : public Usuario {
         bool getEsFinger();
         //baja reserva
         void eliminarReservaDeHuesped(int);
+        void eliminarReservaDeHuespedGrupal(int);
         void eliminarEstadia(Estadia*);
+
 
         
         void finalizarEstadia();

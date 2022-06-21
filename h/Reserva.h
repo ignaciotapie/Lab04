@@ -39,7 +39,7 @@ class Reserva{
         void setCerradaReserva(Fecha, int, Reserva*, Huesped*);
         DTReserva getDTReserva();
         //baja reserva
-        void eliminarReservaDeHabitacion(int);
+        virtual void eliminarReservaDeHabitacion(int) = 0;
         //CalificarEstadia
         vector<DTEstadia> getEstadiasFinalizadas(string);
         Estadia* getEstadia(string);
@@ -69,6 +69,7 @@ class ReservaGrupal : public Reserva{
         set<string> getHuespedes();
 
         DTReserva getDTReserva();
+        void eliminarReservaDeHabitacion(int);
 };
 
 class ReservaIndividual : public Reserva{
@@ -79,6 +80,7 @@ class ReservaIndividual : public Reserva{
         ReservaIndividual(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, Habitacion* h);
         void calcularCosto();
         DTReserva getDTReserva();
+        void eliminarReservaDeHabitacion(int);
 };
 
 #endif

@@ -1465,22 +1465,20 @@ int main()
 
 
                 cout << "Desea confirmar la baja de reserva?\n" << "(1) Si\n" << "(2) No\n";
-                    bool incorrecto = true;
-                    while (incorrecto)
+                bool incorrecto = true;
+                while (incorrecto){
+                    string fin;
+                    cin >> fin;
+                    if (fin == "1" || fin == "2"){
+                        incorrecto = false;
+                        if (fin == "1")
+                            ireservas->confirmarBajaReserva();
+                        }
+                    else
                     {
-                        string fin;
-                        cin >> fin;
-                        if (fin == "1" || fin == "2")
-                        {
-                            incorrecto = false;
-                            if (fin == "1")
-                                ireservas->confirmarBajaReserva();
-                        }
-                        else
-                        {
-                            cout << "Por favor, elija una opcion correcta" << endl;
-                        }
+                        cout << "Por favor, elija una opcion correcta" << endl;
                     }
+                }
 
                 break;
             }

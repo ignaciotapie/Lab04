@@ -138,6 +138,12 @@ void Huesped::eliminarReservaDeHuesped(int codigoReservaEstadia){
     r.erase(it);
 }
 
+void Huesped::eliminarReservaDeHuespedGrupal(int codigoReservaEstadia){
+    map<int, ReservaGrupal*>::iterator it;
+    it = rg.find(codigoReservaEstadia);
+    rg.erase(it);
+}
+
 void Huesped::eliminarEstadia(Estadia* estadiaEliminar){
     set<Estadia*>::iterator it;
     it = e.find(estadiaEliminar);

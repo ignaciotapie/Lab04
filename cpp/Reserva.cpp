@@ -205,13 +205,37 @@ DTReserva ReservaGrupal::getDTReserva(){
 }
 
 //baja reserva
-void Reserva::eliminarReservaDeHabitacion(int codigoReservaEstadia){
+//void Reserva::eliminarReservaDeHabitacion(int codigoReservaEstadia){
+//    habitacion->eliminarReservaDeHabitacion(codigoReservaEstadia);
+//    huesped->eliminarReservaDeHuesped(codigoReservaEstadia);
+//    set<Estadia*>::iterator it = estadias.begin();
+//    for (; it != estadias.end(); ++it){
+//        //eliminar instancia de estadia
+//        (*it)->eliminarEstadia();
+//    }
+//}
+void ReservaIndividual::eliminarReservaDeHabitacion(int codigoReservaEstadia){
     habitacion->eliminarReservaDeHabitacion(codigoReservaEstadia);
     huesped->eliminarReservaDeHuesped(codigoReservaEstadia);
     set<Estadia*>::iterator it = estadias.begin();
     for (; it != estadias.end(); ++it){
         //eliminar instancia de estadia
         (*it)->eliminarEstadia();
+    }
+}
+
+void ReservaGrupal::eliminarReservaDeHabitacion(int codigoReservaEstadia){
+    habitacion->eliminarReservaDeHabitacion(codigoReservaEstadia);
+    huesped->eliminarReservaDeHuesped(codigoReservaEstadia);
+    set<Estadia*>::iterator it = estadias.begin();
+    for (; it != estadias.end(); ++it){
+        //eliminar instancia de estadia
+        (*it)->eliminarEstadia();
+    }
+    map<string, Huesped*>::iterator itr = huespedesExtra.begin();
+    for (; itr != huespedesExtra.end(); ++it){
+        //eliminar instancia de estadia
+        itr->second->eliminarReservaDeHuespedGrupal(codigoReservaEstadia);
     }
 }
 
