@@ -215,3 +215,16 @@ void Reserva::eliminarReservaDeHabitacion(int codigoReservaEstadia){
     }
 }
 
+set<string> ReservaGrupal::getHuespedes()
+{
+    set<string> huespedesRet;
+    huespedesRet.insert(this->huesped->getEmail());
+    map<string, Huesped*>::iterator it = this->huespedesExtra.begin();
+    
+    for(; it != this->huespedesExtra.end(); it++)
+    {
+        huespedesRet.insert(it->second->getEmail());
+    }
+    
+    return huespedesRet;
+}

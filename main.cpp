@@ -1308,9 +1308,16 @@ int main()
                 }
                 IReservas* ireservas = fabrica->getIReservas();
                 vector<DTReserva> reservas = ireservas->listarReservasDeHostal(nombreHostal);
+                if (reservas.empty())
+                {
+                    cout << "No hay reservas en el hostal seleccioando." << endl;
+                    break;
+                }
                 vector<DTReservaIndividual> reservasIndividuales = ireservas->getReservasIndividuales(reservas);
                 vector<DTReservaGrupal> reservasGrupales = ireservas->getReservasGrupales(reservas);
                 
+
+
                 vector<DTReservaIndividual>::iterator itrReservasInd;
                 for (itrReservasInd = reservasIndividuales.begin(); itrReservasInd != reservasIndividuales.end(); itrReservasInd++){
                     (*itrReservasInd).imprimir();

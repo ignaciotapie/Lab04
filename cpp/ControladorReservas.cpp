@@ -13,6 +13,7 @@
 #include "../h/RespuestaEmpleado.h"
 #include "../h/Usuario.h"
 #include "../h/DTHostal.h"
+#include "../h/Habitacion.h"
 
 using namespace std;
 
@@ -290,10 +291,13 @@ vector<DTReservaIndividual> ControladorReservas::getReservasIndividuales(vector<
     vector<DTReserva>::iterator retIt = reservasInd.begin();
     for(; retIt != reservasInd.end(); retIt++)
     {
-        map<int,Reserva*>::iterator it = reservas.begin();
-        for(; it != reservas.end(); it++)
+        Reserva* r = reservas.find(retIt->getCodigo())->second;
+        if (r)
         {
-
+            if(dynamic_cast<ReservaIndividual*>(r))
+            {
+                ret.emplace_back(DTReservaIndividual(r->getCodigoReserva(), r->getCheckIn(), r->getCheckOut(), r->getEstado(), r->getCosto(), r->getHabitacion()->getNumero(), r->getHuesped()->getEmail())); 
+            }
         }
     }
     return ret;
@@ -302,5 +306,18 @@ vector<DTReservaIndividual> ControladorReservas::getReservasIndividuales(vector<
 vector<DTReservaGrupal> ControladorReservas::getReservasGrupales(vector<DTReserva> reservasGrup)
 {
     vector<DTReservaGrupal> ret;
+    vector<DTReserva>::iterator retIt = reservasGrup.begin();
+    for(; retIt != reservasGrup.end(); retIt++)
+    {
+        Reserva* r = reservas.find(retIt->getCodigo())->second;
+        if (r)
+        {
+            ReservaGrupal* rg = dynamic_cast<ReservaGrupal*>(r);
+            if(rg)
+            {
+                ret.emplace_back(DTReservaGrupal(rg->getCodigoReserva(), rg->getCheckIn(), rg->getCheckOut(), rg->getEstado(), rg->getCosto(), rg->getHabitacion()->getNumero(), rg->getHuespedes())); 
+            }
+        }
+    }
     return ret;
 }

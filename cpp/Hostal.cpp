@@ -181,7 +181,6 @@ vector<DTReserva> Hostal::listarReservasDeHostal(){
         for (itr2 = aux.begin(); itr2 != aux.end(); ++itr2){
             res.emplace_back(*itr2);
         }
-        aux.~vector();
     }
     return res;
 }
@@ -197,7 +196,6 @@ set<int> Hostal::listarCodigoReservasDeHostal(){
         for (itr2 = aux.begin(); itr2 != aux.end(); ++itr){
             res.insert(*itr2);
         }
-        aux.~set();
     }
     return res;
 }

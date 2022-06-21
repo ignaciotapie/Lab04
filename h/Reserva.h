@@ -66,6 +66,7 @@ class ReservaGrupal : public Reserva{
         ReservaGrupal(int codRes, Fecha checkIn, Fecha checkOut, EstadoReserva estado, Habitacion* h);
         void agregarHuespedExtra(Huesped* huesped);
         void calcularCosto();
+        set<string> getHuespedes();
 
         DTReserva getDTReserva();
 };
