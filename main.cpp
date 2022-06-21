@@ -1426,7 +1426,6 @@ int main()
             }
             case 15:
             {
-
                 IHostales* ihostales = fabrica->getIHostales();
                 set<string> nombresHostales = ihostales->getHostales();
                 set<string>::iterator itrHostales;
