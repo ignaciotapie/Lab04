@@ -184,6 +184,7 @@ void ControladorReservas::cargaDatos()
     //crear Calificacion Estadia
     Calificacion* calSofia = new Calificacion(3, "Un poco caro para lo que ofrecen. El famoso gimnasio era una caminadora (que hacía tremendo ruido) y 2 pesas, la piscina parecía el lago del Parque Rodó y el desayuno eran 2 tostadas con mermelada. Internet se pasaba cayendo. No vuelvo.", Fecha(18.00, 11, 5, 2022), estSofia, finger, NULL);
     estSofia->setPunteroCalificacion(calSofia);
+    finger->agregarCalificacion(calSofia);
 
 
     //R2
@@ -218,6 +219,7 @@ void ControladorReservas::cargaDatos()
     //crear Calificacion Estadia
     Calificacion* calFrodo = new Calificacion(2, "Se pone peligroso de noche, no recomiendo. Además no hay caja fuerte para guardar anillos.", Fecha(3.00, 5, 1, 2001), estFrodo, pony, NULL);
     estFrodo->setPunteroCalificacion(calFrodo);
+    pony->agregarCalificacion(calFrodo);
     //crear Comentario a Calificacion
     Empleado* empl = cu->getEmpleado("barli@mail.com");
     calFrodo->setComentarioCalificacion("Desapareció y se fue sin pagar.", empl, calFrodo);
@@ -247,9 +249,10 @@ void ControladorReservas::cargaDatos()
     Estadia* estSeba = new Estadia(Fecha(6.00, 7, 6, 2022), Fecha(22.00, 15, 6, 2022), 0, rese, huesSeba, NULL);
     rese->setEstadia(estSeba);
     huesSeba->agregarEstadia(estSeba);
-    //crear Estadias
+    //crear Calificacion Estadia
     Calificacion* calSeba = new Calificacion(1, "Había pulgas en la habitación. Que lugar más mamarracho!!", Fecha(23.00, 15, 6, 2022), estSeba, caverna, NULL);
     estSeba->setPunteroCalificacion(calSeba);
+    caverna->agregarCalificacion(calSeba);
 
     
 

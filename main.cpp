@@ -982,7 +982,7 @@ int main()
                 ireservas->selectCalificacion(emailHuesped, codigoReserva);
                 cout << "Dejar Comentario: " << endl;
                 string comentario;
-                cin.ignore();
+                // cin.ignore();
                 getline(cin, comentario);
                 ireservas->setComentarioCalificacion(comentario);
                 break;
