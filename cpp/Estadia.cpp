@@ -95,5 +95,6 @@ void Estadia::eliminarEstadia(){
     huesped->eliminarEstadia(this);
     if(calificacion){
         calificacion->eliminarCalificacion();
+        calificacion->~Calificacion();
     }
 }

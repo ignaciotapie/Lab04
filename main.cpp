@@ -1458,6 +1458,15 @@ int main()
                 }
                 IReservas* ireservas = fabrica->getIReservas();
                 set<int> reservas = ireservas->listarCodigoReservasDeHostal(nombreHostal);
+
+                
+                if (reservas.empty())
+                {
+                    cout << "No hay reservas en el hostal seleccioando." << endl;
+                    break;
+                }
+
+
                 set<int>::iterator itrReservas;
                 cout << "Codigos de reservas:" << endl;
                 for (itrReservas = reservas.begin(); itrReservas != reservas.end(); itrReservas++){

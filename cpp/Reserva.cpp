@@ -221,6 +221,7 @@ void ReservaIndividual::eliminarReservaDeHabitacion(int codigoReservaEstadia){
     for (; it != estadias.end(); ++it){
         //eliminar instancia de estadia
         (*it)->eliminarEstadia();
+        (*it)->~Estadia();
     }
 }
 
@@ -231,6 +232,7 @@ void ReservaGrupal::eliminarReservaDeHabitacion(int codigoReservaEstadia){
     for (; it != estadias.end(); ++it){
         //eliminar instancia de estadia
         (*it)->eliminarEstadia();
+        (*it)->~Estadia();
     }
     map<string, Huesped*>::iterator itr = huespedesExtra.begin();
     for (; itr != huespedesExtra.end(); ++it){

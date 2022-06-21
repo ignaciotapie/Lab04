@@ -278,7 +278,8 @@ void ControladorReservas::confirmarBajaReserva(){
     //hacer una variable codigoreserva especifica para esto?
     it = reservas.find(codigoReservaEstadia);
     it->second->eliminarReservaDeHabitacion(codigoReservaEstadia);
-    reservas.erase(it);
+    it->second->~Reserva();
+    reservas.erase(codigoReservaEstadia);
 }
 
 void ControladorReservas::seleccionarReserva(int codigo){
