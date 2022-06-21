@@ -149,7 +149,15 @@ bool ControladorReservas::existeCalificacion(){
 bool ControladorReservas::existeRespuestaEmpleado(){
     Estadia* est = reservas.find(codigoReservaEstadia)->second->getEstadia(emailHuespedEstadia);
     bool existe = false;
-    if (est->getCalificacion() != NULL){DTReservaIndividual(){
+    if (est->getCalificacion() != NULL){
+        if (est->getCalificacion()->getRespuestaempleados() != NULL){
+            existe = true;
+        }
+    }
+    return existe;
+}
+
+string ControladorReservas::getRespuestaEmpleado(){
     Estadia* est = reservas.find(codigoReservaEstadia)->second->getEstadia(emailHuespedEstadia);
     return est->getCalificacion()->getRespuestaempleados()->getMensaje();
 }
@@ -276,16 +284,22 @@ void ControladorReservas::seleccionarReserva(int codigo){
     codigoReservaEstadia = codigo;
 }
 
-vector<DTReservaIndividual> ControladorReservas::getReservasIndividuales(vector<DTReserva> reservas)
+vector<DTReservaIndividual> ControladorReservas::getReservasIndividuales(vector<DTReserva> reservasInd)
 {
     vector<DTReservaIndividual> ret;
-     
+    vector<DTReserva>::iterator retIt = reservasInd.begin();
+    for ()
+    map<int,Reserva*>::iterator it = reservas.begin();
+    for(; it != reservas.end(); it++)
+    {
+
+    }
 
     return ret;
 }
 
-vector<DTReservaIndividual> ControladorReservas::getReservasGrupales(vector<DTReserva> reservas)
+vector<DTReservaGrupal> ControladorReservas::getReservasGrupales(vector<DTReserva> reservasGrup)
 {
-    vector<DTReservaGrupal>() ret;
-    return ();
+    vector<DTReservaGrupal> ret;
+    return v
 }
