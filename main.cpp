@@ -843,8 +843,10 @@ int main()
 
                     cout << "Desea ver detalles de algun hostal?\n" << "(1) Si\n" << "(2) No\n";
                     bool incorrecto = true;
-                    string op;
-                    while (incorrecto)
+                    int op;
+                    cin >> op;
+
+                   /* while (incorrecto)
                     {
                         string op;
                         cin >> op;
@@ -856,8 +858,8 @@ int main()
                         {
                             cout << "Por favor, elija una opcion correcta" << endl;
                         }
-                    }
-                    if (op == "2") {break;}
+                    }*/
+                    if (op == 2) {break;}
 
                     cout << "De cual?\n" << "(1) Primero\n" << "(2) Segundo\n"<< "(3) Tercero\n";
                     bool repetir = true;
@@ -876,24 +878,6 @@ int main()
                             it = top3Hostales.find(3);
                             nomHost = (it->second);
                         }
-                        /*switch (option)
-                        {
-                            
-                            case 1:{
-                                it = top3Hostales.begin();
-                                nomHost = (it->second);
-                            }
-                            case 2:{
-                                it = top3Hostales.begin();
-                                it++;
-                                nomHost = (it->second);
-                            }
-                            case 3:{
-                                it = top3Hostales.find(3);
-                                nomHost = (it->second);                               
-                            }
-                
-                        }*/
                     }
                     vector<DTCalificacion> calif = interfazHostales->getDetallesHostal(nomHost);
 					i = 1;
