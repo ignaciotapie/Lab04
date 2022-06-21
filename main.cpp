@@ -921,7 +921,7 @@ int main()
                 cout << "Ingrese mail del huesped a registrar su estadia\n";
                 while (!emailHuespedValido)
                 {
-                    cin.ignore();
+            
                     getline(cin, emailHuesped);
                     if (HuespedesRegistrados.find(emailHuesped) != HuespedesRegistrados.end())
                     {
