@@ -842,9 +842,10 @@ int main()
                     }
 
                     cout << "Desea ver detalles de algun hostal?\n" << "(1) Si\n" << "(2) No\n";
-                    bool incorrecto = true;
-                    string op;
-                    while (incorrecto)
+                    int op;
+                    cin >> op;
+
+                   /* while (incorrecto)
                     {
                         string op;
                         cin >> op;
@@ -856,8 +857,8 @@ int main()
                         {
                             cout << "Por favor, elija una opcion correcta" << endl;
                         }
-                    }
-                    if (op == "2") {break;}
+                    }*/
+                    if (op == 2) {break;}
 
                     cout << "De cual?\n" << "(1) Primero\n" << "(2) Segundo\n"<< "(3) Tercero\n";
                     bool repetir = true;
@@ -866,23 +867,15 @@ int main()
                     {
                         int option = CheckIntCin();
                         repetir = false;
-                        switch (option)
-                        {
-                            
-                            case 1:{
-                                it = top3Hostales.begin();
-                                nomHost = (it->second);
-                            }
-                            case 2:{
-                                it = top3Hostales.begin();
-                                it++;
-                                nomHost = (it->second);
-                            }
-                            case 3:{
-                                it = top3Hostales.find(3);
-                                nomHost = (it->second);                               
-                            }
-                
+                        if (option == 1){
+                            it = top3Hostales.begin();
+                            nomHost = (it->second);
+                        } else if (option == 2) {
+                            it = top3Hostales.find(2);
+                            nomHost = (it->second);
+                        } else if (option == 3){
+                            it = top3Hostales.find(3);
+                            nomHost = (it->second);
                         }
                     }
                     vector<DTCalificacion> calif = interfazHostales->getDetallesHostal(nomHost);
@@ -890,7 +883,7 @@ int main()
                     for(vector<DTCalificacion>::iterator it = calif.begin(); it != calif.end(); ++it)
                     {
                         DTCalificacion DTCalif = *it;
-                        cout << i << ".Puntaje: " << DTCalif.getPuntaje()<< ".Comentario: " << DTCalif.getComentario() << endl;
+                        cout << i << ".Puntaje: " << DTCalif.getPuntaje()<< "\n.Comentario: " << DTCalif.getComentario() << endl;
                         ++i;
                     }
                 }
