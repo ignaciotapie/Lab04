@@ -35,7 +35,7 @@ private:
     set<string> nombreHuesped;
 public:
     DTReservaGrupal(int, Fecha, Fecha, EstadoReserva, int, int, set<string>);
-    // void imprimir();
+    void imprimir();
 };
 
 class DTReservaIndividual : public DTReserva
@@ -44,7 +44,7 @@ private:
     /* data */
 public:
     DTReservaIndividual(int, Fecha, Fecha, EstadoReserva, int, int);
-    // void imprimir();
+    void imprimir();
 };
 
 #endif
