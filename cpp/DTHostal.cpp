@@ -5,6 +5,7 @@
 #include "../h/Reserva.h"
 #include "../h/Estadia.h"
 #include "../h/DTCalificacion.h"
+#include <iostream>
 
 DTHostal::DTHostal(string nom, string dir, string tel, float prom){
     nombre = nom;
@@ -24,22 +25,26 @@ DTHostal::DTHostal(string nom, string dir, string tel, float prom, map<int, Habi
     for (map<int, Habitacion*>::iterator ite = habs.begin(); ite != habs.end(); ite++){
 
         DTHabitacion h = DTHabitacion(ite->second->getNumero(), ite->second->getPrecio(), ite->second->getCapacidad(), NULL);
-        nuevo.emplace_back(h);
+        vector<DTCalificacion>* nuevo2 = new vector<DTCalificacion>;
+        
         map<int, Reserva*> res = (*ite).second->getReservas();
+       
 
         for (map<int, Reserva*>::iterator ite2 = res.begin(); ite2 != res.end(); ite2++){
             set<Estadia*> est = ite2->second->getEstadias();
             if (!est.empty()){
                 
-                vector<DTCalificacion>* nuevo2 = new vector<DTCalificacion>;
+                
                 for (set<Estadia*>::iterator ite3 = est.begin(); ite3 != est.end(); ite3++){
                     if ((*ite3)->getCalificacion() != NULL)
                         (*nuevo2).emplace_back((*ite3)->getDTCalificacion());
                 }
 
-                h.setCalificaciones(nuevo2);
+                
             }
-        }
+                h.setCalificaciones(nuevo2);
+               // cout << h.getCalificaciones()->size();
+        }nuevo.emplace_back(h);
         
     }
     this->habs = nuevo;
