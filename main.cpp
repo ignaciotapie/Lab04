@@ -508,7 +508,7 @@ int main()
                 cout << "Mes (Formato M/MM): ";
                 int mesCheckIn = CheckIntCin();
                 cout << endl;
-                cout << "Anio: ";
+                cout << "Anio (Formato YYYY): ";
                 int anioCheckIn = CheckIntCin();
                 cout << endl;
 
@@ -527,7 +527,7 @@ int main()
                 int anioCheckOut = CheckIntCin();
                 cout << endl;
 
-                if (Fecha(horaCheckOut,diaCheckOut,mesCheckOut, anioCheckOut).before(Fecha(horaCheckIn,diaCheckIn,mesCheckIn,anioCheckIn)))
+                if (!Fecha(horaCheckOut,diaCheckOut,mesCheckOut, anioCheckOut).before(Fecha(horaCheckIn,diaCheckIn,mesCheckIn,anioCheckIn)))
                 {
                     cout << "ERROR: El check-in no puede ser anterior al check-out" << endl;
                     break;
@@ -584,6 +584,11 @@ int main()
 
                 IUsuarios* interfazUsuarios = fabrica->getIUsuarios();
                 set<string> huespedesListados = interfazUsuarios->getHuespedes();
+                if (huespedesListados.empty())
+                {
+                    cout << "No hay huespedes registrados" << endl;
+                    break;
+                }
                 set<string>::iterator aux = huespedesListados.begin();
                 cout << "Lista de huespedes registrados: " << endl;
                 i = 1;
@@ -593,6 +598,7 @@ int main()
                 }
                 cout << "Ingrese el nombre del huesped a registrar: " ;
                 string nombreHuesped;
+                cin.ignore();
                 getline(cin, nombreHuesped);
                 interfazHostales->seleccionarHuesped(nombreHuesped);
                 set<string> nombreHuespedes;
@@ -602,8 +608,7 @@ int main()
                     bool quiereAgregar = true;
                     while (quiereAgregar)
                     {
-                        cout << "Ingrese el nombre de otro huesped a agregar a la reserva grupal: "; 
-                        cin.ignore();
+                        cout << "Ingrese el nombre de otro huesped a agregar a la reserva grupal: ";
                         getline(cin, nombreHuesped);
                         interfazHostales->seleccionarHuesped(nombreHuesped);
                         nombreHuespedes.insert(nombreHuesped);
@@ -612,7 +617,7 @@ int main()
                         while (incorrecto)
                         {
                             string fin;
-                            cin >> fin;
+                            getline(cin, fin);
                             if (fin == "1" || fin == "2")
                             {
                                 incorrecto = false;
@@ -1396,6 +1401,8 @@ int main()
                 interfazHostales->cargaDatos();
                 interfazReloj->cargaDatos();
                 interfazReservas->cargaDatos();
+
+                cout << "Carga de datos existosa" << endl << endl;
                 
                 break;
             }
